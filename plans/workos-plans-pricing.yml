@@ -1,0 +1,143 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: WorkOS
+providerId: workos
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Identity
+  - B2B SaaS
+  - SSO
+  - Directory Sync
+description: WorkOS per-product per-connection pricing. AuthKit free up to 1M MAU.
+sources:
+  - https://workos.com/pricing
+plans:
+  - id: workos-authkit
+    name: AuthKit (User Management)
+    type: usage-based
+    description: Free for first 1M MAUs; $2,500/mo per additional 1M MAU.
+    entries:
+      - label: First 1M MAU free
+        name: mau_free
+        type: quota
+        metric: MAU
+        limit: 1000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Per additional 1M MAU
+        name: mau_extra
+        type: metered
+        metric: MAU
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1000000
+        price: '2500.00'
+        userMultiplied: false
+    elements:
+      - name: Authentication for B2B
+      - name: Email/password, social, SSO, OAuth
+      - name: Pricing scales with growth
+  - id: workos-sso
+    name: Single Sign-On (SAML/OIDC)
+    type: usage-based
+    description: 'Tiered per connection: $125 (1-15) to $50 (101-200), custom 201+.'
+    entries:
+      - label: 1-15 connections
+        name: tier_1
+        type: metered
+        metric: connection
+        limit: 15
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '125.00'
+        userMultiplied: false
+      - label: 16-30
+        name: tier_2
+        type: metered
+        metric: connection
+        limit: 30
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '100.00'
+        userMultiplied: false
+      - label: 31-50
+        name: tier_3
+        type: metered
+        metric: connection
+        limit: 50
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '80.00'
+        userMultiplied: false
+      - label: 51-100
+        name: tier_4
+        type: metered
+        metric: connection
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '65.00'
+        userMultiplied: false
+      - label: 101-200
+        name: tier_5
+        type: metered
+        metric: connection
+        limit: 200
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '50.00'
+        userMultiplied: false
+      - label: 201+
+        name: tier_6
+        type: metered
+        metric: connection
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Per active SAML/OIDC connection
+      - name: Self-service SSO admin portal
+  - id: workos-directory-sync
+    name: Directory Sync (SCIM)
+    type: usage-based
+    description: 'Tiered per connection: $125 (1-15) to $50 (101-200), custom 201+.'
+    entries:
+      - label: 1-15 connections
+        name: tier_1
+        type: metered
+        metric: connection
+        limit: 15
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '125.00'
+        userMultiplied: false
+      - label: 201+
+        name: tier_6
+        type: metered
+        metric: connection
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: SCIM provisioning
+      - name: Just-in-time user creation
+      - name: Group sync

@@ -1,0 +1,55 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: WorkOS
+providerId: workos
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - B2B Identity
+description: FOCUS-aligned FinOps for WorkOS.
+sources:
+  - https://workos.com/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: WorkOS
+serviceCategory: B2B Identity
+billingModel:
+  pricingCategory: Per-MAU + Per-Connection
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: WorkOS
+  ServiceCategory: B2B Identity
+  ProviderName: WorkOS
+  PublisherName: WorkOS
+  BillingCurrency: USD
+meters:
+  - name: monthly_active_users
+    unit: MAU
+    aggregation: max
+  - name: sso_connections
+    unit: connection-month
+    aggregation: max
+  - name: directory_sync_connections
+    unit: connection-month
+    aggregation: max
+  - name: audit_log_events
+    unit: event
+    aggregation: sum
+principles:
+  - name: Visibility
+    description: Track WorkOS consumption monthly.
+  - name: Allocation
+    description: Tag usage to teams/cost centers.
+  - name: Optimization
+    description: Right-size; reclaim unused entitlements.
+  - name: Accountability
+    description: Set spend alerts; quarterly review.
