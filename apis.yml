@@ -23,14 +23,14 @@ apis:
     properties:
       - type: Documentation
         url: https://workos.com/docs
-      - type: GitHub Repository
+      - type: GitHubRepository
         url: https://github.com/workos
 common:
   - type: Website
     url: https://workos.com
   - type: Documentation
     url: https://workos.com/docs
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/workos
   - type: Features
     data:
