@@ -1,7 +1,6 @@
 aid: workos
 name: WorkOS
-description: WorkOS is an authentication and identity platform providing enterprise SSO, directory sync
-  (SCIM), and multi-factor authentication APIs for SaaS applications.
+description: WorkOS is an authentication and identity platform providing enterprise SSO, directory sync (SCIM), and multi-factor authentication APIs for SaaS applications.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
@@ -9,13 +8,12 @@ tags:
   - Identity Provider
 url: https://raw.githubusercontent.com/api-evangelist/workos/refs/heads/main/apis.yml
 created: '2026-03-25'
-modified: '2026-05-04'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: workos:workos
     name: WorkOS
-    description: WorkOS is an authentication and identity platform providing enterprise SSO, directory
-      sync (SCIM), and multi-factor authentication APIs for SaaS applications.
+    description: WorkOS is an authentication and identity platform providing enterprise SSO, directory sync (SCIM), and multi-factor authentication APIs for SaaS applications.
     humanURL: https://workos.com
     tags:
       - Authentication
@@ -53,6 +51,12 @@ common:
     sources:
       - https://workos.com/pricing
     updated: '2026-05-04'
+  - name: MCP Server
+    url: https://github.com/workos/pipes-mcp
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/workos/skills
+    type: AgentSkill
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
