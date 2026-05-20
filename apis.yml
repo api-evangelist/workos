@@ -24,6 +24,8 @@ apis:
       - type: GitHubRepository
         url: https://github.com/workos
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/workos-inc
   - type: Website
     url: https://workos.com
   - type: Documentation
