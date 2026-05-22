@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workos/main/json-schema/workos-fga-check-schema.json",
+  "title": "WorkOS FGA Authorization Check",
+  "description": "A relationship-based authorization decision computed by WorkOS Fine-Grained Authorization (formerly Warrant).",
+  "type": "object",
+  "required": ["checks"],
+  "properties": {
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["resource_type", "resource_id", "relation", "subject"],
+        "properties": {
+          "resource_type": { "type": "string" },
+          "resource_id": { "type": "string" },
+          "relation": { "type": "string" },
+          "subject": {
+            "type": "object",
+            "required": ["type", "id"],
+            "properties": {
+              "type": { "type": "string" },
+              "id": { "type": "string" },
+              "relation": { "type": ["string", "null"] }
+            }
+          },
+          "context": { "type": "object" }
+        }
+      }
+    },
+    "op": { "type": "string", "enum": ["all_of", "any_of", "batch"] },
+    "warrant_token": { "type": ["string", "null"] }
+  }
+}

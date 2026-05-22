@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workos/main/json-schema/workos-audit-event-schema.json",
+  "title": "WorkOS Audit Log Event",
+  "description": "A tamper-evident audit log event emitted by a customer application and forwarded to a SIEM destination.",
+  "type": "object",
+  "required": ["action", "occurred_at", "actor", "targets"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^audit_event_[A-Z0-9]{26}$" },
+    "organization_id": { "type": "string", "pattern": "^org_[A-Z0-9]{26}$" },
+    "action": { "type": "string", "description": "Stable identifier of the action (e.g. user.signed_in, project.deleted)." },
+    "version": { "type": "integer" },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "actor": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "name": { "type": ["string", "null"] },
+        "metadata": { "type": "object" }
+      }
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "id"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "name": { "type": ["string", "null"] },
+          "metadata": { "type": "object" }
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "location": { "type": "string" },
+        "user_agent": { "type": "string" }
+      }
+    },
+    "metadata": { "type": "object" }
+  }
+}

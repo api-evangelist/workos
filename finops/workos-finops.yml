@@ -4,13 +4,13 @@ schema: https://www.finops.org/framework/
 provider: WorkOS
 providerId: workos
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-22'
 reconciled: true
 tags:
   - FinOps
   - FOCUS
   - B2B Identity
-description: FOCUS-aligned FinOps for WorkOS.
+description: FOCUS-aligned FinOps mapping for WorkOS. Bills by MAU (AuthKit), per-connection (SSO/SCIM), per-event-and-destination (Audit Logs), per-check (Radar), and per-domain (Custom Domain).
 sources:
   - https://workos.com/pricing
 alignedWith:
@@ -22,7 +22,7 @@ alignedWith:
 publisherName: WorkOS
 serviceCategory: B2B Identity
 billingModel:
-  pricingCategory: Per-MAU + Per-Connection
+  pricingCategory: Per-MAU + Per-Connection + Per-Event + Per-Check
   billingFrequency: Monthly
   billingCurrency: USD
 focusColumns:
@@ -35,21 +35,37 @@ meters:
   - name: monthly_active_users
     unit: MAU
     aggregation: max
+    product: AuthKit
   - name: sso_connections
     unit: connection-month
     aggregation: max
+    product: Single Sign-On
   - name: directory_sync_connections
     unit: connection-month
     aggregation: max
+    product: Directory Sync
   - name: audit_log_events
     unit: event
     aggregation: sum
+    product: Audit Logs
+  - name: audit_log_siem_destinations
+    unit: destination-month
+    aggregation: max
+    product: Audit Logs
+  - name: radar_checks
+    unit: check
+    aggregation: sum
+    product: Radar
+  - name: custom_domains
+    unit: domain-month
+    aggregation: max
+    product: Custom Domain
 principles:
   - name: Visibility
-    description: Track WorkOS consumption monthly.
+    description: Track WorkOS consumption monthly by product (AuthKit / SSO / SCIM / Audit Logs / Radar).
   - name: Allocation
-    description: Tag usage to teams/cost centers.
+    description: Tag usage to product teams or cost centers; AuthKit MAUs map naturally to product-line user counts.
   - name: Optimization
-    description: Right-size; reclaim unused entitlements.
+    description: Right-size SSO/SCIM connections (reclaim unused), retire stale audit log destinations, tune Radar to high-risk routes.
   - name: Accountability
-    description: Set spend alerts; quarterly review.
+    description: Set spend alerts at MAU and connection-tier boundaries; quarterly review of audit log retention.

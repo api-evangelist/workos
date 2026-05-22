@@ -1,0 +1,132 @@
+name: WorkOS API
+description: Shared Naftiko capability definition for the WorkOS REST API covering authentication, identity, directory sync, authorization (FGA), audit logs, and agent-oriented surfaces.
+specification: Naftiko Capabilities
+specificationVersion: '0.1'
+provider: WorkOS
+providerId: workos
+api: workos
+created: '2026-05-22'
+modified: '2026-05-22'
+tags:
+  - Identity
+  - Authentication
+  - SSO
+  - SCIM
+  - Authorization
+  - Audit Logs
+  - Agents
+  - MCP
+sources:
+  - https://workos.com/docs
+  - https://github.com/workos/openapi-spec
+baseUrl: https://api.workos.com
+auth:
+  type: bearer
+  envVar: WORKOS_API_KEY
+  description: Secret API key (sk_test_* or sk_live_*) scoped to a WorkOS environment.
+capabilities:
+  - id: authenticate-user
+    name: Authenticate User
+    description: Authenticate a user via password, magic auth, code, social, or SSO and issue WorkOS sealed session tokens.
+    operationIds:
+      - UserManagementController_authenticate
+      - UserManagementController_authenticateWithCode
+      - UserManagementController_authenticateWithMagicAuth
+      - UserManagementController_authenticateWithPassword
+    tags: [Authentication, AuthKit]
+  - id: manage-users
+    name: Manage Users
+    description: Create, read, update, delete, and list end-users in the WorkOS user pool.
+    operationIds:
+      - UserManagementController_createUser
+      - UserManagementController_getUser
+      - UserManagementController_updateUser
+      - UserManagementController_deleteUser
+      - UserManagementController_listUsers
+    tags: [Users, User Management]
+  - id: manage-organizations
+    name: Manage Organizations
+    description: Create and manage B2B tenant organizations including domains, memberships, and metadata.
+    operationIds:
+      - OrganizationsController_create
+      - OrganizationsController_get
+      - OrganizationsController_update
+      - OrganizationsController_list
+    tags: [Organizations]
+  - id: enterprise-sso
+    name: Enterprise SSO
+    description: Generate authorization URLs and exchange codes for SAML/OIDC SSO connections.
+    operationIds:
+      - SsoController_getAuthorizationUrl
+      - SsoController_getProfileAndToken
+      - ConnectionsController_list
+      - ConnectionsController_get
+      - ConnectionsController_delete
+    tags: [SSO, SAML, OIDC]
+  - id: directory-sync
+    name: Directory Sync (SCIM)
+    description: Provision and reconcile users and groups from customer identity directories via SCIM.
+    operationIds:
+      - DirectoriesController_list
+      - DirectoryUsersController_list
+      - DirectoryUsersController_get
+      - DirectoryGroupsController_list
+      - DirectoryGroupsController_get
+    tags: [Directory Sync, SCIM]
+  - id: audit-logging
+    name: Audit Logging
+    description: Emit and stream tamper-evident audit events to customer SIEMs.
+    operationIds:
+      - AuditLogsController_createEvent
+      - AuditLogsController_createSchema
+      - AuditLogsController_listSchemas
+    tags: [Audit Logs, Compliance]
+  - id: fine-grained-authorization
+    name: Fine-Grained Authorization
+    description: Define resources, relations, and check authorization decisions using WorkOS FGA (formerly Warrant).
+    operationIds:
+      - AuthorizationController_check
+      - AuthorizationController_query
+      - PermissionsController_list
+    tags: [Authorization, FGA, ReBAC]
+  - id: webhooks
+    name: Webhooks and Events
+    description: Subscribe to and stream WorkOS events for user, organization, directory, and audit changes.
+    operationIds:
+      - WebhooksController_create
+      - WebhooksController_list
+      - EventsController_list
+    tags: [Webhooks, Events]
+  - id: admin-portal
+    name: Admin Portal Provisioning
+    description: Generate short-lived white-label Admin Portal links so customers can self-configure SSO/SCIM.
+    operationIds:
+      - AdminPortalController_create
+    tags: [Admin Portal, Self-Serve]
+  - id: radar-bot-protection
+    name: Radar Bot and Fraud Protection
+    description: Check requests for bot, fraud, and abuse signals at the auth boundary.
+    operationIds:
+      - RadarController_check
+    tags: [Radar, Bot Protection, Fraud]
+  - id: agent-pipes-mcp
+    name: Agent Pipes (MCP)
+    description: Issue human-approved, provider-scoped credentials for AI agents acting on behalf of users via MCP.
+    operationIds:
+      - PipesController_list
+      - PipesController_create
+    tags: [Agents, MCP, Agent Auth]
+  - id: feature-flags
+    name: Feature Flags
+    description: Evaluate and manage user-, organization-, and environment-scoped feature flags.
+    operationIds:
+      - FeatureFlagsController_list
+      - FeatureFlagsController_create
+      - FeatureFlagsTargetsController_list
+    tags: [Feature Flags]
+  - id: api-key-validation
+    name: API Key Validation
+    description: Validate user- or organization-scoped API keys created in WorkOS.
+    operationIds:
+      - ApiKeysController_validateApiKey
+    tags: [API Keys, Security]

@@ -1,0 +1,17 @@
+{
+  "operationId": "DirectoriesController_list",
+  "method": "GET",
+  "path": "/directories",
+  "summary": "List Directories",
+  "request": null,
+  "response": {
+    "object": "string",
+    "data": [
+      {}
+    ],
+    "list_metadata": {
+      "before": "directory_01HXYZ123456789ABCDEFGHIJ",
+      "after": "directory_01HXYZ987654321KJIHGFEDCBA"
+    }
+  }
+}

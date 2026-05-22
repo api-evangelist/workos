@@ -1,0 +1,59 @@
+name: Agent-Scoped Authentication
+description: Issue session-scoped, human-approved credentials to an AI agent so it can act on behalf of a user against third-party APIs via WorkOS Pipes/MCP, validate the resulting API key, and check authorization with FGA before taking action.
+specification: Naftiko Capability Composition
+specificationVersion: '0.1'
+provider: WorkOS
+providerId: workos
+api: workos
+created: '2026-05-22'
+modified: '2026-05-22'
+tags:
+  - Agents
+  - MCP
+  - Agent Auth
+  - FGA
+inputs:
+  - name: user_id
+    type: string
+    required: true
+  - name: agent_name
+    type: string
+    required: true
+  - name: requested_scopes
+    type: array
+    items: string
+    required: true
+  - name: target_resource
+    type: string
+    required: true
+  - name: target_relation
+    type: string
+    required: true
+steps:
+  - id: authenticate-user
+    capability: authenticate-user
+    operation: UserManagementController_authenticate
+    description: Confirm the human user is in an active session before granting any agent credential.
+  - id: create-pipe
+    capability: agent-pipes-mcp
+    operation: PipesController_create
+    description: Create a Pipe binding the user, the agent, and the requested provider/scopes; surface human approval prompt.
+  - id: validate-api-key
+    capability: api-key-validation
+    operation: ApiKeysController_validateApiKey
+    description: Validate the user-scoped API key issued for the agent before each privileged call.
+  - id: authorize-action
+    capability: fine-grained-authorization
+    operation: AuthorizationController_check
+    description: Ask FGA whether the user-on-whose-behalf the agent is acting has the required relation on the target resource.
+  - id: emit-audit-event
+    capability: audit-logging
+    operation: AuditLogsController_createEvent
+    description: Write a tamper-evident audit log entry recording (user, agent, scope, decision, resource) for SIEM streaming.
+outputs:
+  - name: pipe_id
+    source: create-pipe.id
+  - name: api_key
+    source: create-pipe.api_key
+  - name: authorized
+    source: authorize-action.authorized

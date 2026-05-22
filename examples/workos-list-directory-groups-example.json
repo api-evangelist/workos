@@ -1,0 +1,17 @@
+{
+  "operationId": "DirectoryGroupsController_list",
+  "method": "GET",
+  "path": "/directory_groups",
+  "summary": "List Directory Groups",
+  "request": null,
+  "response": {
+    "object": "string",
+    "data": [
+      {}
+    ],
+    "list_metadata": {
+      "before": "directory_group_01HXYZ123456789ABCDEFGHIJ",
+      "after": "directory_group_01HXYZ987654321KJIHGFEDCBA"
+    }
+  }
+}

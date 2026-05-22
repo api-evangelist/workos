@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workos/main/json-schema/workos-organization-schema.json",
+  "title": "WorkOS Organization",
+  "description": "A B2B tenant organization in WorkOS.",
+  "type": "object",
+  "required": ["id", "name", "object"],
+  "properties": {
+    "object": { "type": "string", "const": "organization" },
+    "id": { "type": "string", "pattern": "^org_[A-Z0-9]{26}$" },
+    "name": { "type": "string" },
+    "allow_profiles_outside_organization": { "type": "boolean" },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["domain"],
+        "properties": {
+          "object": { "type": "string", "const": "organization_domain" },
+          "id": { "type": "string", "pattern": "^org_domain_[A-Z0-9]{26}$" },
+          "domain": { "type": "string" },
+          "state": { "type": "string", "enum": ["pending", "verified", "failed", "legacy_verified"] },
+          "verification_strategy": { "type": ["string", "null"], "enum": [null, "dns", "manual"] }
+        }
+      }
+    },
+    "metadata": { "type": "object", "additionalProperties": { "type": "string" } },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

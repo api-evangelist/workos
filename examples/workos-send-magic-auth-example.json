@@ -1,0 +1,20 @@
+{
+  "operationId": "UserlandMagicAuthController_sendMagicAuthCodeAndReturn",
+  "method": "POST",
+  "path": "/user_management/magic_auth",
+  "summary": "Create a Magic Auth Code",
+  "request": {
+    "email": "marcelina.davis@example.com",
+    "invitation_token": "Z1Y2X3W4V5U6T7S8R9Q0P1O2N3"
+  },
+  "response": {
+    "object": "string",
+    "id": "magic_auth_01HWZBQZY2M3AMQW166Q22K88F",
+    "user_id": "user_01E4ZCR3C56J083X43JQXF3JK5",
+    "email": "marcelina.davis@example.com",
+    "expires_at": "2026-01-15T12:00:00.000Z",
+    "created_at": "2026-01-15T12:00:00.000Z",
+    "updated_at": "2026-01-15T12:00:00.000Z",
+    "code": "123456"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "operationId": "ApiKeysController_validateApiKey",
+  "method": "POST",
+  "path": "/api_keys/validations",
+  "summary": "Validate API Key",
+  "request": {
+    "value": "sk_example_1234567890abcdef"
+  },
+  "response": {
+    "api_key": {}
+  }
+}

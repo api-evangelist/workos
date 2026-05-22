@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workos/main/json-schema/workos-connection-schema.json",
+  "title": "WorkOS SSO Connection",
+  "description": "A SAML or OIDC SSO connection that links a WorkOS organization to a customer identity provider.",
+  "type": "object",
+  "required": ["id", "organization_id", "connection_type", "state"],
+  "properties": {
+    "object": { "type": "string", "const": "connection" },
+    "id": { "type": "string", "pattern": "^conn_[A-Z0-9]{26}$" },
+    "organization_id": { "type": "string", "pattern": "^org_[A-Z0-9]{26}$" },
+    "name": { "type": "string" },
+    "connection_type": {
+      "type": "string",
+      "enum": [
+        "ADFSSAML", "AdpOidc", "AppleOAuth", "Auth0SAML", "AzureSAML", "CasSAML", "ClassLinkSAML",
+        "CloudflareSAML", "CyberArkSAML", "DuoSAML", "GenericOIDC", "GenericSAML", "GitHubOAuth",
+        "GoogleOAuth", "GoogleSAML", "JumpCloudSAML", "KeycloakSAML", "LastPassSAML", "LoginGovOidc",
+        "MagicLink", "MicrosoftOAuth", "MiniOrangeSAML", "NetIqSAML", "OktaSAML", "OneLoginSAML",
+        "OracleSAML", "PingFederateSAML", "PingOneSAML", "RipplingSAML", "SalesforceSAML",
+        "ShibbolethGenericSAML", "ShibbolethSAML", "SimpleSamlPhpSAML", "VMwareSAML"
+      ]
+    },
+    "state": { "type": "string", "enum": ["draft", "active", "inactive", "validating"] },
+    "status": { "type": "string", "enum": ["linked", "unlinked"] },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "domain": { "type": "string" },
+          "object": { "type": "string", "const": "connection_domain" }
+        }
+      }
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

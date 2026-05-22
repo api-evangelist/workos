@@ -1,0 +1,13 @@
+{
+  "operationId": "AuthorizationController_check",
+  "method": "POST",
+  "path": "/authorization/organization_memberships/{organization_membership_id}/check",
+  "summary": "Check Authorization",
+  "request": {
+    "permission_slug": "posts:create",
+    "resource_id": "resource_01HXYZ123456789ABCDEFGHIJ"
+  },
+  "response": {
+    "authorized": true
+  }
+}

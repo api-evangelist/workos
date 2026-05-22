@@ -1,0 +1,17 @@
+{
+  "operationId": "OrganizationsController_list",
+  "method": "GET",
+  "path": "/organizations",
+  "summary": "List Organizations",
+  "request": null,
+  "response": {
+    "object": "string",
+    "data": [
+      {}
+    ],
+    "list_metadata": {
+      "before": "org_01HXYZ123456789ABCDEFGHIJ",
+      "after": "org_01HXYZ987654321KJIHGFEDCBA"
+    }
+  }
+}

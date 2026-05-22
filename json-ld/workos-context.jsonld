@@ -1,0 +1,52 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://workos.com/vocab#",
+    "schema": "http://schema.org/",
+    "acl": "http://www.w3.org/ns/auth/acl#",
+    "scim": "urn:ietf:params:scim:schemas:core:2.0:",
+    "audit": "https://workos.com/vocab/audit#",
+
+    "id": "@id",
+    "type": "@type",
+
+    "User": "schema:Person",
+    "user_id": "@id",
+    "email": "schema:email",
+    "first_name": "schema:givenName",
+    "last_name": "schema:familyName",
+    "profile_picture_url": { "@id": "schema:image", "@type": "@id" },
+    "email_verified": "https://schema.org/email#verified",
+    "last_sign_in_at": { "@id": "https://workos.com/vocab#lastSignInAt", "@type": "schema:DateTime" },
+    "created_at": { "@id": "schema:dateCreated", "@type": "schema:DateTime" },
+    "updated_at": { "@id": "schema:dateModified", "@type": "schema:DateTime" },
+
+    "Organization": "schema:Organization",
+    "name": "schema:name",
+    "domains": "schema:url",
+
+    "Connection": "https://workos.com/vocab#SsoConnection",
+    "connection_type": "https://workos.com/vocab#connectionType",
+    "organization_id": { "@id": "https://workos.com/vocab#organization", "@type": "@id" },
+
+    "Directory": "https://workos.com/vocab#Directory",
+    "DirectoryUser": "scim:User",
+    "DirectoryGroup": "scim:Group",
+
+    "AuditEvent": "audit:Event",
+    "action": "audit:action",
+    "occurred_at": "audit:occurredAt",
+    "actor": "audit:actor",
+    "targets": "audit:target",
+
+    "WarrantCheck": "https://workos.com/vocab#FgaCheck",
+    "resource_type": "https://workos.com/vocab#resourceType",
+    "resource_id": "https://workos.com/vocab#resourceId",
+    "relation": "https://workos.com/vocab#relation",
+    "subject": "https://workos.com/vocab#subject",
+
+    "Pipe": "https://workos.com/vocab#AgentPipe",
+    "scope": "https://workos.com/vocab#scope",
+    "approval": "https://workos.com/vocab#humanApproval"
+  }
+}

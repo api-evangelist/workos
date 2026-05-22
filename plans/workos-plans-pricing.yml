@@ -4,14 +4,17 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: WorkOS
 providerId: workos
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-22'
 reconciled: true
 tags:
   - Identity
   - B2B SaaS
   - SSO
   - Directory Sync
-description: WorkOS per-product per-connection pricing. AuthKit free up to 1M MAU.
+  - Audit Logs
+  - Radar
+  - FGA
+description: WorkOS per-product per-connection pricing. AuthKit free up to 1M MAU; SSO/SCIM tiered per connection; Audit Logs streaming + retention; Radar metered checks.
 sources:
   - https://workos.com/pricing
 plans:
@@ -41,13 +44,15 @@ plans:
         price: '2500.00'
         userMultiplied: false
     elements:
-      - name: Authentication for B2B
-      - name: Email/password, social, SSO, OAuth
+      - name: Hosted AuthKit login UI
+      - name: Email/password, social, magic auth, OAuth, passkeys
+      - name: Multi-factor authentication
       - name: Pricing scales with growth
+
   - id: workos-sso
     name: Single Sign-On (SAML/OIDC)
     type: usage-based
-    description: 'Tiered per connection: $125 (1-15) to $50 (101-200), custom 201+.'
+    description: 'Tiered per active SAML/OIDC connection: $125 (1-15) down to $50 (101-200), custom at 201+.'
     entries:
       - label: 1-15 connections
         name: tier_1
@@ -59,7 +64,7 @@ plans:
         unit: 1
         price: '125.00'
         userMultiplied: false
-      - label: 16-30
+      - label: 16-30 connections (20% off)
         name: tier_2
         type: metered
         metric: connection
@@ -69,7 +74,7 @@ plans:
         unit: 1
         price: '100.00'
         userMultiplied: false
-      - label: 31-50
+      - label: 31-50 connections (36% off)
         name: tier_3
         type: metered
         metric: connection
@@ -79,7 +84,7 @@ plans:
         unit: 1
         price: '80.00'
         userMultiplied: false
-      - label: 51-100
+      - label: 51-100 connections (48% off)
         name: tier_4
         type: metered
         metric: connection
@@ -89,7 +94,7 @@ plans:
         unit: 1
         price: '65.00'
         userMultiplied: false
-      - label: 101-200
+      - label: 101-200 connections (60% off)
         name: tier_5
         type: metered
         metric: connection
@@ -99,7 +104,7 @@ plans:
         unit: 1
         price: '50.00'
         userMultiplied: false
-      - label: 201+
+      - label: 201+ connections (custom)
         name: tier_6
         type: metered
         metric: connection
@@ -111,11 +116,13 @@ plans:
         userMultiplied: false
     elements:
       - name: Per active SAML/OIDC connection
-      - name: Self-service SSO admin portal
+      - name: Self-service SSO Admin Portal
+      - name: 50+ identity provider integrations
+
   - id: workos-directory-sync
     name: Directory Sync (SCIM)
     type: usage-based
-    description: 'Tiered per connection: $125 (1-15) to $50 (101-200), custom 201+.'
+    description: 'Tiered per active SCIM connection mirroring SSO tiers: $125 (1-15) down to $50 (101-200).'
     entries:
       - label: 1-15 connections
         name: tier_1
@@ -127,7 +134,47 @@ plans:
         unit: 1
         price: '125.00'
         userMultiplied: false
-      - label: 201+
+      - label: 16-30 connections
+        name: tier_2
+        type: metered
+        metric: connection
+        limit: 30
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '100.00'
+        userMultiplied: false
+      - label: 31-50 connections
+        name: tier_3
+        type: metered
+        metric: connection
+        limit: 50
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '80.00'
+        userMultiplied: false
+      - label: 51-100 connections
+        name: tier_4
+        type: metered
+        metric: connection
+        limit: 100
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '65.00'
+        userMultiplied: false
+      - label: 101-200 connections
+        name: tier_5
+        type: metered
+        metric: connection
+        limit: 200
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '50.00'
+        userMultiplied: false
+      - label: 201+ connections (custom)
         name: tier_6
         type: metered
         metric: connection
@@ -138,6 +185,113 @@ plans:
         price: custom
         userMultiplied: false
     elements:
-      - name: SCIM provisioning
+      - name: SCIM 2.0 provisioning
       - name: Just-in-time user creation
       - name: Group sync
+
+  - id: workos-audit-logs
+    name: Audit Logs
+    type: usage-based
+    description: '$125/mo per SIEM destination plus $99/mo per 1M events retained.'
+    entries:
+      - label: Per SIEM connection
+        name: siem_connection
+        type: metered
+        metric: siem_connection
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '125.00'
+        userMultiplied: false
+      - label: Per 1M events retained
+        name: event_retention
+        type: metered
+        metric: events
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1000000
+        price: '99.00'
+        userMultiplied: false
+    elements:
+      - name: Tamper-evident audit log storage
+      - name: SIEM streaming (Splunk, Datadog, Elastic, etc.)
+
+  - id: workos-radar
+    name: Radar (Bot and Fraud Protection)
+    type: usage-based
+    description: First 1,000 checks free; $100/mo per additional 50K checks.
+    entries:
+      - label: First 1,000 checks free
+        name: radar_free
+        type: quota
+        metric: checks
+        limit: 1000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Per 50K additional checks
+        name: radar_metered
+        type: metered
+        metric: checks
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 50000
+        price: '100.00'
+        userMultiplied: false
+    elements:
+      - name: Bot detection at auth boundary
+      - name: Fraud signals
+      - name: Abuse mitigation
+
+  - id: workos-custom-domain
+    name: Custom Domain
+    type: flat
+    description: $99/mo per custom domain configured for AuthKit and the Admin Portal.
+    entries:
+      - label: Per custom domain
+        name: custom_domain
+        type: metered
+        metric: domain
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '99.00'
+        userMultiplied: false
+    elements:
+      - name: Custom auth.example.com domain
+
+  - id: workos-scale-support
+    name: Scale Support
+    type: flat
+    description: Scale support tier with video support and onboarding ($1,000/mo). Enterprise tier is custom-negotiated.
+    entries:
+      - label: Scale support
+        name: scale
+        type: metered
+        metric: support
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '1000.00'
+        userMultiplied: false
+      - label: Enterprise support
+        name: enterprise
+        type: metered
+        metric: support
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Video support
+      - name: Dedicated account management (Enterprise)
+      - name: 24/7 response SLAs (Enterprise)

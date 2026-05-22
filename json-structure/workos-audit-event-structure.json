@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-09/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workos/main/json-structure/workos-audit-event-structure.json",
+  "title": "WorkOS Audit Event Structure",
+  "type": "object",
+  "fields": {
+    "id": { "type": "string" },
+    "organization_id": { "type": "string" },
+    "action": { "type": "string" },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "actor": {
+      "type": "object",
+      "fields": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "name": { "type": "string", "nullable": true }
+      }
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "fields": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "name": { "type": "string", "nullable": true }
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "fields": {
+        "location": { "type": "string" },
+        "user_agent": { "type": "string" }
+      }
+    },
+    "metadata": { "type": "object" }
+  }
+}

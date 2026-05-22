@@ -1,0 +1,19 @@
+{
+  "operationId": "DataIntegrationsUserManagementController_getUserDataInstallation",
+  "method": "GET",
+  "path": "/user_management/users/{user_id}/connected_accounts/{slug}",
+  "summary": "Get a Connected Account",
+  "request": null,
+  "response": {
+    "object": "string",
+    "id": "data_installation_01EHZNVPK3SFK441A1RGBFSHRT",
+    "user_id": "user_01EHZNVPK3SFK441A1RGBFSHRT",
+    "scopes": [
+      "repo",
+      "user:email"
+    ],
+    "state": "connected",
+    "created_at": "2024-01-16T14:20:00.000Z",
+    "updated_at": "2024-01-16T14:20:00.000Z"
+  }
+}

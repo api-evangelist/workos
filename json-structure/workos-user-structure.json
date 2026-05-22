@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-09/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workos/main/json-structure/workos-user-structure.json",
+  "title": "WorkOS User Structure",
+  "type": "object",
+  "fields": {
+    "id": { "type": "string", "description": "WorkOS-issued ULID prefixed with user_." },
+    "object": { "type": "string", "const": "user" },
+    "email": { "type": "string", "format": "email" },
+    "email_verified": { "type": "boolean" },
+    "first_name": { "type": "string", "nullable": true },
+    "last_name": { "type": "string", "nullable": true },
+    "profile_picture_url": { "type": "string", "format": "uri", "nullable": true },
+    "last_sign_in_at": { "type": "string", "format": "date-time", "nullable": true },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

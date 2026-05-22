@@ -1,0 +1,17 @@
+{
+  "operationId": "FeatureFlagsController_list",
+  "method": "GET",
+  "path": "/feature-flags",
+  "summary": "List Feature Flags",
+  "request": null,
+  "response": {
+    "object": "string",
+    "data": [
+      {}
+    ],
+    "list_metadata": {
+      "before": "flag_01HXYZ123456789ABCDEFGHIJ",
+      "after": "flag_01HXYZ987654321KJIHGFEDCBA"
+    }
+  }
+}

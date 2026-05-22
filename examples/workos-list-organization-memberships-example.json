@@ -1,0 +1,17 @@
+{
+  "operationId": "UserlandUserOrganizationMembershipsController_list",
+  "method": "GET",
+  "path": "/user_management/organization_memberships",
+  "summary": "List Organization Memberships",
+  "request": null,
+  "response": {
+    "object": "string",
+    "list_metadata": {
+      "before": "om_01HXYZ123456789ABCDEFGHIJ",
+      "after": "om_01HXYZ987654321KJIHGFEDCBA"
+    },
+    "data": [
+      {}
+    ]
+  }
+}

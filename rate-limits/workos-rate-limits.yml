@@ -4,15 +4,15 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: WorkOS
 providerId: workos
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-22'
 reconciled: true
 tags:
   - Rate Limiting
   - Identity
-description: WorkOS API rate limits per organization.
+description: WorkOS API rate limits scoped per organization with separate envelopes for auth, REST, and Directory Sync.
 sources:
-  - https://workos.com/pricing
   - https://workos.com/docs/reference/rate-limits
+  - https://workos.com/pricing
 headers:
   retryAfter: Retry-After
 responseCodes:
@@ -28,8 +28,14 @@ limits:
     metric: requests_per_minute
     limit: 60
     timeFrame: minute
-  - name: Directory Sync
+  - name: Directory Sync events
     scope: directory
     metric: events_per_second
     limit: 10
     timeFrame: second
+  - name: Webhook delivery
+    scope: webhook
+    metric: retries
+    limit: 8
+    timeFrame: total
+    description: Exponential backoff retries for failed webhook deliveries.

@@ -1,0 +1,59 @@
+name: B2B Enterprise Onboarding
+description: End-to-end workflow for onboarding a new enterprise customer to a B2B SaaS app — create the organization, generate an Admin Portal link so the customer's IT admin configures SSO and SCIM, then verify that an enterprise user can authenticate and that directory users are syncing.
+specification: Naftiko Capability Composition
+specificationVersion: '0.1'
+provider: WorkOS
+providerId: workos
+api: workos
+created: '2026-05-22'
+modified: '2026-05-22'
+tags:
+  - Onboarding
+  - SSO
+  - SCIM
+  - Admin Portal
+inputs:
+  - name: organization_name
+    type: string
+    required: true
+  - name: domains
+    type: array
+    items: string
+    required: true
+  - name: admin_email
+    type: string
+    required: true
+steps:
+  - id: create-organization
+    capability: manage-organizations
+    operation: OrganizationsController_create
+    description: Create a WorkOS organization for the new customer with their corporate domain(s).
+  - id: generate-admin-portal-link
+    capability: admin-portal
+    operation: AdminPortalController_create
+    description: Generate a short-lived Admin Portal magic link the IT admin uses to configure their identity provider.
+    intent: sso
+  - id: send-portal-link
+    description: Email the Admin Portal link to admin_email so the customer's IT admin can connect Okta/Entra/Google Workspace.
+    external: true
+  - id: poll-connection-active
+    capability: enterprise-sso
+    operation: ConnectionsController_list
+    description: Poll the connections endpoint until the new organization shows an active SAML/OIDC connection.
+  - id: verify-directory
+    capability: directory-sync
+    operation: DirectoriesController_list
+    description: Confirm that a directory has been linked and is in a Linked state.
+  - id: verify-directory-users
+    capability: directory-sync
+    operation: DirectoryUsersController_list
+    description: Confirm that directory users are syncing through SCIM.
+outputs:
+  - name: organization_id
+    source: create-organization.id
+  - name: admin_portal_link
+    source: generate-admin-portal-link.link
+  - name: connection_id
+    source: poll-connection-active.data[0].id
+  - name: directory_id
+    source: verify-directory.data[0].id

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workos/main/json-schema/workos-user-schema.json",
+  "title": "WorkOS User",
+  "description": "An end-user account in WorkOS User Management / AuthKit.",
+  "type": "object",
+  "required": ["id", "email", "object"],
+  "properties": {
+    "object": { "type": "string", "const": "user" },
+    "id": { "type": "string", "pattern": "^user_[A-Z0-9]{26}$" },
+    "email": { "type": "string", "format": "email" },
+    "first_name": { "type": ["string", "null"] },
+    "last_name": { "type": ["string", "null"] },
+    "email_verified": { "type": "boolean" },
+    "profile_picture_url": { "type": ["string", "null"], "format": "uri" },
+    "last_sign_in_at": { "type": ["string", "null"], "format": "date-time" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "external_id": { "type": ["string", "null"] },
+    "metadata": { "type": "object", "additionalProperties": { "type": "string" } }
+  }
+}

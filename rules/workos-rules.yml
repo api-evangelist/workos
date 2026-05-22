@@ -1,0 +1,147 @@
+extends: [[spectral:oas, all]]
+documentationUrl: https://workos.com/docs
+
+functions: []
+
+rules:
+  # ----- Information & contact -----
+  workos-info-contact:
+    description: WorkOS specs must include a contact pointing at workos.com.
+    given: $.info.contact
+    severity: error
+    then:
+      - field: url
+        function: pattern
+        functionOptions:
+          match: ^https://(www\.)?workos\.com
+      - field: email
+        function: pattern
+        functionOptions:
+          match: ^[^@]+@workos\.com$
+
+  workos-server-url:
+    description: Production server must be https://api.workos.com.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://api\.(workos|workos-test)\.com$
+
+  # ----- Naming & casing -----
+  workos-operation-summary-title-case:
+    description: Operation summaries should be Title Case (no leading lowercase letter).
+    given: $.paths.*[get,post,put,patch,delete].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[A-Z]
+
+  workos-operation-id-format:
+    description: WorkOS operationIds follow ControllerName_method convention.
+    given: $.paths.*[get,post,put,patch,delete].operationId
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: ^[A-Z][A-Za-z0-9]+(Controller)?_[A-Za-z0-9_]+$
+
+  workos-path-snake-case:
+    description: WorkOS path segments use snake_case (lowercase + underscores), not kebab-case in resource names.
+    given: $.paths
+    severity: info
+    then:
+      function: alphabetical
+
+  workos-property-snake-case:
+    description: Response/request properties in WorkOS use snake_case.
+    given: $.components.schemas.*.properties
+    severity: warn
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: ^[a-z][a-z0-9_]*$
+
+  # ----- Tags -----
+  workos-tags-defined:
+    description: Every operation must have at least one tag.
+    given: $.paths.*[get,post,put,patch,delete]
+    severity: error
+    then:
+      field: tags
+      function: truthy
+
+  workos-tag-display-name:
+    description: Tag definitions should include x-displayName for portal rendering.
+    given: $.tags[*]
+    severity: info
+    then:
+      field: x-displayName
+      function: truthy
+
+  # ----- Pagination -----
+  workos-list-pagination-params:
+    description: List endpoints should accept limit, before, and after pagination parameters.
+    given: $.paths[?(@property.match(/.*\/(users|organizations|directories|connections|events|memberships|invitations|groups|feature_flags|api_keys|webhooks|widgets|audit_logs)$/))].get.parameters
+    severity: warn
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            type: object
+            properties:
+              name:
+                enum: [limit, before, after, order]
+
+  workos-list-response-list-metadata:
+    description: List responses must include a list_metadata object with before/after cursors.
+    given: $.components.schemas[?(@property.match(/.*List$/))].properties
+    severity: warn
+    then:
+      field: list_metadata
+      function: truthy
+
+  # ----- Errors -----
+  workos-error-shape:
+    description: Error responses should include a `message` field per WorkOS convention.
+    given: $.paths.*[get,post,put,patch,delete].responses[4??,5??].content.application/json.schema
+    severity: warn
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            properties:
+              type: object
+              required: [message]
+
+  # ----- Security -----
+  workos-bearer-auth:
+    description: WorkOS APIs use Bearer token (sk_*) auth.
+    given: $.components.securitySchemes
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+
+  # ----- IDs -----
+  workos-id-prefix-convention:
+    description: WorkOS resource IDs follow a prefix_ULID pattern (e.g. user_, org_, conn_, directory_, audit_).
+    given: $.components.schemas..properties.id
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              const: string

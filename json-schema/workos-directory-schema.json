@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workos/main/json-schema/workos-directory-schema.json",
+  "title": "WorkOS Directory",
+  "description": "A linked SCIM directory through which a customer provisions users and groups.",
+  "type": "object",
+  "required": ["id", "organization_id", "type", "state"],
+  "properties": {
+    "object": { "type": "string", "const": "directory" },
+    "id": { "type": "string", "pattern": "^directory_[A-Z0-9]{26}$" },
+    "organization_id": { "type": "string", "pattern": "^org_[A-Z0-9]{26}$" },
+    "type": {
+      "type": "string",
+      "enum": [
+        "azure scim v2.0", "bamboohr", "breathe hr", "cyberark scim v2.0", "fourth hr", "generic scim v2.0",
+        "gsuite directory", "hibob", "jump cloud scim v2.0", "okta scim v2.0", "onelogin scim v2.0",
+        "people hr", "personio", "pingfederate scim v2.0", "rippling scim v2.0", "s f t p", "s f t p workday",
+        "workday"
+      ]
+    },
+    "state": { "type": "string", "enum": ["linked", "unlinked", "invalid_credentials", "validating"] },
+    "name": { "type": "string" },
+    "domain": { "type": ["string", "null"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

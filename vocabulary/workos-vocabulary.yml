@@ -1,0 +1,126 @@
+name: WorkOS Vocabulary
+description: Operational and capability vocabulary for the WorkOS authentication, identity, directory, authorization, audit, and agent surfaces.
+provider: WorkOS
+providerId: workos
+created: '2026-05-22'
+modified: '2026-05-22'
+sources:
+  - https://workos.com/docs
+  - https://github.com/workos/openapi-spec
+
+domains:
+  - id: authentication
+    name: Authentication
+    terms:
+      - id: authkit
+        name: AuthKit
+        description: WorkOS hosted, customizable login UI for B2B applications.
+      - id: sealed_session
+        name: Sealed Session
+        description: An encrypted, cookie-friendly session payload issued by WorkOS that can be verified without a roundtrip.
+      - id: magic_auth
+        name: Magic Auth
+        description: Passwordless authentication via emailed magic links and codes.
+      - id: passwordless
+        name: Passwordless
+        description: Sign-in flows that do not require a password (magic link, code, social, passkey).
+      - id: mfa
+        name: Multi-Factor Authentication
+        description: Secondary factor enrollment and challenge (TOTP, SMS).
+
+  - id: identity
+    name: Identity
+    terms:
+      - id: organization
+        name: Organization
+        description: A B2B tenant that groups users, connections, directories, and policies.
+      - id: connection
+        name: Connection
+        description: A SAML or OIDC link between a WorkOS organization and a customer identity provider.
+      - id: directory
+        name: Directory
+        description: A SCIM-linked directory provisioning users and groups from the customer's IdP.
+      - id: idp
+        name: Identity Provider
+        description: The customer's identity system (Okta, Entra, Google Workspace, JumpCloud, OneLogin, etc.).
+
+  - id: authorization
+    name: Authorization
+    terms:
+      - id: fga
+        name: Fine-Grained Authorization
+        description: WorkOS relationship-based authorization service (formerly Warrant).
+      - id: warrant
+        name: Warrant
+        description: A tuple expressing that a subject has a relation on a resource. Now the core primitive of WorkOS FGA.
+      - id: rebac
+        name: ReBAC
+        description: Relationship-based access control model used by FGA.
+      - id: rbac
+        name: RBAC
+        description: Role-based access control model overlaid on FGA via roles and permissions.
+
+  - id: audit
+    name: Audit
+    terms:
+      - id: audit_event
+        name: Audit Event
+        description: A tamper-evident record of a customer-defined action against a target.
+      - id: siem
+        name: SIEM
+        description: Security Information and Event Management destination (Splunk, Datadog, Elastic).
+
+  - id: agents
+    name: Agents
+    terms:
+      - id: agent_auth
+        name: Agent Auth
+        description: Authentication patterns specific to AI agents acting on behalf of humans.
+      - id: pipes
+        name: Pipes
+        description: WorkOS construct for issuing session-scoped, human-approved credentials to AI agents for third-party APIs.
+      - id: mcp_auth
+        name: MCP Auth
+        description: WorkOS-provided OAuth and resource-indicator support for Model Context Protocol servers.
+      - id: auth_md
+        name: auth.md
+        description: An open protocol that lets agents register for services on behalf of users, discoverable via a Markdown file at a domain.
+
+  - id: compliance
+    name: Compliance
+    terms:
+      - id: soc2
+        name: SOC 2 Type 2
+      - id: gdpr
+        name: GDPR
+      - id: hipaa_eligible
+        name: HIPAA Eligible
+
+  - id: bot_protection
+    name: Bot Protection
+    terms:
+      - id: radar
+        name: Radar
+        description: WorkOS bot and fraud protection at the authentication boundary.
+
+  - id: developer_surface
+    name: Developer Surface
+    terms:
+      - id: admin_portal
+        name: Admin Portal
+        description: Short-lived white-label link a customer's IT admin uses to configure SSO/SCIM.
+      - id: webhook
+        name: Webhook
+      - id: events_api
+        name: Events API
+      - id: api_key
+        name: API Key
+        description: Secret credential (sk_test_* / sk_live_*) scoped to a WorkOS environment, optionally user- or organization-scoped.
+      - id: feature_flag
+        name: Feature Flag
+      - id: vault
+        name: Vault
+        description: WorkOS encrypted object storage product.
+      - id: workos_connect
+        name: WorkOS Connect
+        description: Embeddable connection-and-directory configuration surface.

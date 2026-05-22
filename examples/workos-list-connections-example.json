@@ -1,0 +1,17 @@
+{
+  "operationId": "ConnectionsController_list",
+  "method": "GET",
+  "path": "/connections",
+  "summary": "List Connections",
+  "request": null,
+  "response": {
+    "object": "string",
+    "data": [
+      {}
+    ],
+    "list_metadata": {
+      "before": "conn_01HXYZ123456789ABCDEFGHIJ",
+      "after": "conn_01HXYZ987654321KJIHGFEDCBA"
+    }
+  }
+}

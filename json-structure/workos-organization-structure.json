@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-09/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/workos/main/json-structure/workos-organization-structure.json",
+  "title": "WorkOS Organization Structure",
+  "type": "object",
+  "fields": {
+    "id": { "type": "string", "description": "WorkOS-issued ULID prefixed with org_." },
+    "object": { "type": "string", "const": "organization" },
+    "name": { "type": "string" },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "fields": {
+          "id": { "type": "string" },
+          "domain": { "type": "string" },
+          "state": { "type": "string", "enum": ["pending","verified","failed","legacy_verified"] }
+        }
+      }
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}
