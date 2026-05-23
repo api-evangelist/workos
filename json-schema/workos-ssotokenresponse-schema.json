@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SsoTokenResponse",
+  "title": "SsoTokenResponse",
+  "type": "object",
+  "properties": {
+    "token_type": {
+      "type": "string",
+      "description": "The type of token issued.",
+      "const": "Bearer"
+    },
+    "access_token": {
+      "type": "string",
+      "description": "An access token that can be exchanged for a user profile. Access tokens are short-lived \u2014 see the `expires_in` field for the exact lifetime.",
+      "example": "eyJhbGciOiJSUzI1NiIsImtpZCI6InNzby..."
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "The lifetime of the access token in seconds.",
+      "example": 600
+    },
+    "profile": {
+      "$ref": "#/components/schemas/Profile",
+      "description": "The user profile returned by the identity provider."
+    },
+    "oauth_tokens": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "description": "The OAuth provider used for authentication.",
+          "example": "GoogleOAuth"
+        },
+        "refresh_token": {
+          "type": "string",
+          "description": "The refresh token from the OAuth provider.",
+          "example": "1//04g..."
+        },
+        "access_token": {
+          "type": "string",
+          "description": "The access token from the OAuth provider.",
+          "example": "ya29.a0ARrdaM..."
+        },
+        "expires_at": {
+          "type": "integer",
+          "description": "The timestamp at which the access token expires.",
+          "example": 1735141800
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of OAuth scopes for which the access token is authorized.",
+          "example": [
+            "profile",
+            "email",
+            "openid"
+          ]
+        }
+      },
+      "required": [
+        "provider",
+        "refresh_token",
+        "access_token",
+        "expires_at",
+        "scopes"
+      ],
+      "description": "OAuth tokens issued by the identity provider, if available."
+    }
+  },
+  "required": [
+    "token_type",
+    "access_token",
+    "expires_in",
+    "profile"
+  ]
+}

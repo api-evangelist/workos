@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogSchemaActorDto",
+  "title": "AuditLogSchemaActorDto",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "description": "JSON schema for actor metadata.",
+      "example": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "metadata"
+  ]
+}

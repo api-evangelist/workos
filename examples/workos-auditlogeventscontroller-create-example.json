@@ -1,0 +1,57 @@
+{
+  "operationId": "AuditLogEventsController_create",
+  "method": "POST",
+  "path": "/audit_logs/events",
+  "summary": "Create Event",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "example": {
+        "success": true
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "example": {
+        "message": "Invalid Audit Log event.",
+        "code": "invalid_audit_log_event",
+        "errors": [
+          {
+            "instancePath": "/targets"
+          }
+        ]
+      }
+    },
+    {
+      "status": "404",
+      "contentType": "application/json",
+      "example": {
+        "message": "Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'."
+      }
+    },
+    {
+      "status": "422",
+      "contentType": "application/json",
+      "example": {
+        "message": "Validation failed.",
+        "errors": [
+          {
+            "code": "required",
+            "field": "event.action"
+          }
+        ]
+      }
+    },
+    {
+      "status": "429",
+      "contentType": "application/json",
+      "example": {
+        "message": "Too many requests.",
+        "code": "rate_limit_exceeded"
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WaitlistUser",
+  "title": "WaitlistUser",
+  "type": "object",
+  "properties": {
+    "object": {
+      "type": "string",
+      "description": "Distinguishes the Waitlist User object.",
+      "const": "waitlist_user"
+    },
+    "id": {
+      "type": "string",
+      "description": "The unique ID of the Waitlist User.",
+      "example": "wl_user_01E4ZCR3C56J083X43JQXF3JK5"
+    },
+    "email": {
+      "type": "string",
+      "description": "The email address of the Waitlist User.",
+      "example": "marcelina.davis@example.com"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "denied"
+      ],
+      "description": "The state of the Waitlist User.",
+      "example": "pending"
+    },
+    "approved_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The timestamp when the Waitlist User was approved, or null if not yet approved.",
+      "example": null
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string",
+      "description": "An ISO 8601 timestamp.",
+      "example": "2026-01-15T12:00:00.000Z"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string",
+      "description": "An ISO 8601 timestamp.",
+      "example": "2026-01-15T12:00:00.000Z"
+    }
+  },
+  "required": [
+    "object",
+    "id",
+    "email",
+    "state",
+    "approved_at",
+    "created_at",
+    "updated_at"
+  ]
+}

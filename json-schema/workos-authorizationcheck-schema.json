@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthorizationCheck",
+  "title": "AuthorizationCheck",
+  "type": "object",
+  "properties": {
+    "authorized": {
+      "type": "boolean",
+      "description": "Whether the organization membership has the specified permission on the resource.",
+      "example": true
+    }
+  },
+  "required": [
+    "authorized"
+  ]
+}

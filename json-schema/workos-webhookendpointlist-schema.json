@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookEndpointList",
+  "title": "WebhookEndpointList",
+  "type": "object",
+  "properties": {
+    "object": {
+      "type": "string",
+      "description": "Indicates this is a list response.",
+      "const": "list"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/WebhookEndpointJson"
+      },
+      "description": "The list of records for the current page."
+    },
+    "list_metadata": {
+      "type": "object",
+      "properties": {
+        "before": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.",
+          "example": "we_01HXYZ123456789ABCDEFGHIJ"
+        },
+        "after": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+          "example": "we_01HXYZ987654321KJIHGFEDCBA"
+        }
+      },
+      "required": [
+        "before",
+        "after"
+      ],
+      "description": "Pagination cursors for navigating between pages of results."
+    }
+  },
+  "required": [
+    "object",
+    "data",
+    "list_metadata"
+  ]
+}

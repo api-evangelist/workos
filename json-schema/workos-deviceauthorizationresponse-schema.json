@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeviceAuthorizationResponse",
+  "title": "DeviceAuthorizationResponse",
+  "type": "object",
+  "properties": {
+    "device_code": {
+      "type": "string",
+      "description": "The device verification code.",
+      "example": "CVE2wOfIFK4vhmiDBntpX9s8KT2f0qngpWYL0LGy9HxYgBRXUKIUkZB9BgIFho5h"
+    },
+    "user_code": {
+      "type": "string",
+      "description": "The end-user verification code.",
+      "example": "BCDF-GHJK"
+    },
+    "verification_uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "The end-user verification URI.",
+      "example": "https://authkit_domain/device"
+    },
+    "verification_uri_complete": {
+      "type": "string",
+      "format": "uri",
+      "description": "Verification URI that includes the user code.",
+      "example": "https://authkit_domain/device?user_code=BCDF-GHJK"
+    },
+    "expires_in": {
+      "type": "number",
+      "description": "Lifetime in seconds of the codes.",
+      "example": 300
+    },
+    "interval": {
+      "type": "number",
+      "description": "Minimum polling interval in seconds.",
+      "example": 5
+    }
+  },
+  "required": [
+    "device_code",
+    "user_code",
+    "verification_uri",
+    "expires_in"
+  ]
+}

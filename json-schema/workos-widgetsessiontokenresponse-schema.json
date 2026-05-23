@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WidgetSessionTokenResponse",
+  "title": "WidgetSessionTokenResponse",
+  "type": "object",
+  "properties": {
+    "token": {
+      "type": "string",
+      "description": "The widget session token.",
+      "example": "eyJhbGciOiJSUzI1NiIsImtpZCI6InNlc3Npb24..."
+    }
+  },
+  "required": [
+    "token"
+  ]
+}

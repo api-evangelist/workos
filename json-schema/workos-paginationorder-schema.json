@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaginationOrder",
+  "title": "PaginationOrder",
+  "type": "string",
+  "enum": [
+    "normal",
+    "desc",
+    "asc"
+  ],
+  "example": "desc",
+  "default": "desc"
+}

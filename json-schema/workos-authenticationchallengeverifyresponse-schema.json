@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthenticationChallengeVerifyResponse",
+  "title": "AuthenticationChallengeVerifyResponse",
+  "type": "object",
+  "properties": {
+    "challenge": {
+      "$ref": "#/components/schemas/AuthenticationChallenge",
+      "description": "The authentication challenge object."
+    },
+    "valid": {
+      "type": "boolean",
+      "description": "Whether the code was valid.",
+      "example": true
+    }
+  },
+  "required": [
+    "challenge",
+    "valid"
+  ]
+}

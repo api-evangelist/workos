@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateM2MApplicationDto",
+  "title": "CreateM2MApplicationDto",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application.",
+      "example": "My Application"
+    },
+    "application_type": {
+      "type": "string",
+      "description": "The type of application to create.",
+      "const": "m2m"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A description for the application.",
+      "example": "An application for managing user access"
+    },
+    "scopes": {
+      "description": "The OAuth scopes granted to the application.",
+      "example": [
+        "openid",
+        "profile",
+        "email"
+      ],
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "The organization ID this application belongs to.",
+      "example": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+    }
+  },
+  "required": [
+    "name",
+    "application_type",
+    "organization_id"
+  ]
+}

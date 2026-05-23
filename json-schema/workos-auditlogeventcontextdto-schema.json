@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogEventContextDto",
+  "title": "AuditLogEventContextDto",
+  "type": "object",
+  "properties": {
+    "location": {
+      "type": "string",
+      "description": "IP Address or some other geolocation identifier.",
+      "example": "123.123.123.123"
+    },
+    "user_agent": {
+      "type": "string",
+      "description": "User agent string.",
+      "example": "Chrome/104.0.0.0"
+    }
+  },
+  "required": [
+    "location"
+  ]
+}

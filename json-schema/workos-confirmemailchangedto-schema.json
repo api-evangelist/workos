@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfirmEmailChangeDto",
+  "title": "ConfirmEmailChangeDto",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "The one-time code used to confirm the email change.",
+      "example": "123456"
+    }
+  },
+  "required": [
+    "code"
+  ]
+}

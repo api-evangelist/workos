@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateGroupMembershipDto",
+  "title": "CreateGroupMembershipDto",
+  "type": "object",
+  "properties": {
+    "organization_membership_id": {
+      "type": "string",
+      "description": "The ID of the Organization Membership to add to the group.",
+      "example": "om_01HXYZ123456789ABCDEFGHIJ"
+    }
+  },
+  "required": [
+    "organization_membership_id"
+  ]
+}

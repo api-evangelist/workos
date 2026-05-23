@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogEventIngestionDto",
+  "title": "AuditLogEventIngestionDto",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "The unique ID of the Organization.",
+      "example": "org_01EHWNCE74X7JSDV0X3SZ3KJNY"
+    },
+    "event": {
+      "description": "The audit log event to create.",
+      "$ref": "#/components/schemas/AuditLogEventDto"
+    }
+  },
+  "required": [
+    "organization_id",
+    "event"
+  ]
+}

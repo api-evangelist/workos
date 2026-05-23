@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChallengeAuthenticationFactorDto",
+  "title": "ChallengeAuthenticationFactorDto",
+  "type": "object",
+  "properties": {
+    "sms_template": {
+      "type": "string",
+      "description": "A custom template for the SMS message. Use the {{code}} placeholder to include the verification code.",
+      "example": "Your verification code is {{code}}."
+    }
+  }
+}

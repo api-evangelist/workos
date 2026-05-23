@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EventContextDto",
+  "title": "EventContextDto",
+  "type": "object",
+  "properties": {
+    "google_analytics_client_id": {
+      "type": "string",
+      "description": "The Google Analytics client ID.",
+      "example": "GA1.2.1234567890.1234567890"
+    },
+    "google_analytics_sessions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "containerId": {
+            "type": "string",
+            "description": "The Google Analytics container ID.",
+            "example": "GTM-ABCDEF"
+          },
+          "sessionId": {
+            "type": "string",
+            "description": "The Google Analytics session ID.",
+            "example": "1234567890"
+          },
+          "sessionNumber": {
+            "type": "string",
+            "description": "The Google Analytics session number.",
+            "example": "1"
+          }
+        },
+        "required": [
+          "containerId"
+        ]
+      },
+      "description": "The Google Analytics sessions associated with the event."
+    },
+    "ajs_anonymous_id": {
+      "type": "string",
+      "description": "The anonymous ID from analytics.",
+      "example": "ajs_anon_01EHWNCE74X7JSDV0X3SZ3KJNY"
+    },
+    "client_id": {
+      "type": "string",
+      "description": "The client ID associated with the event.",
+      "example": "client_01EHWNCE74X7JSDV0X3SZ3KJNY"
+    },
+    "actor": {
+      "$ref": "#/components/schemas/EventContextActorDto"
+    },
+    "previous_attributes": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "Attributes that changed from their previous values."
+    }
+  },
+  "description": "Additional context about the event."
+}

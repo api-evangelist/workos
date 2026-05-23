@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserRoleAssignment",
+  "title": "UserRoleAssignment",
+  "type": "object",
+  "properties": {
+    "object": {
+      "type": "string",
+      "description": "Distinguishes the role assignment object.",
+      "const": "role_assignment"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the role assignment.",
+      "example": "role_assignment_01HXYZ123456789ABCDEFGH"
+    },
+    "organization_membership_id": {
+      "type": "string",
+      "description": "The ID of the organization membership the role is assigned to.",
+      "example": "om_01HXYZ123456789ABCDEFGHIJ"
+    },
+    "role": {
+      "$ref": "#/components/schemas/SlimRole",
+      "description": "The role included in the assignment."
+    },
+    "resource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique ID of the Resource.",
+          "example": "authz_resource_01HXYZ123456789ABCDEFGH"
+        },
+        "external_id": {
+          "type": "string",
+          "description": "An identifier you provide to reference the resource in your system.",
+          "example": "proj-456"
+        },
+        "resource_type_slug": {
+          "type": "string",
+          "description": "The slug of the resource type this resource belongs to.",
+          "example": "project"
+        }
+      },
+      "required": [
+        "id",
+        "external_id",
+        "resource_type_slug"
+      ],
+      "description": "The resource the role is assigned on."
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string",
+      "description": "An ISO 8601 timestamp.",
+      "example": "2026-01-15T12:00:00.000Z"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string",
+      "description": "An ISO 8601 timestamp.",
+      "example": "2026-01-15T12:00:00.000Z"
+    }
+  },
+  "required": [
+    "object",
+    "id",
+    "organization_membership_id",
+    "role",
+    "resource",
+    "created_at",
+    "updated_at"
+  ]
+}

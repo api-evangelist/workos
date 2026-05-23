@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SlimRole",
+  "title": "SlimRole",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "The slug of the assigned role.",
+      "example": "admin"
+    }
+  },
+  "required": [
+    "slug"
+  ],
+  "description": "The primary role assigned to the user."
+}

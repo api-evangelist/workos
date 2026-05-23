@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserlandUserAuthenticationFactorEnrollResponse",
+  "title": "UserlandUserAuthenticationFactorEnrollResponse",
+  "type": "object",
+  "properties": {
+    "authentication_factor": {
+      "$ref": "#/components/schemas/AuthenticationFactorEnrolled",
+      "description": "The [authentication factor](/reference/authkit/mfa/authentication-factor) object that represents the additional authentication method used on top of the existing authentication strategy."
+    },
+    "authentication_challenge": {
+      "$ref": "#/components/schemas/AuthenticationChallenge",
+      "description": "The [authentication challenge](/reference/authkit/mfa/authentication-challenge) object that is used to complete the authentication process."
+    }
+  },
+  "required": [
+    "authentication_factor",
+    "authentication_challenge"
+  ]
+}

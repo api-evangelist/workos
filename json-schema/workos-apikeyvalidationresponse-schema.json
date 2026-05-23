@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApiKeyValidationResponse",
+  "title": "ApiKeyValidationResponse",
+  "type": "object",
+  "properties": {
+    "api_key": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/ApiKey"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "api_key"
+  ]
+}

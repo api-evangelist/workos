@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogEventTargetDto",
+  "title": "AuditLogEventTargetDto",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Target identifier.",
+      "example": "user_TF4C5938"
+    },
+    "type": {
+      "type": "string",
+      "description": "Target type.",
+      "example": "user"
+    },
+    "name": {
+      "type": "string",
+      "description": "Optional target name.",
+      "example": "Jon Smith"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional data associated with the event or entity.",
+      "example": {
+        "owner": "user_01GBTCQ2"
+      },
+      "maxProperties": 50,
+      "additionalProperties": false,
+      "patternProperties": {
+        "^[a-zA-Z0-9_-]{0,40}$": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 500
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "type"
+  ]
+}

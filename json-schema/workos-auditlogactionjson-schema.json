@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogActionJson",
+  "title": "AuditLogActionJson",
+  "type": "object",
+  "properties": {
+    "object": {
+      "type": "string",
+      "description": "Distinguishes the Audit Log Action object.",
+      "example": "audit_log_action",
+      "const": "audit_log_action"
+    },
+    "name": {
+      "type": "string",
+      "description": "Identifier of what action was taken.",
+      "example": "user.viewed_invoice"
+    },
+    "schema": {
+      "$ref": "#/components/schemas/AuditLogSchemaJson",
+      "description": "The schema associated with the action."
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string",
+      "description": "An ISO 8601 timestamp.",
+      "example": "2026-01-15T12:00:00.000Z"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string",
+      "description": "An ISO 8601 timestamp.",
+      "example": "2026-01-15T12:00:00.000Z"
+    }
+  },
+  "required": [
+    "object",
+    "name",
+    "schema",
+    "created_at",
+    "updated_at"
+  ]
+}

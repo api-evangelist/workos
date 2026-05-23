@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PortalLinkResponse",
+  "title": "PortalLinkResponse",
+  "type": "object",
+  "properties": {
+    "link": {
+      "type": "string",
+      "description": "An ephemeral link to initiate the Admin Portal.",
+      "example": "https://setup.workos.com?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+  },
+  "required": [
+    "link"
+  ]
+}

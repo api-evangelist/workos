@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntentOptions",
+  "title": "IntentOptions",
+  "type": "object",
+  "properties": {
+    "sso": {
+      "description": "SSO-specific options for the Admin Portal.",
+      "$ref": "#/components/schemas/SsoIntentOptions"
+    },
+    "domain_verification": {
+      "description": "Domain verification-specific options for the Admin Portal.",
+      "$ref": "#/components/schemas/DomainVerificationIntentOptions"
+    }
+  }
+}

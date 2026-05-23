@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateOrganizationRoleDto",
+  "title": "UpdateOrganizationRoleDto",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 48,
+      "description": "A descriptive name for the role.",
+      "example": "Finance Administrator"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 150,
+      "description": "An optional description of the role's purpose.",
+      "example": "Can manage all financial operations"
+    }
+  }
+}

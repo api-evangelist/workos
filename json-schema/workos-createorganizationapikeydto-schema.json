@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateOrganizationApiKeyDto",
+  "title": "CreateOrganizationApiKeyDto",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name for the API key.",
+      "example": "Production API Key"
+    },
+    "permissions": {
+      "description": "The permission slugs to assign to the API key.",
+      "example": [
+        "posts:read",
+        "posts:write"
+      ],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "operationId": "RedirectUrisController_create",
+  "method": "POST",
+  "path": "/user_management/redirect_uris",
+  "summary": "Create a Redirect URI",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "example": {
+        "object": "redirect_uri",
+        "id": "ruri_01EHZNVPK3SFK441A1RGBFSHRT",
+        "uri": "https://example.com/callback",
+        "default": true,
+        "created_at": "2026-01-15T12:00:00.000Z",
+        "updated_at": "2026-01-15T12:00:00.000Z"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "example": {
+        "message": "Bad Request"
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "example": {
+        "message": "Unauthorized"
+      }
+    },
+    {
+      "status": "422",
+      "contentType": "application/json",
+      "example": {
+        "message": "Redirect URI 'https://example.com/callback' already exists."
+      }
+    }
+  ]
+}

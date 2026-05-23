@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogSchemaDto",
+  "title": "AuditLogSchemaDto",
+  "type": "object",
+  "properties": {
+    "actor": {
+      "description": "The metadata schema for the actor.",
+      "$ref": "#/components/schemas/AuditLogSchemaActorDto"
+    },
+    "targets": {
+      "minItems": 1,
+      "description": "The list of targets for the schema.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AuditLogSchemaTargetDto"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional JSON schema for event metadata.",
+      "example": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "targets"
+  ]
+}

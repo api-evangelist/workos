@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateCorsOriginDto",
+  "title": "CreateCorsOriginDto",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "type": "string",
+      "description": "The origin URL to allow for CORS requests.",
+      "example": "https://example.com"
+    }
+  },
+  "required": [
+    "origin"
+  ]
+}

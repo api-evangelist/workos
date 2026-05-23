@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserlandAuthenticateResponse",
+  "title": "UserlandAuthenticateResponse",
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserlandUser",
+      "description": "The corresponding [user](/reference/authkit/user) object."
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "The ID of the organization the user selected to sign in to.",
+      "example": "org_01H945H0YD4F97JN9MATX7BYAG"
+    },
+    "authkit_authorization_code": {
+      "type": "string",
+      "description": "An authorization code that can be exchanged for tokens by a different application.",
+      "example": "authkit_authz_code_abc123"
+    },
+    "access_token": {
+      "type": "string",
+      "description": "A JWT containing information about the current session.",
+      "example": "eyJhb.nNzb19vaWRjX2tleV9.lc5Uk4yWVk5In0"
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "[Exchange this token](/reference/authkit/authentication/refresh-token) for a new access token.",
+      "example": "yAjhKk123NLIjdrBdGZPf8pLIDvK"
+    },
+    "authentication_method": {
+      "type": "string",
+      "enum": [
+        "SSO",
+        "Password",
+        "Passkey",
+        "AppleOAuth",
+        "BitbucketOAuth",
+        "CrossAppAuth",
+        "DiscordOAuth",
+        "ExternalAuth",
+        "GitHubOAuth",
+        "GitLabOAuth",
+        "GoogleOAuth",
+        "IntuitOAuth",
+        "LinkedInOAuth",
+        "MicrosoftOAuth",
+        "SalesforceOAuth",
+        "SlackOAuth",
+        "VercelMarketplaceOAuth",
+        "VercelOAuth",
+        "XeroOAuth",
+        "MagicAuth",
+        "Impersonation",
+        "MigratedSession"
+      ],
+      "description": "The authentication method used to initiate the session.",
+      "example": "SSO"
+    },
+    "impersonator": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "The email address of the WorkOS Dashboard user who is impersonating the user.",
+          "example": "admin@foocorp.com"
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The justification the impersonator gave for impersonating the user.",
+          "example": "Investigating an issue with the customer's account."
+        }
+      },
+      "required": [
+        "email",
+        "reason"
+      ],
+      "description": "Information about the impersonator if this session was created via impersonation."
+    },
+    "oauth_tokens": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "description": "The OAuth provider used for authentication.",
+          "example": "GoogleOAuth"
+        },
+        "refresh_token": {
+          "type": "string",
+          "description": "The refresh token from the OAuth provider.",
+          "example": "1//04g..."
+        },
+        "access_token": {
+          "type": "string",
+          "description": "The access token from the OAuth provider.",
+          "example": "ya29.a0ARrdaM..."
+        },
+        "expires_at": {
+          "type": "integer",
+          "description": "The timestamp at which the access token expires.",
+          "example": 1735141800
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of OAuth scopes for which the access token is authorized.",
+          "example": [
+            "profile",
+            "email",
+            "openid"
+          ]
+        }
+      },
+      "required": [
+        "provider",
+        "refresh_token",
+        "access_token",
+        "expires_at",
+        "scopes"
+      ],
+      "description": "The OAuth tokens from the identity provider, if applicable."
+    }
+  },
+  "required": [
+    "user",
+    "access_token",
+    "refresh_token"
+  ]
+}

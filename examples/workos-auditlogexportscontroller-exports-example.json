@@ -1,0 +1,28 @@
+{
+  "operationId": "AuditLogExportsController_exports",
+  "method": "POST",
+  "path": "/audit_logs/exports",
+  "summary": "Create Export",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "example": {
+        "object": "audit_log_export",
+        "id": "audit_log_export_01GBZK5MP7TD1YCFQHFR22180V",
+        "state": "pending",
+        "created_at": "2022-09-02T17:14:57.094Z",
+        "updated_at": "2022-09-02T17:14:57.094Z"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "example": {
+        "message": "Invalid date range",
+        "code": "invalid_audit_log_export_range_date"
+      }
+    }
+  ]
+}

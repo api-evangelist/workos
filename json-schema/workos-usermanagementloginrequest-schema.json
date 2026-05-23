@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserManagementLoginRequest",
+  "title": "UserManagementLoginRequest",
+  "type": "object",
+  "properties": {
+    "external_auth_id": {
+      "type": "string",
+      "description": "Identifier provided when AuthKit redirected to your login page.",
+      "example": "ext_auth_01HXYZ123456789ABCDEFGHIJ"
+    },
+    "user": {
+      "description": "The user to create or update in AuthKit.",
+      "$ref": "#/components/schemas/UserObject"
+    },
+    "user_consent_options": {
+      "description": "Array of [User Consent Options](/reference/workos-connect/standalone/user-consent-options) to store with the session.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/UserConsentOption"
+      }
+    }
+  },
+  "required": [
+    "external_auth_id",
+    "user"
+  ]
+}

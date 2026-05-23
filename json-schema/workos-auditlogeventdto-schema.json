@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogEventDto",
+  "title": "AuditLogEventDto",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "Identifier of what happened.",
+      "example": "user.signed_in"
+    },
+    "occurred_at": {
+      "type": "string",
+      "description": "ISO-8601 value of when the action occurred.",
+      "example": "2026-02-02T16:35:39.317Z",
+      "format": "date-time"
+    },
+    "actor": {
+      "description": "The entity that performed the action.",
+      "$ref": "#/components/schemas/AuditLogEventActorDto"
+    },
+    "targets": {
+      "description": "The resources affected by the action.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AuditLogEventTargetDto"
+      }
+    },
+    "context": {
+      "description": "Additional context about where and how the action occurred.",
+      "$ref": "#/components/schemas/AuditLogEventContextDto"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional data associated with the event or entity.",
+      "example": {
+        "owner": "user_01GBTCQ2"
+      },
+      "maxProperties": 50,
+      "additionalProperties": false,
+      "patternProperties": {
+        "^[a-zA-Z0-9_-]{0,40}$": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 500
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        }
+      }
+    },
+    "version": {
+      "type": "integer",
+      "description": "What schema version the event is associated with.",
+      "example": 1
+    }
+  },
+  "required": [
+    "action",
+    "occurred_at",
+    "actor",
+    "targets",
+    "context"
+  ]
+}

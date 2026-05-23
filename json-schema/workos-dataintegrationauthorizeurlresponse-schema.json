@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataIntegrationAuthorizeUrlResponse",
+  "title": "DataIntegrationAuthorizeUrlResponse",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "description": "The OAuth authorization URL to redirect the user to.",
+      "example": "https://api.workos.com/data-integrations/q2czJKmVAraSBg8xFpT7M9uR/authorize-redirect"
+    }
+  },
+  "required": [
+    "url"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RadarListEntryAlreadyPresentResponse",
+  "title": "RadarListEntryAlreadyPresentResponse",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "A message indicating the entry already exists.",
+      "example": "Entry already present in list"
+    }
+  },
+  "required": [
+    "message"
+  ]
+}

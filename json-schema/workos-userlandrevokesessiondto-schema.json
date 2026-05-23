@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserlandRevokeSessionDto",
+  "title": "UserlandRevokeSessionDto",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "The ID of the session to revoke. This can be extracted from the `sid` claim of the access token.",
+      "example": "session_01H93ZY4F80QPBEZ1R5B2SHQG8"
+    },
+    "return_to": {
+      "type": "string",
+      "description": "The URL to redirect the user to after session revocation.",
+      "example": "https://example.com"
+    }
+  },
+  "required": [
+    "session_id"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExternalAuthCompleteResponse",
+  "title": "ExternalAuthCompleteResponse",
+  "type": "object",
+  "properties": {
+    "redirect_uri": {
+      "type": "string",
+      "description": "URI to redirect the user back to AuthKit to complete the OAuth flow.",
+      "example": "https://your-authkit-domain.workos.com/oauth/authorize/complete?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0ZSI6InJhbmRvbV9zdGF0ZV9zdHJpbmciLCJpYXQiOjE3NDI2MDQ4NTN9.abc123def456ghi789"
+    }
+  },
+  "required": [
+    "redirect_uri"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SsoLogoutAuthorizeResponse",
+  "title": "SsoLogoutAuthorizeResponse",
+  "type": "object",
+  "properties": {
+    "logout_url": {
+      "type": "string",
+      "description": "The URL to redirect the user to in order to log out ([Logout Redirect](/reference/sso/logout) endpoint ready to use).",
+      "example": "https://auth.workos.com/sso/logout?token=eyJhbGciOiJSUzI1NiJ9"
+    },
+    "logout_token": {
+      "type": "string",
+      "description": "The logout token to be used in the [Logout Redirect](/reference/sso/logout) endpoint.",
+      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlX2lkIjoicHJvZl8wMUdXUTFHMEgyRk02QVNFRjBIUzEzSENXOS0zMDRrZzAzZyIsImV4cCI6IjE1MTYyMzkwMjIifQ.Wru9Qlnf5DpohtGCKhZU4cVOd3zpiu7QQ-XEX--5A_4"
+    }
+  },
+  "required": [
+    "logout_url",
+    "logout_token"
+  ]
+}

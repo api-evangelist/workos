@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserObject",
+  "title": "UserObject",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Your application's user identifier, which will be stored as an [`external_id`](/authkit/metadata/external-identifiers). Used for upserting and deduplication.",
+      "example": "user_12345"
+    },
+    "email": {
+      "type": "string",
+      "description": "The user's email address.",
+      "example": "marcelina.davis@example.com"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The user's first name.",
+      "example": "Marcelina"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The user's last name.",
+      "example": "Davis"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "A set of key-value pairs to attach to the user.",
+      "additionalProperties": {
+        "type": "string",
+        "maxLength": 600
+      },
+      "maxProperties": 50,
+      "example": {
+        "department": "Engineering",
+        "role": "Developer"
+      },
+      "propertyNames": {
+        "maxLength": 40
+      }
+    }
+  },
+  "required": [
+    "id",
+    "email"
+  ]
+}

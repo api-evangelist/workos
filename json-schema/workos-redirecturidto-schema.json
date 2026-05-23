@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RedirectUriDto",
+  "title": "RedirectUriDto",
+  "type": "object",
+  "properties": {
+    "uri": {
+      "type": "string",
+      "description": "The redirect URI.",
+      "example": "https://example.com/callback"
+    },
+    "default": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "description": "Whether this is the default redirect URI.",
+      "example": true
+    }
+  },
+  "required": [
+    "uri"
+  ]
+}

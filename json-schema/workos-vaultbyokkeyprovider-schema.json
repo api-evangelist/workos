@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VaultByokKeyProvider",
+  "title": "VaultByokKeyProvider",
+  "type": "string",
+  "enum": [
+    "AWS_KMS",
+    "GCP_KMS",
+    "AZURE_KEY_VAULT"
+  ],
+  "example": "AWS_KMS",
+  "description": "The external key provider used for BYOK."
+}

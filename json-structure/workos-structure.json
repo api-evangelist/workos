@@ -1,0 +1,3151 @@
+{
+  "provider": "WorkOS",
+  "providerId": "workos",
+  "kind": "json-structure",
+  "description": "Structural overview of the WorkOS API surface; extracted from openapi/.",
+  "schemaCount": 159,
+  "operationCount": 172,
+  "schemas": [
+    {
+      "name": "UserObject",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "email"
+      ]
+    },
+    {
+      "name": "UserConsentOption",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "claim",
+        "type",
+        "label",
+        "choices"
+      ]
+    },
+    {
+      "name": "UserManagementLoginRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "external_auth_id",
+        "user"
+      ]
+    },
+    {
+      "name": "ValidateApiKeyDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "value"
+      ]
+    },
+    {
+      "name": "PaginationOrder",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "RedirectUriDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "uri"
+      ]
+    },
+    {
+      "name": "CreateOAuthApplicationDto",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "application_type",
+        "is_first_party"
+      ]
+    },
+    {
+      "name": "CreateM2MApplicationDto",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name",
+        "application_type",
+        "organization_id"
+      ]
+    },
+    {
+      "name": "UpdateOAuthApplicationDto",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CreateApplicationSecretDto",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AuditLogEventActorDto",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    {
+      "name": "AuditLogEventTargetDto",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    {
+      "name": "AuditLogEventContextDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "location"
+      ]
+    },
+    {
+      "name": "AuditLogEventDto",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "action",
+        "occurred_at",
+        "actor",
+        "targets",
+        "context"
+      ]
+    },
+    {
+      "name": "AuditLogEventIngestionDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "organization_id",
+        "event"
+      ]
+    },
+    {
+      "name": "AuditLogExportCreationDto",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "organization_id",
+        "range_start",
+        "range_end"
+      ]
+    },
+    {
+      "name": "UpdateAuditLogsRetentionDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "retention_period_in_days"
+      ]
+    },
+    {
+      "name": "AuditLogSchemaActorDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "metadata"
+      ]
+    },
+    {
+      "name": "AuditLogSchemaTargetDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "AuditLogSchemaDto",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "targets"
+      ]
+    },
+    {
+      "name": "ChallengeAuthenticationFactorDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CheckAuthorizationDto",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AssignRoleDto",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "RemoveRoleDto",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SetRolePermissionsDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "permissions"
+      ]
+    },
+    {
+      "name": "AddRolePermissionDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "slug"
+      ]
+    },
+    {
+      "name": "CreateOrganizationRoleDto",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "UpdateOrganizationRoleDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CreateAuthorizationPermissionDto",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "slug",
+        "name"
+      ]
+    },
+    {
+      "name": "UpdateAuthorizationPermissionDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CreateRoleDto",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "slug",
+        "name"
+      ]
+    },
+    {
+      "name": "UpdateRoleDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "UpdateAuthorizationResourceDto",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateAuthorizationResourceDto",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateCorsOriginDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "origin"
+      ]
+    },
+    {
+      "name": "CreateGroupMembershipDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "organization_membership_id"
+      ]
+    },
+    {
+      "name": "CreateGroupDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "UpdateGroupDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "UpdateJwtTemplateDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "content"
+      ]
+    },
+    {
+      "name": "CreateOrganizationDomainDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "domain",
+        "organization_id"
+      ]
+    },
+    {
+      "name": "CreateOrganizationApiKeyDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "OrganizationDomainDataDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "domain",
+        "state"
+      ]
+    },
+    {
+      "name": "OrganizationDto",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "UpdateOrganizationDto",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "SsoIntentOptions",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DomainVerificationIntentOptions",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "IntentOptions",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "GenerateLinkDto",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "organization"
+      ]
+    },
+    {
+      "name": "CreateRedirectUriDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "uri"
+      ]
+    },
+    {
+      "name": "EnrollUserlandUserAuthenticationFactorDto",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "CreateUserlandMagicCodeAndReturnDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "email"
+      ]
+    },
+    {
+      "name": "CreateUserlandUserInviteOptionsDto",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "email"
+      ]
+    },
+    {
+      "name": "ResendUserlandUserInviteOptionsDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreateUserlandUserOrganizationMembershipDto",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UpdateUserlandUserOrganizationMembershipDto",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateUserApiKeyDto",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "organization_id"
+      ]
+    },
+    {
+      "name": "CreateUserlandUserDto",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UpdateUserlandUserDto",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "VerifyEmailAddressDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "code"
+      ]
+    },
+    {
+      "name": "CreatePasswordResetTokenDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "email"
+      ]
+    },
+    {
+      "name": "CreatePasswordResetDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "token",
+        "new_password"
+      ]
+    },
+    {
+      "name": "SendEmailChangeDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "new_email"
+      ]
+    },
+    {
+      "name": "ConfirmEmailChangeDto",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "code"
+      ]
+    },
+    {
+      "name": "UserlandRevokeSessionDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "session_id"
+      ]
+    },
+    {
+      "name": "CreateWebhookEndpointDto",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "endpoint_url",
+        "events"
+      ]
+    },
+    {
+      "name": "UpdateWebhookEndpointDto",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "WidgetSessionTokenDto",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "organization_id"
+      ]
+    },
+    {
+      "name": "TokenQueryDto",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "client_id",
+        "client_secret",
+        "code",
+        "grant_type"
+      ]
+    },
+    {
+      "name": "ExternalAuthCompleteResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "redirect_uri"
+      ]
+    },
+    {
+      "name": "ApiKey",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "object",
+        "id",
+        "owner",
+        "name",
+        "obfuscated_value",
+        "last_used_at",
+        "permissions",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "ApiKeyValidationResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "api_key"
+      ]
+    },
+    {
+      "name": "ConnectApplication",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConnectApplicationList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "AuthorizedConnectApplicationList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "NewConnectApplicationSecret",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "object",
+        "id",
+        "secret_hint",
+        "last_used_at",
+        "created_at",
+        "updated_at",
+        "secret"
+      ]
+    },
+    {
+      "name": "AuditLogEventCreateResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "success"
+      ]
+    },
+    {
+      "name": "AuditLogExportJson",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "object",
+        "id",
+        "state",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "AuditLogsRetentionJson",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "retention_period_in_days"
+      ]
+    },
+    {
+      "name": "AuditLogSchemaJson",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "object",
+        "version",
+        "targets",
+        "created_at"
+      ]
+    },
+    {
+      "name": "AuditLogActionJson",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "object",
+        "name",
+        "schema",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "AuthenticationChallenge",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "object",
+        "id",
+        "authentication_factor_id",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "AuthenticationChallengeVerifyResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "challenge",
+        "valid"
+      ]
+    },
+    {
+      "name": "AuthenticationFactorEnrolled",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "object",
+        "id",
+        "type",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "AuthenticationFactor",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "object",
+        "id",
+        "type",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "AuthorizationCheck",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "authorized"
+      ]
+    },
+    {
+      "name": "AuthorizationResource",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "object",
+        "name",
+        "description",
+        "organization_id",
+        "parent_resource_id",
+        "id",
+        "external_id",
+        "resource_type_slug",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "AuthorizationResourceList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "AuthorizationPermission",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "object",
+        "id",
+        "slug",
+        "name",
+        "description",
+        "system",
+        "resource_type_slug",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "AuthorizationPermissionList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "SlimRole",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "slug"
+      ]
+    },
+    {
+      "name": "UserRoleAssignment",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "object",
+        "id",
+        "organization_membership_id",
+        "role",
+        "resource",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "UserRoleAssignmentList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "Role",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "slug",
+        "object",
+        "id",
+        "name",
+        "description",
+        "type",
+        "resource_type_slug",
+        "permissions",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "RoleList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "object",
+        "data"
+      ]
+    },
+    {
+      "name": "UserlandUser",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "object",
+        "id",
+        "first_name",
+        "last_name",
+        "profile_picture_url",
+        "email",
+        "email_verified",
+        "external_id",
+        "last_sign_in_at",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "UserlandUserOrganizationMembershipBaseWithUser",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "object",
+        "id",
+        "user_id",
+        "organization_id",
+        "status",
+        "directory_managed",
+        "created_at",
+        "updated_at",
+        "user"
+      ]
+    },
+    {
+      "name": "UserlandUserOrganizationMembershipBaseWithUserList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "Connection",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "object",
+        "id",
+        "connection_type",
+        "name",
+        "state",
+        "status",
+        "domains",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "ConnectionList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "CorsOriginResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "object",
+        "id",
+        "origin",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "Directory",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "object",
+        "id",
+        "organization_id",
+        "external_key",
+        "type",
+        "state",
+        "name",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "DirectoryList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "DirectoryGroup",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "object",
+        "id",
+        "idp_id",
+        "directory_id",
+        "organization_id",
+        "name",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "DirectoryGroupList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "DirectoryUserWithGroups",
+      "type": "object",
+      "propertyCount": 20,
+      "required": [
+        "object",
+        "id",
+        "directory_id",
+        "organization_id",
+        "idp_id",
+        "email",
+        "state",
+        "raw_attributes",
+        "custom_attributes",
+        "created_at",
+        "updated_at",
+        "groups"
+      ]
+    },
+    {
+      "name": "DirectoryUserList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "UserlandUserOrganizationMembershipBaseList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "Group",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "object",
+        "id",
+        "organization_id",
+        "name",
+        "description",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "GroupList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "EventContextActorDto",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "source",
+        "name"
+      ]
+    },
+    {
+      "name": "EventContextDto",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "DirectoryUser",
+      "type": "object",
+      "propertyCount": 19,
+      "required": [
+        "object",
+        "id",
+        "directory_id",
+        "organization_id",
+        "idp_id",
+        "email",
+        "state",
+        "raw_attributes",
+        "custom_attributes",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "VaultByokKeyProvider",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "WaitlistUser",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "object",
+        "id",
+        "email",
+        "state",
+        "approved_at",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "EventSchema",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "EventList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "JwtTemplate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "object",
+        "content",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "OrganizationDomainStandAlone",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "object",
+        "id",
+        "organization_id",
+        "domain",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "Flag",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "object",
+        "id",
+        "slug",
+        "name",
+        "description",
+        "owner",
+        "tags",
+        "enabled",
+        "default_value",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "FlagList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "OrganizationApiKey",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "object",
+        "id",
+        "owner",
+        "name",
+        "obfuscated_value",
+        "last_used_at",
+        "permissions",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "OrganizationApiKeyList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "OrganizationApiKeyWithValue",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "object",
+        "id",
+        "owner",
+        "name",
+        "obfuscated_value",
+        "last_used_at",
+        "permissions",
+        "created_at",
+        "updated_at",
+        "value"
+      ]
+    },
+    {
+      "name": "Organization",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "object",
+        "id",
+        "name",
+        "domains",
+        "metadata",
+        "external_id",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "OrganizationList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "AuditLogConfiguration",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "organization_id",
+        "retention_period_in_days",
+        "state"
+      ]
+    },
+    {
+      "name": "DataIntegrationAuthorizeUrlResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "url"
+      ]
+    },
+    {
+      "name": "DataIntegrationAccessTokenResponse",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ConnectedAccount",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "object",
+        "id",
+        "user_id",
+        "organization_id",
+        "scopes",
+        "state",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "DataIntegrationsListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "object",
+        "data"
+      ]
+    },
+    {
+      "name": "PortalLinkResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "link"
+      ]
+    },
+    {
+      "name": "RadarStandaloneResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "verdict",
+        "reason",
+        "attempt_id"
+      ]
+    },
+    {
+      "name": "RadarListEntryAlreadyPresentResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "message"
+      ]
+    },
+    {
+      "name": "RedirectUri",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "object",
+        "id",
+        "uri",
+        "default",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "UserlandUserAuthenticationFactorList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "UserlandUserAuthenticationFactorEnrollResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "authentication_factor",
+        "authentication_challenge"
+      ]
+    },
+    {
+      "name": "MagicAuth",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "object",
+        "id",
+        "user_id",
+        "email",
+        "expires_at",
+        "created_at",
+        "updated_at",
+        "code"
+      ]
+    },
+    {
+      "name": "UserlandUserInvite",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "object",
+        "id",
+        "email",
+        "state",
+        "accepted_at",
+        "revoked_at",
+        "expires_at",
+        "organization_id",
+        "inviter_user_id",
+        "accepted_user_id",
+        "role_slug",
+        "created_at",
+        "updated_at",
+        "token",
+        "accept_invitation_url"
+      ]
+    },
+    {
+      "name": "UserlandUserOrganizationMembership",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "object",
+        "id",
+        "user_id",
+        "organization_id",
+        "status",
+        "directory_managed",
+        "created_at",
+        "updated_at",
+        "role",
+        "user"
+      ]
+    },
+    {
+      "name": "UserApiKey",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "object",
+        "id",
+        "owner",
+        "name",
+        "obfuscated_value",
+        "last_used_at",
+        "permissions",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "UserApiKeyList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "UserApiKeyWithValue",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "object",
+        "id",
+        "owner",
+        "name",
+        "obfuscated_value",
+        "last_used_at",
+        "permissions",
+        "created_at",
+        "updated_at",
+        "value"
+      ]
+    },
+    {
+      "name": "UserlandUserList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "EmailVerification",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "object",
+        "id",
+        "user_id",
+        "email",
+        "expires_at",
+        "created_at",
+        "updated_at",
+        "code"
+      ]
+    },
+    {
+      "name": "SendVerificationEmailResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "user"
+      ]
+    },
+    {
+      "name": "VerifyEmailResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "user"
+      ]
+    },
+    {
+      "name": "PasswordReset",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "object",
+        "id",
+        "user_id",
+        "email",
+        "expires_at",
+        "created_at",
+        "password_reset_token",
+        "password_reset_url"
+      ]
+    },
+    {
+      "name": "ResetPasswordResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "user"
+      ]
+    },
+    {
+      "name": "EmailChange",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "object",
+        "user",
+        "new_email",
+        "expires_at",
+        "created_at"
+      ]
+    },
+    {
+      "name": "UserlandAuthenticateResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "user",
+        "access_token",
+        "refresh_token"
+      ]
+    },
+    {
+      "name": "DeviceAuthorizationResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "device_code",
+        "user_code",
+        "verification_uri",
+        "expires_in"
+      ]
+    },
+    {
+      "name": "WebhookEndpointJson",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "object",
+        "id",
+        "endpoint_url",
+        "secret",
+        "status",
+        "events",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
+      "name": "WebhookEndpointList",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "object",
+        "data",
+        "list_metadata"
+      ]
+    },
+    {
+      "name": "WidgetSessionTokenResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "token"
+      ]
+    },
+    {
+      "name": "SsoAuthorizeUrlResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "url"
+      ]
+    },
+    {
+      "name": "Profile",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "object",
+        "id",
+        "organization_id",
+        "connection_id",
+        "connection_type",
+        "idp_id",
+        "email",
+        "first_name",
+        "last_name",
+        "name",
+        "raw_attributes"
+      ]
+    },
+    {
+      "name": "SsoTokenResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "token_type",
+        "access_token",
+        "expires_in",
+        "profile"
+      ]
+    },
+    {
+      "name": "SsoLogoutAuthorizeResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "logout_url",
+        "logout_token"
+      ]
+    },
+    {
+      "name": "JwksResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "keys"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/api_keys/validations",
+      "operationId": "ApiKeysController_validateApiKey",
+      "summary": "Validate API Key",
+      "tags": [
+        "api_keys"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api_keys/{id}",
+      "operationId": "ApiKeysController_delete",
+      "summary": "Delete an API Key",
+      "tags": [
+        "api_keys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/audit_logs/actions",
+      "operationId": "AuditLogValidatorsController_list",
+      "summary": "List Actions",
+      "tags": [
+        "audit-logs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/audit_logs/actions/{actionName}/schemas",
+      "operationId": "AuditLogValidatorVersionsController_schemas",
+      "summary": "List Schemas",
+      "tags": [
+        "audit-logs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/audit_logs/actions/{actionName}/schemas",
+      "operationId": "AuditLogValidatorVersionsController_create",
+      "summary": "Create Schema",
+      "tags": [
+        "audit-logs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/audit_logs/events",
+      "operationId": "AuditLogEventsController_create",
+      "summary": "Create Event",
+      "tags": [
+        "audit-logs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/audit_logs/exports",
+      "operationId": "AuditLogExportsController_exports",
+      "summary": "Create Export",
+      "tags": [
+        "audit-logs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/audit_logs/exports/{auditLogExportId}",
+      "operationId": "AuditLogExportsController_export",
+      "summary": "Get Export",
+      "tags": [
+        "audit-logs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/challenges/{id}/verify",
+      "operationId": "AuthenticationChallengesController_verify",
+      "summary": "Verify Challenge",
+      "tags": [
+        "multi-factor-auth.challenges"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/factors/enroll",
+      "operationId": "AuthenticationFactorsController_create",
+      "summary": "Enroll Factor",
+      "tags": [
+        "multi-factor-auth"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/auth/factors/{id}",
+      "operationId": "AuthenticationFactorsController_get",
+      "summary": "Get Factor",
+      "tags": [
+        "multi-factor-auth"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/auth/factors/{id}",
+      "operationId": "AuthenticationFactorsController_delete",
+      "summary": "Delete Factor",
+      "tags": [
+        "multi-factor-auth"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/factors/{id}/challenge",
+      "operationId": "AuthenticationFactorsController_challenge",
+      "summary": "Challenge Factor",
+      "tags": [
+        "multi-factor-auth"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/authkit/oauth2/complete",
+      "operationId": "ExternalAuthController_completeLogin",
+      "summary": "Complete External Authentication",
+      "tags": [
+        "workos-connect"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/authorization/organization_memberships/{organization_membership_id}/check",
+      "operationId": "AuthorizationController_check",
+      "summary": "Check Authorization",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/organization_memberships/{organization_membership_id}/resources",
+      "operationId": "AuthorizationController_listResourcesForMembership",
+      "summary": "List Resources for Organization Membership",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/organization_memberships/{organization_membership_id}/resources/{resource_id}/permissions",
+      "operationId": "AuthorizationController_listEffectivePermissions",
+      "summary": "List Effective Permissions for an Organization Membership on a Resource",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/organization_memberships/{organization_membership_id}/resources/{resource_type_slug}/{external_id}/permissions",
+      "operationId": "AuthorizationController_listEffectivePermissionsByExternalId",
+      "summary": "List Effective Permissions for an Organization Membership on a Resource by External ID",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/organization_memberships/{organization_membership_id}/role_assignments",
+      "operationId": "AuthorizationRoleAssignmentsController_listRoleAssignments",
+      "summary": "List Role Assignments",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/authorization/organization_memberships/{organization_membership_id}/role_assignments",
+      "operationId": "AuthorizationRoleAssignmentsController_assignRole",
+      "summary": "Assign a Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/authorization/organization_memberships/{organization_membership_id}/role_assignments",
+      "operationId": "AuthorizationRoleAssignmentsController_removeRoleByCriteria",
+      "summary": "Remove a Role Assignment",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/authorization/organization_memberships/{organization_membership_id}/role_assignments/{role_assignment_id}",
+      "operationId": "AuthorizationRoleAssignmentsController_removeRoleById",
+      "summary": "Remove a Role Assignment by ID",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/organizations/{organizationId}/roles",
+      "operationId": "AuthorizationOrganizationRolesController_list",
+      "summary": "List Custom Roles",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/authorization/organizations/{organizationId}/roles",
+      "operationId": "AuthorizationOrganizationRolesController_create",
+      "summary": "Create a Custom Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/organizations/{organizationId}/roles/{slug}",
+      "operationId": "AuthorizationOrganizationRolesController_get",
+      "summary": "Get a Custom Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/authorization/organizations/{organizationId}/roles/{slug}",
+      "operationId": "AuthorizationOrganizationRolesController_delete",
+      "summary": "Delete a Custom Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/authorization/organizations/{organizationId}/roles/{slug}",
+      "operationId": "AuthorizationOrganizationRolesController_update",
+      "summary": "Update a Custom Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/authorization/organizations/{organizationId}/roles/{slug}/permissions",
+      "operationId": "AuthorizationOrganizationRolePermissionsController_addPermission",
+      "summary": "Add a Permission to a Custom Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/authorization/organizations/{organizationId}/roles/{slug}/permissions",
+      "operationId": "AuthorizationOrganizationRolePermissionsController_setPermissions",
+      "summary": "Set Permissions for a Custom Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/authorization/organizations/{organizationId}/roles/{slug}/permissions/{permissionSlug}",
+      "operationId": "AuthorizationOrganizationRolePermissionsController_removePermission",
+      "summary": "Remove a Permission from a Custom Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}",
+      "operationId": "AuthorizationResourcesByExternalIdController_getByExternalId",
+      "summary": "Get a Resource by External ID",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}",
+      "operationId": "AuthorizationResourcesByExternalIdController_deleteByExternalId",
+      "summary": "Delete an Authorization Resource by External ID",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}",
+      "operationId": "AuthorizationResourcesByExternalIdController_updateByExternalId",
+      "summary": "Update a Resource by External ID",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}/organization_memberships",
+      "operationId": "AuthorizationResourcesByExternalIdController_listOrganizationMembershipsForResourceByExternalId",
+      "summary": "List Memberships for a Resource by External ID",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}/role_assignments",
+      "operationId": "AuthorizationRoleAssignmentsController_listRoleAssignmentsForResourceByExternalId",
+      "summary": "List Role Assignments for a Resource by External ID",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/permissions",
+      "operationId": "AuthorizationPermissionsController_list",
+      "summary": "List Permissions",
+      "tags": [
+        "permissions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/authorization/permissions",
+      "operationId": "AuthorizationPermissionsController_create",
+      "summary": "Create a Permission",
+      "tags": [
+        "permissions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/permissions/{slug}",
+      "operationId": "AuthorizationPermissionsController_find",
+      "summary": "Get a Permission",
+      "tags": [
+        "permissions"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/authorization/permissions/{slug}",
+      "operationId": "AuthorizationPermissionsController_delete",
+      "summary": "Delete a Permission",
+      "tags": [
+        "permissions"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/authorization/permissions/{slug}",
+      "operationId": "AuthorizationPermissionsController_update",
+      "summary": "Update a Permission",
+      "tags": [
+        "permissions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/resources",
+      "operationId": "AuthorizationResourcesController_list",
+      "summary": "List Resources",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/authorization/resources",
+      "operationId": "AuthorizationResourcesController_create",
+      "summary": "Create an Authorization Resource",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/resources/{resource_id}",
+      "operationId": "AuthorizationResourcesController_findById",
+      "summary": "Get a Resource",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/authorization/resources/{resource_id}",
+      "operationId": "AuthorizationResourcesController_delete",
+      "summary": "Delete an Authorization Resource",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/authorization/resources/{resource_id}",
+      "operationId": "AuthorizationResourcesController_update",
+      "summary": "Update a Resource",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/resources/{resource_id}/organization_memberships",
+      "operationId": "AuthorizationResourcesController_listOrganizationMembershipsForResource",
+      "summary": "List Organization Memberships for Resource",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/resources/{resource_id}/role_assignments",
+      "operationId": "AuthorizationRoleAssignmentsController_listRoleAssignmentsForResource",
+      "summary": "List Role Assignments for a Resource",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/roles",
+      "operationId": "AuthorizationRolesController_list",
+      "summary": "List Environment Roles",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/authorization/roles",
+      "operationId": "AuthorizationRolesController_create",
+      "summary": "Create an Environment Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorization/roles/{slug}",
+      "operationId": "AuthorizationRolesController_get",
+      "summary": "Get an Environment Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/authorization/roles/{slug}",
+      "operationId": "AuthorizationRolesController_update",
+      "summary": "Update an Environment Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/authorization/roles/{slug}/permissions",
+      "operationId": "AuthorizationRolePermissionsController_addPermission",
+      "summary": "Add a Permission to an Environment Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/authorization/roles/{slug}/permissions",
+      "operationId": "AuthorizationRolePermissionsController_setPermissions",
+      "summary": "Set Permissions for an Environment Role",
+      "tags": [
+        "authorization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connect/applications",
+      "operationId": "ApplicationsController_list",
+      "summary": "List Connect Applications",
+      "tags": [
+        "applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/connect/applications",
+      "operationId": "ApplicationsController_create",
+      "summary": "Create a Connect Application",
+      "tags": [
+        "applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connect/applications/{id}",
+      "operationId": "ApplicationsController_find",
+      "summary": "Get a Connect Application",
+      "tags": [
+        "applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/connect/applications/{id}",
+      "operationId": "ApplicationsController_update",
+      "summary": "Update a Connect Application",
+      "tags": [
+        "applications"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/connect/applications/{id}",
+      "operationId": "ApplicationsController_delete",
+      "summary": "Delete a Connect Application",
+      "tags": [
+        "applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connect/applications/{id}/client_secrets",
+      "operationId": "ApplicationCredentialsController_list",
+      "summary": "List Client Secrets for a Connect Application",
+      "tags": [
+        "application.client-secrets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/connect/applications/{id}/client_secrets",
+      "operationId": "ApplicationCredentialsController_create",
+      "summary": "Create a New Client Secret for a Connect Application",
+      "tags": [
+        "application.client-secrets"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/connect/client_secrets/{id}",
+      "operationId": "ApplicationCredentialsController_delete",
+      "summary": "Delete a Client Secret",
+      "tags": [
+        "application.client-secrets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connections",
+      "operationId": "ConnectionsController_list",
+      "summary": "List Connections",
+      "tags": [
+        "connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connections/{id}",
+      "operationId": "ConnectionsController_find",
+      "summary": "Get a Connection",
+      "tags": [
+        "connections"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/connections/{id}",
+      "operationId": "ConnectionsController_delete",
+      "summary": "Delete a Connection",
+      "tags": [
+        "connections"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/data-integrations/{slug}/authorize",
+      "operationId": "DataIntegrationsController_getDataIntegrationAuthorizeUrl",
+      "summary": "Get Authorization URL",
+      "tags": [
+        "pipes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/data-integrations/{slug}/token",
+      "operationId": "DataIntegrationsController_getUserlandUserToken",
+      "summary": "Get an Access Token for a Connected Account",
+      "tags": [
+        "pipes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/directories",
+      "operationId": "DirectoriesController_list",
+      "summary": "List Directories",
+      "tags": [
+        "directories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/directories/{id}",
+      "operationId": "DirectoriesController_find",
+      "summary": "Get a Directory",
+      "tags": [
+        "directories"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/directories/{id}",
+      "operationId": "DirectoriesController_deleteDirectory",
+      "summary": "Delete a Directory",
+      "tags": [
+        "directories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/directory_groups",
+      "operationId": "DirectoryGroupsController_list",
+      "summary": "List Directory Groups",
+      "tags": [
+        "directory-groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/directory_groups/{id}",
+      "operationId": "DirectoryGroupsController_find",
+      "summary": "Get a Directory Group",
+      "tags": [
+        "directory-groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/directory_users",
+      "operationId": "DirectoryUsersController_list",
+      "summary": "List Directory Users",
+      "tags": [
+        "directory-users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/directory_users/{id}",
+      "operationId": "DirectoryUsersController_find",
+      "summary": "Get a Directory User",
+      "tags": [
+        "directory-users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/events",
+      "operationId": "EventsController_list",
+      "summary": "List Events",
+      "tags": [
+        "events"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/feature-flags",
+      "operationId": "FeatureFlagsController_list",
+      "summary": "List Feature Flags",
+      "tags": [
+        "feature-flags"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/feature-flags/{slug}",
+      "operationId": "FeatureFlagsController_findBySlug",
+      "summary": "Get a Feature Flag",
+      "tags": [
+        "feature-flags"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/feature-flags/{slug}/disable",
+      "operationId": "FeatureFlagsController_disableFlag",
+      "summary": "Disable a Feature Flag",
+      "tags": [
+        "feature-flags"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/feature-flags/{slug}/enable",
+      "operationId": "FeatureFlagsController_enableFlag",
+      "summary": "Enable a Feature Flag",
+      "tags": [
+        "feature-flags"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/feature-flags/{slug}/targets/{resourceId}",
+      "operationId": "FlagTargetsController_createTarget",
+      "summary": "Add a Feature Flag Target",
+      "tags": [
+        "feature-flags.targets"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/feature-flags/{slug}/targets/{resourceId}",
+      "operationId": "FlagTargetsController_deleteTarget",
+      "summary": "Remove a Feature Flag Target",
+      "tags": [
+        "feature-flags.targets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organization_domains",
+      "operationId": "OrganizationDomainsController_create",
+      "summary": "Create an Organization Domain",
+      "tags": [
+        "organization-domains"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organization_domains/{id}",
+      "operationId": "OrganizationDomainsController_get",
+      "summary": "Get an Organization Domain",
+      "tags": [
+        "organization-domains"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organization_domains/{id}",
+      "operationId": "OrganizationDomainsController_delete",
+      "summary": "Delete an Organization Domain",
+      "tags": [
+        "organization-domains"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organization_domains/{id}/verify",
+      "operationId": "OrganizationDomainsController_verify",
+      "summary": "Verify an Organization Domain",
+      "tags": [
+        "organization-domains"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations",
+      "operationId": "OrganizationsController_list",
+      "summary": "List Organizations",
+      "tags": [
+        "organizations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations",
+      "operationId": "OrganizationsController_create",
+      "summary": "Create an Organization",
+      "tags": [
+        "organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/external_id/{external_id}",
+      "operationId": "OrganizationsController_getByExternalId",
+      "summary": "Get an Organization by External ID",
+      "tags": [
+        "organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{id}",
+      "operationId": "OrganizationsController_find",
+      "summary": "Get an Organization",
+      "tags": [
+        "organizations"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{id}",
+      "operationId": "OrganizationsController_updateOrganization",
+      "summary": "Update an Organization",
+      "tags": [
+        "organizations"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organizations/{id}",
+      "operationId": "OrganizationsController_deleteOrganization",
+      "summary": "Delete an Organization",
+      "tags": [
+        "organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{id}/audit_log_configuration",
+      "operationId": "OrganizationsController_getAuditLogConfiguration",
+      "summary": "Get Audit Log Configuration",
+      "tags": [
+        "organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{id}/audit_logs_retention",
+      "operationId": "AuditLogsRetentionController_auditLogsRetention",
+      "summary": "Get Retention",
+      "tags": [
+        "audit-logs"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/organizations/{id}/audit_logs_retention",
+      "operationId": "AuditLogsRetentionController_updateAuditLogsRetention",
+      "summary": "Set Retention",
+      "tags": [
+        "audit-logs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organizationId}/api_keys",
+      "operationId": "OrganizationApiKeysController_list",
+      "summary": "List API Keys for an Organization",
+      "tags": [
+        "organizations.api_keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organizationId}/api_keys",
+      "operationId": "OrganizationApiKeysController_create",
+      "summary": "Create an API Key for an Organization",
+      "tags": [
+        "organizations.api_keys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organizationId}/feature-flags",
+      "operationId": "OrganizationFeatureFlagsController_list",
+      "summary": "List Enabled Feature Flags for an Organization",
+      "tags": [
+        "organizations.feature-flags"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organizationId}/groups",
+      "operationId": "GroupsController_list",
+      "summary": "List Groups",
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organizationId}/groups",
+      "operationId": "GroupsController_create",
+      "summary": "Create a Group",
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organizationId}/groups/{groupId}",
+      "operationId": "GroupsController_get",
+      "summary": "Get a Group",
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organizations/{organizationId}/groups/{groupId}",
+      "operationId": "GroupsController_delete",
+      "summary": "Delete a Group",
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/organizations/{organizationId}/groups/{groupId}",
+      "operationId": "GroupsController_update",
+      "summary": "Update a Group",
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organizations/{organizationId}/groups/{groupId}/organization-memberships",
+      "operationId": "GroupMembershipsController_listMembers",
+      "summary": "List Group Members",
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organizations/{organizationId}/groups/{groupId}/organization-memberships",
+      "operationId": "GroupMembershipsController_addMember",
+      "summary": "Add a Member to a Group",
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/organizations/{organizationId}/groups/{groupId}/organization-memberships/{omId}",
+      "operationId": "GroupMembershipsController_removeMember",
+      "summary": "Remove a Member from a Group",
+      "tags": [
+        "groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/portal/generate_link",
+      "operationId": "PortalSessionsController_create",
+      "summary": "Generate a Portal Link",
+      "tags": [
+        "admin-portal"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/radar/attempts",
+      "operationId": "RadarStandaloneController_assess",
+      "summary": "Create an Attempt",
+      "tags": [
+        "radar"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/radar/attempts/{id}",
+      "operationId": "RadarStandaloneController_updateRadarAttempt",
+      "summary": "Update a Radar Attempt",
+      "tags": [
+        "radar"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/radar/lists/{type}/{action}",
+      "operationId": "RadarStandaloneController_updateRadarList",
+      "summary": "Add an Entry to a Radar List",
+      "tags": [
+        "radar"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/radar/lists/{type}/{action}",
+      "operationId": "RadarStandaloneController_deleteRadarListEntry",
+      "summary": "Remove an Entry from a Radar List",
+      "tags": [
+        "radar"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sso/authorize",
+      "operationId": "SsoController_authorize",
+      "summary": "Initiate SSO",
+      "tags": [
+        "sso"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sso/jwks/{clientId}",
+      "operationId": "SsoController_jsonWebKeySet",
+      "summary": "Get JWKS",
+      "tags": [
+        "user-management.session-tokens"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sso/logout",
+      "operationId": "SsoController_logout",
+      "summary": "Logout Redirect",
+      "tags": [
+        "sso"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sso/logout/authorize",
+      "operationId": "SsoController_logoutAuthorize",
+      "summary": "Logout Authorize",
+      "tags": [
+        "sso"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sso/profile",
+      "operationId": "SsoController_getProfile",
+      "summary": "Get a User Profile",
+      "tags": [
+        "sso"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sso/token",
+      "operationId": "SsoController_token",
+      "summary": "Get a Profile and Token",
+      "tags": [
+        "sso"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/authenticate",
+      "operationId": "UserlandSessionsController_authenticate[0]",
+      "summary": "Authenticate",
+      "tags": [
+        "user-management.authentication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/authorize",
+      "operationId": "UserlandSsoController_authorize",
+      "summary": "Get an Authorization URL",
+      "tags": [
+        "user-management.authentication"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/authorize/device",
+      "operationId": "UserlandSsoController_deviceAuthorization",
+      "summary": "Get Device Authorization URL",
+      "tags": [
+        "user-management.authentication"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/cors_origins",
+      "operationId": "CorsOriginsController_createCorsOrigin",
+      "summary": "Create a CORS Origin",
+      "tags": [
+        "user-management.cors-origins"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/email_verification/{id}",
+      "operationId": "UserlandUsersController_getEmailVerification",
+      "summary": "Get an Email Verification Code",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/invitations",
+      "operationId": "UserlandUserInvitesController_list",
+      "summary": "List Invitations",
+      "tags": [
+        "user-management.invitations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/invitations",
+      "operationId": "UserlandUserInvitesController_create",
+      "summary": "Send an Invitation",
+      "tags": [
+        "user-management.invitations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/invitations/by_token/{token}",
+      "operationId": "UserlandUserInvitesController_getByToken",
+      "summary": "Find an Invitation by Token",
+      "tags": [
+        "user-management.invitations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/invitations/{id}",
+      "operationId": "UserlandUserInvitesController_get",
+      "summary": "Get an Invitation",
+      "tags": [
+        "user-management.invitations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/invitations/{id}/accept",
+      "operationId": "UserlandUserInvitesController_accept",
+      "summary": "Accept an Invitation",
+      "tags": [
+        "user-management.invitations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/invitations/{id}/resend",
+      "operationId": "UserlandUserInvitesController_resend",
+      "summary": "Resend an Invitation",
+      "tags": [
+        "user-management.invitations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/invitations/{id}/revoke",
+      "operationId": "UserlandUserInvitesController_revoke",
+      "summary": "Revoke an Invitation",
+      "tags": [
+        "user-management.invitations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/jwt_template",
+      "operationId": "JwtTemplatesController_getJwtTemplate",
+      "summary": "Get JWT Template",
+      "tags": [
+        "user-management.jwt-template"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/user_management/jwt_template",
+      "operationId": "JwtTemplatesController_updateJwtTemplate",
+      "summary": "Update JWT Template",
+      "tags": [
+        "user-management.jwt-template"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/magic_auth",
+      "operationId": "UserlandMagicAuthController_sendMagicAuthCodeAndReturn",
+      "summary": "Create a Magic Auth Code",
+      "tags": [
+        "user-management.magic-auth"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/magic_auth/{id}",
+      "operationId": "UserlandMagicAuthController_get",
+      "summary": "Get Magic Auth Code Details",
+      "tags": [
+        "user-management.magic-auth"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/organization_memberships",
+      "operationId": "UserlandUserOrganizationMembershipsController_list",
+      "summary": "List Organization Memberships",
+      "tags": [
+        "user-management.organization-membership"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/organization_memberships",
+      "operationId": "UserlandUserOrganizationMembershipsController_create",
+      "summary": "Create an Organization Membership",
+      "tags": [
+        "user-management.organization-membership"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/organization_memberships/{id}",
+      "operationId": "UserlandUserOrganizationMembershipsController_get",
+      "summary": "Get an Organization Membership",
+      "tags": [
+        "user-management.organization-membership"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/user_management/organization_memberships/{id}",
+      "operationId": "UserlandUserOrganizationMembershipsController_update",
+      "summary": "Update an Organization Membership",
+      "tags": [
+        "user-management.organization-membership"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/user_management/organization_memberships/{id}",
+      "operationId": "UserlandUserOrganizationMembershipsController_delete",
+      "summary": "Delete an Organization Membership",
+      "tags": [
+        "user-management.organization-membership"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/user_management/organization_memberships/{id}/deactivate",
+      "operationId": "UserlandUserOrganizationMembershipsController_deactivate",
+      "summary": "Deactivate an Organization Membership",
+      "tags": [
+        "user-management.organization-membership"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/user_management/organization_memberships/{id}/reactivate",
+      "operationId": "UserlandUserOrganizationMembershipsController_reactivate",
+      "summary": "Reactivate an Organization Membership",
+      "tags": [
+        "user-management.organization-membership"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/organization_memberships/{omId}/groups",
+      "operationId": "OrganizationMembershipGroupsController_listGroups",
+      "summary": "List Groups",
+      "tags": [
+        "user-management.organization-membership.groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/password_reset",
+      "operationId": "UserlandUsersController_createPasswordResetToken",
+      "summary": "Create a Password Reset Token",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/password_reset/confirm",
+      "operationId": "UserlandUsersController_resetPassword[0]",
+      "summary": "Reset the Password",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/password_reset/{id}",
+      "operationId": "UserlandUsersController_getPasswordReset",
+      "summary": "Get a Password Reset Token",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/redirect_uris",
+      "operationId": "RedirectUrisController_create",
+      "summary": "Create a Redirect URI",
+      "tags": [
+        "user-management.redirect-uris"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/sessions/logout",
+      "operationId": "UserlandSessionsController_logout",
+      "summary": "Logout",
+      "tags": [
+        "user-management.authentication"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/sessions/revoke",
+      "operationId": "UserlandSessionsController_revokeSession",
+      "summary": "Revoke Session",
+      "tags": [
+        "user-management.authentication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users",
+      "operationId": "UserlandUsersController_list[0]",
+      "summary": "List Users",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/users",
+      "operationId": "UserlandUsersController_create[0]",
+      "summary": "Create a User",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/external_id/{external_id}",
+      "operationId": "UserlandUsersController_getByExternalId",
+      "summary": "Get a User by External ID",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/{id}",
+      "operationId": "UserlandUsersController_get[0]",
+      "summary": "Get a User",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/user_management/users/{id}",
+      "operationId": "UserlandUsersController_update[0]",
+      "summary": "Update a User",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/user_management/users/{id}",
+      "operationId": "UserlandUsersController_delete[0]",
+      "summary": "Delete a User",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/users/{id}/email_change/confirm",
+      "operationId": "UserlandUsersController_confirmEmailChange",
+      "summary": "Confirm Email Change",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/users/{id}/email_change/send",
+      "operationId": "UserlandUsersController_sendEmailChange",
+      "summary": "Send Email Change Code",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/users/{id}/email_verification/confirm",
+      "operationId": "UserlandUsersController_emailVerification[0]",
+      "summary": "Verify Email",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/users/{id}/email_verification/send",
+      "operationId": "UserlandUsersController_sendVerificationEmail[0]",
+      "summary": "Send Verification Email",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/{id}/identities",
+      "operationId": "UserlandUserIdentitiesController_get",
+      "summary": "Get User Identities",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/{id}/sessions",
+      "operationId": "UserlandUserSessionsController_list",
+      "summary": "List Sessions",
+      "tags": [
+        "user-management.users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/{userId}/api_keys",
+      "operationId": "UserApiKeysController_list",
+      "summary": "List API Keys for a User",
+      "tags": [
+        "api_keys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/users/{userId}/api_keys",
+      "operationId": "UserApiKeysController_create",
+      "summary": "Create an API Key for a User",
+      "tags": [
+        "api_keys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/{userId}/feature-flags",
+      "operationId": "UserlandUserFeatureFlagsController_list",
+      "summary": "List Enabled Feature Flags for a User",
+      "tags": [
+        "user-management.users.feature-flags"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/{user_id}/authorized_applications",
+      "operationId": "AuthorizedApplicationsController_list",
+      "summary": "List Authorized Applications",
+      "tags": [
+        "user-management.users.authorized-applications"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/user_management/users/{user_id}/authorized_applications/{application_id}",
+      "operationId": "AuthorizedApplicationsController_delete",
+      "summary": "Delete an Authorized Application",
+      "tags": [
+        "user-management.users.authorized-applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/{user_id}/connected_accounts/{slug}",
+      "operationId": "DataIntegrationsUserManagementController_getUserDataInstallation",
+      "summary": "Get a Connected Account",
+      "tags": [
+        "user-management.data-providers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/user_management/users/{user_id}/connected_accounts/{slug}",
+      "operationId": "DataIntegrationsUserManagementController_deleteUserDataInstallation",
+      "summary": "Delete a Connected Account",
+      "tags": [
+        "user-management.data-providers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/{user_id}/data_providers",
+      "operationId": "DataIntegrationsUserManagementController_getUserDataIntegrations",
+      "summary": "List Providers",
+      "tags": [
+        "user-management.data-providers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/user_management/users/{userlandUserId}/auth_factors",
+      "operationId": "UserlandUserAuthenticationFactorsController_list[0]",
+      "summary": "List Authentication Factors",
+      "tags": [
+        "user-management.multi-factor-authentication"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/user_management/users/{userlandUserId}/auth_factors",
+      "operationId": "UserlandUserAuthenticationFactorsController_create[0]",
+      "summary": "Enroll an Authentication Factor",
+      "tags": [
+        "user-management.multi-factor-authentication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhook_endpoints",
+      "operationId": "WebhookEndpointsController_list",
+      "summary": "List Webhook Endpoints",
+      "tags": [
+        "webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhook_endpoints",
+      "operationId": "WebhookEndpointsController_create",
+      "summary": "Create a Webhook Endpoint",
+      "tags": [
+        "webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/webhook_endpoints/{id}",
+      "operationId": "WebhookEndpointsController_delete",
+      "summary": "Delete a Webhook Endpoint",
+      "tags": [
+        "webhooks"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/webhook_endpoints/{id}",
+      "operationId": "WebhookEndpointsController_update",
+      "summary": "Update a Webhook Endpoint",
+      "tags": [
+        "webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/widgets/token",
+      "operationId": "WidgetsPublicController_issueWidgetSessionToken",
+      "summary": "Generate a Widget Token",
+      "tags": [
+        "widgets"
+      ]
+    }
+  ]
+}

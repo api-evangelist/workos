@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RadarStandaloneResponse",
+  "title": "RadarStandaloneResponse",
+  "type": "object",
+  "properties": {
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "block",
+        "challenge"
+      ],
+      "description": "The verdict of the risk assessment.",
+      "example": "block"
+    },
+    "reason": {
+      "type": "string",
+      "description": "A human-readable reason for the verdict.",
+      "example": "Detected enabled Radar control"
+    },
+    "attempt_id": {
+      "type": "string",
+      "description": "Unique identifier of the authentication attempt.",
+      "example": "radar_att_01HZBC6N1EB1ZY7KG32X"
+    },
+    "control": {
+      "type": "string",
+      "enum": [
+        "bot_detection",
+        "brute_force_attack",
+        "credential_stuffing",
+        "domain_sign_up_rate_limit",
+        "ip_sign_up_rate_limit",
+        "impossible_travel",
+        "repeat_sign_up",
+        "stale_account",
+        "unrecognized_device",
+        "restriction"
+      ],
+      "description": "The Radar control that triggered the verdict. Only present if the verdict is `block` or `challenge`.",
+      "example": "bot_detection"
+    },
+    "blocklist_type": {
+      "type": "string",
+      "enum": [
+        "ip_address",
+        "domain",
+        "email",
+        "device",
+        "user_agent",
+        "device_fingerprint",
+        "country"
+      ],
+      "description": "The type of blocklist entry that triggered the verdict. Only present if the control is `restriction`.",
+      "example": "ip_address"
+    }
+  },
+  "required": [
+    "verdict",
+    "reason",
+    "attempt_id"
+  ]
+}

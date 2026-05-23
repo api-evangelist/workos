@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendVerificationEmailResponse",
+  "title": "SendVerificationEmailResponse",
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserlandUser",
+      "description": "The user to whom the verification email was sent."
+    }
+  },
+  "required": [
+    "user"
+  ]
+}

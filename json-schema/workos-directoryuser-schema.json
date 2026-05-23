@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DirectoryUser",
+  "title": "DirectoryUser",
+  "type": "object",
+  "properties": {
+    "object": {
+      "type": "string",
+      "description": "Distinguishes the Directory User object.",
+      "const": "directory_user"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the Directory User.",
+      "example": "directory_user_01E1JG7J09H96KYP8HM9B0G5SJ"
+    },
+    "directory_id": {
+      "type": "string",
+      "description": "The identifier of the Directory the Directory User belongs to.",
+      "example": "directory_01ECAZ4NV9QMV47GW873HDCX74"
+    },
+    "organization_id": {
+      "type": "string",
+      "description": "The identifier for the Organization in which the Directory resides.",
+      "example": "org_01EZTR6WYX1A0DSE2CYMGXQ24Y"
+    },
+    "idp_id": {
+      "type": "string",
+      "description": "Unique identifier for the user, assigned by the Directory Provider. Different Directory Providers use different ID formats.",
+      "example": "2836"
+    },
+    "email": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The email address of the user.",
+      "example": "marcelina.davis@example.com"
+    },
+    "first_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The first name of the user.",
+      "example": "Marcelina"
+    },
+    "last_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The last name of the user.",
+      "example": "Davis"
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The full name of the user.",
+      "example": "Marcelina Davis"
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "primary": {
+            "type": "boolean",
+            "description": "Whether this is the primary email address.",
+            "example": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of email address.",
+            "example": "work"
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The email address value.",
+            "example": "marcelina.davis@example.com"
+          }
+        }
+      },
+      "description": "A list of email addresses for the user.",
+      "deprecated": true
+    },
+    "job_title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The job title of the user.",
+      "example": "Software Engineer",
+      "deprecated": true
+    },
+    "username": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The username of the user.",
+      "example": "mdavis",
+      "deprecated": true
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "active",
+        "suspended",
+        "inactive"
+      ],
+      "description": "The state of the user.",
+      "example": "active"
+    },
+    "raw_attributes": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "The raw attributes received from the directory provider.",
+      "deprecated": true
+    },
+    "custom_attributes": {
+      "type": "object",
+      "additionalProperties": {},
+      "description": "An object containing the custom attribute mapping for the Directory Provider.",
+      "example": {
+        "department": "Engineering",
+        "job_title": "Software Engineer"
+      }
+    },
+    "role": {
+      "$ref": "#/components/schemas/SlimRole"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SlimRole"
+      },
+      "description": "All roles assigned to the user."
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string",
+      "description": "An ISO 8601 timestamp.",
+      "example": "2026-01-15T12:00:00.000Z"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string",
+      "description": "An ISO 8601 timestamp.",
+      "example": "2026-01-15T12:00:00.000Z"
+    }
+  },
+  "required": [
+    "object",
+    "id",
+    "directory_id",
+    "organization_id",
+    "idp_id",
+    "email",
+    "state",
+    "raw_attributes",
+    "custom_attributes",
+    "created_at",
+    "updated_at"
+  ]
+}

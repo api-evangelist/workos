@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendEmailChangeDto",
+  "title": "SendEmailChangeDto",
+  "type": "object",
+  "properties": {
+    "new_email": {
+      "type": "string",
+      "description": "The new email address to change to.",
+      "example": "new.email@example.com"
+    }
+  },
+  "required": [
+    "new_email"
+  ]
+}

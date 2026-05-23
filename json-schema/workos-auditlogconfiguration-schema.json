@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogConfiguration",
+  "title": "AuditLogConfiguration",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "description": "Unique identifier of the Organization.",
+      "example": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+    },
+    "retention_period_in_days": {
+      "type": "integer",
+      "description": "The number of days Audit Log events will be retained before being permanently deleted.",
+      "example": 30
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "disabled"
+      ],
+      "description": "The current state of the audit log configuration for the organization.",
+      "example": "active"
+    },
+    "log_stream": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the Audit Log Stream.",
+          "example": "als_01EHZNVPK3SFK441A1RGBFSHRT"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "AzureSentinel",
+            "Datadog",
+            "GenericHttps",
+            "GoogleCloudStorage",
+            "S3",
+            "Splunk"
+          ],
+          "description": "The type of the Audit Log Stream destination.",
+          "example": "Datadog"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "active",
+            "inactive",
+            "error",
+            "invalid"
+          ],
+          "description": "The current state of the Audit Log Stream.",
+          "example": "active"
+        },
+        "last_synced_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ISO-8601 timestamp of when the last event was successfully synced, or null if no events have been synced.",
+          "example": "2026-01-15T12:00:00.000Z"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string",
+          "description": "An ISO 8601 timestamp.",
+          "example": "2026-01-15T12:00:00.000Z"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "state",
+        "last_synced_at",
+        "created_at"
+      ],
+      "description": "The Audit Log Stream currently configured for the organization, if any."
+    }
+  },
+  "required": [
+    "organization_id",
+    "retention_period_in_days",
+    "state"
+  ]
+}

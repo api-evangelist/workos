@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditLogEventCreateResponse",
+  "title": "AuditLogEventCreateResponse",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the Audit Log event was created successfully.",
+      "example": true
+    }
+  },
+  "required": [
+    "success"
+  ]
+}

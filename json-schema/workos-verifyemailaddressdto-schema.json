@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VerifyEmailAddressDto",
+  "title": "VerifyEmailAddressDto",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "The one-time email verification code.",
+      "example": "123456"
+    }
+  },
+  "required": [
+    "code"
+  ]
+}

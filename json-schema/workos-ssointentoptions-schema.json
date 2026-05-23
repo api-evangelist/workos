@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SsoIntentOptions",
+  "title": "SsoIntentOptions",
+  "type": "object",
+  "properties": {
+    "bookmark_slug": {
+      "type": "string",
+      "description": "The bookmark slug to use for SSO.",
+      "example": "chatgpt"
+    },
+    "provider_type": {
+      "type": "string",
+      "description": "The SSO provider type to configure.",
+      "example": "GoogleSAML",
+      "const": "GoogleSAML"
+    }
+  }
+}

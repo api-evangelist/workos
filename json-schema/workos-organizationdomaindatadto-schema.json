@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrganizationDomainDataDto",
+  "title": "OrganizationDomainDataDto",
+  "type": "object",
+  "properties": {
+    "domain": {
+      "type": "string",
+      "description": "The domain value.",
+      "example": "foo-corp.com"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "verified"
+      ],
+      "description": "The verification state of the domain.",
+      "example": "verified"
+    }
+  },
+  "required": [
+    "domain",
+    "state"
+  ]
+}

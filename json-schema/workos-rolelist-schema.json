@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RoleList",
+  "title": "RoleList",
+  "type": "object",
+  "properties": {
+    "object": {
+      "type": "string",
+      "example": "list",
+      "const": "list"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Role"
+      },
+      "description": "The list of records for the current page."
+    }
+  },
+  "required": [
+    "object",
+    "data"
+  ]
+}

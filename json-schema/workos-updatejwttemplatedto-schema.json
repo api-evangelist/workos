@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateJwtTemplateDto",
+  "title": "UpdateJwtTemplateDto",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "description": "The JWT template content as a Liquid template string.",
+      "example": "{\"urn:myapp:full_name\": \"{{user.first_name}} {{user.last_name}}\", \"urn:myapp:email\": \"{{user.email}}\"}"
+    }
+  },
+  "required": [
+    "content"
+  ]
+}

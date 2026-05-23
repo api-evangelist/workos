@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VerifyEmailResponse",
+  "title": "VerifyEmailResponse",
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "#/components/schemas/UserlandUser",
+      "description": "The user whose email was verified."
+    }
+  },
+  "required": [
+    "user"
+  ]
+}
