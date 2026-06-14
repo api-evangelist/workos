@@ -1,0 +1,783 @@
+"""
+WorkOS GraphQL Schema (conceptual)
+
+WorkOS exposes a REST-only API (https://api.workos.com). This SDL is a
+conceptual data-model schema derived from WorkOS's published REST types,
+OpenAPI specification (github.com/workos/openapi-spec), and public
+documentation (workos.com/docs/reference). It is intended to aid tooling,
+documentation generation, and client code generation — not as a live
+GraphQL endpoint.
+
+Types modelled:
+  Connection, DirectorySync, User, Group, Profile, Organization,
+  OrganizationDomain, Portal, AuditLogEvent, AuditLogExport,
+  SSO, SAMLConnection, OIDCConnection, Password, AuthFactor,
+  AuthChallenge, Event, Webhook, Environment
+
+Generated: 2026-06-14
+Source: https://workos.com/docs/reference / https://github.com/workos/openapi-spec
+"""
+
+# ---------------------------------------------------------------------------
+# Scalars
+# ---------------------------------------------------------------------------
+
+scalar DateTime
+scalar JSON
+
+# ---------------------------------------------------------------------------
+# Enums
+# ---------------------------------------------------------------------------
+
+enum ConnectionType {
+  ADFSSAML
+  AdpOidc
+  AppleOAuth
+  Auth0SAML
+  AzureSAML
+  CasSAML
+  ClassLinkSAML
+  CloudflareSAML
+  CyberArkSAML
+  DuoSAML
+  GenericOIDC
+  GenericSAML
+  GitHubOAuth
+  GoogleOAuth
+  GoogleSAML
+  JumpCloudSAML
+  KeycloakSAML
+  LastPassSAML
+  MicrosoftOAuth
+  MiniOrangeSAML
+  NetIqSAML
+  OktaSAML
+  OneLoginSAML
+  OracleSAML
+  PingFederateSAML
+  PingOneSAML
+  RipplingSAML
+  SalesforceSAML
+  ShibbolethGenericSAML
+  ShibbolethSAML
+  SimpleSamlPhpSAML
+  VMwareSAML
+}
+
+enum ConnectionState {
+  active
+  deleting
+  draft
+  inactive
+  validating
+}
+
+enum DirectoryType {
+  AzureScimV2
+  BambooHr
+  BreatheHr
+  CezanneHr
+  CyberArkScimV2
+  FourthHr
+  GenericScimV1
+  GenericScimV2
+  GSuiteDirectory
+  Hibob
+  JumpCloudScimV2
+  OktaScimV2
+  OneLoginScimV2
+  PeopleHr
+  Personio
+  PingFederateScimV2
+  RipplingScimV2
+  RipplingV2
+  Sftp
+  SftpWorkday
+  WorkdayDirectory
+}
+
+enum DirectoryState {
+  active
+  deleting
+  inactive
+  validating
+}
+
+enum OrganizationDomainState {
+  pending
+  verified
+  failed
+}
+
+enum OrganizationDomainVerificationStrategy {
+  dns
+  manual
+}
+
+enum AuthFactorType {
+  totp
+  generic_otp
+}
+
+enum AuthChallengeStatus {
+  pending
+  verified
+  failed
+}
+
+enum AuditLogEventVersion {
+  V1
+  V2
+}
+
+enum AuditLogExportStatus {
+  pending
+  ready
+  error
+}
+
+enum EventType {
+  authentication_email_verification_completed
+  authentication_email_verification_failed
+  authentication_email_verification_sent
+  authentication_magic_auth_completed
+  authentication_magic_auth_failed
+  authentication_magic_auth_sent
+  authentication_mfa_completed
+  authentication_mfa_failed
+  authentication_mfa_sent
+  authentication_oauth_completed
+  authentication_oauth_failed
+  authentication_password_completed
+  authentication_password_failed
+  authentication_sso_completed
+  authentication_sso_failed
+  connection_activated
+  connection_deactivated
+  connection_deleted
+  directory_activated
+  directory_deactivated
+  directory_deleted
+  directory_group_created
+  directory_group_deleted
+  directory_group_updated
+  directory_user_created
+  directory_user_deleted
+  directory_user_updated
+  organization_created
+  organization_deleted
+  organization_domain_verified
+  organization_updated
+  user_created
+  user_deleted
+  user_updated
+}
+
+enum PortalLink {
+  sso
+  dsync
+  audit_logs
+  log_streams
+  domain_verification
+}
+
+# ---------------------------------------------------------------------------
+# Core Identity Types
+# ---------------------------------------------------------------------------
+
+"""A WorkOS User (AuthKit managed identity)."""
+type User {
+  id: ID!
+  email: String!
+  emailVerified: Boolean!
+  firstName: String
+  lastName: String
+  profilePictureUrl: String
+  lastActiveAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  externalId: String
+  metadata: JSON
+}
+
+"""A member of a Directory (SCIM-synced)."""
+type DirectoryUser {
+  id: ID!
+  directoryId: ID!
+  organizationId: ID
+  idpId: String!
+  rawAttributes: JSON
+  firstName: String
+  lastName: String
+  emails: [DirectoryEmail!]!
+  username: String
+  state: String!
+  groups: [DirectoryGroup!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DirectoryEmail {
+  primary: Boolean!
+  type: String
+  value: String!
+}
+
+"""A Directory Group (SCIM-synced group/role)."""
+type DirectoryGroup {
+  id: ID!
+  directoryId: ID!
+  organizationId: ID
+  idpId: String!
+  name: String!
+  rawAttributes: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A normalized SSO Profile returned after a successful SSO authentication."""
+type Profile {
+  id: ID!
+  connectionId: ID!
+  connectionType: ConnectionType!
+  organizationId: ID
+  idpId: String!
+  email: String!
+  emailVerified: Boolean!
+  firstName: String
+  lastName: String
+  profilePictureUrl: String
+  groups: [String!]
+  rawAttributes: JSON
+}
+
+# ---------------------------------------------------------------------------
+# Organization
+# ---------------------------------------------------------------------------
+
+"""A WorkOS Organization grouping connections, directories, and users."""
+type Organization {
+  id: ID!
+  name: String!
+  allowProfilesOutsideOrganization: Boolean!
+  domains: [OrganizationDomain!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  externalId: String
+  metadata: JSON
+}
+
+"""A domain attached to an Organization, subject to DNS or manual verification."""
+type OrganizationDomain {
+  id: ID!
+  organizationId: ID!
+  domain: String!
+  state: OrganizationDomainState!
+  verificationStrategy: OrganizationDomainVerificationStrategy
+  verificationToken: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# SSO / Connections
+# ---------------------------------------------------------------------------
+
+"""An SSO Connection linking an Organization to an Identity Provider."""
+type Connection {
+  id: ID!
+  organizationId: ID
+  name: String!
+  connectionType: ConnectionType!
+  state: ConnectionState!
+  samlConnection: SAMLConnection
+  oidcConnection: OIDCConnection
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""SAML-specific attributes for a Connection."""
+type SAMLConnection {
+  idpEntityId: String
+  idpUrl: String
+  idpMetadataUrl: String
+  idpMetadata: String
+  spEntityId: String!
+  spAcsUrl: String!
+  idpCert: String
+}
+
+"""OIDC-specific attributes for a Connection."""
+type OIDCConnection {
+  clientId: String
+  discoveryEndpoint: String
+  redirectUri: String!
+}
+
+# ---------------------------------------------------------------------------
+# Directory Sync
+# ---------------------------------------------------------------------------
+
+"""A SCIM Directory Sync connection."""
+type DirectorySync {
+  id: ID!
+  name: String!
+  organizationId: ID
+  type: DirectoryType!
+  state: DirectoryState!
+  endpoint: String
+  bearerToken: String
+  externalKey: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# MFA
+# ---------------------------------------------------------------------------
+
+"""An authentication factor (TOTP device) enrolled by a User."""
+type AuthFactor {
+  id: ID!
+  userId: ID
+  type: AuthFactorType!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  totp: TotpFactor
+}
+
+type TotpFactor {
+  issuer: String
+  user: String
+  qrCode: String
+  secret: String
+  uri: String
+}
+
+"""A one-time MFA challenge initiated against a factor."""
+type AuthChallenge {
+  id: ID!
+  authFactorId: ID!
+  status: AuthChallengeStatus!
+  expiresAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Passwords
+# ---------------------------------------------------------------------------
+
+"""Password credential metadata for a User (no hash exposed)."""
+type Password {
+  userId: ID!
+  requiresReset: Boolean!
+}
+
+# ---------------------------------------------------------------------------
+# Admin Portal
+# ---------------------------------------------------------------------------
+
+"""A time-limited Admin Portal link for an Organization's IT admin."""
+type Portal {
+  link: String!
+}
+
+# ---------------------------------------------------------------------------
+# Audit Logs
+# ---------------------------------------------------------------------------
+
+"""A single structured Audit Log event."""
+type AuditLogEvent {
+  id: ID!
+  version: AuditLogEventVersion!
+  action: String!
+  occurredAt: DateTime!
+  actor: AuditLogActor!
+  targets: [AuditLogTarget!]!
+  context: AuditLogContext!
+  metadata: JSON
+}
+
+type AuditLogActor {
+  id: ID!
+  type: String!
+  name: String
+  metadata: JSON
+}
+
+type AuditLogTarget {
+  id: ID!
+  type: String!
+  name: String
+  metadata: JSON
+}
+
+type AuditLogContext {
+  location: String
+  userAgent: String
+}
+
+"""An in-progress or completed Audit Log CSV export."""
+type AuditLogExport {
+  id: ID!
+  state: AuditLogExportStatus!
+  url: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Events & Webhooks
+# ---------------------------------------------------------------------------
+
+"""A WorkOS platform event (delivered via Webhooks or polled via Events API)."""
+type Event {
+  id: ID!
+  event: EventType!
+  createdAt: DateTime!
+  data: JSON!
+}
+
+"""A configured Webhook endpoint."""
+type Webhook {
+  id: ID!
+  url: String!
+  secret: String
+  events: [EventType!]!
+  organizationId: ID
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Environment
+# ---------------------------------------------------------------------------
+
+"""A WorkOS Environment (test / production / staging)."""
+type Environment {
+  id: ID!
+  name: String!
+  type: String!
+  sandboxMode: Boolean!
+  clientId: String!
+  redirectUris: [String!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ---------------------------------------------------------------------------
+# Pagination
+# ---------------------------------------------------------------------------
+
+type PageInfo {
+  before: String
+  after: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+}
+
+type UserConnection {
+  data: [User!]!
+  listMetadata: ListMetadata!
+}
+
+type DirectoryUserConnection {
+  data: [DirectoryUser!]!
+  listMetadata: ListMetadata!
+}
+
+type DirectoryGroupConnection {
+  data: [DirectoryGroup!]!
+  listMetadata: ListMetadata!
+}
+
+type OrganizationConnection {
+  data: [Organization!]!
+  listMetadata: ListMetadata!
+}
+
+type ConnectionList {
+  data: [Connection!]!
+  listMetadata: ListMetadata!
+}
+
+type DirectorySyncList {
+  data: [DirectorySync!]!
+  listMetadata: ListMetadata!
+}
+
+type AuditLogEventConnection {
+  data: [AuditLogEvent!]!
+  listMetadata: ListMetadata!
+}
+
+type EventConnection {
+  data: [Event!]!
+  listMetadata: ListMetadata!
+}
+
+type WebhookList {
+  data: [Webhook!]!
+  listMetadata: ListMetadata!
+}
+
+type ListMetadata {
+  before: String
+  after: String
+}
+
+# ---------------------------------------------------------------------------
+# Root Query
+# ---------------------------------------------------------------------------
+
+type Query {
+  # Users
+  user(id: ID!): User
+  users(
+    limit: Int
+    before: String
+    after: String
+    email: String
+    organizationId: ID
+  ): UserConnection!
+
+  # Organizations
+  organization(id: ID!): Organization
+  organizations(
+    limit: Int
+    before: String
+    after: String
+    domains: [String!]
+  ): OrganizationConnection!
+
+  # SSO Connections
+  connection(id: ID!): Connection
+  connections(
+    limit: Int
+    before: String
+    after: String
+    organizationId: ID
+    connectionType: ConnectionType
+  ): ConnectionList!
+
+  # Directory Sync
+  directorySync(id: ID!): DirectorySync
+  directorySyncs(
+    limit: Int
+    before: String
+    after: String
+    organizationId: ID
+  ): DirectorySyncList!
+
+  directoryUser(id: ID!): DirectoryUser
+  directoryUsers(
+    limit: Int
+    before: String
+    after: String
+    directoryId: ID
+    organizationId: ID
+  ): DirectoryUserConnection!
+
+  directoryGroup(id: ID!): DirectoryGroup
+  directoryGroups(
+    limit: Int
+    before: String
+    after: String
+    directoryId: ID
+    organizationId: ID
+  ): DirectoryGroupConnection!
+
+  # MFA
+  authFactor(id: ID!): AuthFactor
+  authChallenge(id: ID!): AuthChallenge
+
+  # Audit Logs
+  auditLogEvent(id: ID!): AuditLogEvent
+  auditLogEvents(
+    organizationId: ID!
+    limit: Int
+    before: String
+    after: String
+    rangeStart: DateTime
+    rangeEnd: DateTime
+    actions: [String!]
+    actorNames: [String!]
+    targets: [String!]
+  ): AuditLogEventConnection!
+
+  auditLogExport(id: ID!): AuditLogExport
+
+  # Events
+  event(id: ID!): Event
+  events(
+    limit: Int
+    after: String
+    rangeStart: DateTime
+    rangeEnd: DateTime
+    events: [EventType!]
+    organizationId: ID
+  ): EventConnection!
+
+  # Webhooks
+  webhook(id: ID!): Webhook
+  webhooks(limit: Int, before: String, after: String): WebhookList!
+
+  # Admin Portal
+  portalLink(
+    organizationId: ID!
+    intent: PortalLink!
+    returnUrl: String
+    successUrl: String
+  ): Portal!
+}
+
+# ---------------------------------------------------------------------------
+# Root Mutation
+# ---------------------------------------------------------------------------
+
+type Mutation {
+  # Users
+  createUser(
+    email: String!
+    password: String
+    firstName: String
+    lastName: String
+    emailVerified: Boolean
+  ): User!
+
+  updateUser(
+    id: ID!
+    firstName: String
+    lastName: String
+    emailVerified: Boolean
+    password: String
+  ): User!
+
+  deleteUser(id: ID!): Boolean!
+
+  # Organizations
+  createOrganization(
+    name: String!
+    allowProfilesOutsideOrganization: Boolean
+    domainData: [DomainDataInput!]
+    externalId: String
+    metadata: JSON
+  ): Organization!
+
+  updateOrganization(
+    id: ID!
+    name: String
+    allowProfilesOutsideOrganization: Boolean
+    domainData: [DomainDataInput!]
+    externalId: String
+    metadata: JSON
+  ): Organization!
+
+  deleteOrganization(id: ID!): Boolean!
+
+  # SSO Connections
+  deleteConnection(id: ID!): Boolean!
+
+  # Directory Sync
+  deleteDirectorySync(id: ID!): Boolean!
+
+  # MFA
+  enrollAuthFactor(
+    userId: ID!
+    type: AuthFactorType!
+    totpIssuer: String
+    totpUser: String
+  ): AuthFactor!
+
+  unenrollAuthFactor(id: ID!): Boolean!
+
+  challengeAuthFactor(authFactorId: ID!): AuthChallenge!
+
+  verifyAuthChallenge(authChallengeId: ID!, code: String!): AuthChallengeVerifyResult!
+
+  # Passwords
+  resetPassword(token: String!, newPassword: String!): User!
+  sendPasswordResetEmail(email: String!, passwordResetUrl: String!): Boolean!
+  updatePasswordWithToken(token: String!, newPassword: String!): User!
+
+  # Audit Logs
+  createAuditLogEvent(
+    organizationId: ID!
+    event: AuditLogEventInput!
+    idempotencyKey: String
+  ): Boolean!
+
+  createAuditLogExport(
+    organizationId: ID!
+    rangeStart: DateTime!
+    rangeEnd: DateTime!
+    actions: [String!]
+    actorNames: [String!]
+    targets: [String!]
+  ): AuditLogExport!
+
+  # Webhooks
+  createWebhook(
+    url: String!
+    events: [EventType!]!
+    secret: String
+  ): Webhook!
+
+  updateWebhook(
+    id: ID!
+    url: String
+    events: [EventType!]
+    secret: String
+  ): Webhook!
+
+  deleteWebhook(id: ID!): Boolean!
+}
+
+# ---------------------------------------------------------------------------
+# Input Types
+# ---------------------------------------------------------------------------
+
+input DomainDataInput {
+  domain: String!
+  state: OrganizationDomainState
+}
+
+input AuditLogEventInput {
+  action: String!
+  occurredAt: DateTime!
+  version: Int
+  actor: AuditLogActorInput!
+  targets: [AuditLogTargetInput!]!
+  context: AuditLogContextInput!
+  metadata: JSON
+}
+
+input AuditLogActorInput {
+  id: ID!
+  type: String!
+  name: String
+  metadata: JSON
+}
+
+input AuditLogTargetInput {
+  id: ID!
+  type: String!
+  name: String
+  metadata: JSON
+}
+
+input AuditLogContextInput {
+  location: String!
+  userAgent: String
+}
+
+# ---------------------------------------------------------------------------
+# Result Types
+# ---------------------------------------------------------------------------
+
+type AuthChallengeVerifyResult {
+  valid: Boolean!
+  authenticationFactor: AuthFactor
+  authenticationChallenge: AuthChallenge
+}
