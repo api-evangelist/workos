@@ -1,0 +1,5070 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "api_keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/api_keys/validations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate an API key value and return the API key object if valid."
+        },
+        {
+          "info": {
+            "name": "Delete an API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/api_keys/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the API key."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an API key. This action cannot be undone. Once deleted, any requests using this API key will fail authentication."
+        },
+        {
+          "info": {
+            "name": "List API Keys for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:userId/api_keys",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the organization to filter user API keys by. When provided, only API keys created against that organization membership are returned."
+              }
+            ]
+          },
+          "docs": "Get a list of API keys owned by a specific user."
+        },
+        {
+          "info": {
+            "name": "Create an API Key for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/users/:userId/api_keys",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new API key owned by a user. The user must have an active membership in the specified organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "audit-logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/audit_logs/actions",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Get a list of all Audit Log actions in the current environment."
+        },
+        {
+          "info": {
+            "name": "List Schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/audit_logs/actions/:actionName/schemas",
+            "params": [
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Audit Log action."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Get a list of all schemas for the Audit Logs action identified by `:name`."
+        },
+        {
+          "info": {
+            "name": "Create Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/audit_logs/actions/:actionName/schemas",
+            "params": [
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Audit Log action."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Audit Log schema used to validate the payload of incoming Audit Log Events. If the `action` does not exist, it will also be created."
+        },
+        {
+          "info": {
+            "name": "Create Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/audit_logs/events",
+            "headers": [
+              {
+                "name": "idempotency-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Audit Log Event.\n\nThis API supports idempotency which guarantees that performing the same operation multiple times will have the same result as if the operation were performed only once. This is handy in situations where you may need to retry a request due to a failure or prevent accidental duplicate requests from creating more than one resource.\n\nTo achieve idempotency, you can add `Idempotency-Key` request header to a Create Event request with a unique string as the value. Each subse"
+        },
+        {
+          "info": {
+            "name": "Create Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/audit_logs/exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Audit Log Export. Exports are scoped to a single organization within a specified date range."
+        },
+        {
+          "info": {
+            "name": "Get Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/audit_logs/exports/:auditLogExportId",
+            "params": [
+              {
+                "name": "auditLogExportId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Audit Log Export."
+              }
+            ]
+          },
+          "docs": "Get an Audit Log Export. The URL will expire after 10 minutes. If the export is needed again at a later time, refetching the export will regenerate the URL."
+        },
+        {
+          "info": {
+            "name": "Get Retention",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/:id/audit_logs_retention",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              }
+            ]
+          },
+          "docs": "Get the configured event retention period for the given Organization."
+        },
+        {
+          "info": {
+            "name": "Set Retention",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/organizations/:id/audit_logs_retention",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the event retention period for the given Organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "multi-factor-auth.challenges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify Challenge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/auth/challenges/:id/verify",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Authentication Challenge."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Verifies an Authentication Challenge."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "multi-factor-auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enroll Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/auth/factors/enroll",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enrolls an Authentication Factor to be used as an additional factor of authentication. The returned ID should be used to create an authentication Challenge."
+        },
+        {
+          "info": {
+            "name": "Get Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/auth/factors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Factor."
+              }
+            ]
+          },
+          "docs": "Gets an Authentication Factor."
+        },
+        {
+          "info": {
+            "name": "Delete Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/auth/factors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Factor."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an Authentication Factor. It cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Challenge Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/auth/factors/:id/challenge",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Authentication Factor to be challenged."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Challenge for an Authentication Factor."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "workos-connect",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Complete External Authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authkit/oauth2/complete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Completes an external authentication flow and returns control to AuthKit. This endpoint is used with [Standalone Connect](/authkit/connect/standalone) to bridge your existing authentication system with the Connect OAuth API infrastructure.\n\nAfter successfully authenticating a user in your application, calling this endpoint will:\n\n- Create or update the user in AuthKit, using the given `id` as its `external_id`.\n- Return a `redirect_uri` your application should redirect to in order for AuthKit to"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check Authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/check",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership to check."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check if an organization membership has a specific permission on a resource. Supports identification by resource_id OR by resource_external_id + resource_type_slug."
+        },
+        {
+          "info": {
+            "name": "List Resources for Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/resources",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "permission_slug",
+                "value": "",
+                "type": "query",
+                "description": "The permission slug to filter by. Only child resources where the organization membership has this permission are returned."
+              },
+              {
+                "name": "parent_resource_id",
+                "value": "",
+                "type": "query",
+                "description": "The WorkOS ID of the parent resource. Provide this or both `parent_resource_external_id` and `parent_resource_type_slug`, but not both. Mutually exclusive with `parent_resource_type_slug` and `parent_resource_external_id`."
+              },
+              {
+                "name": "parent_resource_type_slug",
+                "value": "",
+                "type": "query",
+                "description": "The slug of the parent resource type. Must be provided together with `parent_resource_external_id`. Required with `parent_resource_external_id`. Mutually exclusive with `parent_resource_id`."
+              },
+              {
+                "name": "parent_resource_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The application-specific external identifier of the parent resource. Must be provided together with `parent_resource_type_slug`. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`."
+              }
+            ]
+          },
+          "docs": "Returns all child resources of a parent resource where the organization membership has a specific permission. This is useful for resource discovery—answering \"What projects can this user access in this workspace?\"\n\nYou must provide either `parent_resource_id` or both `parent_resource_external_id` and `parent_resource_type_slug` to identify the parent resource."
+        },
+        {
+          "info": {
+            "name": "List Effective Permissions for an Organization Membership on a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/resources/:resource_id/permissions",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Returns all permissions the organization membership effectively has on a resource, including permissions inherited through roles assigned to ancestor resources."
+        },
+        {
+          "info": {
+            "name": "List Effective Permissions for an Organization Membership on a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/resources/:resource_type_slug/:external_id/permissions",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Returns all permissions the organization membership effectively has on a resource identified by its external ID, including permissions inherited through roles assigned to ancestor resources."
+        },
+        {
+          "info": {
+            "name": "List Role Assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/role_assignments",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the ID of the resource."
+              },
+              {
+                "name": "resource_external_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the external ID of the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the slug of the resource type."
+              }
+            ]
+          },
+          "docs": "List all role assignments for an organization membership. This returns all roles that have been assigned to the user on resources, including organization-level and sub-resource roles."
+        },
+        {
+          "info": {
+            "name": "Assign a Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/role_assignments",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign a role to an organization membership on a specific resource."
+        },
+        {
+          "info": {
+            "name": "Remove a Role Assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/role_assignments",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a role assignment by role slug and resource."
+        },
+        {
+          "info": {
+            "name": "Remove a Role Assignment by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/role_assignments/:role_assignment_id",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "role_assignment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the role assignment to remove."
+              }
+            ]
+          },
+          "docs": "Remove a role assignment using its ID."
+        },
+        {
+          "info": {
+            "name": "List Custom Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              }
+            ]
+          },
+          "docs": "Get a list of all roles that apply to an organization. This includes both environment roles and custom roles, returned in priority order."
+        },
+        {
+          "info": {
+            "name": "Create a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom role for this organization."
+        },
+        {
+          "info": {
+            "name": "Get a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ]
+          },
+          "docs": "Retrieve a role that applies to an organization by its slug. This can return either an environment role or a custom role."
+        },
+        {
+          "info": {
+            "name": "Update a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing custom role. Only the fields provided in the request body will be updated."
+        },
+        {
+          "info": {
+            "name": "Delete a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ]
+          },
+          "docs": "Delete an existing custom role."
+        },
+        {
+          "info": {
+            "name": "Add a Permission to a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug/permissions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a single permission to a custom role. If the permission is already assigned to the role, this operation has no effect."
+        },
+        {
+          "info": {
+            "name": "Set Permissions for a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug/permissions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace all permissions on a custom role with the provided list."
+        },
+        {
+          "info": {
+            "name": "Remove a Permission from a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug/permissions/:permissionSlug",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              },
+              {
+                "name": "permissionSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the permission to remove."
+              }
+            ]
+          },
+          "docs": "Remove a single permission from a custom role by its slug."
+        },
+        {
+          "info": {
+            "name": "Get a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              }
+            ]
+          },
+          "docs": "Retrieve the details of an authorization resource by its external ID, organization, and resource type. This is useful when you only have the external ID from your system and need to fetch the full resource details."
+        },
+        {
+          "info": {
+            "name": "Update a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing authorization resource using its external ID."
+        },
+        {
+          "info": {
+            "name": "Delete an Authorization Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              },
+              {
+                "name": "cascade_delete",
+                "value": "",
+                "type": "query",
+                "description": "If true, deletes all descendant resources and role assignments. If not set and the resource has children or assignments, the request will fail."
+              }
+            ]
+          },
+          "docs": "Delete an authorization resource by organization, resource type, and external ID. This also deletes all descendant resources."
+        },
+        {
+          "info": {
+            "name": "List Memberships for a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id/organization_memberships",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type this resource belongs to."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "permission_slug",
+                "value": "",
+                "type": "query",
+                "description": "The permission slug to filter by. Only users with this permission on the resource are returned."
+              },
+              {
+                "name": "assignment",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assignment type. Use \"direct\" for direct assignments only, or \"indirect\" to include inherited assignments."
+              }
+            ]
+          },
+          "docs": "Returns all organization memberships that have a specific permission on a resource, using the resource's external ID. This is useful for answering \"Who can access this resource?\" when you only have the external ID."
+        },
+        {
+          "info": {
+            "name": "List Role Assignments for a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id/role_assignments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "role_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the slug of the role."
+              }
+            ]
+          },
+          "docs": "List all role assignments granted on a resource, identified by its external ID. Each assignment includes the organization membership it was granted to."
+        },
+        {
+          "info": {
+            "name": "List Resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/resources",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by organization ID."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by resource type slug."
+              },
+              {
+                "name": "resource_external_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by external ID."
+              },
+              {
+                "name": "parent_resource_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by parent resource ID. Mutually exclusive with `parent_resource_type_slug` and `parent_external_id`."
+              },
+              {
+                "name": "parent_resource_type_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by parent resource type slug. Required with `parent_external_id`. Mutually exclusive with `parent_resource_id`."
+              },
+              {
+                "name": "parent_external_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by parent external ID. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of authorization resources."
+        },
+        {
+          "info": {
+            "name": "Create an Authorization Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/resources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new authorization resource."
+        },
+        {
+          "info": {
+            "name": "Get a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/resources/:resource_id",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              }
+            ]
+          },
+          "docs": "Retrieve the details of an authorization resource by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/authorization/resources/:resource_id",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing authorization resource."
+        },
+        {
+          "info": {
+            "name": "Delete an Authorization Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/resources/:resource_id",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              },
+              {
+                "name": "cascade_delete",
+                "value": "",
+                "type": "query",
+                "description": "If true, deletes all descendant resources and role assignments. If not set and the resource has children or assignments, the request will fail."
+              }
+            ]
+          },
+          "docs": "Delete an authorization resource and all its descendants."
+        },
+        {
+          "info": {
+            "name": "List Organization Memberships for Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/resources/:resource_id/organization_memberships",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "permission_slug",
+                "value": "",
+                "type": "query",
+                "description": "The permission slug to filter by. Only users with this permission on the resource are returned."
+              },
+              {
+                "name": "assignment",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assignment type. Use `direct` for direct assignments only, or `indirect` to include inherited assignments."
+              }
+            ]
+          },
+          "docs": "Returns all organization memberships that have a specific permission on a resource instance. This is useful for answering \"Who can access this resource?\"."
+        },
+        {
+          "info": {
+            "name": "List Role Assignments for a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/resources/:resource_id/role_assignments",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "role_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the slug of the role."
+              }
+            ]
+          },
+          "docs": "List all role assignments granted on a specific resource instance. Each assignment includes the organization membership it was granted to."
+        },
+        {
+          "info": {
+            "name": "List Environment Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/roles"
+          },
+          "docs": "List all environment roles in priority order."
+        },
+        {
+          "info": {
+            "name": "Create an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new environment role."
+        },
+        {
+          "info": {
+            "name": "Get an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/roles/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the environment role."
+              }
+            ]
+          },
+          "docs": "Get an environment role by its slug."
+        },
+        {
+          "info": {
+            "name": "Update an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/authorization/roles/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the environment role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing environment role."
+        },
+        {
+          "info": {
+            "name": "Add a Permission to an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/roles/:slug/permissions",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the environment role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a single permission to an environment role. If the permission is already assigned to the role, this operation has no effect."
+        },
+        {
+          "info": {
+            "name": "Set Permissions for an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/authorization/roles/:slug/permissions",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the environment role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace all permissions on an environment role with the provided list."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/permissions",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Get a list of all permissions in your WorkOS environment."
+        },
+        {
+          "info": {
+            "name": "Create a Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new permission in your WorkOS environment. The permission can then be assigned to environment roles and custom roles."
+        },
+        {
+          "info": {
+            "name": "Get a Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/permissions/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks."
+              }
+            ]
+          },
+          "docs": "Retrieve a permission by its unique slug."
+        },
+        {
+          "info": {
+            "name": "Update a Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/authorization/permissions/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing permission. Only the fields provided in the request body will be updated."
+        },
+        {
+          "info": {
+            "name": "Delete a Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/permissions/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks."
+              }
+            ]
+          },
+          "docs": "Delete an existing permission. System permissions cannot be deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Connect Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/connect/applications",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter Connect Applications by organization ID."
+              }
+            ]
+          },
+          "docs": "List all Connect Applications in the current environment with optional filtering."
+        },
+        {
+          "info": {
+            "name": "Create a Connect Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/connect/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Connect Application. Supports both OAuth and Machine-to-Machine (M2M) application types."
+        },
+        {
+          "info": {
+            "name": "Get a Connect Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/connect/applications/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID or client ID of the Connect Application."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific Connect Application by ID or client ID."
+        },
+        {
+          "info": {
+            "name": "Update a Connect Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/connect/applications/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID or client ID of the Connect Application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing Connect Application. For OAuth applications, you can update redirect URIs. For all applications, you can update the name, description, and scopes."
+        },
+        {
+          "info": {
+            "name": "Delete a Connect Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/connect/applications/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID or client ID of the Connect Application."
+              }
+            ]
+          },
+          "docs": "Delete an existing Connect Application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "application.client-secrets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Client Secrets for a Connect Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/connect/applications/:id/client_secrets",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID or client ID of the Connect Application."
+              }
+            ]
+          },
+          "docs": "List all client secrets associated with a Connect Application."
+        },
+        {
+          "info": {
+            "name": "Create a New Client Secret for a Connect Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/connect/applications/:id/client_secrets",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The application ID or client ID of the Connect Application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create new secrets for a Connect Application."
+        },
+        {
+          "info": {
+            "name": "Delete a Client Secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/connect/client_secrets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the client secret."
+              }
+            ]
+          },
+          "docs": "Delete (revoke) an existing client secret."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/connections",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              },
+              {
+                "name": "connection_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter Connections by their type."
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Filter Connections by their associated domain."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter Connections by their associated organization."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Searchable text to match against Connection names."
+              }
+            ]
+          },
+          "docs": "Get a list of all of your existing connections matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Get a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/connections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the Connection."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing connection."
+        },
+        {
+          "info": {
+            "name": "Delete a Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/connections/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the Connection."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an existing connection. It cannot be undone."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "pipes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Authorization URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/data-integrations/:slug/authorize",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates an OAuth authorization URL to initiate the connection flow for a user. Redirect the user to the returned URL to begin the OAuth flow with the third-party provider."
+        },
+        {
+          "info": {
+            "name": "Get an Access Token for a Connected Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/data-integrations/:slug/token",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the integration."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetches a valid OAuth access token for a user's connected account. WorkOS automatically handles token refresh, ensuring you always receive a valid, non-expired token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "directories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Directories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/directories",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter Directories by their associated organization."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Searchable text to match against Directory names."
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Filter Directories by their associated domain."
+              }
+            ]
+          },
+          "docs": "Get a list of all of your existing directories matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Get a Directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/directories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the Directory."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing directory."
+        },
+        {
+          "info": {
+            "name": "Delete a Directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/directories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the Directory."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an existing directory. It cannot be undone."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "directory-groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Directory Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/directory_groups",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "directory",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the WorkOS Directory User. This value can be obtained from the WorkOS API."
+              }
+            ]
+          },
+          "docs": "Get a list of all of existing directory groups matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Get a Directory Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/directory_groups/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the Directory Group."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing Directory Group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "directory-users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Directory Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/directory_users",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "directory",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API."
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the WorkOS Directory Group. This value can be obtained from the WorkOS API."
+              }
+            ]
+          },
+          "docs": "Get a list of all of existing Directory Users matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Get a Directory User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/directory_users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the Directory User."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing Directory User."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/events",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "events",
+                "value": "",
+                "type": "query",
+                "description": "Filter events by one or more event types (e.g. `dsync.user.created`)."
+              },
+              {
+                "name": "range_start",
+                "value": "",
+                "type": "query",
+                "description": "ISO-8601 date string to filter events created after this date."
+              },
+              {
+                "name": "range_end",
+                "value": "",
+                "type": "query",
+                "description": "ISO-8601 date string to filter events created before this date."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter events by the [Organization](/reference/organization) that the event is associated with."
+              }
+            ]
+          },
+          "docs": "List events for the current environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "feature-flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Feature Flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/feature-flags",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Get a list of all of your existing feature flags matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Get a Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/feature-flags/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "A unique key to reference the Feature Flag."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing feature flag by its slug."
+        },
+        {
+          "info": {
+            "name": "Disable a Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/feature-flags/:slug/disable",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "A unique key to reference the Feature Flag."
+              }
+            ]
+          },
+          "docs": "Disables a feature flag in the current environment."
+        },
+        {
+          "info": {
+            "name": "Enable a Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/feature-flags/:slug/enable",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "A unique key to reference the Feature Flag."
+              }
+            ]
+          },
+          "docs": "Enables a feature flag in the current environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "feature-flags.targets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a Feature Flag Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/feature-flags/:slug/targets/:resourceId",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The resource ID in format \"user_<id>\" or \"org_<id>\"."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug identifier of the feature flag."
+              }
+            ]
+          },
+          "docs": "Enables a feature flag for a specific target in the current environment. Currently, supported targets include users and organizations."
+        },
+        {
+          "info": {
+            "name": "Remove a Feature Flag Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/feature-flags/:slug/targets/:resourceId",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The resource ID in format \"user_<id>\" or \"org_<id>\"."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug identifier of the feature flag."
+              }
+            ]
+          },
+          "docs": "Removes a target from the feature flag's target list in the current environment. Currently, supported targets include users and organizations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "organization-domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Organization Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/organization_domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Organization Domain."
+        },
+        {
+          "info": {
+            "name": "Get an Organization Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organization_domains/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the organization domain."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing organization domain."
+        },
+        {
+          "info": {
+            "name": "Delete an Organization Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/organization_domains/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the organization domain."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an organization domain. It cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Verify an Organization Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/organization_domains/:id/verify",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the organization domain."
+              }
+            ]
+          },
+          "docs": "Initiates verification process for an Organization Domain."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "domains",
+                "value": "",
+                "type": "query",
+                "description": "The domains of an Organization. Any Organization with a matching domain will be returned."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Searchable text for an Organization. Matches against the organization name."
+              }
+            ]
+          },
+          "docs": "Get a list of all of your existing organizations matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Create an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new organization in the current environment."
+        },
+        {
+          "info": {
+            "name": "Get an Organization by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/external_id/:external_id",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "The external ID of the Organization."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing organization by an [external identifier](/authkit/metadata/external-identifiers)."
+        },
+        {
+          "info": {
+            "name": "Get an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing organization."
+        },
+        {
+          "info": {
+            "name": "Update an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/organizations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an organization in the current environment."
+        },
+        {
+          "info": {
+            "name": "Delete an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/organizations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an organization in the current environment. It cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Get Audit Log Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/:id/audit_log_configuration",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              }
+            ]
+          },
+          "docs": "Get the unified view of audit log trail and stream configuration for an organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "organizations.api_keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API Keys for an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/:organizationId/api_keys",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Get a list of all API keys for an organization."
+        },
+        {
+          "info": {
+            "name": "Create an API Key for an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/organizations/:organizationId/api_keys",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new API key for an organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "organizations.feature-flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Enabled Feature Flags for an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/:organizationId/feature-flags",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Get a list of all enabled feature flags for an organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/:organizationId/groups",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of groups within an organization."
+        },
+        {
+          "info": {
+            "name": "Create a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/organizations/:organizationId/groups",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new group within an organization."
+        },
+        {
+          "info": {
+            "name": "Get a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/:organizationId/groups/:groupId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the group."
+              }
+            ]
+          },
+          "docs": "Retrieve a group by its ID within an organization."
+        },
+        {
+          "info": {
+            "name": "Update a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/organizations/:organizationId/groups/:groupId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing group. Only the fields provided in the request body will be updated."
+        },
+        {
+          "info": {
+            "name": "Delete a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/organizations/:organizationId/groups/:groupId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the group."
+              }
+            ]
+          },
+          "docs": "Delete a group from an organization."
+        },
+        {
+          "info": {
+            "name": "List Group Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/:organizationId/groups/:groupId/organization-memberships",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Group."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Get a list of organization memberships in a group."
+        },
+        {
+          "info": {
+            "name": "Add a Member to a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/organizations/:organizationId/groups/:groupId/organization-memberships",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an organization membership to a group."
+        },
+        {
+          "info": {
+            "name": "Remove a Member from a Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/organizations/:organizationId/groups/:groupId/organization-memberships/:omId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Group."
+              },
+              {
+                "name": "omId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization Membership."
+              }
+            ]
+          },
+          "docs": "Remove an organization membership from a group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "admin-portal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a Portal Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/portal/generate_link",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a Portal Link scoped to an Organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "radar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/radar/attempts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assess a request for risk using the Radar engine and receive a verdict."
+        },
+        {
+          "info": {
+            "name": "Update a Radar Attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/radar/attempts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Radar attempt to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You may optionally inform Radar that an authentication attempt or challenge was successful using this endpoint. Some Radar controls depend on tracking recent successful attempts, such as impossible travel."
+        },
+        {
+          "info": {
+            "name": "Add an Entry to a Radar List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/radar/lists/:type/:action",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The type of the Radar list (e.g. ip_address, domain, email)."
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "path",
+                "description": "The list action indicating whether to add the entry to the allow or block list."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an entry to a Radar list."
+        },
+        {
+          "info": {
+            "name": "Remove an Entry from a Radar List",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/radar/lists/:type/:action",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The type of the Radar list (e.g. ip_address, domain, email)."
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "path",
+                "description": "The list action indicating whether to remove the entry from the allow or block list."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an entry from a Radar list."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "sso",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/sso/authorize",
+            "params": [
+              {
+                "name": "provider_scopes",
+                "value": "",
+                "type": "query",
+                "description": "Additional scopes to request from the identity provider. Applicable when using OAuth or OpenID Connect connections."
+              },
+              {
+                "name": "provider_query_params",
+                "value": "",
+                "type": "query",
+                "description": "Key/value pairs of query parameters to pass to the OAuth provider. Only applicable when using OAuth connections."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the WorkOS environment client."
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Deprecated. Use `connection` or `organization` instead. Used to initiate SSO for a connection by domain. The domain must be associated with a connection in your WorkOS environment."
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Used to initiate OAuth authentication with various providers."
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "Where to redirect the user after they complete the authentication process. You must use one of the redirect URIs configured via the [Redirects](https://dashboard.workos.com/redirects) page on the dashboard."
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "The only valid option for the response type parameter is `\"code\"`.\n\nThe `\"code\"` parameter value initiates an [authorization code grant type](https://tools.ietf.org/html/rfc6749#section-4.1). This grant type allows you to exchange an authorization code for an access token during the redirect that takes place after a user has authenticated with an identity provider."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "An optional parameter that can be used to encode arbitrary information to help restore application state between redirects. If included, the redirect URI received from WorkOS will contain the exact `state` that was passed."
+              },
+              {
+                "name": "connection",
+                "value": "",
+                "type": "query",
+                "description": "Used to initiate SSO for a connection. The value should be a WorkOS connection ID.\n\nYou can persist the WorkOS connection ID with application user or team identifiers. WorkOS will use the connection indicated by the connection parameter to direct the user to the corresponding IdP for authentication."
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Used to initiate SSO for an organization. The value should be a WorkOS organization ID.\n\nYou can persist the WorkOS organization ID with application user or team identifiers. WorkOS will use the organization ID to determine the appropriate connection and the IdP to direct the user to for authentication."
+              },
+              {
+                "name": "domain_hint",
+                "value": "",
+                "type": "query",
+                "description": "Can be used to pre-fill the domain field when initiating authentication with Microsoft OAuth or with a Google SAML connection type."
+              },
+              {
+                "name": "login_hint",
+                "value": "",
+                "type": "query",
+                "description": "Can be used to pre-fill the username/email address field of the IdP sign-in page for the user, if you know their username ahead of time. Currently supported for OAuth, OpenID Connect, Okta, Entra ID, and custom SAML connections."
+              },
+              {
+                "name": "nonce",
+                "value": "",
+                "type": "query",
+                "description": "A random string generated by the client that is used to mitigate replay attacks."
+              }
+            ]
+          },
+          "docs": "Initiates the single sign-on flow."
+        },
+        {
+          "info": {
+            "name": "Logout Redirect",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/sso/logout",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "The logout token returned from the [Logout Authorize](/reference/sso/logout/authorize) endpoint."
+              }
+            ]
+          },
+          "docs": "Logout allows to sign out a user from your application by triggering the identity provider sign out flow. This `GET` endpoint should be a redirection, since the identity provider user will be identified in the browser session.\n\nBefore redirecting to this endpoint, you need to generate a short-lived logout token using the [Logout Authorize](/reference/sso/logout/authorize) endpoint."
+        },
+        {
+          "info": {
+            "name": "Logout Authorize",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/sso/logout/authorize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You should call this endpoint from your server to generate a logout token which is required for the [Logout Redirect](/reference/sso/logout) endpoint."
+        },
+        {
+          "info": {
+            "name": "Get a User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/sso/profile",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Exchange an access token for a user's [Profile](/reference/sso/profile). Because this profile is returned in the [Get a Profile and Token endpoint](/reference/sso/profile/get-profile-and-token) your application usually does not need to call this endpoint. It is available for any authentication flows that require an additional endpoint to retrieve a user's profile."
+        },
+        {
+          "info": {
+            "name": "Get a Profile and Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/sso/token",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The client ID of the WorkOS environment."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "The client secret of the WorkOS environment."
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "The authorization code received from the authorization callback."
+              },
+              {
+                "name": "grant_type",
+                "value": "",
+                "type": "query",
+                "description": "The grant type for the token request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get an access token along with the user [Profile](/reference/sso/profile) using the code passed to your [Redirect URI](/reference/sso/get-authorization-url/redirect-uri)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.session-tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get JWKS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/sso/jwks/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "Identifies the application making the request to the WorkOS server. You can obtain your client ID from the [API Keys](https://dashboard.workos.com/api-keys) page in the dashboard."
+              }
+            ]
+          },
+          "docs": "Returns the JSON Web Key Set (JWKS) containing the public keys used for verifying access tokens."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/authenticate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate a user with a specified [authentication method](/reference/authkit/authentication)."
+        },
+        {
+          "info": {
+            "name": "Get an Authorization URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/authorize",
+            "params": [
+              {
+                "name": "code_challenge_method",
+                "value": "",
+                "type": "query",
+                "description": "The only valid PKCE code challenge method is `\"S256\"`. Required when specifying a `code_challenge`."
+              },
+              {
+                "name": "code_challenge",
+                "value": "",
+                "type": "query",
+                "description": "Code challenge derived from the code verifier used for the PKCE flow."
+              },
+              {
+                "name": "domain_hint",
+                "value": "",
+                "type": "query",
+                "description": "A domain hint for SSO connection lookup."
+              },
+              {
+                "name": "connection_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of an SSO connection to use for authentication."
+              },
+              {
+                "name": "provider_query_params",
+                "value": "",
+                "type": "query",
+                "description": "Key/value pairs of query parameters to pass to the OAuth provider."
+              },
+              {
+                "name": "provider_scopes",
+                "value": "",
+                "type": "query",
+                "description": "Additional OAuth scopes to request from the identity provider."
+              },
+              {
+                "name": "invitation_token",
+                "value": "",
+                "type": "query",
+                "description": "A token representing a user invitation to redeem during authentication."
+              },
+              {
+                "name": "screen_hint",
+                "value": "",
+                "type": "query",
+                "description": "Used to specify which screen to display when the provider is `authkit`."
+              },
+              {
+                "name": "login_hint",
+                "value": "",
+                "type": "query",
+                "description": "A hint to the authorization server about the login identifier the user might use."
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth provider to authenticate with (e.g., GoogleOAuth, MicrosoftOAuth, GitHubOAuth)."
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query",
+                "description": "Controls the authentication flow behavior for the user."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "An opaque value used to maintain state between the request and the callback."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the organization to authenticate the user against."
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "The response type of the application."
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "The callback URI where the authorization code will be sent after authentication."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the WorkOS environment client."
+              }
+            ]
+          },
+          "docs": "Generates an OAuth 2.0 authorization URL to authenticate a user with AuthKit or SSO."
+        },
+        {
+          "info": {
+            "name": "Get Device Authorization URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/authorize/device",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates the CLI Auth flow by requesting a device code and verification URLs. This endpoint implements the OAuth 2.0 Device Authorization Flow ([RFC 8628](https://datatracker.ietf.org/doc/html/rfc8628)) and is designed for command-line applications or other devices with limited input capabilities."
+        },
+        {
+          "info": {
+            "name": "Logout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/sessions/logout",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the session to revoke. This can be extracted from the `sid` claim of the access token."
+              },
+              {
+                "name": "return_to",
+                "value": "",
+                "type": "query",
+                "description": "The URL to redirect the user to after session revocation."
+              }
+            ]
+          },
+          "docs": "Logout a user from the current [session](/reference/authkit/session)."
+        },
+        {
+          "info": {
+            "name": "Revoke Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/sessions/revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a [user session](/reference/authkit/session)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.cors-origins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a CORS Origin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/cors_origins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new CORS origin for the current environment. CORS origins allow browser-based applications to make requests to the WorkOS API."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an Email Verification Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/email_verification/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the email verification code."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing email verification code that can be used to send an email to a user for verification."
+        },
+        {
+          "info": {
+            "name": "Create a Password Reset Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/password_reset",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a one-time token that can be used to reset a user's password."
+        },
+        {
+          "info": {
+            "name": "Reset the Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/password_reset/confirm",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets a new password using the `token` query parameter from the link that the user received. Successfully resetting the password will verify a user's email, if it hasn't been verified yet."
+        },
+        {
+          "info": {
+            "name": "Get a Password Reset Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/password_reset/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the password reset token."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing password reset token that can be used to reset a user's password."
+        },
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by the organization they are a member of. Deprecated in favor of `organization_id`."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by the organization they are a member of."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter users by their email address."
+              }
+            ]
+          },
+          "docs": "Get a list of all of your existing users matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Create a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user in the current environment."
+        },
+        {
+          "info": {
+            "name": "Get a User by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/external_id/:external_id",
+            "params": [
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "The external ID of the user."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing user by an [external identifier](/authkit/metadata/external-identifiers)."
+        },
+        {
+          "info": {
+            "name": "Get a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the user."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing user."
+        },
+        {
+          "info": {
+            "name": "Update a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/user_management/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates properties of a user. The omitted properties will be left unchanged."
+        },
+        {
+          "info": {
+            "name": "Delete a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/user_management/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the user."
+              }
+            ]
+          },
+          "docs": "Permanently deletes a user in the current environment. It cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Confirm Email Change",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/users/:id/email_change/confirm",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Confirms an email change using the one-time code received by the user."
+        },
+        {
+          "info": {
+            "name": "Send Email Change Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/users/:id/email_change/send",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an email that contains a one-time code used to change a user's email address."
+        },
+        {
+          "info": {
+            "name": "Verify Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/users/:id/email_verification/confirm",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Verifies an email address using the one-time code received by the user."
+        },
+        {
+          "info": {
+            "name": "Send Verification Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/users/:id/email_verification/send",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              }
+            ]
+          },
+          "docs": "Sends an email that contains a one-time code used to verify a user’s email address."
+        },
+        {
+          "info": {
+            "name": "Get User Identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:id/identities",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the user."
+              }
+            ]
+          },
+          "docs": "Get a list of identities associated with the user. A user can have multiple associated identities after going through [identity linking](/authkit/identity-linking). Currently only OAuth identities are supported. More provider types may be added in the future."
+        },
+        {
+          "info": {
+            "name": "List Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:id/sessions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Get a list of all active sessions for a specific user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.invitations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Invitations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/invitations",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the [organization](/reference/organization) that the recipient will join."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The email address of the recipient."
+              }
+            ]
+          },
+          "docs": "Get a list of all of invitations matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Send an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/invitations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an invitation email to the recipient."
+        },
+        {
+          "info": {
+            "name": "Find an Invitation by Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/invitations/by_token/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token used to accept the invitation."
+              }
+            ]
+          },
+          "docs": "Retrieve an existing invitation using the token."
+        },
+        {
+          "info": {
+            "name": "Get an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/invitations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the invitation."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing invitation."
+        },
+        {
+          "info": {
+            "name": "Accept an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/invitations/:id/accept",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the invitation."
+              }
+            ]
+          },
+          "docs": "Accepts an invitation and, if linked to an organization, activates the user's membership in that organization."
+        },
+        {
+          "info": {
+            "name": "Resend an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/invitations/:id/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the invitation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resends an invitation email to the recipient. The invitation must be in a pending state."
+        },
+        {
+          "info": {
+            "name": "Revoke an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/invitations/:id/revoke",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the invitation."
+              }
+            ]
+          },
+          "docs": "Revokes an existing invitation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.jwt-template",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get JWT Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/jwt_template"
+          },
+          "docs": "Get the JWT template for the current environment."
+        },
+        {
+          "info": {
+            "name": "Update JWT Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/user_management/jwt_template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the JWT template for the current environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.magic-auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Magic Auth Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/magic_auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a one-time authentication code that can be sent to the user's email address. The code expires in 10 minutes. To verify the code, [authenticate the user with Magic Auth](/reference/authkit/authentication/magic-auth)."
+        },
+        {
+          "info": {
+            "name": "Get Magic Auth Code Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/magic_auth/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Magic Auth code."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing [Magic Auth](/reference/authkit/magic-auth) code that can be used to send an email to a user for authentication."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.organization-membership",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organization Memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/organization_memberships",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the [organization](/reference/organization) which the user belongs to."
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the status of the organization membership. Array including any of `active`, `inactive`, or `pending`."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the [user](/reference/authkit/user)."
+              }
+            ]
+          },
+          "docs": "Get a list of all organization memberships matching the criteria specified. At least one of `user_id` or `organization_id` must be provided. By default only active memberships are returned. Use the `statuses` parameter to filter by other statuses."
+        },
+        {
+          "info": {
+            "name": "Create an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/organization_memberships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new `active` organization membership for the given organization and user.\n\nCalling this API with an organization and user that match an `inactive` organization membership will activate the membership with the specified role(s)."
+        },
+        {
+          "info": {
+            "name": "Get an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing organization membership."
+        },
+        {
+          "info": {
+            "name": "Update an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the details of an existing organization membership."
+        },
+        {
+          "info": {
+            "name": "Delete an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an existing organization membership. It cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Deactivate an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id/deactivate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ]
+          },
+          "docs": "Deactivates an `active` organization membership. Emits an [organization_membership.updated](/events/organization-membership) event upon successful deactivation.\n\n- Deactivating an `inactive` membership is a no-op and does not emit an event.\n- Deactivating a `pending` membership returns an error. This membership should be [deleted](/reference/authkit/organization-membership/delete) instead.\n\nSee the [membership management documentation](/authkit/users-organizations/organizations/membership-manage"
+        },
+        {
+          "info": {
+            "name": "Reactivate an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id/reactivate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ]
+          },
+          "docs": "Reactivates an `inactive` organization membership, retaining the pre-existing role(s). Emits an [organization_membership.updated](/events/organization-membership) event upon successful reactivation.\n\n- Reactivating an `active` membership is a no-op and does not emit an event.\n- Reactivating a `pending` membership returns an error. The user needs to [accept the invitation](/authkit/invitations) instead.\n\nSee the [membership management documentation](/authkit/users-organizations/organizations/memb"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.organization-membership.groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/organization_memberships/:omId/groups",
+            "params": [
+              {
+                "name": "omId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization Membership."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Get a list of groups that an organization membership belongs to."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.redirect-uris",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Redirect URI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/redirect_uris",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new redirect URI for an environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.users.feature-flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Enabled Feature Flags for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:userId/feature-flags",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Get a list of all enabled feature flags for the provided user. This includes feature flags enabled specifically for the user as well as any organizations that the user is a member of."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.users.authorized-applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Authorized Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:user_id/authorized_applications",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Get a list of all Connect applications that the user has authorized."
+        },
+        {
+          "info": {
+            "name": "Delete an Authorized Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/user_management/users/:user_id/authorized_applications/:application_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID or client ID of the application."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              }
+            ]
+          },
+          "docs": "Delete an existing Authorized Connect Application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.data-providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Connected Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:user_id/connected_accounts/:slug",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "A [User](/reference/authkit/user) identifier."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "An [Organization](/reference/organization) identifier. Optional parameter if the connection is scoped to an organization."
+              }
+            ]
+          },
+          "docs": "Retrieves a user's [connected account](/reference/pipes/connected-account) for a specific provider."
+        },
+        {
+          "info": {
+            "name": "Delete a Connected Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/user_management/users/:user_id/connected_accounts/:slug",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "A [User](/reference/authkit/user) identifier."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "An [Organization](/reference/organization) identifier. Optional parameter if the connection is scoped to an organization."
+              }
+            ]
+          },
+          "docs": "Disconnects WorkOS's account for the user, including removing any stored access and refresh tokens. The user will need to reauthorize if they want to reconnect. This does not revoke access on the provider side."
+        },
+        {
+          "info": {
+            "name": "List Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:user_id/data_providers",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "A [User](/reference/authkit/user) identifier to list providers and connected accounts for."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "An [Organization](/reference/organization) identifier. Optional parameter to filter connections for a specific organization."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of available providers and the user's connection status for each. Returns all providers configured for your environment, along with the user's [connected account](/reference/pipes/connected-account) information where applicable."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "user-management.multi-factor-authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Authentication Factors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:userlandUserId/auth_factors",
+            "params": [
+              {
+                "name": "userlandUserId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the [user](/reference/authkit/user)."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Lists the [authentication factors](/reference/authkit/mfa/authentication-factor) for a user."
+        },
+        {
+          "info": {
+            "name": "Enroll an Authentication Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/users/:userlandUserId/auth_factors",
+            "params": [
+              {
+                "name": "userlandUserId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the [user](/reference/authkit/user)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enrolls a user in a new [authentication factor](/reference/authkit/mfa/authentication-factor)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhook Endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/webhook_endpoints",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Get a list of all of your existing webhook endpoints."
+        },
+        {
+          "info": {
+            "name": "Create a Webhook Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/webhook_endpoints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook endpoint to receive event notifications."
+        },
+        {
+          "info": {
+            "name": "Update a Webhook Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/webhook_endpoints/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Webhook Endpoint."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the properties of an existing webhook endpoint."
+        },
+        {
+          "info": {
+            "name": "Delete a Webhook Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/webhook_endpoints/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Webhook Endpoint."
+              }
+            ]
+          },
+          "docs": "Delete an existing webhook endpoint."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "widgets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a Widget Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/widgets/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a widget token scoped to an organization and user with the specified scopes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
