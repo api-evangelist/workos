@@ -6,7 +6,7 @@ description: WorkOS is the "Enterprise Ready" identity platform for B2B SaaS —
   (FGA, formerly Warrant), Radar bot/fraud protection, and an emerging suite of agent-oriented
   surfaces (Pipes, MCP Auth, auth.md).
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Authentication
 - Identity Provider
