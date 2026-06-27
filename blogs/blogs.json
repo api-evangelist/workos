@@ -2,11 +2,11 @@
   "repo": "workos",
   "feeds": [
     {
-      "source": "https://workos.com/blog",
+      "source": "https://workos.com/blog/rss.xml",
       "feed_url": "https://workos.com/blog/rss.xml",
       "title": "",
-      "saved": 8,
-      "method": "discovered"
+      "saved": 1,
+      "method": "feed"
     },
     {
       "source": "https://github.com/workos",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 15,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 27,
+  "fetched": "2026-06-27T12:03:07Z"
 }

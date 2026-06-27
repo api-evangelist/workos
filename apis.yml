@@ -139,64 +139,64 @@ common:
   url: https://raw.githubusercontent.com/api-evangelist/workos/main/finops/workos-finops.yml
 - name: Node SDK
   url: https://github.com/workos/workos-node
-  type: SDK
+  type: SDKs
 - name: Python SDK
   url: https://github.com/workos/workos-python
-  type: SDK
+  type: SDKs
 - name: Ruby SDK
   url: https://github.com/workos/workos-ruby
-  type: SDK
+  type: SDKs
 - name: Go SDK
   url: https://github.com/workos/workos-go
-  type: SDK
+  type: SDKs
 - name: PHP SDK
   url: https://github.com/workos/workos-php
-  type: SDK
+  type: SDKs
 - name: .NET SDK
   url: https://github.com/workos/workos-dotnet
-  type: SDK
+  type: SDKs
 - name: Kotlin SDK
   url: https://github.com/workos/workos-kotlin
-  type: SDK
+  type: SDKs
 - name: Rust SDK
   url: https://github.com/workos/workos-rust
-  type: SDK
+  type: SDKs
 - name: Elixir SDK (experimental)
   url: https://github.com/workos/workos-elixir
-  type: SDK
+  type: SDKs
 - name: PHP Laravel SDK
   url: https://github.com/workos/workos-php-laravel
-  type: SDK
+  type: SDKs
 - name: AuthKit (Radix-powered login box)
   url: https://github.com/workos/authkit
-  type: SDK
+  type: SDKs
 - name: AuthKit for Next.js
   url: https://github.com/workos/authkit-nextjs
-  type: SDK
+  type: SDKs
 - name: AuthKit for React
   url: https://github.com/workos/authkit-react
-  type: SDK
+  type: SDKs
 - name: AuthKit for Remix
   url: https://github.com/workos/authkit-remix
-  type: SDK
+  type: SDKs
 - name: AuthKit for React Router
   url: https://github.com/workos/authkit-react-router
-  type: SDK
+  type: SDKs
 - name: AuthKit for SvelteKit
   url: https://github.com/workos/authkit-sveltekit
-  type: SDK
+  type: SDKs
 - name: AuthKit for TanStack Start
   url: https://github.com/workos/authkit-tanstack-start
-  type: SDK
+  type: SDKs
 - name: AuthKit JS (vanilla)
   url: https://github.com/workos/authkit-js
-  type: SDK
+  type: SDKs
 - name: AuthKit Session
   url: https://github.com/workos/authkit-session
-  type: SDK
+  type: SDKs
 - name: AuthKit XMCP
   url: https://github.com/workos/authkit-xmcp
-  type: SDK
+  type: SDKs
 - name: WorkOS CLI (AI-powered AuthKit wizard)
   url: https://github.com/workos/cli
   type: CLI
@@ -220,16 +220,16 @@ common:
   type: Tools
 - name: auth.md (open protocol for agent service registration)
   url: https://github.com/workos/auth.md
-  type: Standard
+  type: Standards
 - name: Agent Skills (WorkOS Skills repo)
   url: https://github.com/workos/skills
-  type: AgentSkill
+  type: AgentSkills
 - name: Warrant Edge Agent
   url: https://github.com/workos/edge-agent
   type: Tools
 - name: FGA Postgres Row-Level Access Example
   url: https://github.com/workos/fga-row-level-access-control-postgres
-  type: Example
+  type: Examples
 - name: B2B Next.js Starter Kit
   url: https://github.com/workos/next-b2b-starter-kit
   type: StarterKit
@@ -250,43 +250,43 @@ common:
   type: Tools
 - name: Next.js AuthKit Example
   url: https://github.com/workos/next-authkit-example
-  type: Example
+  type: Examples
 - name: React AuthKit Example
   url: https://github.com/workos/react-authkit-example
-  type: Example
+  type: Examples
 - name: Remix AuthKit Example
   url: https://github.com/workos/remix-authkit-example
-  type: Example
+  type: Examples
 - name: Electron AuthKit Example
   url: https://github.com/workos/electron-authkit-example
-  type: Example
+  type: Examples
 - name: Expo AuthKit Example
   url: https://github.com/workos/expo-authkit-example
-  type: Example
+  type: Examples
 - name: Python AuthKit Example
   url: https://github.com/workos/python-authkit-example
-  type: Example
+  type: Examples
 - name: Ruby AuthKit Example
   url: https://github.com/workos/ruby-authkit-example
-  type: Example
+  type: Examples
 - name: Custom UI AuthKit Example
   url: https://github.com/workos/workos-custom-ui-authkit-example
-  type: Example
+  type: Examples
 - name: Go Example Applications
   url: https://github.com/workos/go-example-applications
-  type: Example
+  type: Examples
 - name: PHP Example Applications
   url: https://github.com/workos/php-example-applications
-  type: Example
+  type: Examples
 - name: Python Django Example Applications
   url: https://github.com/workos/python-django-example-applications
-  type: Example
+  type: Examples
 - name: .NET Example Applications
   url: https://github.com/workos/dotnet-example-applications
-  type: Example
+  type: Examples
 - name: Widgets Examples
   url: https://github.com/workos/widgets-examples
-  type: Example
+  type: Examples
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
