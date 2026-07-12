@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/workos-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearer
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization:
+    Bearer sk_example_123456789`.'
+  sources:
+  - openapi/workos-openapi.yml

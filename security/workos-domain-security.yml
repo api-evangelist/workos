@@ -1,0 +1,40 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: workos.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  2 19:29:52 2026 GMT
+  hsts: false
+- host: api.workos.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  4 07:11:00 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.workos-test.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  9 10:20:32 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: workos.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: workos-test.com
+  dnssec: false
+  caa:
+  - 0 issue "pki.goog; cansignhttpexchanges=yes"
+  - 0 issue "ssl.com"
+  - 0 issuewild "comodoca.com"
+  - 0 issuewild "digicert.com; cansignhttpexchanges=yes"
+  - 0 issuewild "letsencrypt.org"
+  - 0 issuewild "pki.goog; cansignhttpexchanges=yes"
+  spf: true
+  dmarc: true
+  dmarc_policy: none

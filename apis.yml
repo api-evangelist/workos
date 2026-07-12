@@ -69,6 +69,14 @@ apis:
   - url: graphql/workos-graphql.md
     type: GraphQL
 common:
+- type: TrustCenter
+  url: security/workos-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/workos-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/workos-domain-security.yml
+- type: Authentication
+  url: authentication/workos-authentication.yml
 - type: Website
   url: https://workos.com
 - type: Documentation
