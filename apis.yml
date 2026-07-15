@@ -69,6 +69,8 @@ apis:
   - url: graphql/workos-graphql.md
     type: GraphQL
 common:
+- type: AgenticAccess
+  url: agentic-access/workos-agentic-access.yml
 - type: TrustCenter
   url: security/workos-trust-center.yml
 - type: VulnerabilityDisclosure
