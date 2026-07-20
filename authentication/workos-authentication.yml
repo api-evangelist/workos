@@ -10,6 +10,6 @@ schemes:
   scheme: bearer
   bearerFormat: JWT
   description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization:
-    Bearer sk_example_123456789`.'
+    Bearer [example key]`.'
   sources:
   - openapi/workos-openapi.yml
