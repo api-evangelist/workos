@@ -1,0 +1,1118 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal user-management.organization-membership API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: user-management.organization-membership
+  description: Manage user organization memberships.
+  x-displayName: Organization Memberships
+paths:
+  /user_management/organization_memberships:
+    get:
+      description: Get a list of all organization memberships matching the criteria specified. At least one of `user_id` or `organization_id` must be provided. By default only active memberships are returned. Use the `statuses` parameter to filter by other statuses.
+      operationId: UserlandUserOrganizationMembershipsController_list
+      parameters:
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: organization_id
+        required: false
+        in: query
+        description: The ID of the [organization](/reference/organization) which the user belongs to.
+        schema:
+          example: org_01E4ZCR3C56J083X43JQXF3JK5
+          type: string
+      - name: statuses
+        required: false
+        in: query
+        description: Filter by the status of the organization membership. Array including any of `active`, `inactive`, or `pending`.
+        style: form
+        explode: false
+        schema:
+          example:
+          - active
+          type: array
+          items:
+            type: string
+            enum:
+            - active
+            - inactive
+            - pending
+      - name: user_id
+        required: false
+        in: query
+        description: The ID of the [user](/reference/authkit/user).
+        schema:
+          example: user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    object:
+                      type: string
+                      description: Indicates this is a list response.
+                      const: list
+                    list_metadata:
+                      type: object
+                      properties:
+                        before:
+                          type:
+                          - string
+                          - 'null'
+                          description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+                          example: om_01HXYZ123456789ABCDEFGHIJ
+                        after:
+                          type:
+                          - string
+                          - 'null'
+                          description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+                          example: om_01HXYZ987654321KJIHGFEDCBA
+                      required:
+                      - before
+                      - after
+                      description: Pagination cursors for navigating between pages of results.
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      description: The list of records for the current page.
+                      items:
+                        $ref: '#/components/schemas/UserlandUserOrganizationMembership'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_request_parameters
+                      const: invalid_request_parameters
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Validation failed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: missing_user_id_or_organization_id
+                      const: missing_user_id_or_organization_id
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Organization Memberships
+      tags:
+      - user-management.organization-membership
+    post:
+      description: 'Creates a new `active` organization membership for the given organization and user.
+
+
+        Calling this API with an organization and user that match an `inactive` organization membership will activate the membership with the specified role(s).'
+      operationId: UserlandUserOrganizationMembershipsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserlandUserOrganizationMembershipDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the organization membership object.
+                    const: organization_membership
+                  id:
+                    type: string
+                    description: The unique ID of the organization membership.
+                    example: om_01HXYZ123456789ABCDEFGHIJ
+                  user_id:
+                    type: string
+                    description: The ID of the user.
+                    example: user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E
+                  organization_id:
+                    type: string
+                    description: The ID of the organization which the user belongs to.
+                    example: org_01E4ZCR3C56J083X43JQXF3JK5
+                  status:
+                    type: string
+                    enum:
+                    - active
+                    - inactive
+                    - pending
+                    description: The status of the organization membership. One of `active`, `inactive`, or `pending`.
+                    example: active
+                  directory_managed:
+                    type: boolean
+                    description: Whether this organization membership is managed by a directory sync connection.
+                    example: false
+                  organization_name:
+                    type: string
+                    description: The name of the organization which the user belongs to.
+                    example: Acme Corp
+                  custom_attributes:
+                    type: object
+                    additionalProperties: {}
+                    description: An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked.
+                    example:
+                      department: Engineering
+                      title: Developer Experience Engineer
+                      location: Brooklyn
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  role:
+                    $ref: '#/components/schemas/SlimRole'
+                    description: The primary role assigned to the user within the organization.
+                  user:
+                    $ref: '#/components/schemas/UserlandUser'
+                    description: The user that belongs to the organization through this membership.
+                required:
+                - object
+                - id
+                - user_id
+                - organization_id
+                - status
+                - directory_managed
+                - created_at
+                - updated_at
+                - role
+                - user
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: A pending organization membership cannot be reactivated. The user needs to accept the invitation instead.
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: cannot_reactivate_pending_organization_membership
+                    const: cannot_reactivate_pending_organization_membership
+                required:
+                - message
+                - code
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_request_parameters
+                      const: invalid_request_parameters
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Validation failed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Role 'invalid_slug' is not a valid role.
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_role
+                      const: invalid_role
+                  required:
+                  - message
+                  - code
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Multiple roles are not enabled for this environment.
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: multiple_roles_not_enabled
+                      const: multiple_roles_not_enabled
+                  required:
+                  - message
+                  - code
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Sub-resource scoped roles are not allowed for this operation.
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: sub_resource_scoped_role_not_allowed
+                      const: sub_resource_scoped_role_not_allowed
+                    role_slug:
+                      type: string
+                      description: The slug of the role that is not allowed.
+                      example: admin
+                  required:
+                  - message
+                  - code
+                  - role_slug
+      summary: Create an Organization Membership
+      tags:
+      - user-management.organization-membership
+      x-mutually-exclusive-body-groups:
+        role:
+          optional: true
+          variants:
+            single:
+            - role_slug
+            multiple:
+            - role_slugs
+  /user_management/organization_memberships/{id}:
+    get:
+      description: Get the details of an existing organization membership.
+      operationId: UserlandUserOrganizationMembershipsController_get
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the organization membership.
+        schema:
+          example: om_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserOrganizationMembership'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get an Organization Membership
+      tags:
+      - user-management.organization-membership
+    delete:
+      description: Permanently deletes an existing organization membership. It cannot be undone.
+      operationId: UserlandUserOrganizationMembershipsController_delete
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the organization membership.
+        schema:
+          example: om_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Delete an Organization Membership
+      tags:
+      - user-management.organization-membership
+    put:
+      description: Update the details of an existing organization membership.
+      operationId: UserlandUserOrganizationMembershipsController_update
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the organization membership.
+        schema:
+          example: om_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserlandUserOrganizationMembershipDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserOrganizationMembership'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_request_parameters
+                      const: invalid_request_parameters
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Validation failed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Role 'invalid_slug' is not a valid role.
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_role
+                      const: invalid_role
+                  required:
+                  - message
+                  - code
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Multiple roles are not enabled for this environment.
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: multiple_roles_not_enabled
+                      const: multiple_roles_not_enabled
+                  required:
+                  - message
+                  - code
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Sub-resource scoped roles are not allowed for this operation.
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: sub_resource_scoped_role_not_allowed
+                      const: sub_resource_scoped_role_not_allowed
+                    role_slug:
+                      type: string
+                      description: The slug of the role that is not allowed.
+                      example: admin
+                  required:
+                  - message
+                  - code
+                  - role_slug
+      summary: Update an Organization Membership
+      tags:
+      - user-management.organization-membership
+      x-mutually-exclusive-body-groups:
+        role:
+          optional: true
+          variants:
+            single:
+            - role_slug
+            multiple:
+            - role_slugs
+  /user_management/organization_memberships/{id}/deactivate:
+    put:
+      description: 'Deactivates an `active` organization membership. Emits an [organization_membership.updated](/events/organization-membership) event upon successful deactivation.
+
+
+        - Deactivating an `inactive` membership is a no-op and does not emit an event.
+
+        - Deactivating a `pending` membership returns an error. This membership should be [deleted](/reference/authkit/organization-membership/delete) instead.
+
+
+        See the [membership management documentation](/authkit/users-organizations/organizations/membership-management) for additional details.'
+      operationId: UserlandUserOrganizationMembershipsController_deactivate
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the organization membership.
+        schema:
+          example: om_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the organization membership object.
+                    const: organization_membership
+                  id:
+                    type: string
+                    description: The unique ID of the organization membership.
+                    example: om_01HXYZ123456789ABCDEFGHIJ
+                  user_id:
+                    type: string
+                    description: The ID of the user.
+                    example: user_01E4ZCR3C56J083X43JQXF3JK5
+                  organization_id:
+                    type: string
+                    description: The ID of the organization which the user belongs to.
+                    example: org_01EHZNVPK3SFK441A1RGBFSHRT
+                  status:
+                    type: string
+                    enum:
+                    - active
+                    - inactive
+                    - pending
+                    description: The status of the organization membership. One of `active`, `inactive`, or `pending`.
+                    example: inactive
+                  directory_managed:
+                    type: boolean
+                    description: Whether this organization membership is managed by a directory sync connection.
+                    example: false
+                  organization_name:
+                    type: string
+                    description: The name of the organization which the user belongs to.
+                    example: Acme Corp
+                  custom_attributes:
+                    type: object
+                    additionalProperties: {}
+                    description: An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked.
+                    example:
+                      department: Engineering
+                      title: Developer Experience Engineer
+                      location: Brooklyn
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  role:
+                    $ref: '#/components/schemas/SlimRole'
+                    description: The primary role assigned to the user within the organization.
+                  user:
+                    $ref: '#/components/schemas/UserlandUser'
+                    description: The user that belongs to the organization through this membership.
+                required:
+                - object
+                - id
+                - user_id
+                - organization_id
+                - status
+                - directory_managed
+                - created_at
+                - updated_at
+                - role
+                - user
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: A pending organization membership cannot be deactivated. This membership should be deleted instead.
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: cannot_deactivate_pending_organization_membership
+                    const: cannot_deactivate_pending_organization_membership
+                required:
+                - message
+                - code
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invalid_request_parameters
+                    const: invalid_request_parameters
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Validation failed.
+                required:
+                - code
+                - message
+      summary: Deactivate an Organization Membership
+      tags:
+      - user-management.organization-membership
+  /user_management/organization_memberships/{id}/reactivate:
+    put:
+      description: 'Reactivates an `inactive` organization membership, retaining the pre-existing role(s). Emits an [organization_membership.updated](/events/organization-membership) event upon successful reactivation.
+
+
+        - Reactivating an `active` membership is a no-op and does not emit an event.
+
+        - Reactivating a `pending` membership returns an error. The user needs to [accept the invitation](/authkit/invitations) instead.
+
+
+        See the [membership management documentation](/authkit/users-organizations/organizations/membership-management) for additional details.'
+      operationId: UserlandUserOrganizationMembershipsController_reactivate
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the organization membership.
+        schema:
+          example: om_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserOrganizationMembership'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: A pending organization membership cannot be reactivated. The user needs to accept the invitation instead.
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: cannot_reactivate_pending_organization_membership
+                    const: cannot_reactivate_pending_organization_membership
+                required:
+                - message
+                - code
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invalid_request_parameters
+                    const: invalid_request_parameters
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Validation failed.
+                required:
+                - code
+                - message
+      summary: Reactivate an Organization Membership
+      tags:
+      - user-management.organization-membership
+components:
+  schemas:
+    UserlandUser:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the user object.
+          const: user
+        id:
+          type: string
+          description: The unique ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+          example: Marcelina
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+          example: Davis
+        profile_picture_url:
+          type:
+          - string
+          - 'null'
+          description: A URL reference to an image representing the user.
+          example: https://workoscdn.com/images/v1/123abc
+        email:
+          type: string
+          description: The email address of the user.
+          example: marcelina.davis@example.com
+        email_verified:
+          type: boolean
+          description: Whether the user's email has been verified.
+          example: true
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The external ID of the user.
+          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            maxLength: 600
+          description: Object containing metadata key/value pairs associated with the user.
+          example:
+            timezone: America/New_York
+          propertyNames:
+            maxLength: 40
+          maxProperties: 50
+        last_sign_in_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the user last signed in.
+          example: '2025-06-25T19:07:33.155Z'
+        locale:
+          type:
+          - string
+          - 'null'
+          description: The user's preferred locale.
+          example: en-US
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - first_name
+      - last_name
+      - profile_picture_url
+      - email
+      - email_verified
+      - external_id
+      - last_sign_in_at
+      - created_at
+      - updated_at
+      description: The user object.
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    CreateUserlandUserOrganizationMembershipDto:
+      allOf:
+      - type: object
+        properties:
+          user_id:
+            type: string
+            description: The ID of the [user](/reference/authkit/user).
+            example: user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E
+          organization_id:
+            type: string
+            description: The ID of the [organization](/reference/organization) which the user belongs to.
+            example: org_01E4ZCR3C56J083X43JQXF3JK5
+        required:
+        - user_id
+        - organization_id
+      - oneOf:
+        - type: object
+          not:
+            anyOf:
+            - properties:
+                role_slug:
+                  x-exclude-from-lint: true
+              required:
+              - role_slug
+            - properties:
+                role_slugs:
+                  x-exclude-from-lint: true
+              required:
+              - role_slugs
+        - type: object
+          properties:
+            role_slug:
+              type: string
+              description: A single role identifier. Defaults to `member` or the explicit default role. Mutually exclusive with `role_slugs`.
+              example: admin
+          required:
+          - role_slug
+          not:
+            anyOf:
+            - properties:
+                role_slugs:
+                  x-exclude-from-lint: true
+              required:
+              - role_slugs
+        - type: object
+          properties:
+            role_slugs:
+              description: An array of role identifiers. Limited to one role when Multiple Roles is disabled. Mutually exclusive with `role_slug`.
+              example:
+              - admin
+              type: array
+              items:
+                type: string
+          required:
+          - role_slugs
+          not:
+            anyOf:
+            - properties:
+                role_slug:
+                  x-exclude-from-lint: true
+              required:
+              - role_slug
+      x-mutually-exclusive-body-groups:
+        role:
+          optional: true
+          variants:
+            single:
+            - role_slug
+            multiple:
+            - role_slugs
+    UserlandUserOrganizationMembership:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the organization membership object.
+          const: organization_membership
+        id:
+          type: string
+          description: The unique ID of the organization membership.
+          example: om_01HXYZ123456789ABCDEFGHIJ
+        user_id:
+          type: string
+          description: The ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        organization_id:
+          type: string
+          description: The ID of the organization which the user belongs to.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+          description: The status of the organization membership. One of `active`, `inactive`, or `pending`.
+          example: active
+        directory_managed:
+          type: boolean
+          description: Whether this organization membership is managed by a directory sync connection.
+          example: false
+        organization_name:
+          type: string
+          description: The name of the organization which the user belongs to.
+          example: Acme Corp
+        custom_attributes:
+          type: object
+          additionalProperties: {}
+          description: An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked.
+          example:
+            department: Engineering
+            title: Developer Experience Engineer
+            location: Brooklyn
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        role:
+          $ref: '#/components/schemas/SlimRole'
+          description: The primary role assigned to the user within the organization.
+        user:
+          $ref: '#/components/schemas/UserlandUser'
+          description: The user that belongs to the organization through this membership.
+      required:
+      - object
+      - id
+      - user_id
+      - organization_id
+      - status
+      - directory_managed
+      - created_at
+      - updated_at
+      - role
+      - user
+    UpdateUserlandUserOrganizationMembershipDto:
+      x-mutually-exclusive-body-groups:
+        role:
+          optional: true
+          variants:
+            single:
+            - role_slug
+            multiple:
+            - role_slugs
+      oneOf:
+      - type: object
+        not:
+          anyOf:
+          - properties:
+              role_slug:
+                x-exclude-from-lint: true
+            required:
+            - role_slug
+          - properties:
+              role_slugs:
+                x-exclude-from-lint: true
+            required:
+            - role_slugs
+      - type: object
+        properties:
+          role_slug:
+            type: string
+            description: A single role identifier. Defaults to `member` or the explicit default role. Mutually exclusive with `role_slugs`.
+            example: admin
+        required:
+        - role_slug
+        not:
+          anyOf:
+          - properties:
+              role_slugs:
+                x-exclude-from-lint: true
+            required:
+            - role_slugs
+      - type: object
+        properties:
+          role_slugs:
+            description: An array of role identifiers. Limited to one role when Multiple Roles is disabled. Mutually exclusive with `role_slug`.
+            example:
+            - admin
+            type: array
+            items:
+              type: string
+        required:
+        - role_slugs
+        not:
+          anyOf:
+          - properties:
+              role_slug:
+                x-exclude-from-lint: true
+            required:
+            - role_slug
+    SlimRole:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the assigned role.
+          example: admin
+      required:
+      - slug
+      description: The primary role assigned to the user.
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

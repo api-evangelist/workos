@@ -1,0 +1,4943 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal authorization API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: authorization
+  description: Authorization and access control.
+  x-displayName: Authorization
+paths:
+  /authorization/organization_memberships/{organization_membership_id}/check:
+    post:
+      description: Check if an organization membership has a specific permission on a resource. Supports identification by resource_id OR by resource_external_id + resource_type_slug.
+      operationId: AuthorizationController_check
+      parameters:
+      - name: organization_membership_id
+        required: true
+        in: path
+        description: The ID of the organization membership to check.
+        schema:
+          type: string
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckAuthorizationDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationCheck'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Check Authorization
+      tags:
+      - authorization
+      x-mutually-exclusive-body-groups:
+        resource_target:
+          optional: false
+          variants:
+            by_id:
+            - resource_id
+            by_external_id:
+            - resource_external_id
+            - resource_type_slug
+  /authorization/organization_memberships/{organization_membership_id}/resources:
+    get:
+      description: 'Returns all child resources of a parent resource where the organization membership has a specific permission. This is useful for resource discovery—answering "What projects can this user access in this workspace?"
+
+
+        You must provide either `parent_resource_id` or both `parent_resource_external_id` and `parent_resource_type_slug` to identify the parent resource.'
+      operationId: AuthorizationController_listResourcesForMembership
+      parameters:
+      - name: organization_membership_id
+        required: true
+        in: path
+        description: The ID of the organization membership.
+        schema:
+          type: string
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: permission_slug
+        required: true
+        in: query
+        description: The permission slug to filter by. Only child resources where the organization membership has this permission are returned.
+        schema:
+          type: string
+          example: project:read
+      - name: parent_resource_id
+        required: false
+        in: query
+        description: The WorkOS ID of the parent resource. Provide this or both `parent_resource_external_id` and `parent_resource_type_slug`, but not both. Mutually exclusive with `parent_resource_type_slug` and `parent_resource_external_id`.
+        schema:
+          type: string
+          example: authz_resource_01XYZ789
+      - name: parent_resource_type_slug
+        required: false
+        in: query
+        description: The slug of the parent resource type. Must be provided together with `parent_resource_external_id`. Required with `parent_resource_external_id`. Mutually exclusive with `parent_resource_id`.
+        schema:
+          type: string
+          example: project
+      - name: parent_resource_external_id
+        required: false
+        in: query
+        description: The application-specific external identifier of the parent resource. Must be provided together with `parent_resource_type_slug`. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`.
+        schema:
+          type: string
+          example: external_project_123
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationResourceList'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Resources for Organization Membership
+      tags:
+      - authorization
+      x-mutually-exclusive-parameter-groups:
+        parent_resource:
+          optional: false
+          variants:
+            by_id:
+            - parent_resource_id
+            by_external_id:
+            - parent_resource_type_slug
+            - parent_resource_external_id
+  /authorization/organization_memberships/{organization_membership_id}/resources/{resource_id}/permissions:
+    get:
+      description: Returns all permissions the organization membership effectively has on a resource, including permissions inherited through roles assigned to ancestor resources.
+      operationId: AuthorizationController_listEffectivePermissions
+      parameters:
+      - name: organization_membership_id
+        required: true
+        in: path
+        description: The ID of the organization membership.
+        schema:
+          type: string
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      - name: resource_id
+        required: true
+        in: path
+        description: The ID of the authorization resource.
+        schema:
+          type: string
+          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationPermissionList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Effective Permissions for an Organization Membership on a Resource
+      tags:
+      - authorization
+  ? /authorization/organization_memberships/{organization_membership_id}/resources/{resource_type_slug}/{external_id}/permissions
+  : get:
+      description: Returns all permissions the organization membership effectively has on a resource identified by its external ID, including permissions inherited through roles assigned to ancestor resources.
+      operationId: AuthorizationController_listEffectivePermissionsByExternalId
+      parameters:
+      - name: organization_membership_id
+        required: true
+        in: path
+        description: The ID of the organization membership.
+        schema:
+          type: string
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      - name: resource_type_slug
+        required: true
+        in: path
+        description: The slug of the resource type.
+        schema:
+          type: string
+          example: document
+      - name: external_id
+        required: true
+        in: path
+        description: An identifier you provide to reference the resource in your system.
+        schema:
+          type: string
+          example: doc-456
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationPermissionList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Effective Permissions for an Organization Membership on a Resource by External ID
+      tags:
+      - authorization
+  /authorization/organization_memberships/{organization_membership_id}/role_assignments:
+    get:
+      description: List all role assignments for an organization membership. This returns all roles that have been assigned to the user on resources, including organization-level and sub-resource roles.
+      operationId: AuthorizationRoleAssignmentsController_listRoleAssignments
+      parameters:
+      - name: organization_membership_id
+        required: true
+        in: path
+        description: The ID of the organization membership.
+        schema:
+          type: string
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: resource_id
+        required: false
+        in: query
+        description: Filter assignments by the ID of the resource.
+        schema:
+          example: authz_resource_01HXYZ123456789ABCDEFGH
+          type: string
+      - name: resource_external_id
+        required: false
+        in: query
+        description: Filter assignments by the external ID of the resource.
+        schema:
+          example: project-ext-456
+          type: string
+      - name: resource_type_slug
+        required: false
+        in: query
+        description: Filter assignments by the slug of the resource type.
+        schema:
+          example: project
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRoleAssignmentList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Role Assignments
+      tags:
+      - authorization
+    post:
+      description: Assign a role to an organization membership on a specific resource.
+      operationId: AuthorizationRoleAssignmentsController_assignRole
+      parameters:
+      - name: organization_membership_id
+        required: true
+        in: path
+        description: The ID of the organization membership.
+        schema:
+          type: string
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignRoleDto'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRoleAssignment'
+              example:
+                object: role_assignment
+                id: role_assignment_01HXYZ123456789ABCDEFGH
+                organization_membership_id: om_01HXYZ123456789ABCDEFGHIJ
+                role:
+                  slug: editor
+                resource:
+                  id: authz_resource_01HXYZ123456789ABCDEFGH
+                  external_id: project-ext-456
+                  resource_type_slug: project
+                created_at: '2026-01-15T12:00:00.000Z'
+                updated_at: '2026-01-15T12:00:00.000Z'
+          description: Created
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Assign a Role
+      tags:
+      - authorization
+      x-mutually-exclusive-body-groups:
+        resource_target:
+          optional: false
+          variants:
+            by_id:
+            - resource_id
+            by_external_id:
+            - resource_external_id
+            - resource_type_slug
+    delete:
+      description: Remove a role assignment by role slug and resource.
+      operationId: AuthorizationRoleAssignmentsController_removeRoleByCriteria
+      parameters:
+      - name: organization_membership_id
+        required: true
+        in: path
+        description: The ID of the organization membership.
+        schema:
+          type: string
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveRoleDto'
+      responses:
+        '204':
+          description: Role assignment removed successfully.
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Remove a Role Assignment
+      tags:
+      - authorization
+      x-mutually-exclusive-body-groups:
+        resource_target:
+          optional: false
+          variants:
+            by_id:
+            - resource_id
+            by_external_id:
+            - resource_external_id
+            - resource_type_slug
+  /authorization/organization_memberships/{organization_membership_id}/role_assignments/{role_assignment_id}:
+    delete:
+      description: Remove a role assignment using its ID.
+      operationId: AuthorizationRoleAssignmentsController_removeRoleById
+      parameters:
+      - name: organization_membership_id
+        required: true
+        in: path
+        description: The ID of the organization membership.
+        schema:
+          type: string
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      - name: role_assignment_id
+        required: true
+        in: path
+        description: The ID of the role assignment to remove.
+        schema:
+          type: string
+          example: role_assignment_01HXYZ123456789ABCDEFGH
+      responses:
+        '204':
+          description: Role assignment removed successfully.
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Remove a Role Assignment by ID
+      tags:
+      - authorization
+  /authorization/organizations/{organizationId}/roles:
+    post:
+      description: Create a new custom role for this organization.
+      operationId: AuthorizationOrganizationRolesController_create
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrganizationRoleDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: A unique slug for the role.
+                    example: org-billing-admin
+                  object:
+                    type: string
+                    description: Distinguishes the role object.
+                    example: role
+                    const: role
+                  id:
+                    type: string
+                    description: Unique identifier of the role.
+                    example: role_01EHQMYV6MBK39QC5PZXHY59C3
+                  name:
+                    type: string
+                    description: A descriptive name for the role.
+                    example: Billing Administrator
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the role.
+                    example: Can manage billing and invoices
+                  type:
+                    type: string
+                    enum:
+                    - EnvironmentRole
+                    - OrganizationRole
+                    description: Whether the role is scoped to the environment or an organization (custom role).
+                    example: OrganizationRole
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type the role is scoped to.
+                    example: organization
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: The permission slugs assigned to the role.
+                    example:
+                    - posts:read
+                    - posts:write
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - slug
+                - object
+                - id
+                - name
+                - description
+                - type
+                - resource_type_slug
+                - permissions
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: organization_role_slug_conflict
+                    const: organization_role_slug_conflict
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Create a Custom Role
+      tags:
+      - authorization
+    get:
+      description: Get a list of all roles that apply to an organization. This includes both environment roles and custom roles, returned in priority order.
+      operationId: AuthorizationOrganizationRolesController_list
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Custom Roles
+      tags:
+      - authorization
+  /authorization/organizations/{organizationId}/roles/{slug}:
+    get:
+      description: Retrieve a role that applies to an organization by its slug. This can return either an environment role or a custom role.
+      operationId: AuthorizationOrganizationRolesController_get
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the role.
+        schema:
+          type: string
+          example: org-billing-admin
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: A unique slug for the role.
+                    example: org-billing-admin
+                  object:
+                    type: string
+                    description: Distinguishes the role object.
+                    example: role
+                    const: role
+                  id:
+                    type: string
+                    description: Unique identifier of the role.
+                    example: role_01EHQMYV6MBK39QC5PZXHY59C3
+                  name:
+                    type: string
+                    description: A descriptive name for the role.
+                    example: Billing Manager
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the role.
+                    example: Can view and export billing reports
+                  type:
+                    type: string
+                    enum:
+                    - EnvironmentRole
+                    - OrganizationRole
+                    description: Whether the role is scoped to the environment or an organization (custom role).
+                    example: OrganizationRole
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type the role is scoped to.
+                    example: organization
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: The permission slugs assigned to the role.
+                    example:
+                    - posts:read
+                    - posts:write
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - slug
+                - object
+                - id
+                - name
+                - description
+                - type
+                - resource_type_slug
+                - permissions
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get a Custom Role
+      tags:
+      - authorization
+    patch:
+      description: Update an existing custom role. Only the fields provided in the request body will be updated.
+      operationId: AuthorizationOrganizationRolesController_update
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the role.
+        schema:
+          type: string
+          example: org-billing-admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationRoleDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: A unique slug for the role.
+                    example: org-billing-admin
+                  object:
+                    type: string
+                    description: Distinguishes the role object.
+                    example: role
+                    const: role
+                  id:
+                    type: string
+                    description: Unique identifier of the role.
+                    example: role_01EHQMYV6MBK39QC5PZXHY59C3
+                  name:
+                    type: string
+                    description: A descriptive name for the role.
+                    example: Finance Administrator
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the role.
+                    example: Can manage all financial operations
+                  type:
+                    type: string
+                    enum:
+                    - EnvironmentRole
+                    - OrganizationRole
+                    description: Whether the role is scoped to the environment or an organization (custom role).
+                    example: OrganizationRole
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type the role is scoped to.
+                    example: organization
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: The permission slugs assigned to the role.
+                    example:
+                    - posts:read
+                    - posts:write
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - slug
+                - object
+                - id
+                - name
+                - description
+                - type
+                - resource_type_slug
+                - permissions
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Update a Custom Role
+      tags:
+      - authorization
+    delete:
+      description: Delete an existing custom role.
+      operationId: AuthorizationOrganizationRolesController_delete
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the role.
+        schema:
+          type: string
+          example: org-admin
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: role_has_assignments
+                      const: role_has_assignments
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: role_has_group_role_mappings
+                      const: role_has_group_role_mappings
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+      summary: Delete a Custom Role
+      tags:
+      - authorization
+  /authorization/organizations/{organizationId}/roles/{slug}/permissions:
+    put:
+      description: Replace all permissions on a custom role with the provided list.
+      operationId: AuthorizationOrganizationRolePermissionsController_setPermissions
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the role.
+        schema:
+          type: string
+          example: org-admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetRolePermissionsDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: A unique slug for the role.
+                    example: org-admin
+                  object:
+                    type: string
+                    description: Distinguishes the role object.
+                    example: role
+                    const: role
+                  id:
+                    type: string
+                    description: Unique identifier of the role.
+                    example: role_01EHQMYV6MBK39QC5PZXHY59C3
+                  name:
+                    type: string
+                    description: A descriptive name for the role.
+                    example: Organization Admin
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the role.
+                    example: Can manage all resources
+                  type:
+                    type: string
+                    enum:
+                    - EnvironmentRole
+                    - OrganizationRole
+                    description: Whether the role is scoped to the environment or an organization (custom role).
+                    example: OrganizationRole
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type the role is scoped to.
+                    example: organization
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: The permission slugs assigned to the role.
+                    example:
+                    - billing:read
+                    - billing:write
+                    - invoices:manage
+                    - reports:view
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - slug
+                - object
+                - id
+                - name
+                - description
+                - type
+                - resource_type_slug
+                - permissions
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Set Permissions for a Custom Role
+      tags:
+      - authorization
+    post:
+      description: Add a single permission to a custom role. If the permission is already assigned to the role, this operation has no effect.
+      operationId: AuthorizationOrganizationRolePermissionsController_addPermission
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the role.
+        schema:
+          type: string
+          example: org-admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRolePermissionDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: A unique slug for the role.
+                    example: org-admin
+                  object:
+                    type: string
+                    description: Distinguishes the role object.
+                    example: role
+                    const: role
+                  id:
+                    type: string
+                    description: Unique identifier of the role.
+                    example: role_01EHQMYV6MBK39QC5PZXHY59C3
+                  name:
+                    type: string
+                    description: A descriptive name for the role.
+                    example: Organization Admin
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the role.
+                    example: Can manage all resources
+                  type:
+                    type: string
+                    enum:
+                    - EnvironmentRole
+                    - OrganizationRole
+                    description: Whether the role is scoped to the environment or an organization (custom role).
+                    example: OrganizationRole
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type the role is scoped to.
+                    example: organization
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: The permission slugs assigned to the role.
+                    example:
+                    - reports:export
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - slug
+                - object
+                - id
+                - name
+                - description
+                - type
+                - resource_type_slug
+                - permissions
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Add a Permission to a Custom Role
+      tags:
+      - authorization
+  /authorization/organizations/{organizationId}/roles/{slug}/permissions/{permissionSlug}:
+    delete:
+      description: Remove a single permission from a custom role by its slug.
+      operationId: AuthorizationOrganizationRolePermissionsController_removePermission
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the role.
+        schema:
+          type: string
+          example: org-admin
+      - name: permissionSlug
+        required: true
+        in: path
+        description: The slug of the permission to remove.
+        schema:
+          type: string
+          example: documents:read
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Remove a Permission from a Custom Role
+      tags:
+      - authorization
+  /authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}:
+    get:
+      description: Retrieve the details of an authorization resource by its external ID, organization, and resource type. This is useful when you only have the external ID from your system and need to fetch the full resource details.
+      operationId: AuthorizationResourcesByExternalIdController_getByExternalId
+      parameters:
+      - name: organization_id
+        required: true
+        in: path
+        description: The ID of the organization that owns the resource.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: resource_type_slug
+        required: true
+        in: path
+        description: The slug of the resource type.
+        schema:
+          type: string
+          example: project
+      - name: external_id
+        required: true
+        in: path
+        description: An identifier you provide to reference the resource in your system.
+        schema:
+          type: string
+          example: proj-456
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationResource'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get a Resource by External ID
+      tags:
+      - authorization
+    patch:
+      description: Update an existing authorization resource using its external ID.
+      operationId: AuthorizationResourcesByExternalIdController_updateByExternalId
+      parameters:
+      - name: organization_id
+        required: true
+        in: path
+        description: The ID of the organization that owns the resource.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: resource_type_slug
+        required: true
+        in: path
+        description: The slug of the resource type.
+        schema:
+          type: string
+          example: project
+      - name: external_id
+        required: true
+        in: path
+        description: An identifier you provide to reference the resource in your system.
+        schema:
+          type: string
+          example: proj-456
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAuthorizationResourceDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the Resource object.
+                    const: authorization_resource
+                  name:
+                    type: string
+                    description: A human-readable name for the Resource.
+                    example: Updated Name
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the Resource.
+                    example: Updated description
+                  organization_id:
+                    type: string
+                    description: The ID of the organization that owns the resource.
+                    example: org_01EHZNVPK3SFK441A1RGBFSHRT
+                  parent_resource_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The ID of the parent resource, if this resource is nested.
+                    example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+                  id:
+                    type: string
+                    description: The unique ID of the Resource.
+                    example: authz_resource_01HXYZ123456789ABCDEFGH
+                  external_id:
+                    type: string
+                    description: An identifier you provide to reference the resource in your system.
+                    example: proj-456
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type this resource belongs to.
+                    example: project
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - object
+                - name
+                - description
+                - organization_id
+                - parent_resource_id
+                - id
+                - external_id
+                - resource_type_slug
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: lock_timeout
+                    const: lock_timeout
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: resource_type_update_in_progress
+                    const: resource_type_update_in_progress
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Update a Resource by External ID
+      tags:
+      - authorization
+      x-mutually-exclusive-body-groups:
+        parent_resource:
+          optional: true
+          variants:
+            by_id:
+            - parent_resource_id
+            by_external_id:
+            - parent_resource_external_id
+            - parent_resource_type_slug
+    delete:
+      description: Delete an authorization resource by organization, resource type, and external ID. This also deletes all descendant resources.
+      operationId: AuthorizationResourcesByExternalIdController_deleteByExternalId
+      parameters:
+      - name: organization_id
+        required: true
+        in: path
+        description: The ID of the organization that owns the resource.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: resource_type_slug
+        required: true
+        in: path
+        description: The slug of the resource type.
+        schema:
+          type: string
+          example: project
+      - name: external_id
+        required: true
+        in: path
+        description: An identifier you provide to reference the resource in your system.
+        schema:
+          type: string
+          example: proj-456
+      - name: cascade_delete
+        required: false
+        in: query
+        description: If true, deletes all descendant resources and role assignments. If not set and the resource has children or assignments, the request will fail.
+        schema:
+          type: boolean
+          default: false
+          example: false
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: lock_timeout
+                    const: lock_timeout
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: resource_has_dependents
+                      const: resource_has_dependents
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: resource_type_update_in_progress
+                      const: resource_type_update_in_progress
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+      summary: Delete an Authorization Resource by External ID
+      tags:
+      - authorization
+  /authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}/organization_memberships:
+    get:
+      description: Returns all organization memberships that have a specific permission on a resource, using the resource's external ID. This is useful for answering "Who can access this resource?" when you only have the external ID.
+      operationId: AuthorizationResourcesByExternalIdController_listOrganizationMembershipsForResourceByExternalId
+      parameters:
+      - name: organization_id
+        required: true
+        in: path
+        description: The ID of the organization that owns the resource.
+        schema:
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+          type: string
+      - name: resource_type_slug
+        required: true
+        in: path
+        description: The slug of the resource type this resource belongs to.
+        schema:
+          example: project
+          type: string
+      - name: external_id
+        required: true
+        in: path
+        description: An identifier you provide to reference the resource in your system.
+        schema:
+          example: proj-456
+          type: string
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: permission_slug
+        required: true
+        in: query
+        description: The permission slug to filter by. Only users with this permission on the resource are returned.
+        schema:
+          type: string
+          example: project:read
+      - name: assignment
+        required: false
+        in: query
+        description: Filter by assignment type. Use "direct" for direct assignments only, or "indirect" to include inherited assignments.
+        schema:
+          type: string
+          enum:
+          - direct
+          - indirect
+          example: direct
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserOrganizationMembershipBaseWithUserList'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Memberships for a Resource by External ID
+      tags:
+      - authorization
+  /authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}/role_assignments:
+    get:
+      description: List all role assignments granted on a resource, identified by its external ID. Each assignment includes the organization membership it was granted to.
+      operationId: AuthorizationRoleAssignmentsController_listRoleAssignmentsForResourceByExternalId
+      parameters:
+      - name: organization_id
+        required: true
+        in: path
+        description: The ID of the organization that owns the resource.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: resource_type_slug
+        required: true
+        in: path
+        description: The slug of the resource type.
+        schema:
+          type: string
+          example: project
+      - name: external_id
+        required: true
+        in: path
+        description: An identifier you provide to reference the resource in your system.
+        schema:
+          type: string
+          example: proj-456
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: role_slug
+        required: false
+        in: query
+        description: Filter assignments by the slug of the role.
+        schema:
+          example: editor
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRoleAssignmentList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Role Assignments for a Resource by External ID
+      tags:
+      - authorization
+  /authorization/resources:
+    get:
+      description: Get a paginated list of authorization resources.
+      operationId: AuthorizationResourcesController_list
+      parameters:
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: organization_id
+        required: false
+        in: query
+        description: Filter resources by organization ID.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: resource_type_slug
+        required: false
+        in: query
+        description: Filter resources by resource type slug.
+        schema:
+          type: string
+          example: project
+      - name: resource_external_id
+        required: false
+        in: query
+        description: Filter resources by external ID.
+        schema:
+          type: string
+          example: my-project-123
+      - name: parent_resource_id
+        required: false
+        in: query
+        description: Filter resources by parent resource ID. Mutually exclusive with `parent_resource_type_slug` and `parent_external_id`.
+        schema:
+          type: string
+          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+      - name: parent_resource_type_slug
+        required: false
+        in: query
+        description: Filter resources by parent resource type slug. Required with `parent_external_id`. Mutually exclusive with `parent_resource_id`.
+        schema:
+          type: string
+          example: workspace
+      - name: parent_external_id
+        required: false
+        in: query
+        description: Filter resources by parent external ID. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`.
+        schema:
+          type: string
+          example: ext-workspace-123
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationResourceList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Resources
+      tags:
+      - authorization
+      x-mutually-exclusive-parameter-groups:
+        parent:
+          optional: true
+          variants:
+            by_id:
+            - parent_resource_id
+            by_external_id:
+            - parent_resource_type_slug
+            - parent_external_id
+    post:
+      description: Create a new authorization resource.
+      operationId: AuthorizationResourcesController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAuthorizationResourceDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the Resource object.
+                    const: authorization_resource
+                  name:
+                    type: string
+                    description: A human-readable name for the Resource.
+                    example: Acme Workspace
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the Resource.
+                    example: Primary workspace for the Acme team
+                  organization_id:
+                    type: string
+                    description: The ID of the organization that owns the resource.
+                    example: org_01EHQMYV6MBK39QC5PZXHY59C3
+                  parent_resource_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The ID of the parent resource, if this resource is nested.
+                    example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+                  id:
+                    type: string
+                    description: The unique ID of the Resource.
+                    example: authz_resource_01HXYZ123456789ABCDEFGH
+                  external_id:
+                    type: string
+                    description: An identifier you provide to reference the resource in your system.
+                    example: my-workspace-01
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type this resource belongs to.
+                    example: workspace
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - object
+                - name
+                - description
+                - organization_id
+                - parent_resource_id
+                - id
+                - external_id
+                - resource_type_slug
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: bad_request
+                      const: bad_request
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: lock_timeout
+                      const: lock_timeout
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: authorization_resource_external_id_conflict
+                      const: authorization_resource_external_id_conflict
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: resource_type_update_in_progress
+                      const: resource_type_update_in_progress
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Create an Authorization Resource
+      tags:
+      - authorization
+      x-mutually-exclusive-body-groups:
+        parent_resource:
+          optional: true
+          variants:
+            by_id:
+            - parent_resource_id
+            by_external_id:
+            - parent_resource_external_id
+            - parent_resource_type_slug
+  /authorization/resources/{resource_id}:
+    get:
+      description: Retrieve the details of an authorization resource by its ID.
+      operationId: AuthorizationResourcesController_findById
+      parameters:
+      - name: resource_id
+        required: true
+        in: path
+        description: The ID of the authorization resource.
+        schema:
+          type: string
+          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationResource'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get a Resource
+      tags:
+      - authorization
+    patch:
+      description: Update an existing authorization resource.
+      operationId: AuthorizationResourcesController_update
+      parameters:
+      - name: resource_id
+        required: true
+        in: path
+        description: The ID of the authorization resource.
+        schema:
+          type: string
+          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAuthorizationResourceDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the Resource object.
+                    const: authorization_resource
+                  name:
+                    type: string
+                    description: A human-readable name for the Resource.
+                    example: Updated Name
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the Resource.
+                    example: Updated description
+                  organization_id:
+                    type: string
+                    description: The ID of the organization that owns the resource.
+                    example: org_01EHZNVPK3SFK441A1RGBFSHRT
+                  parent_resource_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The ID of the parent resource, if this resource is nested.
+                    example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+                  id:
+                    type: string
+                    description: The unique ID of the Resource.
+                    example: authz_resource_01HXYZ123456789ABCDEFGH
+                  external_id:
+                    type: string
+                    description: An identifier you provide to reference the resource in your system.
+                    example: proj-456
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type this resource belongs to.
+                    example: project
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - object
+                - name
+                - description
+                - organization_id
+                - parent_resource_id
+                - id
+                - external_id
+                - resource_type_slug
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: lock_timeout
+                    const: lock_timeout
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: resource_type_update_in_progress
+                    const: resource_type_update_in_progress
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Update a Resource
+      tags:
+      - authorization
+      x-mutually-exclusive-body-groups:
+        parent_resource:
+          optional: true
+          variants:
+            by_id:
+            - parent_resource_id
+            by_external_id:
+            - parent_resource_external_id
+            - parent_resource_type_slug
+    delete:
+      description: Delete an authorization resource and all its descendants.
+      operationId: AuthorizationResourcesController_delete
+      parameters:
+      - name: resource_id
+        required: true
+        in: path
+        description: The ID of the authorization resource.
+        schema:
+          type: string
+          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+      - name: cascade_delete
+        required: false
+        in: query
+        description: If true, deletes all descendant resources and role assignments. If not set and the resource has children or assignments, the request will fail.
+        schema:
+          type: boolean
+          default: false
+          example: false
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: lock_timeout
+                    const: lock_timeout
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: resource_has_dependents
+                      const: resource_has_dependents
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: resource_type_update_in_progress
+                      const: resource_type_update_in_progress
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+      summary: Delete an Authorization Resource
+      tags:
+      - authorization
+  /authorization/resources/{resource_id}/organization_memberships:
+    get:
+      description: Returns all organization memberships that have a specific permission on a resource instance. This is useful for answering "Who can access this resource?".
+      operationId: AuthorizationResourcesController_listOrganizationMembershipsForResource
+      parameters:
+      - name: resource_id
+        required: true
+        in: path
+        description: The ID of the authorization resource.
+        schema:
+          type: string
+          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: permission_slug
+        required: true
+        in: query
+        description: The permission slug to filter by. Only users with this permission on the resource are returned.
+        schema:
+          type: string
+          example: document:edit
+      - name: assignment
+        required: false
+        in: query
+        description: Filter by assignment type. Use `direct` for direct assignments only, or `indirect` to include inherited assignments.
+        schema:
+          type: string
+          enum:
+          - direct
+          - indirect
+          example: direct
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserOrganizationMembershipBaseWithUserList'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Organization Memberships for Resource
+      tags:
+      - authorization
+  /authorization/resources/{resource_id}/role_assignments:
+    get:
+      description: List all role assignments granted on a specific resource instance. Each assignment includes the organization membership it was granted to.
+      operationId: AuthorizationRoleAssignmentsController_listRoleAssignmentsForResource
+      parameters:
+      - name: resource_id
+        required: true
+        in: path
+        description: The ID of the authorization resource.
+        schema:
+          type: string
+          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: role_slug
+        required: false
+        in: query
+        description: Filter assignments by the slug of the role.
+        schema:
+          example: editor
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRoleAssignmentList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Role Assignments for a Resource
+      tags:
+      - authorization
+  /authorization/roles:
+    post:
+      description: Create a new environment role.
+      operationId: AuthorizationRolesController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: A unique slug for the role.
+                    example: editor
+                  object:
+                    type: string
+                    description: Distinguishes the role object.
+                    example: role
+                    const: role
+                  id:
+                    type: string
+                    description: Unique identifier of the role.
+                    example: role_01EHQMYV6MBK39QC5PZXHY59C3
+                  name:
+                    type: string
+                    description: A descriptive name for the role.
+                    example: Editor
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the role.
+                    example: Can edit resources
+                  type:
+                    type: string
+                    enum:
+                    - EnvironmentRole
+                    - OrganizationRole
+                    description: Whether the role is scoped to the environment or an organization (custom role).
+                    example: EnvironmentRole
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type the role is scoped to.
+                    example: organization
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: The permission slugs assigned to the role.
+                    example:
+                    - posts:read
+                    - posts:write
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - slug
+                - object
+                - id
+                - name
+                - description
+                - type
+                - resource_type_slug
+                - permissions
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: role_slug_conflict
+                    const: role_slug_conflict
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Create an Environment Role
+      tags:
+      - authorization
+    get:
+      description: List all environment roles in priority order.
+      operationId: AuthorizationRolesController_list
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Environment Roles
+      tags:
+      - authorization
+  /authorization/roles/{slug}:
+    get:
+      description: Get an environment role by its slug.
+      operationId: AuthorizationRolesController_get
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the environment role.
+        schema:
+          type: string
+          example: admin
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get an Environment Role
+      tags:
+      - authorization
+    patch:
+      description: Update an existing environment role.
+      operationId: AuthorizationRolesController_update
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the environment role.
+        schema:
+          type: string
+          example: admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: A unique slug for the role.
+                    example: admin
+                  object:
+                    type: string
+                    description: Distinguishes the role object.
+                    example: role
+                    const: role
+                  id:
+                    type: string
+                    description: Unique identifier of the role.
+                    example: role_01EHQMYV6MBK39QC5PZXHY59C3
+                  name:
+                    type: string
+                    description: A descriptive name for the role.
+                    example: Super Administrator
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the role.
+                    example: Full administrative access to all resources
+                  type:
+                    type: string
+                    enum:
+                    - EnvironmentRole
+                    - OrganizationRole
+                    description: Whether the role is scoped to the environment or an organization (custom role).
+                    example: EnvironmentRole
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type the role is scoped to.
+                    example: organization
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: The permission slugs assigned to the role.
+                    example:
+                    - posts:read
+                    - posts:write
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - slug
+                - object
+                - id
+                - name
+                - description
+                - type
+                - resource_type_slug
+                - permissions
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Update an Environment Role
+      tags:
+      - authorization
+  /authorization/roles/{slug}/permissions:
+    put:
+      description: Replace all permissions on an environment role with the provided list.
+      operationId: AuthorizationRolePermissionsController_setPermissions
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the environment role.
+        schema:
+          type: string
+          example: admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetRolePermissionsDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: A unique slug for the role.
+                    example: admin
+                  object:
+                    type: string
+                    description: Distinguishes the role object.
+                    example: role
+                    const: role
+                  id:
+                    type: string
+                    description: Unique identifier of the role.
+                    example: role_01EHQMYV6MBK39QC5PZXHY59C3
+                  name:
+                    type: string
+                    description: A descriptive name for the role.
+                    example: Admin
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the role.
+                    example: Can manage all resources
+                  type:
+                    type: string
+                    enum:
+                    - EnvironmentRole
+                    - OrganizationRole
+                    description: Whether the role is scoped to the environment or an organization (custom role).
+                    example: EnvironmentRole
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type the role is scoped to.
+                    example: organization
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: The permission slugs assigned to the role.
+                    example:
+                    - billing:read
+                    - billing:write
+                    - invoices:manage
+                    - reports:view
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - slug
+                - object
+                - id
+                - name
+                - description
+                - type
+                - resource_type_slug
+                - permissions
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Set Permissions for an Environment Role
+      tags:
+      - authorization
+    post:
+      description: Add a single permission to an environment role. If the permission is already assigned to the role, this operation has no effect.
+      operationId: AuthorizationRolePermissionsController_addPermission
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: The slug of the environment role.
+        schema:
+          type: string
+          example: admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRolePermissionDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    description: A unique slug for the role.
+                    example: admin
+                  object:
+                    type: string
+                    description: Distinguishes the role object.
+                    example: role
+                    const: role
+                  id:
+                    type: string
+                    description: Unique identifier of the role.
+                    example: role_01EHQMYV6MBK39QC5PZXHY59C3
+                  name:
+                    type: string
+                    description: A descriptive name for the role.
+                    example: Admin
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the role.
+                    example: Can manage all resources
+                  type:
+                    type: string
+                    enum:
+                    - EnvironmentRole
+                    - OrganizationRole
+                    description: Whether the role is scoped to the environment or an organization (custom role).
+                    example: EnvironmentRole
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type the role is scoped to.
+                    example: organization
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                    description: The permission slugs assigned to the role.
+                    example:
+                    - reports:export
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - slug
+                - object
+                - id
+                - name
+                - description
+                - type
+                - resource_type_slug
+                - permissions
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Add a Permission to an Environment Role
+      tags:
+      - authorization
+components:
+  schemas:
+    UserlandUserOrganizationMembershipBaseWithUserList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserlandUserOrganizationMembershipBaseWithUser'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: om_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: om_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    AssignRoleDto:
+      allOf:
+      - type: object
+        properties:
+          role_slug:
+            type: string
+            description: The slug of the role to assign.
+            example: editor
+        required:
+        - role_slug
+      - oneOf:
+        - type: object
+          properties:
+            resource_id:
+              type: string
+              description: The ID of the resource. Mutually exclusive with `resource_external_id` and `resource_type_slug`.
+              example: authz_resource_01HXYZ123456789ABCDEFGH
+          required:
+          - resource_id
+          not:
+            anyOf:
+            - properties:
+                resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - resource_external_id
+            - properties:
+                resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - resource_type_slug
+        - type: object
+          properties:
+            resource_external_id:
+              type: string
+              description: The external ID of the resource. Required with `resource_type_slug`. Mutually exclusive with `resource_id`.
+              example: project-ext-456
+            resource_type_slug:
+              type: string
+              description: The resource type slug. Required with `resource_external_id`. Mutually exclusive with `resource_id`.
+              example: project
+          required:
+          - resource_external_id
+          - resource_type_slug
+          not:
+            anyOf:
+            - properties:
+                resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - resource_id
+      x-mutually-exclusive-body-groups:
+        resource_target:
+          optional: false
+          variants:
+            by_id:
+            - resource_id
+            by_external_id:
+            - resource_external_id
+            - resource_type_slug
+    UpdateRoleDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the role.
+          example: Super Administrator
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the role.
+          example: Full administrative access to all resources
+    UserlandUser:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the user object.
+          const: user
+        id:
+          type: string
+          description: The unique ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+          example: Marcelina
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+          example: Davis
+        profile_picture_url:
+          type:
+          - string
+          - 'null'
+          description: A URL reference to an image representing the user.
+          example: https://workoscdn.com/images/v1/123abc
+        email:
+          type: string
+          description: The email address of the user.
+          example: marcelina.davis@example.com
+        email_verified:
+          type: boolean
+          description: Whether the user's email has been verified.
+          example: true
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The external ID of the user.
+          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            maxLength: 600
+          description: Object containing metadata key/value pairs associated with the user.
+          example:
+            timezone: America/New_York
+          propertyNames:
+            maxLength: 40
+          maxProperties: 50
+        last_sign_in_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the user last signed in.
+          example: '2025-06-25T19:07:33.155Z'
+        locale:
+          type:
+          - string
+          - 'null'
+          description: The user's preferred locale.
+          example: en-US
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - first_name
+      - last_name
+      - profile_picture_url
+      - email
+      - email_verified
+      - external_id
+      - last_sign_in_at
+      - created_at
+      - updated_at
+      description: The user object.
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    AuthorizationPermission:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Permission object.
+          const: permission
+        id:
+          type: string
+          description: Unique identifier of the Permission.
+          example: perm_01HXYZ123456789ABCDEFGHIJ
+        slug:
+          type: string
+          description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+          example: documents:read
+        name:
+          type: string
+          description: A descriptive name for the Permission.
+          example: View Documents
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Permission.
+          example: Allows viewing document contents
+        system:
+          type: boolean
+          description: Whether the permission is a system permission. System permissions are managed by WorkOS and cannot be deleted.
+          example: false
+        resource_type_slug:
+          type: string
+          description: The slug of the resource type associated with the permission.
+          example: workspace
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - slug
+      - name
+      - description
+      - system
+      - resource_type_slug
+      - created_at
+      - updated_at
+    RoleList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+          description: The list of records for the current page.
+      required:
+      - object
+      - data
+    UserRoleAssignment:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the role assignment object.
+          const: role_assignment
+        id:
+          type: string
+          description: Unique identifier of the role assignment.
+          example: role_assignment_01HXYZ123456789ABCDEFGH
+        organization_membership_id:
+          type: string
+          description: The ID of the organization membership the role is assigned to.
+          example: om_01HXYZ123456789ABCDEFGHIJ
+        role:
+          $ref: '#/components/schemas/SlimRole'
+          description: The role included in the assignment.
+        resource:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique ID of the Resource.
+              example: authz_resource_01HXYZ123456789ABCDEFGH
+            external_id:
+              type: string
+              description: An identifier you provide to reference the resource in your system.
+              example: proj-456
+            resource_type_slug:
+              type: string
+              description: The slug of the resource type this resource belongs to.
+              example: project
+          required:
+          - id
+          - external_id
+          - resource_type_slug
+          description: The resource the role is assigned on.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - organization_membership_id
+      - role
+      - resource
+      - created_at
+      - updated_at
+    SlimRole:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the assigned role.
+          example: admin
+      required:
+      - slug
+      description: The primary role assigned to the user.
+    AuthorizationPermissionList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationPermission'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: perm_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: perm_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    UserRoleAssignmentList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRoleAssignment'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: role_assignment_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: role_assignment_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    RemoveRoleDto:
+      allOf:
+      - type: object
+        properties:
+          role_slug:
+            type: string
+            description: The slug of the role to remove.
+            example: editor
+        required:
+        - role_slug
+      - oneOf:
+        - type: object
+          properties:
+            resource_id:
+              type: string
+              description: The ID of the resource. Mutually exclusive with `resource_external_id` and `resource_type_slug`.
+              example: authz_resource_01HXYZ123456789ABCDEFGH
+          required:
+          - resource_id
+          not:
+            anyOf:
+            - properties:
+                resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - resource_external_id
+            - properties:
+                resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - resource_type_slug
+        - type: object
+          properties:
+            resource_external_id:
+              type: string
+              description: The external ID of the resource. Required with `resource_type_slug`. Mutually exclusive with `resource_id`.
+              example: external_01HXYZ123456789ABCDEFGH
+            resource_type_slug:
+              type: string
+              description: The resource type slug. Required with `resource_external_id`. Mutually exclusive with `resource_id`.
+              example: project
+          required:
+          - resource_external_id
+          - resource_type_slug
+          not:
+            anyOf:
+            - properties:
+                resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - resource_id
+      x-mutually-exclusive-body-groups:
+        resource_target:
+          optional: false
+          variants:
+            by_id:
+            - resource_id
+            by_external_id:
+            - resource_external_id
+            - resource_type_slug
+    UpdateOrganizationRoleDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the role.
+          example: Finance Administrator
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the role's purpose.
+          example: Can manage all financial operations
+    AuthorizationResourceList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationResource'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: authz_resource_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    AuthorizationCheck:
+      type: object
+      properties:
+        authorized:
+          type: boolean
+          description: Whether the organization membership has the specified permission on the resource.
+          example: true
+      required:
+      - authorized
+    UserlandUserOrganizationMembershipBaseWithUser:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the organization membership object.
+          const: organization_membership
+        id:
+          type: string
+          description: The unique ID of the organization membership.
+          example: om_01HXYZ123456789ABCDEFGHIJ
+        user_id:
+          type: string
+          description: The ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        organization_id:
+          type: string
+          description: The ID of the organization which the user belongs to.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+          description: The status of the organization membership. One of `active`, `inactive`, or `pending`.
+          example: active
+        directory_managed:
+          type: boolean
+          description: Whether this organization membership is managed by a directory sync connection.
+          example: false
+        organization_name:
+          type: string
+          description: The name of the organization which the user belongs to.
+          example: Acme Corp
+        custom_attributes:
+          type: object
+          additionalProperties: {}
+          description: An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked.
+          example:
+            department: Engineering
+            title: Developer Experience Engineer
+            location: Brooklyn
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        user:
+          $ref: '#/components/schemas/UserlandUser'
+          description: The user that belongs to the organization through this membership.
+      required:
+      - object
+      - id
+      - user_id
+      - organization_id
+      - status
+      - directory_managed
+      - created_at
+      - updated_at
+      - user
+    CreateOrganizationRoleDto:
+      type: object
+      properties:
+        slug:
+          type: string
+          maxLength: 48
+          description: A unique identifier for the role within the organization. When provided, must begin with 'org-' and contain only lowercase letters, numbers, hyphens, and underscores. When omitted, a slug is auto-generated from the role name and a random suffix.
+          example: org-billing-admin
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the role.
+          example: Billing Administrator
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the role's purpose.
+          example: Can manage billing and invoices
+        resource_type_slug:
+          type: string
+          maxLength: 48
+          description: The slug of the resource type the role is scoped to.
+          example: organization
+      required:
+      - name
+    CreateRoleDto:
+      type: object
+      properties:
+        slug:
+          type: string
+          maxLength: 48
+          description: A unique slug for the role.
+          example: editor
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the role.
+          example: Editor
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the role.
+          example: Can edit resources
+        resource_type_slug:
+          type: string
+          maxLength: 48
+          description: The slug of the resource type the role is scoped to.
+          example: organization
+      required:
+      - slug
+      - name
+    Role:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: A unique slug for the role.
+          example: admin
+        object:
+          type: string
+          description: Distinguishes the role object.
+          example: role
+          const: role
+        id:
+          type: string
+          description: Unique identifier of the role.
+          example: role_01EHQMYV6MBK39QC5PZXHY59C3
+        name:
+          type: string
+          description: A descriptive name for the role.
+          example: Admin
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the role.
+          example: Can manage all resources
+        type:
+          type: string
+          enum:
+          - EnvironmentRole
+          - OrganizationRole
+          description: Whether the role is scoped to the environment or an organization (custom role).
+          example: EnvironmentRole
+        resource_type_slug:
+          type: string
+          description: The slug of the resource type the role is scoped to.
+          example: organization
+        permissions:
+          type: array
+          items:
+            type: string
+          description: The permission slugs assigned to the role.
+          example:
+          - posts:read
+          - posts:write
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - slug
+      - object
+      - id
+      - name
+      - description
+      - type
+      - resource_type_slug
+      - permissions
+      - created_at
+      - updated_at
+    UpdateAuthorizationResourceDto:
+      allOf:
+      - type: object
+        properties:
+          name:
+            type: string
+            maxLength: 48
+            description: A display name for the resource.
+            example: Updated Name
+          description:
+            type:
+            - string
+            - 'null'
+            maxLength: 150
+            description: An optional description of the resource.
+            example: Updated description
+      - oneOf:
+        - type: object
+          not:
+            anyOf:
+            - properties:
+                parent_resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_id
+            - properties:
+                parent_resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_external_id
+            - properties:
+                parent_resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_type_slug
+        - type: object
+          properties:
+            parent_resource_id:
+              type: string
+              description: The ID of the parent resource. Mutually exclusive with `parent_resource_external_id` and `parent_resource_type_slug`.
+              example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+          required:
+          - parent_resource_id
+          not:
+            anyOf:
+            - properties:
+                parent_resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_external_id
+            - properties:
+                parent_resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_type_slug
+        - type: object
+          properties:
+            parent_resource_external_id:
+              type: string
+              description: The external ID of the parent resource. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`.
+              example: parent-workspace-01
+            parent_resource_type_slug:
+              type: string
+              description: The resource type slug of the parent resource. Required with `parent_resource_external_id`. Mutually exclusive with `parent_resource_id`.
+              example: workspace
+          required:
+          - parent_resource_external_id
+          - parent_resource_type_slug
+          not:
+            anyOf:
+            - properties:
+                parent_resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_id
+      x-mutually-exclusive-body-groups:
+        parent_resource:
+          optional: true
+          variants:
+            by_id:
+            - parent_resource_id
+            by_external_id:
+            - parent_resource_external_id
+            - parent_resource_type_slug
+    AuthorizationResource:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Resource object.
+          const: authorization_resource
+        name:
+          type: string
+          description: A human-readable name for the Resource.
+          example: Website Redesign
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Resource.
+          example: Company website redesign project
+        organization_id:
+          type: string
+          description: The ID of the organization that owns the resource.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        parent_resource_id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent resource, if this resource is nested.
+          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+        id:
+          type: string
+          description: The unique ID of the Resource.
+          example: authz_resource_01HXYZ123456789ABCDEFGH
+        external_id:
+          type: string
+          description: An identifier you provide to reference the resource in your system.
+          example: proj-456
+        resource_type_slug:
+          type: string
+          description: The slug of the resource type this resource belongs to.
+          example: project
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - name
+      - description
+      - organization_id
+      - parent_resource_id
+      - id
+      - external_id
+      - resource_type_slug
+      - created_at
+      - updated_at
+    CheckAuthorizationDto:
+      allOf:
+      - type: object
+        properties:
+          permission_slug:
+            type: string
+            description: The slug of the permission to check.
+            example: posts:create
+        required:
+        - permission_slug
+      - oneOf:
+        - type: object
+          properties:
+            resource_id:
+              type: string
+              description: The ID of the resource. Mutually exclusive with `resource_external_id` and `resource_type_slug`.
+              example: resource_01HXYZ123456789ABCDEFGHIJ
+          required:
+          - resource_id
+          not:
+            anyOf:
+            - properties:
+                resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - resource_external_id
+            - properties:
+                resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - resource_type_slug
+        - type: object
+          properties:
+            resource_external_id:
+              type: string
+              description: The external ID of the resource. Required with `resource_type_slug`. Mutually exclusive with `resource_id`.
+              example: my-custom-id
+            resource_type_slug:
+              type: string
+              description: The slug of the resource type. Required with `resource_external_id`. Mutually exclusive with `resource_id`.
+              example: document
+          required:
+          - resource_external_id
+          - resource_type_slug
+          not:
+            anyOf:
+            - properties:
+                resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - resource_id
+      x-mutually-exclusive-body-groups:
+        resource_target:
+          optional: false
+          variants:
+            by_id:
+            - resource_id
+            by_external_id:
+            - resource_external_id
+            - resource_type_slug
+    AddRolePermissionDto:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the permission to add to the role.
+          example: reports:export
+      required:
+      - slug
+    SetRolePermissionsDto:
+      type: object
+      properties:
+        permissions:
+          description: The permission slugs to assign to the role.
+          example:
+          - billing:read
+          - billing:write
+          - invoices:manage
+          - reports:view
+          type: array
+          items:
+            type: string
+      required:
+      - permissions
+    CreateAuthorizationResourceDto:
+      allOf:
+      - type: object
+        properties:
+          external_id:
+            type: string
+            maxLength: 128
+            pattern: ^[\x00-\x7F]+$
+            description: An external identifier for the resource.
+            example: my-workspace-01
+          name:
+            type: string
+            maxLength: 48
+            description: A display name for the resource.
+            example: Acme Workspace
+          description:
+            type:
+            - string
+            - 'null'
+            maxLength: 150
+            description: An optional description of the resource.
+            example: Primary workspace for the Acme team
+          resource_type_slug:
+            type: string
+            description: The slug of the resource type.
+            example: workspace
+          organization_id:
+            type: string
+            description: The ID of the organization this resource belongs to.
+            example: org_01EHQMYV6MBK39QC5PZXHY59C3
+        required:
+        - external_id
+        - name
+        - resource_type_slug
+        - organization_id
+      - oneOf:
+        - type: object
+          not:
+            anyOf:
+            - properties:
+                parent_resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_id
+            - properties:
+                parent_resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_external_id
+            - properties:
+                parent_resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_type_slug
+        - type: object
+          properties:
+            parent_resource_id:
+              type:
+              - string
+              - 'null'
+              description: The ID of the parent resource. Mutually exclusive with `parent_resource_external_id` and `parent_resource_type_slug`.
+              example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+          required:
+          - parent_resource_id
+          not:
+            anyOf:
+            - properties:
+                parent_resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_external_id
+            - properties:
+                parent_resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_type_slug
+        - type: object
+          properties:
+            parent_resource_external_id:
+              type: string
+              description: The external ID of the parent resource. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`.
+              example: parent-workspace-01
+            parent_resource_type_slug:
+              type: string
+              description: The resource type slug of the parent resource. Required with `parent_resource_external_id`. Mutually exclusive with `parent_resource_id`.
+              example: workspace
+          required:
+          - parent_resource_external_id
+          - parent_resource_type_slug
+          not:
+            anyOf:
+            - properties:
+                parent_resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_id
+      x-mutually-exclusive-body-groups:
+        parent_resource:
+          optional: true
+          variants:
+            by_id:
+            - parent_resource_id
+            by_external_id:
+            - parent_resource_external_id
+            - parent_resource_type_slug
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

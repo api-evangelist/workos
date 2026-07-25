@@ -1,0 +1,421 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal multi-factor-auth API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: multi-factor-auth
+  description: Multi-factor authentication factor management.
+  x-displayName: Multi-Factor Authentication
+paths:
+  /auth/factors/enroll:
+    post:
+      description: Enrolls an Authentication Factor to be used as an additional factor of authentication. The returned ID should be used to create an authentication Challenge.
+      operationId: AuthenticationFactorsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                  - generic_otp
+                  - sms
+                  - totp
+                  description: The type of factor to enroll.
+                  example: totp
+                phone_number:
+                  type: string
+                  description: Required when type is 'sms'.
+                  example: '+15555555555'
+                totp_issuer:
+                  type: string
+                  description: Required when type is 'totp'.
+                  example: Foo Corp
+                totp_user:
+                  type: string
+                  description: Required when type is 'totp'.
+                  example: alan.turing@example.com
+                user_id:
+                  type: string
+                  description: The ID of the user to associate the factor with.
+                  example: user_01E4ZCR3C56J083X43JQXF3JK5
+              required:
+              - type
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFactorEnrolled'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Enroll Factor
+      tags:
+      - multi-factor-auth
+  /auth/factors/{id}:
+    get:
+      description: Gets an Authentication Factor.
+      operationId: AuthenticationFactorsController_get
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the Factor.
+        schema:
+          type: string
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationFactor'
+              example:
+                object: authentication_factor
+                id: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+                type: totp
+                user_id: user_01E4ZCR3C56J083X43JQXF3JK5
+                totp:
+                  issuer: WorkOS
+                  user: user@example.com
+                created_at: '2026-01-15T12:00:00.000Z'
+                updated_at: '2026-01-15T12:00:00.000Z'
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get Factor
+      tags:
+      - multi-factor-auth
+    delete:
+      description: Permanently deletes an Authentication Factor. It cannot be undone.
+      operationId: AuthenticationFactorsController_delete
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the Factor.
+        schema:
+          type: string
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Delete Factor
+      tags:
+      - multi-factor-auth
+  /auth/factors/{id}/challenge:
+    post:
+      description: Creates a Challenge for an Authentication Factor.
+      operationId: AuthenticationFactorsController_challenge
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the Authentication Factor to be challenged.
+        schema:
+          type: string
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChallengeAuthenticationFactorDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationChallenge'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Challenge Factor
+      tags:
+      - multi-factor-auth
+components:
+  schemas:
+    ChallengeAuthenticationFactorDto:
+      type: object
+      properties:
+        sms_template:
+          type: string
+          description: A custom template for the SMS message. Use the {{code}} placeholder to include the verification code.
+          example: Your verification code is {{code}}.
+    AuthenticationChallenge:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the authentication challenge object.
+          const: authentication_challenge
+        id:
+          type: string
+          description: The unique ID of the authentication challenge.
+          example: auth_challenge_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        expires_at:
+          format: date-time
+          type: string
+          description: The timestamp when the challenge will expire. Does not apply to TOTP factors.
+          example: '2026-01-15T12:00:00.000Z'
+        code:
+          type: string
+          description: The one-time code for the challenge.
+          example: '123456'
+        authentication_factor_id:
+          type: string
+          description: The unique ID of the authentication factor the challenge belongs to.
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - authentication_factor_id
+      - created_at
+      - updated_at
+    AuthenticationFactorEnrolled:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the authentication factor object.
+          const: authentication_factor
+        id:
+          type: string
+          description: The unique ID of the factor.
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        type:
+          type: string
+          enum:
+          - generic_otp
+          - sms
+          - totp
+          - webauthn
+          description: The type of the factor to enroll.
+          example: totp
+        user_id:
+          type: string
+          description: The ID of the [user](/reference/authkit/user).
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        sms:
+          type: object
+          properties:
+            phone_number:
+              type: string
+              description: The user's phone number for SMS-based authentication.
+              example: '+15005550006'
+          required:
+          - phone_number
+          description: SMS-based authentication factor details.
+        totp:
+          type: object
+          properties:
+            issuer:
+              type: string
+              description: Your application or company name displayed in the user's authenticator app. Defaults to your WorkOS team name.
+              example: WorkOS
+            user:
+              type: string
+              description: The user's account name displayed in their authenticator app. Defaults to the user's email.
+              example: user@example.com
+            secret:
+              type: string
+              description: TOTP secret that can be manually entered into some authenticator apps in place of scanning a QR code.
+              example: JBSWY3DPEHPK3PXP
+            qr_code:
+              type: string
+              description: Base64 encoded image containing scannable QR code.
+              example: data:image/png;base64,iVBORw0KGgoAAAANSUhEUg...
+            uri:
+              type: string
+              description: The `otpauth` URI that is encoded by the provided `qr_code`.
+              example: otpauth://totp/WorkOS:user@example.com?secret=JBSWY3DPEHPK3PXP&issuer=WorkOS
+          required:
+          - issuer
+          - user
+          - secret
+          - qr_code
+          - uri
+          description: TOTP-based authentication factor details. Includes enrollment secrets only available at creation time.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - type
+      - created_at
+      - updated_at
+    AuthenticationFactor:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the authentication factor object.
+          const: authentication_factor
+        id:
+          type: string
+          description: The unique ID of the factor.
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        type:
+          type: string
+          enum:
+          - generic_otp
+          - sms
+          - totp
+          - webauthn
+          description: The type of the factor to enroll.
+          example: totp
+        user_id:
+          type: string
+          description: The ID of the [user](/reference/authkit/user).
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        sms:
+          type: object
+          properties:
+            phone_number:
+              type: string
+              description: The user's phone number for SMS-based authentication.
+              example: '+15005550006'
+          required:
+          - phone_number
+          description: SMS-based authentication factor details.
+        totp:
+          type: object
+          properties:
+            issuer:
+              type: string
+              description: Your application or company name displayed in the user's authenticator app. Defaults to your WorkOS team name.
+              example: WorkOS
+            user:
+              type: string
+              description: The user's account name displayed in their authenticator app. Defaults to the user's email.
+              example: user@example.com
+          required:
+          - issuer
+          - user
+          description: TOTP-based authentication factor details.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - type
+      - created_at
+      - updated_at
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

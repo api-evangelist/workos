@@ -1,0 +1,378 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal organizations.api_keys API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: organizations.api_keys
+  description: Manage organization-scoped API keys.
+  x-displayName: Organization API Keys
+paths:
+  /organizations/{organizationId}/api_keys:
+    get:
+      description: Get a list of all API keys for an organization.
+      operationId: OrganizationApiKeysController_list
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationApiKeyList'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List API Keys for an Organization
+      tags:
+      - organizations.api_keys
+    post:
+      description: Create a new API key for an organization.
+      operationId: OrganizationApiKeysController_create
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrganizationApiKeyDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationApiKeyWithValue'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Validation failed.
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: The validation error code.
+                          example: required
+                        field:
+                          type: string
+                          description: The field that failed validation.
+                          example: event.action
+                      required:
+                      - code
+                      - field
+                    description: The list of validation errors.
+                required:
+                - message
+                - errors
+      summary: Create an API Key for an Organization
+      tags:
+      - organizations.api_keys
+components:
+  schemas:
+    OrganizationApiKey:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the API Key object.
+          const: api_key
+        id:
+          type: string
+          description: Unique identifier of the API Key.
+          example: api_key_01EHZNVPK3SFK441A1RGBFSHRT
+        owner:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The type of the API Key owner.
+              example: organization
+              const: organization
+            id:
+              type: string
+              description: Unique identifier of the API Key owner.
+              example: org_01EHZNVPK3SFK441A1RGBFSHRT
+          required:
+          - type
+          - id
+          description: The entity that owns the API Key.
+        name:
+          type: string
+          description: A descriptive name for the API Key.
+          example: Production API Key
+        obfuscated_value:
+          type: string
+          description: An obfuscated representation of the API Key value.
+          example: sk_...3456
+        last_used_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Timestamp of when the API Key was last used.
+          example: null
+        permissions:
+          type: array
+          items:
+            type: string
+          description: The permission slugs assigned to the API Key.
+          example:
+          - posts:read
+          - posts:write
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - owner
+      - name
+      - obfuscated_value
+      - last_used_at
+      - permissions
+      - created_at
+      - updated_at
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    OrganizationApiKeyWithValue:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the API Key object.
+          const: api_key
+        id:
+          type: string
+          description: Unique identifier of the API Key.
+          example: api_key_01EHZNVPK3SFK441A1RGBFSHRT
+        owner:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The type of the API Key owner.
+              example: organization
+              const: organization
+            id:
+              type: string
+              description: Unique identifier of the API Key owner.
+              example: org_01EHZNVPK3SFK441A1RGBFSHRT
+          required:
+          - type
+          - id
+          description: The entity that owns the API Key.
+        name:
+          type: string
+          description: A descriptive name for the API Key.
+          example: Production API Key
+        obfuscated_value:
+          type: string
+          description: An obfuscated representation of the API Key value.
+          example: sk_...3456
+        last_used_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Timestamp of when the API Key was last used.
+          example: null
+        permissions:
+          type: array
+          items:
+            type: string
+          description: The permission slugs assigned to the API Key.
+          example:
+          - posts:read
+          - posts:write
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        value:
+          type: string
+          description: The full API Key value. Only returned once at creation time.
+          example: sk_abcdefghijklmnop123456
+      required:
+      - object
+      - id
+      - owner
+      - name
+      - obfuscated_value
+      - last_used_at
+      - permissions
+      - created_at
+      - updated_at
+      - value
+    OrganizationApiKeyList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationApiKey'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: api_key_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: api_key_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    CreateOrganizationApiKeyDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name for the API key.
+          example: Production API Key
+        permissions:
+          description: The permission slugs to assign to the API key.
+          example:
+          - posts:read
+          - posts:write
+          type: array
+          items:
+            type: string
+      required:
+      - name
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

@@ -1,0 +1,404 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal user-management.multi-factor-authentication API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: user-management.multi-factor-authentication
+  description: Multi-factor authentication endpoints.
+  x-displayName: User MFA
+paths:
+  /user_management/users/{userlandUserId}/auth_factors:
+    post:
+      description: Enrolls a user in a new [authentication factor](/reference/authkit/mfa/authentication-factor).
+      operationId: UserlandUserAuthenticationFactorsController_create[0]
+      parameters:
+      - name: userlandUserId
+        required: true
+        in: path
+        description: The ID of the [user](/reference/authkit/user).
+        schema:
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollUserlandUserAuthenticationFactorDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserAuthenticationFactorEnrollResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Enroll an Authentication Factor
+      tags:
+      - user-management.multi-factor-authentication
+    get:
+      description: Lists the [authentication factors](/reference/authkit/mfa/authentication-factor) for a user.
+      operationId: UserlandUserAuthenticationFactorsController_list[0]
+      parameters:
+      - name: userlandUserId
+        required: true
+        in: path
+        description: The ID of the [user](/reference/authkit/user).
+        schema:
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+          type: string
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserAuthenticationFactorList'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Authentication Factors
+      tags:
+      - user-management.multi-factor-authentication
+components:
+  schemas:
+    AuthenticationFactor:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the authentication factor object.
+          const: authentication_factor
+        id:
+          type: string
+          description: The unique ID of the factor.
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        type:
+          type: string
+          enum:
+          - generic_otp
+          - sms
+          - totp
+          - webauthn
+          description: The type of the factor to enroll.
+          example: totp
+        user_id:
+          type: string
+          description: The ID of the [user](/reference/authkit/user).
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        sms:
+          type: object
+          properties:
+            phone_number:
+              type: string
+              description: The user's phone number for SMS-based authentication.
+              example: '+15005550006'
+          required:
+          - phone_number
+          description: SMS-based authentication factor details.
+        totp:
+          type: object
+          properties:
+            issuer:
+              type: string
+              description: Your application or company name displayed in the user's authenticator app. Defaults to your WorkOS team name.
+              example: WorkOS
+            user:
+              type: string
+              description: The user's account name displayed in their authenticator app. Defaults to the user's email.
+              example: user@example.com
+          required:
+          - issuer
+          - user
+          description: TOTP-based authentication factor details.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - type
+      - created_at
+      - updated_at
+    AuthenticationChallenge:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the authentication challenge object.
+          const: authentication_challenge
+        id:
+          type: string
+          description: The unique ID of the authentication challenge.
+          example: auth_challenge_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        expires_at:
+          format: date-time
+          type: string
+          description: The timestamp when the challenge will expire. Does not apply to TOTP factors.
+          example: '2026-01-15T12:00:00.000Z'
+        code:
+          type: string
+          description: The one-time code for the challenge.
+          example: '123456'
+        authentication_factor_id:
+          type: string
+          description: The unique ID of the authentication factor the challenge belongs to.
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - authentication_factor_id
+      - created_at
+      - updated_at
+    UserlandUserAuthenticationFactorEnrollResponse:
+      type: object
+      properties:
+        authentication_factor:
+          $ref: '#/components/schemas/AuthenticationFactorEnrolled'
+          description: The [authentication factor](/reference/authkit/mfa/authentication-factor) object that represents the additional authentication method used on top of the existing authentication strategy.
+        authentication_challenge:
+          $ref: '#/components/schemas/AuthenticationChallenge'
+          description: The [authentication challenge](/reference/authkit/mfa/authentication-challenge) object that is used to complete the authentication process.
+      required:
+      - authentication_factor
+      - authentication_challenge
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    UserlandUserAuthenticationFactorList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthenticationFactor'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: auth_factor_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: auth_factor_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    EnrollUserlandUserAuthenticationFactorDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of the factor to enroll.
+          example: totp
+          const: totp
+        totp_issuer:
+          type: string
+          description: Your application or company name displayed in the user's authenticator app.
+          example: WorkOS
+        totp_user:
+          type: string
+          description: The user's account name displayed in their authenticator app.
+          example: user@example.com
+        totp_secret:
+          type: string
+          description: The Base32-encoded shared secret for TOTP factors. This can be provided when creating the auth factor, otherwise it will be generated. The algorithm used to derive TOTP codes is SHA-1, the code length is 6 digits, and the timestep is 30 seconds – the secret must be compatible with these parameters.
+          example: JBSWY3DPEHPK3PXP
+      required:
+      - type
+    AuthenticationFactorEnrolled:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the authentication factor object.
+          const: authentication_factor
+        id:
+          type: string
+          description: The unique ID of the factor.
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        type:
+          type: string
+          enum:
+          - generic_otp
+          - sms
+          - totp
+          - webauthn
+          description: The type of the factor to enroll.
+          example: totp
+        user_id:
+          type: string
+          description: The ID of the [user](/reference/authkit/user).
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        sms:
+          type: object
+          properties:
+            phone_number:
+              type: string
+              description: The user's phone number for SMS-based authentication.
+              example: '+15005550006'
+          required:
+          - phone_number
+          description: SMS-based authentication factor details.
+        totp:
+          type: object
+          properties:
+            issuer:
+              type: string
+              description: Your application or company name displayed in the user's authenticator app. Defaults to your WorkOS team name.
+              example: WorkOS
+            user:
+              type: string
+              description: The user's account name displayed in their authenticator app. Defaults to the user's email.
+              example: user@example.com
+            secret:
+              type: string
+              description: TOTP secret that can be manually entered into some authenticator apps in place of scanning a QR code.
+              example: JBSWY3DPEHPK3PXP
+            qr_code:
+              type: string
+              description: Base64 encoded image containing scannable QR code.
+              example: data:image/png;base64,iVBORw0KGgoAAAANSUhEUg...
+            uri:
+              type: string
+              description: The `otpauth` URI that is encoded by the provided `qr_code`.
+              example: otpauth://totp/WorkOS:user@example.com?secret=JBSWY3DPEHPK3PXP&issuer=WorkOS
+          required:
+          - issuer
+          - user
+          - secret
+          - qr_code
+          - uri
+          description: TOTP-based authentication factor details. Includes enrollment secrets only available at creation time.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - type
+      - created_at
+      - updated_at
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

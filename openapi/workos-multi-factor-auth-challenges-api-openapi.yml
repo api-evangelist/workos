@@ -1,0 +1,170 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal multi-factor-auth.challenges API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: multi-factor-auth.challenges
+  description: Multi-factor authentication challenge verification.
+  x-displayName: MFA Challenges
+paths:
+  /auth/challenges/{id}/verify:
+    post:
+      description: Verifies an Authentication Challenge.
+      operationId: AuthenticationChallengesController_verify
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the Authentication Challenge.
+        schema:
+          type: string
+          example: auth_challenge_01FVYZ5QM8N98T9ME5BCB2BBMJ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: The one-time code to verify.
+                  example: '123456'
+              required:
+              - code
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationChallengeVerifyResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: one_time_code_too_many_attempts
+                    const: one_time_code_too_many_attempts
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Verify Challenge
+      tags:
+      - multi-factor-auth.challenges
+components:
+  schemas:
+    AuthenticationChallenge:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the authentication challenge object.
+          const: authentication_challenge
+        id:
+          type: string
+          description: The unique ID of the authentication challenge.
+          example: auth_challenge_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        expires_at:
+          format: date-time
+          type: string
+          description: The timestamp when the challenge will expire. Does not apply to TOTP factors.
+          example: '2026-01-15T12:00:00.000Z'
+        code:
+          type: string
+          description: The one-time code for the challenge.
+          example: '123456'
+        authentication_factor_id:
+          type: string
+          description: The unique ID of the authentication factor the challenge belongs to.
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - authentication_factor_id
+      - created_at
+      - updated_at
+    AuthenticationChallengeVerifyResponse:
+      type: object
+      properties:
+        challenge:
+          $ref: '#/components/schemas/AuthenticationChallenge'
+          description: The authentication challenge object.
+        valid:
+          type: boolean
+          description: Whether the code was valid.
+          example: true
+      required:
+      - challenge
+      - valid
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

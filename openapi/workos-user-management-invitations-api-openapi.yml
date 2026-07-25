@@ -1,0 +1,1102 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal user-management.invitations API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: user-management.invitations
+  description: Manage user invitations.
+  x-displayName: Invitations
+paths:
+  /user_management/invitations:
+    get:
+      description: Get a list of all of invitations matching the criteria specified.
+      operationId: UserlandUserInvitesController_list
+      parameters:
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: organization_id
+        required: false
+        in: query
+        description: The ID of the [organization](/reference/organization) that the recipient will join.
+        schema:
+          example: org_01E4ZCR3C56J083X43JQXF3JK5
+          type: string
+      - name: email
+        required: false
+        in: query
+        description: The email address of the recipient.
+        schema:
+          format: email
+          example: marcelina.davis@example.com
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    object:
+                      type: string
+                      description: Indicates this is a list response.
+                      const: list
+                    list_metadata:
+                      type: object
+                      properties:
+                        before:
+                          type:
+                          - string
+                          - 'null'
+                          description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+                          example: invitation_01HXYZ123456789ABCDEFGHIJ
+                        after:
+                          type:
+                          - string
+                          - 'null'
+                          description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+                          example: invitation_01HXYZ987654321KJIHGFEDCBA
+                      required:
+                      - before
+                      - after
+                      description: Pagination cursors for navigating between pages of results.
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      description: The list of records for the current page.
+                      items:
+                        $ref: '#/components/schemas/UserlandUserInvite'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invalid_request_parameters
+                    const: invalid_request_parameters
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Validation failed.
+                required:
+                - code
+                - message
+      summary: List Invitations
+      tags:
+      - user-management.invitations
+    post:
+      description: Sends an invitation email to the recipient.
+      operationId: UserlandUserInvitesController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserlandUserInviteOptionsDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserInvite'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: email_already_invited_to_organization
+                      const: email_already_invited_to_organization
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: user_already_organization_member
+                      const: user_already_organization_member
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: email_already_invited
+                      const: email_already_invited
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: user_already_exists
+                      const: user_already_exists
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: expires_in_days_too_short
+                      const: expires_in_days_too_short
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: expires_in_days_too_long
+                      const: expires_in_days_too_long
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_role
+                      const: invalid_role
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invalid_request_parameters
+                    const: invalid_request_parameters
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Validation failed.
+                required:
+                - code
+                - message
+      summary: Send an Invitation
+      tags:
+      - user-management.invitations
+      x-sends-email: true
+  /user_management/invitations/by_token/{token}:
+    get:
+      description: Retrieve an existing invitation using the token.
+      operationId: UserlandUserInvitesController_getByToken
+      parameters:
+      - name: token
+        required: true
+        in: path
+        description: The token used to accept the invitation.
+        schema:
+          example: Z1uX3RbwcIl5fIGJJJCXXisdI
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserInvite'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Find an Invitation by Token
+      tags:
+      - user-management.invitations
+  /user_management/invitations/{id}:
+    get:
+      description: Get the details of an existing invitation.
+      operationId: UserlandUserInvitesController_get
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the invitation.
+        schema:
+          example: invitation_01E4ZCR3C56J083X43JQXF3JK5
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserInvite'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get an Invitation
+      tags:
+      - user-management.invitations
+  /user_management/invitations/{id}/accept:
+    post:
+      description: Accepts an invitation and, if linked to an organization, activates the user's membership in that organization.
+      operationId: UserlandUserInvitesController_accept
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the invitation.
+        schema:
+          example: invitation_01E4ZCR3C56J083X43JQXF3JK5
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the invitation object.
+                    const: invitation
+                  id:
+                    type: string
+                    description: The unique ID of the invitation.
+                    example: invitation_01E4ZCR3C56J083X43JQXF3JK5
+                  email:
+                    type: string
+                    description: The email address of the recipient.
+                    example: marcelina.davis@example.com
+                  state:
+                    type: string
+                    enum:
+                    - pending
+                    - accepted
+                    - expired
+                    - revoked
+                    description: The state of the invitation.
+                    example: accepted
+                  accepted_at:
+                    format: date-time
+                    type:
+                    - string
+                    - 'null'
+                    description: The timestamp when the invitation was accepted, or null if not yet accepted.
+                    example: '2026-01-15T12:00:00.000Z'
+                  revoked_at:
+                    format: date-time
+                    type:
+                    - string
+                    - 'null'
+                    description: The timestamp when the invitation was revoked, or null if not revoked.
+                    example: null
+                  expires_at:
+                    format: date-time
+                    type: string
+                    description: The timestamp when the invitation expires.
+                    example: '2026-01-15T12:00:00.000Z'
+                  organization_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The ID of the [organization](/reference/organization) that the recipient will join.
+                    example: org_01E4ZCR3C56J083X43JQXF3JK5
+                  inviter_user_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The ID of the user who invited the recipient, if provided.
+                    example: user_01HYGBX8ZGD19949T3BM4FW1C3
+                  accepted_user_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The ID of the user who accepted the invitation, once accepted.
+                    example: user_01E4ZCR3C56J083X43JQXF3JK5
+                  role_slug:
+                    type:
+                    - string
+                    - 'null'
+                    description: Slug of the role the invitee will be assigned on acceptance. Reflects the current role on the invitee's organization membership. null when the invitation has no associated organization.
+                    example: admin
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  token:
+                    type: string
+                    description: The token used to accept the invitation.
+                    example: Z1uX3RbwcIl5fIGJJJCXXisdI
+                  accept_invitation_url:
+                    type: string
+                    description: The URL where the recipient can accept the invitation.
+                    example: https://your-app.com/invite?invitation_token=Z1uX3RbwcIl5fIGJJJCXXisdI
+                required:
+                - object
+                - id
+                - email
+                - state
+                - accepted_at
+                - revoked_at
+                - expires_at
+                - organization_id
+                - inviter_user_id
+                - accepted_user_id
+                - role_slug
+                - created_at
+                - updated_at
+                - token
+                - accept_invitation_url
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    enum:
+                    - invite_not_pending
+                    - invalid_invite
+                    - invite_has_accepted_user_id
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Invite is not pending.
+                required:
+                - code
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Accept an Invitation
+      tags:
+      - user-management.invitations
+  /user_management/invitations/{id}/resend:
+    post:
+      description: Resends an invitation email to the recipient. The invitation must be in a pending state.
+      operationId: UserlandUserInvitesController_resend
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the invitation.
+        schema:
+          example: invitation_01E4ZCR3C56J083X43JQXF3JK5
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendUserlandUserInviteOptionsDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserInvite'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      const: invite_expired
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Invite has expired.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      const: invite_revoked
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Invite has been revoked.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      const: invite_accepted
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Invite has already been accepted.
+                  required:
+                  - code
+                  - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invalid_request_parameters
+                    const: invalid_request_parameters
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Validation failed.
+                required:
+                - code
+                - message
+      summary: Resend an Invitation
+      tags:
+      - user-management.invitations
+      x-sends-email: true
+  /user_management/invitations/{id}/revoke:
+    post:
+      description: Revokes an existing invitation.
+      operationId: UserlandUserInvitesController_revoke
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique ID of the invitation.
+        schema:
+          example: invitation_01E4ZCR3C56J083X43JQXF3JK5
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the invitation object.
+                    const: invitation
+                  id:
+                    type: string
+                    description: The unique ID of the invitation.
+                    example: invitation_01E4ZCR3C56J083X43JQXF3JK5
+                  email:
+                    type: string
+                    description: The email address of the recipient.
+                    example: marcelina.davis@example.com
+                  state:
+                    type: string
+                    enum:
+                    - pending
+                    - accepted
+                    - expired
+                    - revoked
+                    description: The state of the invitation.
+                    example: revoked
+                  accepted_at:
+                    format: date-time
+                    type:
+                    - string
+                    - 'null'
+                    description: The timestamp when the invitation was accepted, or null if not yet accepted.
+                    example: null
+                  revoked_at:
+                    format: date-time
+                    type:
+                    - string
+                    - 'null'
+                    description: The timestamp when the invitation was revoked, or null if not revoked.
+                    example: '2026-01-15T12:00:00.000Z'
+                  expires_at:
+                    format: date-time
+                    type: string
+                    description: The timestamp when the invitation expires.
+                    example: '2026-01-15T12:00:00.000Z'
+                  organization_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The ID of the [organization](/reference/organization) that the recipient will join.
+                    example: org_01E4ZCR3C56J083X43JQXF3JK5
+                  inviter_user_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The ID of the user who invited the recipient, if provided.
+                    example: user_01HYGBX8ZGD19949T3BM4FW1C3
+                  accepted_user_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The ID of the user who accepted the invitation, once accepted.
+                    example: null
+                  role_slug:
+                    type:
+                    - string
+                    - 'null'
+                    description: Slug of the role the invitee will be assigned on acceptance. Reflects the current role on the invitee's organization membership. null when the invitation has no associated organization.
+                    example: admin
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  token:
+                    type: string
+                    description: The token used to accept the invitation.
+                    example: Z1uX3RbwcIl5fIGJJJCXXisdI
+                  accept_invitation_url:
+                    type: string
+                    description: The URL where the recipient can accept the invitation.
+                    example: https://your-app.com/invite?invitation_token=Z1uX3RbwcIl5fIGJJJCXXisdI
+                required:
+                - object
+                - id
+                - email
+                - state
+                - accepted_at
+                - revoked_at
+                - expires_at
+                - organization_id
+                - inviter_user_id
+                - accepted_user_id
+                - role_slug
+                - created_at
+                - updated_at
+                - token
+                - accept_invitation_url
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invite_not_pending
+                    const: invite_not_pending
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Invite is not pending.
+                required:
+                - code
+                - message
+      summary: Revoke an Invitation
+      tags:
+      - user-management.invitations
+components:
+  schemas:
+    ResendUserlandUserInviteOptionsDto:
+      type: object
+      properties:
+        locale:
+          type: string
+          enum:
+          - af
+          - am
+          - ar
+          - bg
+          - bn
+          - bs
+          - ca
+          - cs
+          - da
+          - de
+          - de-DE
+          - el
+          - en
+          - en-AU
+          - en-CA
+          - en-GB
+          - en-US
+          - es
+          - es-419
+          - es-ES
+          - es-US
+          - et
+          - fa
+          - fi
+          - fil
+          - fr
+          - fr-BE
+          - fr-CA
+          - fr-FR
+          - fy
+          - gl
+          - gu
+          - ha
+          - he
+          - hi
+          - hr
+          - hu
+          - hy
+          - id
+          - is
+          - it
+          - it-IT
+          - ja
+          - jv
+          - ka
+          - kk
+          - km
+          - kn
+          - ko
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nl-BE
+          - nl-NL
+          - nn
+          - 'no'
+          - pa
+          - pl
+          - pt
+          - pt-BR
+          - pt-PT
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sv
+          - sw
+          - ta
+          - te
+          - th
+          - tr
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh
+          - zh-CN
+          - zh-HK
+          - zh-TW
+          - zu
+          description: The locale to use when rendering the invitation email. See [supported locales](/authkit/hosted-ui/localization).
+          example: en
+    UserlandUserInvite:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the invitation object.
+          const: invitation
+        id:
+          type: string
+          description: The unique ID of the invitation.
+          example: invitation_01E4ZCR3C56J083X43JQXF3JK5
+        email:
+          type: string
+          description: The email address of the recipient.
+          example: marcelina.davis@example.com
+        state:
+          type: string
+          enum:
+          - pending
+          - accepted
+          - expired
+          - revoked
+          description: The state of the invitation.
+          example: pending
+        accepted_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the invitation was accepted, or null if not yet accepted.
+          example: null
+        revoked_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the invitation was revoked, or null if not revoked.
+          example: null
+        expires_at:
+          format: date-time
+          type: string
+          description: The timestamp when the invitation expires.
+          example: '2026-01-15T12:00:00.000Z'
+        organization_id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the [organization](/reference/organization) that the recipient will join.
+          example: org_01E4ZCR3C56J083X43JQXF3JK5
+        inviter_user_id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the user who invited the recipient, if provided.
+          example: user_01HYGBX8ZGD19949T3BM4FW1C3
+        accepted_user_id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the user who accepted the invitation, once accepted.
+          example: null
+        role_slug:
+          type:
+          - string
+          - 'null'
+          description: Slug of the role the invitee will be assigned on acceptance. Reflects the current role on the invitee's organization membership. null when the invitation has no associated organization.
+          example: admin
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        token:
+          type: string
+          description: The token used to accept the invitation.
+          example: Z1uX3RbwcIl5fIGJJJCXXisdI
+        accept_invitation_url:
+          type: string
+          description: The URL where the recipient can accept the invitation.
+          example: https://your-app.com/invite?invitation_token=Z1uX3RbwcIl5fIGJJJCXXisdI
+      required:
+      - object
+      - id
+      - email
+      - state
+      - accepted_at
+      - revoked_at
+      - expires_at
+      - organization_id
+      - inviter_user_id
+      - accepted_user_id
+      - role_slug
+      - created_at
+      - updated_at
+      - token
+      - accept_invitation_url
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    CreateUserlandUserInviteOptionsDto:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the recipient.
+          example: marcelina.davis@example.com
+        organization_id:
+          type: string
+          description: The ID of the [organization](/reference/organization) that the recipient will join.
+          example: org_01E4ZCR3C56J083X43JQXF3JK5
+        role_slug:
+          type: string
+          description: The [role](/authkit/roles) that the recipient will receive when they join the organization in the invitation.
+          example: admin
+        expires_in_days:
+          type: integer
+          description: How many days the invitations will be valid for. Must be between 1 and 30 days. Defaults to 7 days if not specified.
+          example: 7
+        inviter_user_id:
+          type: string
+          description: The ID of the [user](/reference/authkit/user) who invites the recipient. The invitation email will mention the name of this user.
+          example: user_01HYGBX8ZGD19949T3BM4FW1C3
+        locale:
+          type: string
+          enum:
+          - af
+          - am
+          - ar
+          - bg
+          - bn
+          - bs
+          - ca
+          - cs
+          - da
+          - de
+          - de-DE
+          - el
+          - en
+          - en-AU
+          - en-CA
+          - en-GB
+          - en-US
+          - es
+          - es-419
+          - es-ES
+          - es-US
+          - et
+          - fa
+          - fi
+          - fil
+          - fr
+          - fr-BE
+          - fr-CA
+          - fr-FR
+          - fy
+          - gl
+          - gu
+          - ha
+          - he
+          - hi
+          - hr
+          - hu
+          - hy
+          - id
+          - is
+          - it
+          - it-IT
+          - ja
+          - jv
+          - ka
+          - kk
+          - km
+          - kn
+          - ko
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nl-BE
+          - nl-NL
+          - nn
+          - 'no'
+          - pa
+          - pl
+          - pt
+          - pt-BR
+          - pt-PT
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sv
+          - sw
+          - ta
+          - te
+          - th
+          - tr
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh
+          - zh-CN
+          - zh-HK
+          - zh-TW
+          - zu
+          description: The locale to use when rendering the invitation email. See [supported locales](/authkit/hosted-ui/localization).
+          example: en
+      required:
+      - email
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

@@ -1,0 +1,863 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal groups API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: groups
+  description: Organize and manage user groups within organizations.
+  x-displayName: Groups
+paths:
+  /organizations/{organizationId}/groups:
+    post:
+      description: Create a new group within an organization.
+      operationId: GroupsController_create
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Create a Group
+      tags:
+      - groups
+      x-feature-flag: user-groups-enabled
+    get:
+      description: Get a paginated list of groups within an organization.
+      operationId: GroupsController_list
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Groups
+      tags:
+      - groups
+      x-feature-flag: user-groups-enabled
+  /organizations/{organizationId}/groups/{groupId}:
+    get:
+      description: Retrieve a group by its ID within an organization.
+      operationId: GroupsController_get
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+      - name: groupId
+        required: true
+        in: path
+        description: The ID of the group.
+        schema:
+          type: string
+          example: group_01HXYZ123456789ABCDEFGHIJ
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get a Group
+      tags:
+      - groups
+      x-feature-flag: user-groups-enabled
+    patch:
+      description: Update an existing group. Only the fields provided in the request body will be updated.
+      operationId: GroupsController_update
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+      - name: groupId
+        required: true
+        in: path
+        description: The ID of the group.
+        schema:
+          type: string
+          example: group_01HXYZ123456789ABCDEFGHIJ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Update a Group
+      tags:
+      - groups
+      x-feature-flag: user-groups-enabled
+    delete:
+      description: Delete a group from an organization.
+      operationId: GroupsController_delete
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: The ID of the organization.
+        schema:
+          type: string
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+      - name: groupId
+        required: true
+        in: path
+        description: The ID of the group.
+        schema:
+          type: string
+          example: group_01HXYZ123456789ABCDEFGHIJ
+      responses:
+        '204':
+          description: No Content
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Delete a Group
+      tags:
+      - groups
+      x-feature-flag: user-groups-enabled
+  /organizations/{organizationId}/groups/{groupId}/organization-memberships:
+    post:
+      description: Add an organization membership to a group.
+      operationId: GroupMembershipsController_addMember
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+      - name: groupId
+        required: true
+        in: path
+        description: Unique identifier of the Group.
+        schema:
+          type: string
+          example: group_01HXYZ123456789ABCDEFGHIJ
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupMembershipDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: group_membership_limit_exceeded
+                    const: group_membership_limit_exceeded
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Add a Member to a Group
+      tags:
+      - groups
+      x-feature-flag: user-groups-enabled
+    get:
+      description: Get a list of organization memberships in a group.
+      operationId: GroupMembershipsController_listMembers
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+      - name: groupId
+        required: true
+        in: path
+        description: Unique identifier of the Group.
+        schema:
+          type: string
+          example: group_01HXYZ123456789ABCDEFGHIJ
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserlandUserOrganizationMembershipBaseList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Group Members
+      tags:
+      - groups
+      x-feature-flag: user-groups-enabled
+  /organizations/{organizationId}/groups/{groupId}/organization-memberships/{omId}:
+    delete:
+      description: Remove an organization membership from a group.
+      operationId: GroupMembershipsController_removeMember
+      parameters:
+      - name: organizationId
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+      - name: groupId
+        required: true
+        in: path
+        description: Unique identifier of the Group.
+        schema:
+          type: string
+          example: group_01HXYZ123456789ABCDEFGHIJ
+      - name: omId
+        required: true
+        in: path
+        description: Unique identifier of the Organization Membership.
+        schema:
+          type: string
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      responses:
+        '204':
+          description: No Content
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Remove a Member from a Group
+      tags:
+      - groups
+      x-feature-flag: user-groups-enabled
+components:
+  schemas:
+    CreateGroupMembershipDto:
+      type: object
+      properties:
+        organization_membership_id:
+          type: string
+          description: The ID of the Organization Membership to add to the group.
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      required:
+      - organization_membership_id
+    UserlandUserOrganizationMembershipBaseList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              object:
+                type: string
+                description: Distinguishes the organization membership object.
+                const: organization_membership
+              id:
+                type: string
+                description: The unique ID of the organization membership.
+                example: om_01HXYZ123456789ABCDEFGHIJ
+              user_id:
+                type: string
+                description: The ID of the user.
+                example: user_01E4ZCR3C56J083X43JQXF3JK5
+              organization_id:
+                type: string
+                description: The ID of the organization which the user belongs to.
+                example: org_01EHZNVPK3SFK441A1RGBFSHRT
+              status:
+                type: string
+                enum:
+                - active
+                - inactive
+                - pending
+                description: The status of the organization membership. One of `active`, `inactive`, or `pending`.
+                example: active
+              directory_managed:
+                type: boolean
+                description: Whether this organization membership is managed by a directory sync connection.
+                example: false
+              organization_name:
+                type: string
+                description: The name of the organization which the user belongs to.
+                example: Acme Corp
+              custom_attributes:
+                type: object
+                additionalProperties: {}
+                description: An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked.
+                example:
+                  department: Engineering
+                  title: Developer Experience Engineer
+                  location: Brooklyn
+              created_at:
+                format: date-time
+                type: string
+                description: An ISO 8601 timestamp.
+                example: '2026-01-15T12:00:00.000Z'
+              updated_at:
+                format: date-time
+                type: string
+                description: An ISO 8601 timestamp.
+                example: '2026-01-15T12:00:00.000Z'
+            required:
+            - object
+            - id
+            - user_id
+            - organization_id
+            - status
+            - directory_managed
+            - created_at
+            - updated_at
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: om_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: om_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    UpdateGroupDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 256
+          description: The name of the Group.
+          example: Engineering
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the Group.
+          example: The engineering team
+    Group:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The Group object.
+          example: group
+          const: group
+        id:
+          type: string
+          description: The unique ID of the Group.
+          example: group_01HXYZ123456789ABCDEFGHIJ
+        organization_id:
+          type: string
+          description: The ID of the Organization the Group belongs to.
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+        name:
+          type: string
+          description: The name of the Group.
+          example: Engineering
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Group.
+          example: The engineering team
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - organization_id
+      - name
+      - description
+      - created_at
+      - updated_at
+    GroupList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: group_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: group_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    CreateGroupDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 256
+          description: The name of the Group.
+          example: Engineering
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the Group.
+          example: The engineering team
+      required:
+      - name
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

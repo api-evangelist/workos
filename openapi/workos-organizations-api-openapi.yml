@@ -1,0 +1,850 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal organizations API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: organizations
+  description: Manage organizations.
+  x-displayName: Organizations
+paths:
+  /organizations:
+    get:
+      description: Get a list of all of your existing organizations matching the criteria specified.
+      operationId: OrganizationsController_list
+      parameters:
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: domains
+        required: false
+        in: query
+        description: The domains of an Organization. Any Organization with a matching domain will be returned.
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+          example:
+          - foo-corp.com
+      - name: search
+        required: false
+        in: query
+        description: Searchable text for an Organization. Matches against the organization name.
+        schema:
+          type: string
+          example: Acme Corp
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationList'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Organizations
+      tags:
+      - organizations
+    post:
+      description: Creates a new organization in the current environment.
+      operationId: OrganizationsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationDto'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+              example:
+                object: organization
+                name: Foo Corp
+                domains:
+                - object: organization_domain
+                  id: org_domain_01EHZNVPK2QXHMVWCEDQEKY69A
+                  organization_id: org_01HE8GSH8FQPASKSY27THRKRBP
+                  domain: foo-corp.com
+                  state: pending
+                  verification_prefix: superapp-domain-verification-z3kjny
+                  verification_token: m5Oztg3jdK4NJLgs8uIlIprMw
+                  verification_strategy: dns
+                  created_at: '2026-01-15T12:00:00.000Z'
+                  updated_at: '2026-01-15T12:00:00.000Z'
+                metadata:
+                  tier: diamond
+                stripe_customer_id: cus_R9qWAGMQ6nGE7V
+                created_at: '2026-01-15T12:00:00.000Z'
+                updated_at: '2026-01-15T12:00:00.000Z'
+                allow_profiles_outside_organization: false
+                id: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+                external_id: ext_12345
+          description: Created
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_metadata
+                      const: invalid_metadata
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: external_id_already_used
+                      const: external_id_already_used
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Create an Organization
+      tags:
+      - organizations
+  /organizations/external_id/{external_id}:
+    get:
+      description: Get the details of an existing organization by an [external identifier](/authkit/metadata/external-identifiers).
+      operationId: OrganizationsController_getByExternalId
+      parameters:
+      - name: external_id
+        required: true
+        in: path
+        description: The external ID of the Organization.
+        schema:
+          type: string
+          example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get an Organization by External ID
+      tags:
+      - organizations
+  /organizations/{id}:
+    get:
+      description: Get the details of an existing organization.
+      operationId: OrganizationsController_find
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get an Organization
+      tags:
+      - organizations
+    put:
+      description: Updates an organization in the current environment.
+      operationId: OrganizationsController_updateOrganization
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationDto'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+              example:
+                object: organization
+                name: Foo Corp
+                domains:
+                - object: organization_domain
+                  id: org_domain_01EHZNVPK2QXHMVWCEDQEKY69A
+                  organization_id: org_01HE8GSH8FQPASKSY27THRKRBP
+                  domain: foo-corp.com
+                  state: pending
+                  verification_prefix: superapp-domain-verification-z3kjny
+                  verification_token: m5Oztg3jdK4NJLgs8uIlIprMw
+                  verification_strategy: dns
+                  created_at: '2026-01-15T12:00:00.000Z'
+                  updated_at: '2026-01-15T12:00:00.000Z'
+                metadata:
+                  tier: diamond
+                stripe_customer_id: cus_R9qWAGMQ6nGE7V
+                created_at: '2026-01-15T12:00:00.000Z'
+                updated_at: '2026-01-15T12:00:00.000Z'
+                allow_profiles_outside_organization: false
+                id: org_01EHZNVPK3SFK441A1RGBFSHRT
+                external_id: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_metadata
+                      const: invalid_metadata
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: external_id_already_used
+                      const: external_id_already_used
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: stripe_customer_id_already_used
+                      const: stripe_customer_id_already_used
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Update an Organization
+      tags:
+      - organizations
+    delete:
+      description: Permanently deletes an organization in the current environment. It cannot be undone.
+      operationId: OrganizationsController_deleteOrganization
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      responses:
+        '200':
+          description: OK
+        '202':
+          description: ''
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Delete an Organization
+      tags:
+      - organizations
+  /organizations/{id}/audit_log_configuration:
+    get:
+      description: Get the unified view of audit log trail and stream configuration for an organization.
+      operationId: OrganizationsController_getAuditLogConfiguration
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogConfiguration'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get Audit Log Configuration
+      tags:
+      - organizations
+components:
+  schemas:
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    AuditLogConfiguration:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: Unique identifier of the Organization.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        retention_period_in_days:
+          type: integer
+          description: The number of days Audit Log events will be retained before being permanently deleted.
+          example: 30
+        state:
+          type: string
+          enum:
+          - active
+          - inactive
+          - disabled
+          description: The current state of the audit log configuration for the organization.
+          example: active
+        log_stream:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the Audit Log Stream.
+              example: als_01EHZNVPK3SFK441A1RGBFSHRT
+            type:
+              type: string
+              enum:
+              - AzureSentinel
+              - Datadog
+              - GenericHttps
+              - GoogleCloudStorage
+              - S3
+              - Splunk
+              description: The type of the Audit Log Stream destination.
+              example: Datadog
+            state:
+              type: string
+              enum:
+              - active
+              - inactive
+              - error
+              - invalid
+              description: The current state of the Audit Log Stream.
+              example: active
+            last_synced_at:
+              type:
+              - string
+              - 'null'
+              description: ISO-8601 timestamp of when the last event was successfully synced, or null if no events have been synced.
+              example: '2026-01-15T12:00:00.000Z'
+            created_at:
+              format: date-time
+              type: string
+              description: An ISO 8601 timestamp.
+              example: '2026-01-15T12:00:00.000Z'
+          required:
+          - id
+          - type
+          - state
+          - last_synced_at
+          - created_at
+          description: The Audit Log Stream currently configured for the organization, if any.
+      required:
+      - organization_id
+      - retention_period_in_days
+      - state
+    OrganizationDomainDataDto:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The domain value.
+          example: foo-corp.com
+        state:
+          type: string
+          enum:
+          - pending
+          - verified
+          description: The verification state of the domain.
+          example: verified
+      required:
+      - domain
+      - state
+    Organization:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Organization object.
+          const: organization
+        id:
+          type: string
+          description: Unique identifier of the Organization.
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+        name:
+          type: string
+          description: A descriptive name for the Organization. This field does not need to be unique.
+          example: Acme Inc.
+        domains:
+          type: array
+          items:
+            type: object
+            properties:
+              object:
+                type: string
+                description: Distinguishes the organization domain object.
+                const: organization_domain
+              id:
+                type: string
+                description: Unique identifier of the organization domain.
+                example: org_domain_01EHZNVPK2QXHMVWCEDQEKY69A
+              organization_id:
+                type: string
+                description: ID of the parent Organization.
+                example: org_01HE8GSH8FQPASKSY27THRKRBP
+              domain:
+                type: string
+                description: Domain for the organization domain.
+                example: foo-corp.com
+              state:
+                type: string
+                enum:
+                - failed
+                - legacy_verified
+                - pending
+                - unverified
+                - verified
+                description: Verification state of the domain.
+                example: pending
+              verification_prefix:
+                type: string
+                description: The prefix used in DNS verification.
+                example: superapp-domain-verification-z3kjny
+              verification_token:
+                type: string
+                description: Validation token to be used in DNS TXT record.
+                example: m5Oztg3jdK4NJLgs8uIlIprMw
+              verification_strategy:
+                type: string
+                enum:
+                - dns
+                - manual
+                description: Strategy used to verify the domain.
+                example: dns
+              created_at:
+                format: date-time
+                type: string
+                description: An ISO 8601 timestamp.
+                example: '2026-01-15T12:00:00.000Z'
+              updated_at:
+                format: date-time
+                type: string
+                description: An ISO 8601 timestamp.
+                example: '2026-01-15T12:00:00.000Z'
+            required:
+            - object
+            - id
+            - organization_id
+            - domain
+            - created_at
+            - updated_at
+          description: List of Organization Domains.
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            maxLength: 600
+          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
+          example:
+            tier: diamond
+          propertyNames:
+            maxLength: 40
+          maxProperties: 50
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The external ID of the Organization.
+          example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
+        stripe_customer_id:
+          type: string
+          description: The Stripe customer ID of the Organization.
+          example: cus_R9qWAGMQ6nGE7V
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        allow_profiles_outside_organization:
+          type: boolean
+          description: Whether the Organization allows profiles outside of its managed domains.
+          example: false
+          deprecated: true
+      required:
+      - object
+      - id
+      - name
+      - domains
+      - metadata
+      - external_id
+      - created_at
+      - updated_at
+    OrganizationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the organization.
+          example: Foo Corp
+        allow_profiles_outside_organization:
+          type: boolean
+          description: Whether the organization allows profiles from outside the organization to sign in.
+          example: false
+        domains:
+          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
+          example:
+          - example.com
+          type: array
+          items:
+            type: string
+        domain_data:
+          description: The domains associated with the organization, including verification state.
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationDomainDataDto'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            maxLength: 600
+          maxProperties: 50
+          example:
+            tier: diamond
+          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
+          propertyNames:
+            maxLength: 40
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+          pattern: ^[\x00-\x7F]+$
+          example: ext_12345
+          description: An external identifier for the Organization.
+      required:
+      - name
+    OrganizationList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: org_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: org_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+      - list_metadata
+    UpdateOrganizationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the organization.
+          example: Foo Corp
+        allow_profiles_outside_organization:
+          type: boolean
+          description: Whether the organization allows profiles from outside the organization to sign in.
+          example: false
+        domains:
+          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
+          example:
+          - foo-corp.com
+          deprecated: true
+          type: array
+          items:
+            type: string
+        domain_data:
+          description: The domains associated with the organization, including verification state.
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationDomainDataDto'
+        stripe_customer_id:
+          type: string
+          description: The Stripe customer ID associated with the organization.
+          example: cus_R9qWAGMQ6nGE7V
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            maxLength: 600
+          maxProperties: 50
+          example:
+            tier: diamond
+          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
+          propertyNames:
+            maxLength: 40
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+          pattern: ^[\x00-\x7F]+$
+          example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
+          description: An external identifier for the Organization.
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

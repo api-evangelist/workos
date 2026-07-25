@@ -1,0 +1,150 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal widgets API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: widgets
+  description: Widget endpoints.
+  x-displayName: Widgets
+paths:
+  /widgets/token:
+    post:
+      description: Generate a widget token scoped to an organization and user with the specified scopes.
+      operationId: WidgetsPublicController_issueWidgetSessionToken
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WidgetSessionTokenDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WidgetSessionTokenResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                  required:
+                  - message
+                - type: object
+                  properties:
+                    message:
+                      type: array
+                      items:
+                        type: string
+                      description: A list of validation error messages.
+                      example:
+                      - organization_id must be a string
+                    error:
+                      type: string
+                      description: The error type.
+                      example: Bad Request
+                  required:
+                  - message
+                  - error
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Generate a Widget Token
+      tags:
+      - widgets
+components:
+  schemas:
+    WidgetSessionTokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The widget session token.
+          example: eyJhbGciOiJSUzI1NiIsImtpZCI6InNlc3Npb24...
+      required:
+      - token
+    WidgetSessionTokenDto:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The ID of the organization to scope the widget session to.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        user_id:
+          type: string
+          description: The ID of the user to issue the widget session token for.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        scopes:
+          type: array
+          description: The scopes to grant the widget session.
+          items:
+            type: string
+            enum:
+            - widgets:users-table:manage
+            - widgets:domain-verification:manage
+            - widgets:sso:manage
+            - widgets:api-keys:manage
+            - widgets:dsync:manage
+            - widgets:audit-log-streaming:manage
+          example:
+          - widgets:users-table:manage
+      required:
+      - organization_id
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

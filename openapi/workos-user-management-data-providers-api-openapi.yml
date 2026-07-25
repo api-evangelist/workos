@@ -1,0 +1,432 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal user-management.data-providers API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: user-management.data-providers
+  description: Manage data providers.
+  x-displayName: Data Providers
+paths:
+  /user_management/users/{user_id}/connected_accounts/{slug}:
+    get:
+      description: Retrieves a user's [connected account](/reference/pipes/connected-account) for a specific provider.
+      operationId: DataIntegrationsUserManagementController_getUserDataInstallation
+      parameters:
+      - name: user_id
+        required: true
+        in: path
+        description: A [User](/reference/authkit/user) identifier.
+        schema:
+          example: user_01EHZNVPK3SFK441A1RGBFSHRT
+          type: string
+      - name: slug
+        required: true
+        in: path
+        description: The slug identifier of the provider (e.g., `github`, `slack`, `notion`).
+        schema:
+          example: github
+          type: string
+      - name: organization_id
+        required: false
+        in: query
+        description: An [Organization](/reference/organization) identifier. Optional parameter if the connection is scoped to an organization.
+        schema:
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+          type: string
+      responses:
+        '200':
+          description: The connected account was retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectedAccount'
+        '401':
+          description: The request is missing a valid API key.
+        '404':
+          description: The user, organization, or connected account was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get a Connected Account
+      tags:
+      - user-management.data-providers
+    delete:
+      description: Disconnects WorkOS's account for the user, including removing any stored access and refresh tokens. The user will need to reauthorize if they want to reconnect. This does not revoke access on the provider side.
+      operationId: DataIntegrationsUserManagementController_deleteUserDataInstallation
+      parameters:
+      - name: user_id
+        required: true
+        in: path
+        description: A [User](/reference/authkit/user) identifier.
+        schema:
+          example: user_01EHZNVPK3SFK441A1RGBFSHRT
+          type: string
+      - name: slug
+        required: true
+        in: path
+        description: The slug identifier of the provider (e.g., `github`, `slack`, `notion`).
+        schema:
+          example: github
+          type: string
+      - name: organization_id
+        required: false
+        in: query
+        description: An [Organization](/reference/organization) identifier. Optional parameter if the connection is scoped to an organization.
+        schema:
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+          type: string
+      responses:
+        '204':
+          description: The connected account was deleted successfully.
+        '401':
+          description: The request is missing a valid API key.
+        '404':
+          description: The user, organization, or connected account was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Delete a Connected Account
+      tags:
+      - user-management.data-providers
+  /user_management/users/{user_id}/data_providers:
+    get:
+      description: Retrieves a list of available providers and the user's connection status for each. Returns all providers configured for your environment, along with the user's [connected account](/reference/pipes/connected-account) information where applicable.
+      operationId: DataIntegrationsUserManagementController_getUserDataIntegrations
+      parameters:
+      - name: user_id
+        required: true
+        in: path
+        description: A [User](/reference/authkit/user) identifier to list providers and connected accounts for.
+        schema:
+          example: user_01EHZNVPK3SFK441A1RGBFSHRT
+          type: string
+      - name: organization_id
+        required: false
+        in: query
+        description: An [Organization](/reference/organization) identifier. Optional parameter to filter connections for a specific organization.
+        schema:
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+          type: string
+      responses:
+        '200':
+          description: The list of data providers was retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataIntegrationsListResponse'
+        '401':
+          description: The request is missing a valid API key.
+        '404':
+          description: The user or organization was not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Providers
+      tags:
+      - user-management.data-providers
+components:
+  schemas:
+    DataIntegrationsListResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              object:
+                type: string
+                description: Distinguishes the data provider object.
+                const: data_provider
+              id:
+                type: string
+                description: The unique identifier of the provider.
+                example: data_integration_01EHZNVPK3SFK441A1RGBFSHRT
+              name:
+                type: string
+                description: The display name of the provider (e.g., "GitHub", "Slack").
+                example: GitHub
+              description:
+                type:
+                - string
+                - 'null'
+                description: A description of the provider explaining how it will be used, if configured.
+                example: Connect your GitHub account to access repositories.
+              slug:
+                type: string
+                description: The slug identifier used in API calls (e.g., `github`, `slack`, `notion`).
+                example: github
+              integration_type:
+                type: string
+                description: The type of integration (e.g., `github`, `slack`).
+                example: github
+              credentials_type:
+                type: string
+                description: The type of credentials used by the provider (e.g., `oauth2`).
+                example: oauth2
+              scopes:
+                description: The OAuth scopes configured for this provider, or `null` if none are configured.
+                example:
+                - repo
+                - user:email
+                oneOf:
+                - type: array
+                  items:
+                    type: string
+                - type: 'null'
+              ownership:
+                type: string
+                enum:
+                - userland_user
+                - organization
+                description: Whether the provider is owned by a user or organization.
+              created_at:
+                type: string
+                description: The timestamp when the provider was created.
+                example: '2024-01-15T10:30:00.000Z'
+              updated_at:
+                type: string
+                description: The timestamp when the provider was last updated.
+                example: '2024-01-15T10:30:00.000Z'
+              integrationType:
+                type: string
+                deprecated: true
+                description: Use integration_type instead.
+              credentialsType:
+                type: string
+                deprecated: true
+                description: Use credentials_type instead.
+              createdAt:
+                type: string
+                deprecated: true
+                description: Use created_at instead.
+              updatedAt:
+                type: string
+                deprecated: true
+                description: Use updated_at instead.
+              connected_account:
+                description: The user's [connected account](/reference/pipes/connected-account) for this provider, or `null` if the user has not connected.
+                oneOf:
+                - type: object
+                  properties:
+                    object:
+                      type: string
+                      description: Distinguishes the connected account object.
+                      const: connected_account
+                    id:
+                      type: string
+                      description: The unique identifier of the connected account.
+                      example: data_installation_01EHZNVPK3SFK441A1RGBFSHRT
+                    user_id:
+                      type:
+                      - string
+                      - 'null'
+                      description: The [User](/reference/authkit/user) identifier associated with this connection.
+                      example: user_01EHZNVPK3SFK441A1RGBFSHRT
+                    organization_id:
+                      type:
+                      - string
+                      - 'null'
+                      description: The [Organization](/reference/organization) identifier associated with this connection, or `null` if not scoped to an organization.
+                      example: null
+                    scopes:
+                      type: array
+                      items:
+                        type: string
+                      description: The OAuth scopes granted for this connection.
+                      example:
+                      - repo
+                      - user:email
+                    state:
+                      type: string
+                      enum:
+                      - connected
+                      - needs_reauthorization
+                      - disconnected
+                      description: 'The state of the connected account:
+
+                        - `connected`: The connection is active and tokens are valid.
+
+                        - `needs_reauthorization`: The user needs to reauthorize the connection, typically because required scopes have changed.
+
+                        - `disconnected`: The connection has been disconnected.'
+                      example: connected
+                    created_at:
+                      type: string
+                      description: The timestamp when the connection was created.
+                      example: '2024-01-16T14:20:00.000Z'
+                    updated_at:
+                      type: string
+                      description: The timestamp when the connection was last updated.
+                      example: '2024-01-16T14:20:00.000Z'
+                    userlandUserId:
+                      type:
+                      - string
+                      - 'null'
+                      deprecated: true
+                      description: Use `user_id` instead.
+                    organizationId:
+                      type:
+                      - string
+                      - 'null'
+                      deprecated: true
+                      description: Use `organization_id` instead.
+                    createdAt:
+                      type: string
+                      deprecated: true
+                      description: Use `created_at` instead.
+                    updatedAt:
+                      type: string
+                      deprecated: true
+                      description: Use `updated_at` instead.
+                  required:
+                  - object
+                  - id
+                  - user_id
+                  - organization_id
+                  - scopes
+                  - state
+                  - created_at
+                  - updated_at
+                  - userlandUserId
+                  - organizationId
+                  - createdAt
+                  - updatedAt
+                - type: 'null'
+            required:
+            - object
+            - id
+            - name
+            - description
+            - slug
+            - integration_type
+            - credentials_type
+            - scopes
+            - ownership
+            - created_at
+            - updated_at
+            - integrationType
+            - credentialsType
+            - createdAt
+            - updatedAt
+            - connected_account
+          description: A list of [providers](/reference/pipes/provider), each including a [`connected_account`](/reference/pipes/connected-account) field with the user's connection status.
+      required:
+      - object
+      - data
+    ConnectedAccount:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the connected account object.
+          const: connected_account
+        id:
+          type: string
+          description: The unique identifier of the connected account.
+          example: data_installation_01EHZNVPK3SFK441A1RGBFSHRT
+        user_id:
+          type:
+          - string
+          - 'null'
+          description: The [User](/reference/authkit/user) identifier associated with this connection.
+          example: user_01EHZNVPK3SFK441A1RGBFSHRT
+        organization_id:
+          type:
+          - string
+          - 'null'
+          description: The [Organization](/reference/organization) identifier associated with this connection, or `null` if not scoped to an organization.
+          example: null
+        scopes:
+          type: array
+          items:
+            type: string
+          description: The OAuth scopes granted for this connection.
+          example:
+          - repo
+          - user:email
+        state:
+          type: string
+          enum:
+          - connected
+          - needs_reauthorization
+          - disconnected
+          description: 'The state of the connected account:
+
+            - `connected`: The connection is active and tokens are valid.
+
+            - `needs_reauthorization`: The user needs to reauthorize the connection, typically because required scopes have changed.
+
+            - `disconnected`: The connection has been disconnected.'
+          example: connected
+        created_at:
+          type: string
+          description: The timestamp when the connection was created.
+          example: '2024-01-16T14:20:00.000Z'
+        updated_at:
+          type: string
+          description: The timestamp when the connection was last updated.
+          example: '2024-01-16T14:20:00.000Z'
+      required:
+      - object
+      - id
+      - user_id
+      - organization_id
+      - scopes
+      - state
+      - created_at
+      - updated_at
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

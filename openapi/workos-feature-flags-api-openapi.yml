@@ -1,0 +1,537 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal feature-flags API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: feature-flags
+  description: Manage feature flags.
+  x-displayName: Feature Flags
+paths:
+  /feature-flags:
+    get:
+      description: Get a list of all of your existing feature flags matching the criteria specified.
+      operationId: FeatureFlagsController_list
+      parameters:
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlagList'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invalid_request_parameters
+                    const: invalid_request_parameters
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Validation failed.
+                required:
+                - code
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Feature Flags
+      tags:
+      - feature-flags
+  /feature-flags/{slug}:
+    get:
+      description: Get the details of an existing feature flag by its slug.
+      operationId: FeatureFlagsController_findBySlug
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: A unique key to reference the Feature Flag.
+        schema:
+          type: string
+          example: advanced-analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flag'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get a Feature Flag
+      tags:
+      - feature-flags
+  /feature-flags/{slug}/disable:
+    put:
+      description: Disables a feature flag in the current environment.
+      operationId: FeatureFlagsController_disableFlag
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: A unique key to reference the Feature Flag.
+        schema:
+          type: string
+          example: advanced-analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the Feature Flag object.
+                    const: feature_flag
+                  id:
+                    type: string
+                    description: Unique identifier of the Feature Flag.
+                    example: flag_01EHZNVPK3SFK441A1RGBFSHRT
+                  slug:
+                    type: string
+                    description: A unique key to reference the Feature Flag.
+                    example: advanced-analytics
+                  name:
+                    type: string
+                    description: A descriptive name for the Feature Flag. This field does not need to be unique.
+                    example: Advanced Analytics
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: A description for the Feature Flag.
+                    example: Enable advanced analytics dashboard feature
+                  owner:
+                    description: The owner of the Feature Flag.
+                    oneOf:
+                    - type: object
+                      properties:
+                        email:
+                          type: string
+                          description: The email address of the flag owner.
+                          example: jane@example.com
+                        first_name:
+                          type:
+                          - string
+                          - 'null'
+                          description: The first name of the flag owner.
+                          example: Jane
+                        last_name:
+                          type:
+                          - string
+                          - 'null'
+                          description: The last name of the flag owner.
+                          example: Doe
+                      required:
+                      - email
+                      - first_name
+                      - last_name
+                    - type: 'null'
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                    description: Labels assigned to the Feature Flag for categorizing and filtering.
+                    example:
+                    - reports
+                  enabled:
+                    type: boolean
+                    description: Specifies whether the Feature Flag is active for the current environment.
+                    example: false
+                  default_value:
+                    type: boolean
+                    description: The value returned for users and organizations who don't match any configured targeting rules.
+                    example: false
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - object
+                - id
+                - slug
+                - name
+                - description
+                - owner
+                - tags
+                - enabled
+                - default_value
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Disable a Feature Flag
+      tags:
+      - feature-flags
+  /feature-flags/{slug}/enable:
+    put:
+      description: Enables a feature flag in the current environment.
+      operationId: FeatureFlagsController_enableFlag
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: A unique key to reference the Feature Flag.
+        schema:
+          type: string
+          example: advanced-analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the Feature Flag object.
+                    const: feature_flag
+                  id:
+                    type: string
+                    description: Unique identifier of the Feature Flag.
+                    example: flag_01EHZNVPK3SFK441A1RGBFSHRT
+                  slug:
+                    type: string
+                    description: A unique key to reference the Feature Flag.
+                    example: advanced-analytics
+                  name:
+                    type: string
+                    description: A descriptive name for the Feature Flag. This field does not need to be unique.
+                    example: Advanced Analytics
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: A description for the Feature Flag.
+                    example: Enable advanced analytics dashboard feature
+                  owner:
+                    description: The owner of the Feature Flag.
+                    oneOf:
+                    - type: object
+                      properties:
+                        email:
+                          type: string
+                          description: The email address of the flag owner.
+                          example: jane@example.com
+                        first_name:
+                          type:
+                          - string
+                          - 'null'
+                          description: The first name of the flag owner.
+                          example: Jane
+                        last_name:
+                          type:
+                          - string
+                          - 'null'
+                          description: The last name of the flag owner.
+                          example: Doe
+                      required:
+                      - email
+                      - first_name
+                      - last_name
+                    - type: 'null'
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                    description: Labels assigned to the Feature Flag for categorizing and filtering.
+                    example:
+                    - reports
+                  enabled:
+                    type: boolean
+                    description: Specifies whether the Feature Flag is active for the current environment.
+                    example: true
+                  default_value:
+                    type: boolean
+                    description: The value returned for users and organizations who don't match any configured targeting rules.
+                    example: false
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - object
+                - id
+                - slug
+                - name
+                - description
+                - owner
+                - tags
+                - enabled
+                - default_value
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Enable a Feature Flag
+      tags:
+      - feature-flags
+components:
+  schemas:
+    Flag:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Feature Flag object.
+          const: feature_flag
+        id:
+          type: string
+          description: Unique identifier of the Feature Flag.
+          example: flag_01EHZNVPK3SFK441A1RGBFSHRT
+        slug:
+          type: string
+          description: A unique key to reference the Feature Flag.
+          example: advanced-analytics
+        name:
+          type: string
+          description: A descriptive name for the Feature Flag. This field does not need to be unique.
+          example: Advanced Analytics
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description for the Feature Flag.
+          example: Enable advanced analytics dashboard feature
+        owner:
+          description: The owner of the Feature Flag.
+          oneOf:
+          - type: object
+            properties:
+              email:
+                type: string
+                description: The email address of the flag owner.
+                example: jane@example.com
+              first_name:
+                type:
+                - string
+                - 'null'
+                description: The first name of the flag owner.
+                example: Jane
+              last_name:
+                type:
+                - string
+                - 'null'
+                description: The last name of the flag owner.
+                example: Doe
+            required:
+            - email
+            - first_name
+            - last_name
+          - type: 'null'
+        tags:
+          type: array
+          items:
+            type: string
+          description: Labels assigned to the Feature Flag for categorizing and filtering.
+          example:
+          - reports
+        enabled:
+          type: boolean
+          description: Specifies whether the Feature Flag is active for the current environment.
+          example: true
+        default_value:
+          type: boolean
+          description: The value returned for users and organizations who don't match any configured targeting rules.
+          example: false
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - slug
+      - name
+      - description
+      - owner
+      - tags
+      - enabled
+      - default_value
+      - created_at
+      - updated_at
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    FlagList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Flag'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: flag_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: flag_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

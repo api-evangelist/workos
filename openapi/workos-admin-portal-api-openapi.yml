@@ -1,0 +1,188 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: admin-portal
+  description: Endpoints for the Admin Portal API.
+  x-displayName: Admin Portal
+paths:
+  /portal/generate_link:
+    post:
+      description: Generate a Portal Link scoped to an Organization.
+      operationId: PortalSessionsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateLinkDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortalLinkResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Generate a Portal Link
+      tags:
+      - admin-portal
+components:
+  schemas:
+    IntentOptions:
+      type: object
+      properties:
+        sso:
+          description: SSO-specific options for the Admin Portal.
+          $ref: '#/components/schemas/SsoIntentOptions'
+        domain_verification:
+          description: Domain verification-specific options for the Admin Portal.
+          $ref: '#/components/schemas/DomainVerificationIntentOptions'
+    SsoIntentOptions:
+      type: object
+      properties:
+        bookmark_slug:
+          type: string
+          description: The bookmark slug to use for SSO.
+          example: chatgpt
+        provider_type:
+          type: string
+          description: The SSO provider type to configure.
+          example: GoogleSAML
+          const: GoogleSAML
+    GenerateLinkDto:
+      type: object
+      properties:
+        return_url:
+          type: string
+          description: The URL to go to when an admin clicks on your logo in the Admin Portal. If not specified, the return URL configured on the [Redirects](https://dashboard.workos.com/redirects) page will be used.
+          example: https://example.com/admin-portal/return
+        success_url:
+          type: string
+          description: The URL to redirect the admin to when they finish setup. If not specified, the success URL configured on the [Redirects](https://dashboard.workos.com/redirects) page will be used.
+          example: https://example.com/admin-portal/success
+        organization:
+          type: string
+          description: An [Organization](/reference/organization) identifier.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        intent:
+          type: string
+          description: "\n      The intent of the Admin Portal.\n        - `sso` - Launch Admin Portal for creating SSO connections\n        - `dsync` - Launch Admin Portal for creating Directory Sync connections\n        - `audit_logs` - Launch Admin Portal for viewing Audit Logs\n        - `log_streams` - Launch Admin Portal for creating Log Streams\n        - `domain_verification` - Launch Admin Portal for Domain Verification\n        - `certificate_renewal` - Launch Admin Portal for renewing SAML Certificates\n        - `bring_your_own_key` - Launch Admin Portal for configuring Bring Your Own Key"
+          example: sso
+          enum:
+          - sso
+          - dsync
+          - audit_logs
+          - log_streams
+          - domain_verification
+          - certificate_renewal
+          - bring_your_own_key
+        intent_options:
+          description: Options to configure the Admin Portal based on the intent.
+          $ref: '#/components/schemas/IntentOptions'
+        it_contact_emails:
+          description: The email addresses of the IT contacts to grant access to the Admin Portal for the given organization. Accepts up to 20 emails.
+          example:
+          - it-contact@example.com
+          maxItems: 20
+          items:
+            type: string
+            format: email
+          type: array
+      required:
+      - organization
+    DomainVerificationIntentOptions:
+      type: object
+      properties:
+        domain_name:
+          type: string
+          description: The domain name to verify. When provided, the domain verification flow will skip the domain entry form and go directly to the verification step.
+          example: example.com
+    PortalLinkResponse:
+      type: object
+      properties:
+        link:
+          type: string
+          description: An ephemeral link to initiate the Admin Portal.
+          example: https://setup.workos.com?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+      required:
+      - link
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

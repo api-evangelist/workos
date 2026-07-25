@@ -1,0 +1,175 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal feature-flags.targets API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: feature-flags.targets
+  description: Manage feature flag targets.
+  x-displayName: Feature Flag Targets
+paths:
+  /feature-flags/{slug}/targets/{resourceId}:
+    post:
+      description: Enables a feature flag for a specific target in the current environment. Currently, supported targets include users and organizations.
+      operationId: FlagTargetsController_createTarget
+      parameters:
+      - name: resourceId
+        required: true
+        in: path
+        description: The resource ID in format "user_<id>" or "org_<id>".
+        schema:
+          example: user_01234567890abcdef
+          type: string
+      - name: slug
+        required: true
+        in: path
+        description: The unique slug identifier of the feature flag.
+        schema:
+          example: beta-feature
+          type: string
+      responses:
+        '204':
+          description: Target created or updated successfully.
+        '400':
+          description: Invalid resourceId format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Invalid resource id
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invalid_resource_id_format
+                  statusCode:
+                    type: number
+                    description: The HTTP status code.
+                    example: 400
+        '403':
+          description: Access denied.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Feature flag, user, or organization not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Add a Feature Flag Target
+      tags:
+      - feature-flags.targets
+    delete:
+      description: Removes a target from the feature flag's target list in the current environment. Currently, supported targets include users and organizations.
+      operationId: FlagTargetsController_deleteTarget
+      parameters:
+      - name: resourceId
+        required: true
+        in: path
+        description: The resource ID in format "user_<id>" or "org_<id>".
+        schema:
+          example: user_01234567890abcdef
+          type: string
+      - name: slug
+        required: true
+        in: path
+        description: The unique slug identifier of the feature flag.
+        schema:
+          example: beta-feature
+          type: string
+      responses:
+        '204':
+          description: Target deleted successfully.
+        '400':
+          description: Invalid resourceId format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Invalid resource id
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invalid_resource_id_format
+                  statusCode:
+                    type: number
+                    description: The HTTP status code.
+                    example: 400
+        '403':
+          description: Access denied.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Feature flag, user, or organization not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Remove a Feature Flag Target
+      tags:
+      - feature-flags.targets
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

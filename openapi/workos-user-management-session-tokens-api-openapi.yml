@@ -1,0 +1,127 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal user-management.session-tokens API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: user-management.session-tokens
+  description: Session token verification keys.
+  x-displayName: Session Tokens
+paths:
+  /sso/jwks/{clientId}:
+    get:
+      description: Returns the JSON Web Key Set (JWKS) containing the public keys used for verifying access tokens.
+      operationId: SsoController_jsonWebKeySet
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Identifies the application making the request to the WorkOS server. You can obtain your client ID from the [API Keys](https://dashboard.workos.com/api-keys) page in the dashboard.
+        schema:
+          type: string
+          example: client_01HXYZ123456789ABCDEFGHIJ
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwksResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get JWKS
+      tags:
+      - user-management.session-tokens
+components:
+  schemas:
+    JwksResponse:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            type: object
+            properties:
+              alg:
+                type: string
+                description: Algorithm.
+                const: RS256
+              kty:
+                type: string
+                description: Key type.
+                const: RSA
+              use:
+                type: string
+                description: Key use (signature).
+                const: sig
+              x5c:
+                type: array
+                items:
+                  type: string
+                description: X.509 certificate chain.
+                example:
+                - MIIDQjCCAiqgAwIBAgIGATz/FuLiMA0GCSqGSIb3DQEBCwUA...
+              n:
+                type: string
+                description: RSA modulus.
+                example: 0vx7agoebGc...eKnNs
+              e:
+                type: string
+                description: RSA exponent.
+                example: AQAB
+              kid:
+                type: string
+                description: Key ID.
+                example: key_01HXYZ123456789ABCDEFGHIJ
+              x5t#S256:
+                type: string
+                description: X.509 certificate SHA-256 thumbprint.
+                example: ZjQzYjI0OT...NmNjU0
+            required:
+            - alg
+            - kty
+            - use
+            - x5c
+            - n
+            - e
+            - kid
+            - x5t#S256
+          description: The public keys used for verifying access tokens.
+      required:
+      - keys
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

@@ -1,0 +1,137 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal user-management.jwt-template API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: user-management.jwt-template
+  description: Manage JWT templates.
+  x-displayName: JWT Templates
+paths:
+  /user_management/jwt_template:
+    get:
+      description: Get the JWT template for the current environment.
+      operationId: JwtTemplatesController_getJwtTemplate
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtTemplate'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get JWT Template
+      tags:
+      - user-management.jwt-template
+    put:
+      description: Update the JWT template for the current environment.
+      operationId: JwtTemplatesController_updateJwtTemplate
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJwtTemplateDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtTemplate'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: invalid_request_parameters
+                    const: invalid_request_parameters
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Validation failed.
+                required:
+                - code
+                - message
+      summary: Update JWT Template
+      tags:
+      - user-management.jwt-template
+components:
+  schemas:
+    UpdateJwtTemplateDto:
+      type: object
+      properties:
+        content:
+          type: string
+          description: The JWT template content as a Liquid template string.
+          example: '{"urn:myapp:full_name": "{{user.first_name}} {{user.last_name}}", "urn:myapp:email": "{{user.email}}"}'
+      required:
+      - content
+    JwtTemplate:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type.
+          const: jwt_template
+        content:
+          type: string
+          description: The JWT template content as a Liquid template string.
+          example: '{"urn:myapp:full_name": "{{user.first_name}} {{user.last_name}}", "urn:myapp:email": "{{user.email}}"}'
+        created_at:
+          type: string
+          description: The timestamp when the JWT template was created.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          type: string
+          description: The timestamp when the JWT template was last updated.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - content
+      - created_at
+      - updated_at
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

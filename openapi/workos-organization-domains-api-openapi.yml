@@ -1,0 +1,316 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal organization-domains API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: organization-domains
+  description: Manage organization domains.
+  x-displayName: Organization Domains
+paths:
+  /organization_domains:
+    post:
+      description: Creates a new Organization Domain.
+      operationId: OrganizationDomainsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrganizationDomainDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the organization domain object.
+                    const: organization_domain
+                  id:
+                    type: string
+                    description: Unique identifier of the organization domain.
+                    example: org_domain_01EHZNVPK2QXHMVWCEDQEKY69A
+                  organization_id:
+                    type: string
+                    description: ID of the parent Organization.
+                    example: org_01EHQMYV6MBK39QC5PZXHY59C3
+                  domain:
+                    type: string
+                    description: Domain for the organization domain.
+                    example: foo-corp.com
+                  state:
+                    type: string
+                    enum:
+                    - failed
+                    - legacy_verified
+                    - pending
+                    - unverified
+                    - verified
+                    description: Verification state of the domain.
+                    example: pending
+                  verification_prefix:
+                    type: string
+                    description: The prefix used in DNS verification.
+                    example: superapp-domain-verification-z3kjny
+                  verification_token:
+                    type: string
+                    description: Validation token to be used in DNS TXT record.
+                    example: m5Oztg3jdK4NJLgs8uIlIprMw
+                  verification_strategy:
+                    type: string
+                    enum:
+                    - dns
+                    - manual
+                    description: Strategy used to verify the domain.
+                    example: dns
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - object
+                - id
+                - organization_id
+                - domain
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    const: domain_already_exists
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Domain already exists for this organization.
+                required:
+                - code
+                - message
+      summary: Create an Organization Domain
+      tags:
+      - organization-domains
+  /organization_domains/{id}:
+    get:
+      description: Get the details of an existing organization domain.
+      operationId: OrganizationDomainsController_get
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier of the organization domain.
+        schema:
+          type: string
+          example: org_domain_01EHZNVPK2QXHMVWCEDQEKY69A
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDomainStandAlone'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get an Organization Domain
+      tags:
+      - organization-domains
+    delete:
+      description: Permanently deletes an organization domain. It cannot be undone.
+      operationId: OrganizationDomainsController_delete
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier of the organization domain.
+        schema:
+          type: string
+          example: org_domain_01EHZNVPK2QXHMVWCEDQEKY69A
+      responses:
+        '204':
+          description: Organization domain deleted successfully.
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Delete an Organization Domain
+      tags:
+      - organization-domains
+  /organization_domains/{id}/verify:
+    post:
+      description: Initiates verification process for an Organization Domain.
+      operationId: OrganizationDomainsController_verify
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier of the organization domain.
+        schema:
+          type: string
+          example: org_domain_01EHZNVPK2QXHMVWCEDQEKY69A
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationDomainStandAlone'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    const: domain_already_verified
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Domain is already verified.
+                required:
+                - code
+                - message
+      summary: Verify an Organization Domain
+      tags:
+      - organization-domains
+components:
+  schemas:
+    OrganizationDomainStandAlone:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the organization domain object.
+          const: organization_domain
+        id:
+          type: string
+          description: Unique identifier of the organization domain.
+          example: org_domain_01EHZNVPK2QXHMVWCEDQEKY69A
+        organization_id:
+          type: string
+          description: ID of the parent Organization.
+          example: org_01HE8GSH8FQPASKSY27THRKRBP
+        domain:
+          type: string
+          description: Domain for the organization domain.
+          example: foo-corp.com
+        state:
+          type: string
+          enum:
+          - failed
+          - legacy_verified
+          - pending
+          - unverified
+          - verified
+          description: Verification state of the domain.
+          example: pending
+        verification_prefix:
+          type: string
+          description: The prefix used in DNS verification.
+          example: superapp-domain-verification-z3kjny
+        verification_token:
+          type: string
+          description: Validation token to be used in DNS TXT record.
+          example: m5Oztg3jdK4NJLgs8uIlIprMw
+        verification_strategy:
+          type: string
+          enum:
+          - dns
+          - manual
+          description: Strategy used to verify the domain.
+          example: dns
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - organization_id
+      - domain
+      - created_at
+      - updated_at
+    CreateOrganizationDomainDto:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The domain to add to the organization.
+          example: foo-corp.com
+        organization_id:
+          type: string
+          description: The ID of the organization to add the domain to.
+          example: org_01EHQMYV6MBK39QC5PZXHY59C3
+      required:
+      - domain
+      - organization_id
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

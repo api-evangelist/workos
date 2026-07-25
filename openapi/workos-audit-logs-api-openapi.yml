@@ -1,0 +1,1067 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal audit-logs API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: audit-logs
+  description: Create and query audit log events.
+  x-displayName: Audit Logs
+paths:
+  /audit_logs/actions:
+    get:
+      description: Get a list of all Audit Log actions in the current environment.
+      operationId: AuditLogValidatorsController_list
+      parameters:
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    object:
+                      type: string
+                      description: Indicates this is a list response.
+                      const: list
+                    list_metadata:
+                      type: object
+                      properties:
+                        before:
+                          type:
+                          - string
+                          - 'null'
+                          description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+                          example: ala_01HXYZ123456789ABCDEFGHIJ
+                        after:
+                          type:
+                          - string
+                          - 'null'
+                          description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+                          example: ala_01HXYZ987654321KJIHGFEDCBA
+                      required:
+                      - before
+                      - after
+                      description: Pagination cursors for navigating between pages of results.
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      description: The list of records for the current page.
+                      items:
+                        $ref: '#/components/schemas/AuditLogActionJson'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Actions
+      tags:
+      - audit-logs
+  /audit_logs/actions/{actionName}/schemas:
+    post:
+      description: Creates a new Audit Log schema used to validate the payload of incoming Audit Log Events. If the `action` does not exist, it will also be created.
+      operationId: AuditLogValidatorVersionsController_create
+      parameters:
+      - name: actionName
+        required: true
+        in: path
+        description: The name of the Audit Log action.
+        schema:
+          example: user.logged_in
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogSchemaDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogSchemaJson'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Create Schema
+      tags:
+      - audit-logs
+    get:
+      description: Get a list of all schemas for the Audit Logs action identified by `:name`.
+      operationId: AuditLogValidatorVersionsController_schemas
+      parameters:
+      - name: actionName
+        required: true
+        in: path
+        description: The name of the Audit Log action.
+        schema:
+          example: user.logged_in
+          type: string
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+        schema:
+          example: obj_1234567890
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  properties:
+                    object:
+                      type: string
+                      description: Indicates this is a list response.
+                      const: list
+                    list_metadata:
+                      type: object
+                      properties:
+                        before:
+                          type:
+                          - string
+                          - 'null'
+                          description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+                          example: als_01HXYZ123456789ABCDEFGHIJ
+                        after:
+                          type:
+                          - string
+                          - 'null'
+                          description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+                          example: als_01HXYZ987654321KJIHGFEDCBA
+                      required:
+                      - before
+                      - after
+                      description: Pagination cursors for navigating between pages of results.
+                - type: object
+                  properties:
+                    data:
+                      type: array
+                      description: The list of records for the current page.
+                      items:
+                        $ref: '#/components/schemas/AuditLogSchemaJson'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Schemas
+      tags:
+      - audit-logs
+  /audit_logs/events:
+    post:
+      description: 'Create an Audit Log Event.
+
+
+        This API supports idempotency which guarantees that performing the same operation multiple times will have the same result as if the operation were performed only once. This is handy in situations where you may need to retry a request due to a failure or prevent accidental duplicate requests from creating more than one resource.
+
+
+        To achieve idempotency, you can add `Idempotency-Key` request header to a Create Event request with a unique string as the value. Each subsequent request matching this unique string will return the same response. We suggest using [v4 UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier) for idempotency keys to avoid collisions.
+
+
+        Idempotency keys expire after 24 hours. The API will generate a new response if you submit a request with an expired key.'
+      operationId: AuditLogEventsController_create
+      parameters:
+      - name: idempotency-key
+        in: header
+        description: A unique string to prevent duplicate requests. Each subsequent request matching this unique string will return the same response. We suggest using v4 UUIDs. Keys expire after 24 hours.
+        required: false
+        schema:
+          type: string
+          example: 884793cd-bef4-46cf-8790-e3d4957a09ce
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogEventIngestionDto'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogEventCreateResponse'
+              example:
+                success: true
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - type: object
+                  properties:
+                    errors:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          instancePath:
+                            type: string
+                            description: The JSON path to the invalid field in the event payload.
+                            example: /targets
+                        required:
+                        - instancePath
+                      description: The list of validation errors.
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Invalid Audit Log event.
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_audit_log_event
+                  required:
+                  - errors
+                  - message
+                  - code
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                  required:
+                  - message
+              example:
+                message: Invalid Audit Log event.
+                code: invalid_audit_log_event
+                errors:
+                - instancePath: /targets
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+              example:
+                message: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: The validation error code.
+                          example: required
+                        field:
+                          type: string
+                          description: The field that failed validation.
+                          example: event.action
+                      required:
+                      - code
+                      - field
+                    description: The list of validation errors.
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Validation failed.
+                required:
+                - errors
+                - message
+              example:
+                message: Validation failed.
+                errors:
+                - code: required
+                  field: event.action
+          description: Unprocessable Entity
+        '429':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Too many requests.
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: rate_limit_exceeded
+                required:
+                - message
+                - code
+              example:
+                message: Too many requests.
+                code: rate_limit_exceeded
+          description: ''
+      summary: Create Event
+      tags:
+      - audit-logs
+  /audit_logs/exports:
+    post:
+      description: Create an Audit Log Export. Exports are scoped to a single organization within a specified date range.
+      operationId: AuditLogExportsController_exports
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogExportCreationDto'
+      responses:
+        '201':
+          description: The created Audit Log Export object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogExportJson'
+              example:
+                object: audit_log_export
+                id: audit_log_export_01GBZK5MP7TD1YCFQHFR22180V
+                state: pending
+                created_at: '2022-09-02T17:14:57.094Z'
+                updated_at: '2022-09-02T17:14:57.094Z'
+        '400':
+          description: Invalid request parameters or date range.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                  required:
+                  - message
+                - type: object
+                  properties:
+                    message:
+                      type: array
+                      items:
+                        type: string
+                      description: A list of human-readable error messages describing the validation failures.
+                      example:
+                      - Invalid date range
+                    error:
+                      type: string
+                      description: The error type.
+                      example: Bad Request
+                  required:
+                  - message
+                  - error
+              example:
+                message: Invalid date range
+                code: invalid_audit_log_export_range_date
+      summary: Create Export
+      tags:
+      - audit-logs
+  /audit_logs/exports/{auditLogExportId}:
+    get:
+      description: Get an Audit Log Export. The URL will expire after 10 minutes. If the export is needed again at a later time, refetching the export will regenerate the URL.
+      operationId: AuditLogExportsController_export
+      parameters:
+      - name: auditLogExportId
+        required: true
+        in: path
+        description: The unique ID of the Audit Log Export.
+        schema:
+          type: string
+          example: audit_log_export_01GBZK5MP7TD1YCFQHFR22180V
+      responses:
+        '200':
+          description: The Audit Log Export object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogExportJson'
+              example:
+                object: audit_log_export
+                id: audit_log_export_01GBZK5MP7TD1YCFQHFR22180V
+                state: ready
+                url: https://exports.audit-logs.com/audit-log-exports/export.csv
+                created_at: '2022-09-02T17:14:57.094Z'
+                updated_at: '2022-09-02T17:14:57.094Z'
+        '404':
+          description: Audit Log Export not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+              example:
+                message: 'Audit Log Export not found: ''audit_log_export_01GBZK5MP7TD1YCFQHFR22180V''.'
+      summary: Get Export
+      tags:
+      - audit-logs
+  /organizations/{id}/audit_logs_retention:
+    get:
+      description: Get the configured event retention period for the given Organization.
+      operationId: AuditLogsRetentionController_auditLogsRetention
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogsRetentionJson'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get Retention
+      tags:
+      - audit-logs
+    put:
+      description: Set the event retention period for the given Organization.
+      operationId: AuditLogsRetentionController_updateAuditLogsRetention
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier of the Organization.
+        schema:
+          type: string
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAuditLogsRetentionDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogsRetentionJson'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Set Retention
+      tags:
+      - audit-logs
+components:
+  schemas:
+    AuditLogSchemaActorDto:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: JSON schema for actor metadata.
+          example:
+            type: object
+            properties:
+              role:
+                type: string
+      required:
+      - metadata
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    AuditLogSchemaTargetDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of the target resource.
+          example: invoice
+        metadata:
+          type: object
+          description: Optional JSON schema for target metadata.
+          example:
+            type: object
+            properties:
+              cost:
+                type: number
+      required:
+      - type
+    AuditLogSchemaDto:
+      type: object
+      properties:
+        actor:
+          description: The metadata schema for the actor.
+          $ref: '#/components/schemas/AuditLogSchemaActorDto'
+        targets:
+          minItems: 1
+          description: The list of targets for the schema.
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditLogSchemaTargetDto'
+        metadata:
+          type: object
+          description: Optional JSON schema for event metadata.
+          example:
+            type: object
+            properties:
+              transactionId:
+                type: string
+      required:
+      - targets
+    AuditLogExportCreationDto:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The unique ID of the Organization.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        range_start:
+          type: string
+          description: ISO-8601 value for start of the export range.
+          example: '2022-07-02T18:09:06.996Z'
+        range_end:
+          type: string
+          description: ISO-8601 value for end of the export range.
+          example: '2022-09-02T18:09:06.996Z'
+        actions:
+          description: List of actions to filter against.
+          example:
+          - user.signed_in
+          type: array
+          items:
+            type: string
+        actors:
+          description: Deprecated. Use `actor_names` instead.
+          deprecated: true
+          example:
+          - Jon Smith
+          type: array
+          items:
+            type: string
+        actor_names:
+          description: List of actor names to filter against.
+          example:
+          - Jon Smith
+          type: array
+          items:
+            type: string
+        actor_ids:
+          description: List of actor IDs to filter against.
+          example:
+          - user_01GBZK5MP7TD1YCFQHFR22180V
+          type: array
+          items:
+            type: string
+        targets:
+          description: List of target types to filter against.
+          example:
+          - team
+          type: array
+          items:
+            type: string
+      required:
+      - organization_id
+      - range_start
+      - range_end
+    AuditLogEventCreateResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the Audit Log event was created successfully.
+          example: true
+      required:
+      - success
+    AuditLogSchemaJson:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Audit Log Schema object.
+          example: audit_log_schema
+          const: audit_log_schema
+        version:
+          type: integer
+          description: The version of the schema.
+          example: 1
+        actor:
+          type: object
+          properties:
+            metadata:
+              type: object
+              additionalProperties: {}
+              description: The JSON Schema definition for actor metadata.
+          required:
+          - metadata
+          description: The metadata schema for the actor.
+          example:
+            metadata:
+              type: object
+              properties:
+                role:
+                  type: string
+        targets:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: The type of the target resource.
+                example: invoice
+              metadata:
+                type: object
+                additionalProperties: {}
+                description: Additional data associated with the event or entity.
+                example:
+                  type: object
+                  properties:
+                    cost:
+                      type: number
+            required:
+            - type
+          description: The list of targets for the schema.
+          example:
+          - type: invoice
+            metadata:
+              type: object
+              properties:
+                cost:
+                  type: number
+        metadata:
+          type: object
+          additionalProperties: {}
+          description: Additional data associated with the event or entity.
+          example:
+            type: object
+            properties:
+              transactionId:
+                type: string
+        created_at:
+          format: date-time
+          type: string
+          description: The timestamp when the Audit Log Schema was created.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - version
+      - targets
+      - created_at
+    AuditLogEventDto:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Identifier of what happened.
+          example: user.signed_in
+        occurred_at:
+          type: string
+          description: ISO-8601 value of when the action occurred.
+          example: '2026-02-02T16:35:39.317Z'
+          format: date-time
+        actor:
+          description: The entity that performed the action.
+          $ref: '#/components/schemas/AuditLogEventActorDto'
+        targets:
+          description: The resources affected by the action.
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditLogEventTargetDto'
+        context:
+          description: Additional context about where and how the action occurred.
+          $ref: '#/components/schemas/AuditLogEventContextDto'
+        metadata:
+          type: object
+          description: Additional data associated with the event or entity.
+          example:
+            owner: user_01GBTCQ2
+          maxProperties: 50
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9_-]{0,40}$:
+              anyOf:
+              - type: string
+                maxLength: 500
+              - type: number
+              - type: boolean
+        version:
+          type: integer
+          description: What schema version the event is associated with.
+          example: 1
+      required:
+      - action
+      - occurred_at
+      - actor
+      - targets
+      - context
+    AuditLogEventContextDto:
+      type: object
+      properties:
+        location:
+          type: string
+          description: IP Address or some other geolocation identifier.
+          example: 123.123.123.123
+        user_agent:
+          type: string
+          description: User agent string.
+          example: Chrome/104.0.0.0
+      required:
+      - location
+    AuditLogEventTargetDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Target identifier.
+          example: user_TF4C5938
+        type:
+          type: string
+          description: Target type.
+          example: user
+        name:
+          type: string
+          description: Optional target name.
+          example: Jon Smith
+        metadata:
+          type: object
+          description: Additional data associated with the event or entity.
+          example:
+            owner: user_01GBTCQ2
+          maxProperties: 50
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9_-]{0,40}$:
+              anyOf:
+              - type: string
+                maxLength: 500
+              - type: number
+              - type: boolean
+      required:
+      - id
+      - type
+    AuditLogEventIngestionDto:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The unique ID of the Organization.
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+        event:
+          description: The audit log event to create.
+          $ref: '#/components/schemas/AuditLogEventDto'
+      required:
+      - organization_id
+      - event
+    AuditLogActionJson:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Audit Log Action object.
+          example: audit_log_action
+          const: audit_log_action
+        name:
+          type: string
+          description: Identifier of what action was taken.
+          example: user.viewed_invoice
+        schema:
+          $ref: '#/components/schemas/AuditLogSchemaJson'
+          description: The schema associated with the action.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - name
+      - schema
+      - created_at
+      - updated_at
+    AuditLogExportJson:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Audit Log Export object.
+          example: audit_log_export
+          const: audit_log_export
+        id:
+          type: string
+          description: The unique ID of the Audit Log Export.
+          example: audit_log_export_01GBZK5MP7TD1YCFQHFR22180V
+        state:
+          type: string
+          enum:
+          - pending
+          - ready
+          - error
+          description: 'The state of the export. Possible values: pending, ready, error.'
+          example: ready
+        url:
+          type:
+          - string
+          - 'null'
+          description: A URL to the CSV file. Only defined when the Audit Log Export is ready.
+          example: https://exports.audit-logs.com/audit-log-exports/export.csv
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - state
+      - created_at
+      - updated_at
+    UpdateAuditLogsRetentionDto:
+      type: object
+      properties:
+        retention_period_in_days:
+          type: integer
+          description: The number of days Audit Log events will be retained. Valid values are `30` and `365`.
+          example: 30
+      required:
+      - retention_period_in_days
+    AuditLogsRetentionJson:
+      type: object
+      properties:
+        retention_period_in_days:
+          type:
+          - integer
+          - 'null'
+          description: The number of days Audit Log events will be retained before being permanently deleted. Valid values are 30 and 365.
+          example: 30
+      required:
+      - retention_period_in_days
+    AuditLogEventActorDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Actor identifier.
+          example: user_TF4C5938
+        type:
+          type: string
+          description: Actor type.
+          example: user
+        name:
+          type: string
+          description: Optional actor name.
+          example: Jon Smith
+        metadata:
+          type: object
+          description: Additional data associated with the event or entity.
+          example:
+            owner: user_01GBTCQ2
+          maxProperties: 50
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9_-]{0,40}$:
+              anyOf:
+              - type: string
+                maxLength: 500
+              - type: number
+              - type: boolean
+      required:
+      - id
+      - type
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

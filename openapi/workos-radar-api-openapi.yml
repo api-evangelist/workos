@@ -1,0 +1,389 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal radar API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: radar
+  description: Radar fraud detection.
+  x-displayName: Radar
+paths:
+  /radar/attempts:
+    post:
+      description: Assess a request for risk using the Radar engine and receive a verdict.
+      operationId: RadarStandaloneController_assess
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ip_address:
+                  type: string
+                  description: The IP address of the request to assess.
+                  example: 49.78.240.97
+                user_agent:
+                  type: string
+                  description: The user agent string of the request to assess.
+                  example: Mozilla/5.0
+                email:
+                  type: string
+                  format: email
+                  description: The email address of the user making the request.
+                  example: user@example.com
+                auth_method:
+                  type: string
+                  enum:
+                  - Password
+                  - Passkey
+                  - Authenticator
+                  - SMS_OTP
+                  - Email_OTP
+                  - Social
+                  - SSO
+                  - Other
+                  description: The authentication method being used.
+                  example: Password
+                action:
+                  type: string
+                  enum:
+                  - login
+                  - signup
+                  - sign-up
+                  - sign-in
+                  - sign_up
+                  - sign_in
+                  - sign in
+                  - sign up
+                  description: The action being performed.
+                  example: login
+                device_fingerprint:
+                  type: string
+                  description: An optional device fingerprint for the request.
+                  example: fp_abc123
+                bot_score:
+                  type: string
+                  description: An optional bot detection score for the request.
+                  example: '0.1'
+              required:
+              - ip_address
+              - user_agent
+              - email
+              - auth_method
+              - action
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RadarStandaloneResponse'
+        '400':
+          description: Standalone radar is not enabled.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Create an Attempt
+      tags:
+      - radar
+  /radar/attempts/{id}:
+    put:
+      description: You may optionally inform Radar that an authentication attempt or challenge was successful using this endpoint. Some Radar controls depend on tracking recent successful attempts, such as impossible travel.
+      operationId: RadarStandaloneController_updateRadarAttempt
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The unique identifier of the Radar attempt to update.
+        schema:
+          example: radar_att_01HZBC6N1EB1ZY7KG32X
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                challenge_status:
+                  type: string
+                  description: Set to `"success"` to mark the challenge as completed.
+                  example: success
+                  const: success
+                attempt_status:
+                  type: string
+                  description: Set to `"success"` to mark the authentication attempt as successful.
+                  example: success
+                  const: success
+      responses:
+        '204':
+          description: Radar attempt updated.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Update a Radar Attempt
+      tags:
+      - radar
+  /radar/lists/{type}/{action}:
+    post:
+      description: Add an entry to a Radar list.
+      operationId: RadarStandaloneController_updateRadarList
+      parameters:
+      - name: type
+        required: true
+        in: path
+        description: The type of the Radar list (e.g. ip_address, domain, email).
+        schema:
+          type: string
+          enum:
+          - ip_address
+          - domain
+          - email
+          - device
+          - user_agent
+          - device_fingerprint
+          - country
+          example: ip_address
+      - name: action
+        required: true
+        in: path
+        description: The list action indicating whether to add the entry to the allow or block list.
+        schema:
+          type: string
+          enum:
+          - block
+          - allow
+          example: block
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entry:
+                  type: string
+                  description: The value to add to the list. Must match the format of the list type (e.g. a valid IP address for `ip_address`, a valid email for `email`).
+                  example: 198.51.100.42
+              required:
+              - entry
+      responses:
+        '200':
+          description: Entry already present in the list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RadarListEntryAlreadyPresentResponse'
+        '201':
+          description: Created
+        '204':
+          description: Entry successfully added to the list.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Add an Entry to a Radar List
+      tags:
+      - radar
+    delete:
+      description: Remove an entry from a Radar list.
+      operationId: RadarStandaloneController_deleteRadarListEntry
+      parameters:
+      - name: type
+        required: true
+        in: path
+        description: The type of the Radar list (e.g. ip_address, domain, email).
+        schema:
+          type: string
+          enum:
+          - ip_address
+          - domain
+          - email
+          - device
+          - user_agent
+          - device_fingerprint
+          - country
+          example: ip_address
+      - name: action
+        required: true
+        in: path
+        description: The list action indicating whether to remove the entry from the allow or block list.
+        schema:
+          type: string
+          enum:
+          - block
+          - allow
+          example: block
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entry:
+                  type: string
+                  description: The value to remove from the list. Must match an existing entry.
+                  example: 198.51.100.42
+              required:
+              - entry
+      responses:
+        '204':
+          description: Radar list updated.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Remove an Entry from a Radar List
+      tags:
+      - radar
+components:
+  schemas:
+    RadarStandaloneResponse:
+      type: object
+      properties:
+        verdict:
+          type: string
+          enum:
+          - allow
+          - block
+          - challenge
+          description: The verdict of the risk assessment.
+          example: block
+        reason:
+          type: string
+          description: A human-readable reason for the verdict.
+          example: Detected enabled Radar control
+        attempt_id:
+          type: string
+          description: Unique identifier of the authentication attempt.
+          example: radar_att_01HZBC6N1EB1ZY7KG32X
+        control:
+          type: string
+          enum:
+          - bot_detection
+          - brute_force_attack
+          - credential_stuffing
+          - domain_sign_up_rate_limit
+          - ip_sign_up_rate_limit
+          - impossible_travel
+          - repeat_sign_up
+          - stale_account
+          - unrecognized_device
+          - restriction
+          description: The Radar control that triggered the verdict. Only present if the verdict is `block` or `challenge`.
+          example: bot_detection
+        blocklist_type:
+          type: string
+          enum:
+          - ip_address
+          - domain
+          - email
+          - device
+          - user_agent
+          - device_fingerprint
+          - country
+          description: The type of blocklist entry that triggered the verdict. Only present if the control is `restriction`.
+          example: ip_address
+      required:
+      - verdict
+      - reason
+      - attempt_id
+    RadarListEntryAlreadyPresentResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message indicating the entry already exists.
+          example: Entry already present in list
+      required:
+      - message
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

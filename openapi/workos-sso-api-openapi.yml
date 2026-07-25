@@ -1,0 +1,743 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal sso API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: sso
+  description: Single Sign-On endpoints.
+  x-displayName: Single Sign-On
+paths:
+  /sso/authorize:
+    get:
+      description: Initiates the single sign-on flow.
+      operationId: SsoController_authorize
+      parameters:
+      - name: provider_scopes
+        required: false
+        in: query
+        description: Additional scopes to request from the identity provider. Applicable when using OAuth or OpenID Connect connections.
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+          example:
+          - openid
+          - profile
+          - email
+      - name: provider_query_params
+        required: false
+        in: query
+        description: Key/value pairs of query parameters to pass to the OAuth provider. Only applicable when using OAuth connections.
+        schema:
+          additionalProperties:
+            type: string
+          example:
+            hd: example.com
+            access_type: offline
+          type: object
+      - name: client_id
+        required: true
+        in: query
+        schema:
+          type: string
+          example: client_01HZBC6N1EB1ZY7KG32X
+        description: The unique identifier of the WorkOS environment client.
+      - name: domain
+        required: false
+        in: query
+        deprecated: true
+        schema:
+          type: string
+          example: example.com
+        description: Deprecated. Use `connection` or `organization` instead. Used to initiate SSO for a connection by domain. The domain must be associated with a connection in your WorkOS environment.
+      - name: provider
+        required: false
+        in: query
+        schema:
+          type: string
+          enum:
+          - AppleOAuth
+          - BitbucketOAuth
+          - GitHubOAuth
+          - GitLabOAuth
+          - GoogleOAuth
+          - IntuitOAuth
+          - LinkedInOAuth
+          - MicrosoftOAuth
+          - SalesforceOAuth
+          - SlackOAuth
+          - VercelMarketplaceOAuth
+          - VercelOAuth
+          - XeroOAuth
+          example: GoogleOAuth
+        description: Used to initiate OAuth authentication with various providers.
+      - name: redirect_uri
+        required: true
+        in: query
+        schema:
+          type: string
+          format: uri
+          example: https://example.com/callback
+        description: Where to redirect the user after they complete the authentication process. You must use one of the redirect URIs configured via the [Redirects](https://dashboard.workos.com/redirects) page on the dashboard.
+      - name: response_type
+        required: true
+        in: query
+        schema:
+          type: string
+          example: code
+          const: code
+        description: 'The only valid option for the response type parameter is `"code"`.
+
+
+          The `"code"` parameter value initiates an [authorization code grant type](https://tools.ietf.org/html/rfc6749#section-4.1). This grant type allows you to exchange an authorization code for an access token during the redirect that takes place after a user has authenticated with an identity provider.'
+      - name: state
+        required: false
+        in: query
+        schema:
+          type: string
+          example: dj1kUXc0dzlXZ1hjUQ==
+        description: An optional parameter that can be used to encode arbitrary information to help restore application state between redirects. If included, the redirect URI received from WorkOS will contain the exact `state` that was passed.
+      - name: connection
+        required: false
+        in: query
+        schema:
+          type: string
+          example: conn_01E4ZCR3C56J083X43JQXF3JK5
+        description: 'Used to initiate SSO for a connection. The value should be a WorkOS connection ID.
+
+
+          You can persist the WorkOS connection ID with application user or team identifiers. WorkOS will use the connection indicated by the connection parameter to direct the user to the corresponding IdP for authentication.'
+      - name: organization
+        required: false
+        in: query
+        schema:
+          type: string
+          example: org_01EHQMYV6MBK39QC5PZXHY59C3
+        description: 'Used to initiate SSO for an organization. The value should be a WorkOS organization ID.
+
+
+          You can persist the WorkOS organization ID with application user or team identifiers. WorkOS will use the organization ID to determine the appropriate connection and the IdP to direct the user to for authentication.'
+      - name: domain_hint
+        required: false
+        in: query
+        schema:
+          type: string
+          example: example.com
+        description: Can be used to pre-fill the domain field when initiating authentication with Microsoft OAuth or with a Google SAML connection type.
+      - name: login_hint
+        required: false
+        in: query
+        schema:
+          type: string
+          example: user@example.com
+        description: Can be used to pre-fill the username/email address field of the IdP sign-in page for the user, if you know their username ahead of time. Currently supported for OAuth, OpenID Connect, Okta, Entra ID, and custom SAML connections.
+      - name: nonce
+        required: false
+        in: query
+        schema:
+          type: string
+          example: abc123def456
+        description: A random string generated by the client that is used to mitigate replay attacks.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsoAuthorizeUrlResponse'
+        '302':
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+          description: ''
+      security: []
+      summary: Initiate SSO
+      tags:
+      - sso
+  /sso/logout:
+    get:
+      description: 'Logout allows to sign out a user from your application by triggering the identity provider sign out flow. This `GET` endpoint should be a redirection, since the identity provider user will be identified in the browser session.
+
+
+        Before redirecting to this endpoint, you need to generate a short-lived logout token using the [Logout Authorize](/reference/sso/logout/authorize) endpoint.'
+      operationId: SsoController_logout
+      parameters:
+      - name: token
+        required: true
+        in: query
+        description: The logout token returned from the [Logout Authorize](/reference/sso/logout/authorize) endpoint.
+        schema:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlX2lkIjoicHJvZl8wMUdXUTFHMEgyRk02QVNFRjBIUzEzSENXOS0zMDRrZzAzZyIsImV4cCI6IjE1MTYyMzkwMjIifQ.Wru9Qlnf5DpohtGCKhZU4cVOd3zpiu7QQ-XEX--5A_4
+      responses:
+        '200':
+          description: OK
+        '302':
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+          description: ''
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      security: []
+      servers:
+      - url: https://auth.workos.com
+      summary: Logout Redirect
+      tags:
+      - sso
+  /sso/logout/authorize:
+    post:
+      description: You should call this endpoint from your server to generate a logout token which is required for the [Logout Redirect](/reference/sso/logout) endpoint.
+      operationId: SsoController_logoutAuthorize
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                profile_id:
+                  type: string
+                  description: The unique ID of the profile to log out.
+                  example: prof_01HXYZ123456789ABCDEFGHIJ
+              required:
+              - profile_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsoLogoutAuthorizeResponse'
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    error:
+                      type: string
+                      const: connection_invalid
+                    error_description:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Single Logout is only supported for GenericOIDC connections.
+                  required:
+                  - error
+                  - error_description
+                - type: object
+                  properties:
+                    error:
+                      type: string
+                      const: unauthorized_client
+                    error_description:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Unauthorized
+                  required:
+                  - error
+                  - error_description
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      servers:
+      - url: https://auth.workos.com
+      summary: Logout Authorize
+      tags:
+      - sso
+  /sso/profile:
+    get:
+      description: Exchange an access token for a user's [Profile](/reference/sso/profile). Because this profile is returned in the [Get a Profile and Token endpoint](/reference/sso/profile/get-profile-and-token) your application usually does not need to call this endpoint. It is available for any authentication flows that require an additional endpoint to retrieve a user's profile.
+      operationId: SsoController_getProfile
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    const: Unauthorized
+                required:
+                - error
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      security:
+      - access_token: []
+      summary: Get a User Profile
+      tags:
+      - sso
+  /sso/token:
+    post:
+      description: Get an access token along with the user [Profile](/reference/sso/profile) using the code passed to your [Redirect URI](/reference/sso/get-authorization-url/redirect-uri).
+      operationId: SsoController_token
+      parameters:
+      - name: client_id
+        required: true
+        in: query
+        description: The client ID of the WorkOS environment.
+        schema:
+          example: client_01HZBC6N1EB1ZY7KG32X
+          type: string
+      - name: client_secret
+        required: true
+        in: query
+        description: The client secret of the WorkOS environment.
+        schema:
+          example: sk_example_123456789
+          type: string
+      - name: code
+        required: true
+        in: query
+        description: The authorization code received from the authorization callback.
+        schema:
+          example: authorization_code_value
+          type: string
+      - name: grant_type
+        required: true
+        in: query
+        description: The grant type for the token request.
+        schema:
+          example: authorization_code
+          type: string
+          const: authorization_code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenQueryDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsoTokenResponse'
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    error:
+                      type: string
+                      const: invalid_client
+                    error_description:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Invalid client ID or secret.
+                  required:
+                  - error
+                  - error_description
+                - type: object
+                  properties:
+                    error:
+                      type: string
+                      const: unauthorized_client
+                    error_description:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: The client is not authorized to use this grant type.
+                  required:
+                  - error
+                  - error_description
+                - type: object
+                  properties:
+                    error:
+                      type: string
+                      const: invalid_grant
+                    error_description:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: The code has expired or has already been used.
+                  required:
+                  - error
+                  - error_description
+                - type: object
+                  properties:
+                    error:
+                      type: string
+                      const: unsupported_grant_type
+                    error_description:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: The grant type is not supported.
+                  required:
+                  - error
+                  - error_description
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      security: []
+      summary: Get a Profile and Token
+      tags:
+      - sso
+components:
+  schemas:
+    TokenQueryDto:
+      type: object
+      properties:
+        client_id:
+          type: string
+          description: The client ID of the WorkOS environment.
+          example: client_01HZBC6N1EB1ZY7KG32X
+        client_secret:
+          type: string
+          description: The client secret of the WorkOS environment.
+          example: sk_example_123456789
+        code:
+          type: string
+          description: The authorization code received from the authorization callback.
+          example: authorization_code_value
+        grant_type:
+          type: string
+          description: The grant type for the token request.
+          example: authorization_code
+          const: authorization_code
+      required:
+      - client_id
+      - client_secret
+      - code
+      - grant_type
+    SsoLogoutAuthorizeResponse:
+      type: object
+      properties:
+        logout_url:
+          type: string
+          description: The URL to redirect the user to in order to log out ([Logout Redirect](/reference/sso/logout) endpoint ready to use).
+          example: https://auth.workos.com/sso/logout?token=eyJhbGciOiJSUzI1NiJ9
+        logout_token:
+          type: string
+          description: The logout token to be used in the [Logout Redirect](/reference/sso/logout) endpoint.
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlX2lkIjoicHJvZl8wMUdXUTFHMEgyRk02QVNFRjBIUzEzSENXOS0zMDRrZzAzZyIsImV4cCI6IjE1MTYyMzkwMjIifQ.Wru9Qlnf5DpohtGCKhZU4cVOd3zpiu7QQ-XEX--5A_4
+      required:
+      - logout_url
+      - logout_token
+    SsoAuthorizeUrlResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: An OAuth 2.0 authorization URL.
+          example: https://accounts.google.com/o/oauth2/v2/auth?client_id=example&redirect_uri=https%3A%2F%2Fapi.workos.com%2Fsso%2Fcallback&response_type=code&scope=openid%20profile%20email
+      required:
+      - url
+    SsoTokenResponse:
+      type: object
+      properties:
+        token_type:
+          type: string
+          description: The type of token issued.
+          const: Bearer
+        access_token:
+          type: string
+          description: An access token that can be exchanged for a user profile. Access tokens are short-lived — see the `expires_in` field for the exact lifetime.
+          example: eyJhbGciOiJSUzI1NiIsImtpZCI6InNzby...
+        expires_in:
+          type: integer
+          description: The lifetime of the access token in seconds.
+          example: 600
+        profile:
+          $ref: '#/components/schemas/Profile'
+          description: The user profile returned by the identity provider.
+        oauth_tokens:
+          type: object
+          properties:
+            provider:
+              type: string
+              description: The OAuth provider used for authentication.
+              example: GoogleOAuth
+            refresh_token:
+              type: string
+              description: The refresh token from the OAuth provider.
+              example: 1//04g...
+            access_token:
+              type: string
+              description: The access token from the OAuth provider.
+              example: ya29.a0ARrdaM...
+            expires_at:
+              type: integer
+              description: The timestamp at which the access token expires.
+              example: 1735141800
+            scopes:
+              type: array
+              items:
+                type: string
+              description: A list of OAuth scopes for which the access token is authorized.
+              example:
+              - profile
+              - email
+              - openid
+          required:
+          - provider
+          - refresh_token
+          - access_token
+          - expires_at
+          - scopes
+          description: OAuth tokens issued by the identity provider, if available.
+      required:
+      - token_type
+      - access_token
+      - expires_in
+      - profile
+    Profile:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the profile object.
+          example: profile
+          const: profile
+        id:
+          type: string
+          description: Unique identifier of the profile.
+          example: prof_01DMC79VCBZ0NY2099737PSVF1
+        organization_id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the organization the user belongs to.
+          example: org_01EHQMYV6MBK39QC5PZXHY59C3
+        connection_id:
+          type: string
+          description: The ID of the SSO connection used for authentication.
+          example: conn_01E4ZCR3C56J083X43JQXF3JK5
+        connection_type:
+          type: string
+          enum:
+          - Pending
+          - ADFSSAML
+          - AdpOidc
+          - AppleOAuth
+          - Auth0Migration
+          - Auth0SAML
+          - AzureSAML
+          - BitbucketOAuth
+          - CasSAML
+          - ClassLinkSAML
+          - CleverOIDC
+          - CloudflareSAML
+          - CyberArkSAML
+          - DiscordOAuth
+          - DuoSAML
+          - EntraIdOIDC
+          - GenericOIDC
+          - GenericSAML
+          - GitHubOAuth
+          - GitLabOAuth
+          - GoogleOAuth
+          - GoogleOIDC
+          - GoogleSAML
+          - IntuitOAuth
+          - JumpCloudSAML
+          - KeycloakSAML
+          - LastPassSAML
+          - LinkedInOAuth
+          - LoginGovOidc
+          - MagicLink
+          - MicrosoftOAuth
+          - MiniOrangeSAML
+          - NetIqSAML
+          - OktaOIDC
+          - OktaSAML
+          - OneLoginSAML
+          - OracleSAML
+          - PingFederateSAML
+          - PingOneSAML
+          - RipplingSAML
+          - SalesforceSAML
+          - ShibbolethGenericSAML
+          - ShibbolethSAML
+          - SimpleSamlPhpSAML
+          - SalesforceOAuth
+          - SlackOAuth
+          - TestIdp
+          - VercelMarketplaceOAuth
+          - VercelOAuth
+          - VMwareSAML
+          - XeroOAuth
+          description: The type of SSO connection.
+          example: GoogleOAuth
+        idp_id:
+          type: string
+          description: The user's unique identifier from the identity provider.
+          example: '103456789012345678901'
+        email:
+          type: string
+          description: The user's email address.
+          example: todd@example.com
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: The user's first name.
+          example: Todd
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: The user's last name.
+          example: Rundgren
+        name:
+          type:
+          - string
+          - 'null'
+          description: The user's full name.
+          example: Todd Rundgren
+        role:
+          description: The role assigned to the user within the organization, if applicable.
+          oneOf:
+          - $ref: '#/components/schemas/SlimRole'
+          - type: 'null'
+        roles:
+          description: The roles assigned to the user within the organization, if applicable.
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/SlimRole'
+          - type: 'null'
+        groups:
+          type: array
+          items:
+            type: string
+          description: The groups the user belongs to, as returned by the identity provider.
+          example:
+          - Engineering
+          - Admins
+        custom_attributes:
+          type: object
+          additionalProperties: {}
+          description: Custom attribute mappings defined for the connection, returned as key-value pairs.
+        raw_attributes:
+          type: object
+          additionalProperties: {}
+          description: The complete set of raw attributes returned by the identity provider.
+      required:
+      - object
+      - id
+      - organization_id
+      - connection_id
+      - connection_type
+      - idp_id
+      - email
+      - first_name
+      - last_name
+      - name
+      - raw_attributes
+    SlimRole:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the assigned role.
+          example: admin
+      required:
+      - slug
+      description: The primary role assigned to the user.
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

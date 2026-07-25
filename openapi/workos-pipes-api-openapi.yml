@@ -1,0 +1,265 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal pipes API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: pipes
+  description: Data integration endpoints.
+  x-displayName: Pipes
+paths:
+  /data-integrations/{slug}/authorize:
+    post:
+      description: Generates an OAuth authorization URL to initiate the connection flow for a user. Redirect the user to the returned URL to begin the OAuth flow with the third-party provider.
+      operationId: DataIntegrationsController_getDataIntegrationAuthorizeUrl
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: The slug identifier of the provider (e.g., `github`, `slack`, `notion`).
+        schema:
+          example: github
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: The ID of the user to authorize.
+                  example: user_01EHZNVPK3SFK441A1RGBFSHRT
+                organization_id:
+                  type: string
+                  description: An organization ID to scope the authorization to a specific organization.
+                  example: org_01EHZNVPK3SFK441A1RGBFSHRT
+                return_to:
+                  type: string
+                  format: uri
+                  description: The URL to redirect the user to after authorization.
+                  example: https://example.com/callback
+              required:
+              - user_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataIntegrationAuthorizeUrlResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get Authorization URL
+      tags:
+      - pipes
+  /data-integrations/{slug}/token:
+    post:
+      description: Fetches a valid OAuth access token for a user's connected account. WorkOS automatically handles token refresh, ensuring you always receive a valid, non-expired token.
+      operationId: DataIntegrationsController_getUserlandUserToken
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: The identifier of the integration.
+        schema:
+          example: github
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: A [User](/reference/authkit/user) identifier.
+                  example: user_01EHZNVPK3SFK441A1RGBFSHRT
+                organization_id:
+                  type: string
+                  description: An [Organization](/reference/organization) identifier. Optional parameter to scope the connection to a specific organization.
+                  example: org_01EHZNVPK3SFK441A1RGBFSHRT
+              required:
+              - user_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataIntegrationAccessTokenResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '401':
+          description: Unauthorized
+        '404':
+          description: Data integration not found for the given provider slug.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get an Access Token for a Connected Account
+      tags:
+      - pipes
+components:
+  schemas:
+    DataIntegrationAccessTokenResponse:
+      oneOf:
+      - type: object
+        properties:
+          active:
+            type: boolean
+            description: Indicates whether the access token is valid and ready for use, or if reauthorization is required.
+            const: true
+          access_token:
+            type: object
+            properties:
+              object:
+                type: string
+                description: Distinguishes the access token object.
+                const: access_token
+              access_token:
+                type: string
+                description: The OAuth access token for the connected integration.
+                example: gho_16C7e42F292c6912E7710c838347Ae178B4a
+              expires_at:
+                type:
+                - string
+                - 'null'
+                description: The ISO-8601 formatted timestamp indicating when the access token expires.
+                example: '2025-12-31T23:59:59.000Z'
+              scopes:
+                type: array
+                items:
+                  type: string
+                description: The scopes granted to the access token.
+                example:
+                - repo
+                - user:email
+              missing_scopes:
+                type: array
+                items:
+                  type: string
+                description: If the integration has requested scopes that aren't present on the access token, they're listed here.
+                example: []
+            required:
+            - object
+            - access_token
+            - expires_at
+            - scopes
+            - missing_scopes
+            description: The [access token](/reference/pipes/access-token) object, present when `active` is `true`.
+        required:
+        - active
+        - access_token
+      - type: object
+        properties:
+          active:
+            type: boolean
+            description: Indicates whether the access token is valid and ready for use, or if reauthorization is required.
+            const: false
+          error:
+            type: string
+            enum:
+            - needs_reauthorization
+            - not_installed
+            description: '- `"not_installed"`: The user does not have the integration installed.
+
+              - `"needs_reauthorization"`: The user needs to reauthorize the integration.'
+            example: not_installed
+        required:
+        - active
+        - error
+    DataIntegrationAuthorizeUrlResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The OAuth authorization URL to redirect the user to.
+          example: https://api.workos.com/data-integrations/q2czJKmVAraSBg8xFpT7M9uR/authorize-redirect
+      required:
+      - url
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

@@ -1,0 +1,432 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal directory-users API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: directory-users
+  description: Manage directory users.
+  x-displayName: Directory Users
+paths:
+  /directory_users:
+    get:
+      description: Get a list of all of existing Directory Users matching the criteria specified.
+      operationId: DirectoryUsersController_list
+      parameters:
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      - name: directory
+        required: false
+        in: query
+        description: Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API.
+        schema:
+          example: directory_01ECAZ4NV9QMV47GW873HDCX74
+          type: string
+      - name: group
+        required: false
+        in: query
+        description: Unique identifier of the WorkOS Directory Group. This value can be obtained from the WorkOS API.
+        schema:
+          example: directory_group_01E64QTDNS0EGJ0FMCVY9BWGZT
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryUserList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                const: Ratelimited
+      summary: List Directory Users
+      tags:
+      - directory-users
+  /directory_users/{id}:
+    get:
+      description: Get the details of an existing Directory User.
+      operationId: DirectoryUsersController_find
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Unique identifier for the Directory User.
+        schema:
+          example: directory_user_01E1JG7J09H96KYP8HM9B0G5SJ
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectoryUserWithGroups'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get a Directory User
+      tags:
+      - directory-users
+components:
+  schemas:
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    DirectoryUserWithGroups:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Directory User object.
+          const: directory_user
+        id:
+          type: string
+          description: Unique identifier for the Directory User.
+          example: directory_user_01E1JG7J09H96KYP8HM9B0G5SJ
+        directory_id:
+          type: string
+          description: The identifier of the Directory the Directory User belongs to.
+          example: directory_01ECAZ4NV9QMV47GW873HDCX74
+        organization_id:
+          type: string
+          description: The identifier for the Organization in which the Directory resides.
+          example: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
+        idp_id:
+          type: string
+          description: Unique identifier for the user, assigned by the Directory Provider. Different Directory Providers use different ID formats.
+          example: '2836'
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user.
+          example: marcelina.davis@example.com
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+          example: Marcelina
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+          example: Davis
+        name:
+          type:
+          - string
+          - 'null'
+          description: The full name of the user.
+          example: Marcelina Davis
+        emails:
+          type: array
+          items:
+            type: object
+            properties:
+              primary:
+                type: boolean
+                description: Whether this is the primary email address.
+                example: true
+              type:
+                type: string
+                description: The type of email address.
+                example: work
+              value:
+                type:
+                - string
+                - 'null'
+                description: The email address value.
+                example: marcelina.davis@example.com
+          description: A list of email addresses for the user.
+          deprecated: true
+        job_title:
+          type:
+          - string
+          - 'null'
+          description: The job title of the user.
+          example: Software Engineer
+          deprecated: true
+        username:
+          type:
+          - string
+          - 'null'
+          description: The username of the user.
+          example: mdavis
+          deprecated: true
+        state:
+          type: string
+          enum:
+          - active
+          - suspended
+          - inactive
+          description: The state of the user.
+          example: active
+        raw_attributes:
+          type: object
+          additionalProperties: {}
+          description: The raw attributes received from the directory provider.
+          deprecated: true
+        custom_attributes:
+          type: object
+          additionalProperties: {}
+          description: An object containing the custom attribute mapping for the Directory Provider.
+          example:
+            department: Engineering
+            job_title: Software Engineer
+        role:
+          $ref: '#/components/schemas/SlimRole'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/SlimRole'
+          description: All roles assigned to the user.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/DirectoryGroup'
+          description: 'The directory groups the user belongs to. Deprecated: starting May 1, 2026, this field returns an empty array by default for newly created teams. Existing teams currently depending on this field should migrate to the new access pattern for better throughput performance — the field is unbounded by user, so users with many group memberships produce large, slow response payloads. Use the List Directory Groups endpoint with a `user` filter to fetch a user''s group memberships.'
+          deprecated: true
+      required:
+      - object
+      - id
+      - directory_id
+      - organization_id
+      - idp_id
+      - email
+      - state
+      - raw_attributes
+      - custom_attributes
+      - created_at
+      - updated_at
+      - groups
+    DirectoryUserList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DirectoryUserWithGroups'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: directory_user_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: directory_user_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+      - list_metadata
+    DirectoryGroup:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Directory Group object.
+          const: directory_group
+        id:
+          type: string
+          description: Unique identifier for the Directory Group.
+          example: directory_group_01E1JJS84MFPPQ3G655FHTKX6Z
+        idp_id:
+          type: string
+          description: Unique identifier for the group, assigned by the Directory Provider. Different Directory Providers use different ID formats.
+          example: 02grqrue4294w24
+        directory_id:
+          type: string
+          description: The identifier of the Directory the Directory Group belongs to.
+          example: directory_01ECAZ4NV9QMV47GW873HDCX74
+        organization_id:
+          type: string
+          description: The identifier for the Organization in which the Directory resides.
+          example: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
+        name:
+          type: string
+          description: The name of the Directory Group.
+          example: Developers
+        raw_attributes:
+          type: object
+          additionalProperties: {}
+          description: The raw attributes received from the directory provider.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - idp_id
+      - directory_id
+      - organization_id
+      - name
+      - created_at
+      - updated_at
+    SlimRole:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the assigned role.
+          example: admin
+      required:
+      - slug
+      description: The primary role assigned to the user.
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

@@ -1,0 +1,514 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal permissions API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: permissions
+  description: Manage permissions.
+  x-displayName: Permissions
+paths:
+  /authorization/permissions:
+    get:
+      description: Get a list of all permissions in your WorkOS environment.
+      operationId: AuthorizationPermissionsController_list
+      parameters:
+      - name: before
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `before="obj_123"` to fetch a new batch of objects before `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ123456789ABCDEFGHIJ
+          type: string
+      - name: after
+        required: false
+        in: query
+        description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `"obj_123"`, your subsequent call can include `after="obj_123"` to fetch a new batch of objects after `"obj_123"`.
+        schema:
+          example: xxx_01HXYZ987654321KJIHGFEDCBA
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Upper limit on the number of objects to return, between `1` and `100`.
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 10
+          example: 10
+          type: integer
+      - name: order
+        required: false
+        in: query
+        description: Order the results by the creation time. Supported values are `"asc"` (ascending), `"desc"` (descending), and `"normal"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.
+        schema:
+          $ref: '#/components/schemas/PaginationOrder'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationPermissionList'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: List Permissions
+      tags:
+      - permissions
+    post:
+      description: Create a new permission in your WorkOS environment. The permission can then be assigned to environment roles and custom roles.
+      operationId: AuthorizationPermissionsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAuthorizationPermissionDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  object:
+                    type: string
+                    description: Distinguishes the Permission object.
+                    const: permission
+                  id:
+                    type: string
+                    description: Unique identifier of the Permission.
+                    example: perm_01HXYZ123456789ABCDEFGHIJ
+                  slug:
+                    type: string
+                    description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+                    example: documents:read
+                  name:
+                    type: string
+                    description: A descriptive name for the Permission.
+                    example: View Documents
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: An optional description of the Permission.
+                    example: Allows viewing document contents
+                  system:
+                    type: boolean
+                    description: Whether the permission is a system permission. System permissions are managed by WorkOS and cannot be deleted.
+                    example: false
+                  resource_type_slug:
+                    type: string
+                    description: The slug of the resource type associated with the permission.
+                    example: document
+                  created_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                  updated_at:
+                    format: date-time
+                    type: string
+                    description: An ISO 8601 timestamp.
+                    example: '2026-01-15T12:00:00.000Z'
+                required:
+                - object
+                - id
+                - slug
+                - name
+                - description
+                - system
+                - resource_type_slug
+                - created_at
+                - updated_at
+                x-inline-with-overrides: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: bad_request
+                    const: bad_request
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The error code identifying the type of error.
+                    example: permission_slug_conflict
+                    const: permission_slug_conflict
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: Request could not be processed.
+                required:
+                - code
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Create a Permission
+      tags:
+      - permissions
+  /authorization/permissions/{slug}:
+    get:
+      description: Retrieve a permission by its unique slug.
+      operationId: AuthorizationPermissionsController_find
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+        schema:
+          example: documents:read
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationPermission'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Get a Permission
+      tags:
+      - permissions
+    patch:
+      description: Update an existing permission. Only the fields provided in the request body will be updated.
+      operationId: AuthorizationPermissionsController_update
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+        schema:
+          example: documents:read
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAuthorizationPermissionDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationPermission'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Update a Permission
+      tags:
+      - permissions
+    delete:
+      description: Delete an existing permission. System permissions cannot be deleted.
+      operationId: AuthorizationPermissionsController_delete
+      parameters:
+      - name: slug
+        required: true
+        in: path
+        description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+        schema:
+          example: documents:read
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Delete a Permission
+      tags:
+      - permissions
+components:
+  schemas:
+    UpdateAuthorizationPermissionDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the Permission.
+          example: View Documents
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the Permission.
+          example: Allows viewing document contents
+    AuthorizationPermissionList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationPermission'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: perm_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: perm_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    AuthorizationPermission:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Permission object.
+          const: permission
+        id:
+          type: string
+          description: Unique identifier of the Permission.
+          example: perm_01HXYZ123456789ABCDEFGHIJ
+        slug:
+          type: string
+          description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+          example: documents:read
+        name:
+          type: string
+          description: A descriptive name for the Permission.
+          example: View Documents
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Permission.
+          example: Allows viewing document contents
+        system:
+          type: boolean
+          description: Whether the permission is a system permission. System permissions are managed by WorkOS and cannot be deleted.
+          example: false
+        resource_type_slug:
+          type: string
+          description: The slug of the resource type associated with the permission.
+          example: workspace
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - slug
+      - name
+      - description
+      - system
+      - resource_type_slug
+      - created_at
+      - updated_at
+    CreateAuthorizationPermissionDto:
+      type: object
+      properties:
+        slug:
+          type: string
+          maxLength: 48
+          description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+          example: documents:read
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the Permission.
+          example: View Documents
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the Permission.
+          example: Allows viewing document contents
+        resource_type_slug:
+          type: string
+          maxLength: 48
+          description: The slug of the resource type this permission is scoped to.
+          example: document
+      required:
+      - slug
+      - name
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

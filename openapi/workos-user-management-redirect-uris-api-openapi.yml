@@ -1,0 +1,153 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal user-management.redirect-uris API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: user-management.redirect-uris
+  description: Manage redirect URIs.
+  x-displayName: Redirect URIs
+paths:
+  /user_management/redirect_uris:
+    post:
+      description: Creates a new redirect URI for an environment.
+      operationId: RedirectUrisController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRedirectUriDto'
+      responses:
+        '201':
+          description: Redirect URI created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedirectUri'
+              example:
+                object: redirect_uri
+                id: ruri_01EHZNVPK3SFK441A1RGBFSHRT
+                uri: https://example.com/callback
+                default: true
+                created_at: '2026-01-15T12:00:00.000Z'
+                updated_at: '2026-01-15T12:00:00.000Z'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+              example:
+                message: Bad Request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+              example:
+                message: Unauthorized
+        '422':
+          description: Validation failed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+              example:
+                message: Redirect URI 'https://example.com/callback' already exists.
+      summary: Create a Redirect URI
+      tags:
+      - user-management.redirect-uris
+components:
+  schemas:
+    CreateRedirectUriDto:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The redirect URI to create.
+          example: https://example.com/callback
+      required:
+      - uri
+    RedirectUri:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The object type.
+          const: redirect_uri
+        id:
+          type: string
+          description: The ID of the redirect URI.
+          example: ruri_01EHZNVPK3SFK441A1RGBFSHRT
+        uri:
+          type: string
+          description: The redirect URI.
+          example: https://example.com/callback
+        default:
+          type: boolean
+          description: Whether this is the default redirect URI.
+          example: true
+        created_at:
+          type: string
+          description: The timestamp when the redirect URI was created.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          type: string
+          description: The timestamp when the redirect URI was last updated.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - uri
+      - default
+      - created_at
+      - updated_at
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.

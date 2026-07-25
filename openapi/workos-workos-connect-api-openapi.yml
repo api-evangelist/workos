@@ -1,0 +1,271 @@
+openapi: 3.1.1
+info:
+  title: WorkOS admin-portal workos-connect API
+  description: WorkOS REST API
+  version: '1.0'
+  contact:
+    name: WorkOS
+    url: https://workos.com
+    email: support@workos.com
+  license:
+    name: MIT
+    url: https://opensource.org/license/MIT
+servers:
+- url: https://api.workos.com
+  description: Production
+- url: https://api.workos-test.com
+  description: Staging
+security:
+- bearer: []
+tags:
+- name: workos-connect
+  description: A unified interface that simplifies authentication and authorization across customers, partners, and external SaaS tools.
+  x-displayName: WorkOS Connect
+paths:
+  /authkit/oauth2/complete:
+    post:
+      description: 'Completes an external authentication flow and returns control to AuthKit. This endpoint is used with [Standalone Connect](/authkit/connect/standalone) to bridge your existing authentication system with the Connect OAuth API infrastructure.
+
+
+        After successfully authenticating a user in your application, calling this endpoint will:
+
+
+        - Create or update the user in AuthKit, using the given `id` as its `external_id`.
+
+        - Return a `redirect_uri` your application should redirect to in order for AuthKit to complete the flow
+
+
+        Users are automatically created or updated based on the `id` and `email` provided. If a user with the same `id` exists, their information is updated. Otherwise, a new user is created.
+
+
+        If you provide a new `id` with an `email` that already belongs to an existing user, the request will fail with an error as email addresses are unique to a user.'
+      operationId: ExternalAuthController_completeLogin
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserManagementLoginRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalAuthCompleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: external_auth_session_already_completed
+                      const: external_auth_session_already_completed
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: email_change_not_allowed
+                      const: email_change_not_allowed
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: email_not_available
+                      const: email_not_available
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    code:
+                      type: string
+                      description: The error code identifying the type of error.
+                      example: invalid_email
+                      const: invalid_email
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Request could not be processed.
+                  required:
+                  - code
+                  - message
+                - type: object
+                  properties:
+                    error:
+                      type: string
+                      description: The HTTP error type.
+                      example: Bad Request
+                    message:
+                      type: string
+                      description: A human-readable description of the error.
+                      example: Claim "sub" is reserved and cannot be used.
+                  required:
+                  - error
+                  - message
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: A human-readable description of the error.
+                    example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
+                required:
+                - message
+      summary: Complete External Authentication
+      tags:
+      - workos-connect
+components:
+  schemas:
+    UserObject:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Your application's user identifier, which will be stored as an [`external_id`](/authkit/metadata/external-identifiers). Used for upserting and deduplication.
+          example: user_12345
+        email:
+          type: string
+          description: The user's email address.
+          example: marcelina.davis@example.com
+        first_name:
+          type: string
+          description: The user's first name.
+          example: Marcelina
+        last_name:
+          type: string
+          description: The user's last name.
+          example: Davis
+        metadata:
+          type: object
+          description: A set of key-value pairs to attach to the user.
+          additionalProperties:
+            type: string
+            maxLength: 600
+          maxProperties: 50
+          example:
+            department: Engineering
+            role: Developer
+          propertyNames:
+            maxLength: 40
+      required:
+      - id
+      - email
+    UserManagementLoginRequest:
+      type: object
+      properties:
+        external_auth_id:
+          type: string
+          description: Identifier provided when AuthKit redirected to your login page.
+          example: ext_auth_01HXYZ123456789ABCDEFGHIJ
+        user:
+          description: The user to create or update in AuthKit.
+          $ref: '#/components/schemas/UserObject'
+        user_consent_options:
+          description: Array of [User Consent Options](/reference/workos-connect/standalone/user-consent-options) to store with the session.
+          type: array
+          items:
+            $ref: '#/components/schemas/UserConsentOption'
+      required:
+      - external_auth_id
+      - user
+    UserConsentOption:
+      type: object
+      properties:
+        claim:
+          type: string
+          description: The claim name for this consent option.
+          example: tos_accepted
+        type:
+          type: string
+          description: The type of consent option.
+          const: enum
+        label:
+          type: string
+          description: A human-readable label for this consent option.
+          example: Terms of Service
+        choices:
+          type: array
+          description: The available choices for this consent option.
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                description: The value of this choice.
+                example: accepted
+              label:
+                type: string
+                description: A human-readable label for this choice.
+                example: I accept the Terms of Service
+          example:
+          - value: accepted
+            label: I accept the Terms of Service
+      required:
+      - claim
+      - type
+      - label
+      - choices
+    ExternalAuthCompleteResponse:
+      type: object
+      properties:
+        redirect_uri:
+          type: string
+          description: URI to redirect the user back to AuthKit to complete the OAuth flow.
+          example: https://your-authkit-domain.workos.com/oauth/authorize/complete?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0ZSI6InJhbmRvbV9zdGF0ZV9zdHJpbmciLCJpYXQiOjE3NDI2MDQ4NTN9.abc123def456ghi789
+      required:
+      - redirect_uri
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: 'Your WorkOS API key prefixed with `sk_`. Pass it as a Bearer token: `Authorization: Bearer sk_example_123456789`.'
+    access_token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      description: An SSO access token returned from the Get a Profile and Token endpoint.
