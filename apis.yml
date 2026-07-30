@@ -6,7 +6,20 @@ description: WorkOS is the "Enterprise Ready" identity platform for B2B SaaS —
   (FGA, formerly Warrant), Radar bot/fraud protection, and an emerging suite of agent-oriented
   surfaces (Pipes, MCP Auth, auth.md).
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/workos.png
 tags:
 - Authentication
 - Identity Provider
@@ -27,31 +40,20 @@ created: '2026-03-25'
 modified: '2026-05-22'
 specificationVersion: '0.19'
 apis:
-- aid: workos:workos
-  name: WorkOS API
-  description: REST API for AuthKit user management, SSO, Directory Sync, MFA, Audit
-    Logs, Admin Portal, FGA, Radar, Webhooks, Events, Feature Flags, Pipes (agent
-    auth), Widgets, and WorkOS Connect. 172 operations across 41 tags; OpenAPI 3.1.1
-    published by WorkOS at github.com/workos/openapi-spec.
+- aid: workos:workos-admin-portal-api
+  name: WorkOS admin-portal API
+  description: Endpoints for the Admin Portal API.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
-  - Authentication
-  - Identity Provider
-  - SSO
-  - SCIM
-  - FGA
-  - Audit Logs
-  - Agents
+  - admin-portal
   properties:
+  - type: OpenAPI
+    url: openapi/workos-admin-portal-api-openapi.yml
   - type: Documentation
     url: https://workos.com/docs
   - type: APIReference
     url: https://workos.com/docs/reference
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/workos/openapi-spec/main/spec/open-api-spec.yaml
-  - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/workos/main/openapi/workos-openapi.yml
   - type: GitHubRepository
     url: https://github.com/workos/openapi-spec
   - type: StatusPage
@@ -63,12 +65,1298 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - url: graphql/workos-graphql.md
-    type: GraphQL
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-api-keys-api
+  name: WorkOS api_keys API
+  description: Manage API keys for environments.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - api_keys
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-application-client-secrets-api
+  name: WorkOS application.client-secrets API
+  description: Manage client secrets for Connect Applications.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - application.client-secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-application-client-secrets-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-applications-api
+  name: WorkOS applications API
+  description: Manage Connect Applications.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - applications
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-applications-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-audit-logs-api
+  name: WorkOS audit-logs API
+  description: Create and query audit log events.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - audit-logs
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-audit-logs-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-authorization-api
+  name: WorkOS authorization API
+  description: Authorization and access control.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - authorization
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-authorization-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-connections-api
+  name: WorkOS connections API
+  description: Manage SSO connections.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - connections
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-connections-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-directories-api
+  name: WorkOS directories API
+  description: Manage directories.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - directories
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-directories-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-directory-groups-api
+  name: WorkOS directory-groups API
+  description: Manage directory groups.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - directory-groups
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-directory-groups-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-directory-users-api
+  name: WorkOS directory-users API
+  description: Manage directory users.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - directory-users
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-directory-users-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-events-api
+  name: WorkOS events API
+  description: Query events and event streams.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - events
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-events-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-feature-flags-api
+  name: WorkOS feature-flags API
+  description: Manage feature flags.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - feature-flags
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-feature-flags-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-feature-flags-targets-api
+  name: WorkOS feature-flags.targets API
+  description: Manage feature flag targets.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - feature-flags.targets
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-feature-flags-targets-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-groups-api
+  name: WorkOS groups API
+  description: Organize and manage user groups within organizations.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - groups
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-groups-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-multi-factor-auth-api
+  name: WorkOS multi-factor-auth API
+  description: Multi-factor authentication factor management.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - multi-factor-auth
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-multi-factor-auth-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-multi-factor-auth-challenges-api
+  name: WorkOS multi-factor-auth.challenges API
+  description: Multi-factor authentication challenge verification.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - multi-factor-auth.challenges
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-multi-factor-auth-challenges-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-organization-domains-api
+  name: WorkOS organization-domains API
+  description: Manage organization domains.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - organization-domains
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-organization-domains-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-organizations-api-keys-api
+  name: WorkOS organizations.api_keys API
+  description: Manage organization-scoped API keys.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - organizations.api_keys
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-organizations-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-organizations-api
+  name: WorkOS organizations API
+  description: Manage organizations.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-organizations-feature-flags-api
+  name: WorkOS organizations.feature-flags API
+  description: Manage organization-scoped feature flags.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - organizations.feature-flags
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-organizations-feature-flags-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-permissions-api
+  name: WorkOS permissions API
+  description: Manage permissions.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-pipes-api
+  name: WorkOS pipes API
+  description: Data integration endpoints.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - pipes
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-pipes-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-radar-api
+  name: WorkOS radar API
+  description: Radar fraud detection.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - radar
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-radar-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-sso-api
+  name: WorkOS sso API
+  description: Single Sign-On endpoints.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - sso
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-sso-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-authentication-api
+  name: WorkOS user-management.authentication API
+  description: User authentication endpoints.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-cors-origins-api
+  name: WorkOS user-management.cors-origins API
+  description: Manage CORS origins for user management.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.cors-origins
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-cors-origins-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-data-providers-api
+  name: WorkOS user-management.data-providers API
+  description: Manage data providers.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.data-providers
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-data-providers-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-invitations-api
+  name: WorkOS user-management.invitations API
+  description: Manage user invitations.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.invitations
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-invitations-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-jwt-template-api
+  name: WorkOS user-management.jwt-template API
+  description: Manage JWT templates.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.jwt-template
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-jwt-template-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-magic-auth-api
+  name: WorkOS user-management.magic-auth API
+  description: Magic auth endpoints.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.magic-auth
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-magic-auth-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-multi-factor-authentication-api
+  name: WorkOS user-management.multi-factor-authentication API
+  description: Multi-factor authentication endpoints.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.multi-factor-authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-multi-factor-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-organization-membership-api
+  name: WorkOS user-management.organization-membership API
+  description: Manage user organization memberships.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.organization-membership
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-organization-membership-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-organization-membership-groups-api
+  name: WorkOS user-management.organization-membership.groups API
+  description: Manage groups for a user organization membership.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.organization-membership.groups
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-organization-membership-groups-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-redirect-uris-api
+  name: WorkOS user-management.redirect-uris API
+  description: Manage redirect URIs.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.redirect-uris
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-redirect-uris-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-session-tokens-api
+  name: WorkOS user-management.session-tokens API
+  description: Session token verification keys.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.session-tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-session-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-users-api
+  name: WorkOS user-management.users API
+  description: Manage users.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.users
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-users-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-users-authorized-applications-api
+  name: WorkOS user-management.users.authorized-applications API
+  description: Manage authorized applications for users.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.users.authorized-applications
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-users-authorized-applications-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-user-management-users-feature-flags-api
+  name: WorkOS user-management.users.feature-flags API
+  description: Manage user-scoped feature flags.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - user-management.users.feature-flags
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-user-management-users-feature-flags-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-webhooks-api
+  name: WorkOS webhooks API
+  description: Manage webhooks.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-widgets-api
+  name: WorkOS widgets API
+  description: Widget endpoints.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - widgets
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-widgets-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
+- aid: workos:workos-workos-connect-api
+  name: WorkOS workos-connect API
+  description: >-
+    A unified interface that simplifies authentication and authorization across customers, partners, and
+    external SaaS tools.
+  humanURL: https://workos.com
+  baseURL: https://api.workos.com
+  tags:
+  - workos-connect
+  properties:
+  - type: OpenAPI
+    url: openapi/workos-workos-connect-api-openapi.yml
+  - type: Documentation
+    url: https://workos.com/docs
+  - type: APIReference
+    url: https://workos.com/docs/reference
+  - type: GitHubRepository
+    url: https://github.com/workos/openapi-spec
+  - type: StatusPage
+    url: https://status.workos.com
+  - type: ChangeLog
+    url: https://workos.com/changelog
+  - type: Pricing
+    url: https://workos.com/pricing
+  - type: RateLimits
+    url: https://workos.com/docs/reference/rate-limits
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+  - type: Capabilities
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+  - type: GraphQL
+    url: graphql/workos-graphql.md
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/workos/overview
 - type: AgenticAccess
   url: agentic-access/workos-agentic-access.yml
 - type: TrustCenter
