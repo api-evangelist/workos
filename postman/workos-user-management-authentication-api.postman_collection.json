@@ -1,0 +1,1477 @@
+{
+  "info": {
+    "_postman_id": "bc1d1b06-fc6d-41c1-916f-757fc5fc6802",
+    "name": "WorkOS admin-portal user-management.authentication API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:34.000Z",
+    "updatedAt": "2026-07-28T03:34:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bc1d1b06-fc6d-41c1-916f-757fc5fc6802"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "authenticate",
+          "item": [
+            {
+              "name": "Authenticate",
+              "id": "bed41518-c6d3-428a-a2d4-6c1b453a18a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"<string>\",\n  \"code_verifier\": \"<string>\",\n  \"invitation_token\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"user_agent\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/authenticate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "authenticate"
+                  ]
+                },
+                "description": "Authenticate a user with a specified [authentication method](/reference/authkit/authentication)."
+              },
+              "response": [
+                {
+                  "id": "8428168f-d9bb-4558-97e3-1b46d01a1ede",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"<string>\",\n  \"code_verifier\": \"<string>\",\n  \"invitation_token\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"user_agent\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/authenticate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "authenticate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"user\": {\n    \"object\": \"<string>\",\n    \"id\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\",\n    \"profile_picture_url\": \"<string,null>\",\n    \"email\": \"<string>\",\n    \"email_verified\": \"<boolean>\",\n    \"external_id\": \"<string,null>\",\n    \"last_sign_in_at\": \"<string,null-date-time>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"metadata\": {\n      \"in_b\": \"<string>\",\n      \"deserunt_aab\": \"<string>\",\n      \"labore_754\": \"<string>\",\n      \"incididunt_2\": \"<string>\",\n      \"ut_578\": \"<string>\",\n      \"exe\": \"<string>\",\n      \"incididunta2_\": \"<string>\",\n      \"laborisd\": \"<string>\",\n      \"in_def\": \"<string>\",\n      \"sunt0_\": \"<string>\",\n      \"Excepteur_7a0\": \"<string>\",\n      \"inc0_\": \"<string>\",\n      \"ullamco_6\": \"<string>\",\n      \"Ut_1\": \"<string>\",\n      \"labore_59\": \"<string>\",\n      \"fugiatc23\": \"<string>\",\n      \"et__\": \"<string>\",\n      \"ipsum__\": \"<string>\",\n      \"inf5\": \"<string>\",\n      \"minim_9\": \"<string>\",\n      \"proident5\": \"<string>\",\n      \"et_240\": \"<string>\",\n      \"elit_3\": \"<string>\",\n      \"cupidatat46\": \"<string>\",\n      \"qui_b2d\": \"<string>\",\n      \"eu_39a\": \"<string>\",\n      \"officiae_6\": \"<string>\"\n    },\n    \"locale\": \"<string,null>\"\n  },\n  \"access_token\": \"<string>\",\n  \"refresh_token\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"authkit_authorization_code\": \"<string>\",\n  \"authentication_method\": \"DiscordOAuth\",\n  \"impersonator\": {\n    \"email\": \"<string>\",\n    \"reason\": \"<string,null>\"\n  },\n  \"oauth_tokens\": {\n    \"provider\": \"<string>\",\n    \"refresh_token\": \"<string>\",\n    \"access_token\": \"<string>\",\n    \"expires_at\": \"<integer>\",\n    \"scopes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-8428168f-d9bb-4558-97e3-1b46d01a1ede"
+                },
+                {
+                  "id": "ce85705d-c999-4370-a5cc-cfbec282c18e",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"<string>\",\n  \"code_verifier\": \"<string>\",\n  \"invitation_token\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"user_agent\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/authenticate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "authenticate"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-ce85705d-c999-4370-a5cc-cfbec282c18e"
+                },
+                {
+                  "id": "d6b81411-e36c-4714-bb0c-1b59e16b53fc",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"<string>\",\n  \"code_verifier\": \"<string>\",\n  \"invitation_token\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"user_agent\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/authenticate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "authenticate"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-d6b81411-e36c-4714-bb0c-1b59e16b53fc"
+                },
+                {
+                  "id": "fb44bfd8-0fbd-4705-a5c7-a2f1cd268e9f",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"<string>\",\n  \"code_verifier\": \"<string>\",\n  \"invitation_token\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"user_agent\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/authenticate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "authenticate"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-fb44bfd8-0fbd-4705-a5c7-a2f1cd268e9f"
+                },
+                {
+                  "id": "38533e2c-74dc-4726-826a-163c2335a1b1",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"<string>\",\n  \"code_verifier\": \"<string>\",\n  \"invitation_token\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"user_agent\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/authenticate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "authenticate"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-38533e2c-74dc-4726-826a-163c2335a1b1"
+                },
+                {
+                  "id": "cca64f66-f1a4-4244-8305-253b126b884d",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"<string>\",\n  \"code_verifier\": \"<string>\",\n  \"invitation_token\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"user_agent\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/authenticate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "authenticate"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-cca64f66-f1a4-4244-8305-253b126b884d"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:35.000Z",
+              "updatedAt": "2026-07-28T03:34:35.000Z",
+              "uid": "35240-bed41518-c6d3-428a-a2d4-6c1b453a18a4"
+            }
+          ],
+          "id": "b7a644cd-4815-4d25-986b-b9e0d676eb9d",
+          "createdAt": "2026-07-28T03:34:35.000Z",
+          "updatedAt": "2026-07-28T03:34:35.000Z",
+          "uid": "35240-b7a644cd-4815-4d25-986b-b9e0d676eb9d"
+        },
+        {
+          "name": "authorize",
+          "item": [
+            {
+              "name": "device",
+              "item": [
+                {
+                  "name": "Get Device Authorization URL",
+                  "id": "1661ff20-e193-44d2-8559-32140857833e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/authorize/device",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "authorize",
+                        "device"
+                      ]
+                    },
+                    "description": "Initiates the CLI Auth flow by requesting a device code and verification URLs. This endpoint implements the OAuth 2.0 Device Authorization Flow ([RFC 8628](https://datatracker.ietf.org/doc/html/rfc8628)) and is designed for command-line applications or other devices with limited input capabilities."
+                  },
+                  "response": [
+                    {
+                      "id": "57dd88d9-3aac-4b88-8391-875f2e8933e4",
+                      "name": "Device authorization response with codes and verification URI.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"client_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/authorize/device",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "authorize",
+                            "device"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"device_code\": \"<string>\",\n  \"user_code\": \"<string>\",\n  \"verification_uri\": \"<uri>\",\n  \"expires_in\": \"<number>\",\n  \"verification_uri_complete\": \"<uri>\",\n  \"interval\": \"<number>\"\n}",
+                      "createdAt": "2026-07-28T03:34:35.000Z",
+                      "updatedAt": "2026-07-28T03:34:35.000Z",
+                      "uid": "35240-57dd88d9-3aac-4b88-8391-875f2e8933e4"
+                    },
+                    {
+                      "id": "16010fff-c62f-44f9-806d-745f5941e589",
+                      "name": "Invalid request parameters.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"client_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/authorize/device",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "authorize",
+                            "device"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:35.000Z",
+                      "updatedAt": "2026-07-28T03:34:35.000Z",
+                      "uid": "35240-16010fff-c62f-44f9-806d-745f5941e589"
+                    },
+                    {
+                      "id": "eabcde46-86fa-4470-8f14-14edc2d711ef",
+                      "name": "Feature not enabled for team.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"client_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/authorize/device",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "authorize",
+                            "device"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:35.000Z",
+                      "updatedAt": "2026-07-28T03:34:35.000Z",
+                      "uid": "35240-eabcde46-86fa-4470-8f14-14edc2d711ef"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-1661ff20-e193-44d2-8559-32140857833e"
+                }
+              ],
+              "id": "fcc068ab-b356-41b4-8480-ea82a3466072",
+              "createdAt": "2026-07-28T03:34:35.000Z",
+              "updatedAt": "2026-07-28T03:34:35.000Z",
+              "uid": "35240-fcc068ab-b356-41b4-8480-ea82a3466072"
+            },
+            {
+              "name": "Get an Authorization URL",
+              "id": "c5e8ad7b-d560-4ff8-b373-6e2322cf6938",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/authorize?code_challenge_method=<string>&code_challenge=<string>&domain_hint=<string>&connection_id=<string>&mollit1=<string>&magna2=<string>&Excepteur_7=<string>&commodob=<string>&provider_scopes=<string>,<string>&invitation_token=<string>&screen_hint=sign-in&login_hint=<string>&provider=GoogleOAuth&prompt=<string>&state=<string>&organization_id=<string>&response_type=<string>&redirect_uri=<uri>&client_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "authorize"
+                  ],
+                  "query": [
+                    {
+                      "description": "The only valid PKCE code challenge method is `\"S256\"`. Required when specifying a `code_challenge`.",
+                      "key": "code_challenge_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Code challenge derived from the code verifier used for the PKCE flow.",
+                      "key": "code_challenge",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A domain hint for SSO connection lookup.",
+                      "key": "domain_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ID of an SSO connection to use for authentication.",
+                      "key": "connection_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                      "key": "mollit1",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                      "key": "magna2",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                      "key": "Excepteur_7",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                      "key": "commodob",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Additional OAuth scopes to request from the identity provider.",
+                      "key": "provider_scopes",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "A token representing a user invitation to redeem during authentication.",
+                      "key": "invitation_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Used to specify which screen to display when the provider is `authkit`.",
+                      "key": "screen_hint",
+                      "value": "sign-in"
+                    },
+                    {
+                      "description": "A hint to the authorization server about the login identifier the user might use.",
+                      "key": "login_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The OAuth provider to authenticate with (e.g., GoogleOAuth, MicrosoftOAuth, GitHubOAuth).",
+                      "key": "provider",
+                      "value": "GoogleOAuth"
+                    },
+                    {
+                      "description": "Controls the authentication flow behavior for the user.",
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An opaque value used to maintain state between the request and the callback.",
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The ID of the organization to authenticate the user against.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The response type of the application.",
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The callback URI where the authorization code will be sent after authentication.",
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "description": "(Required) The unique identifier of the WorkOS environment client.",
+                      "key": "client_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Generates an OAuth 2.0 authorization URL to authenticate a user with AuthKit or SSO."
+              },
+              "response": [
+                {
+                  "id": "5dac4b1d-5ea5-4097-b482-ace4934e59aa",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/authorize?code_challenge_method=<string>&code_challenge=<string>&domain_hint=<string>&connection_id=<string>&mollit1=<string>&magna2=<string>&Excepteur_7=<string>&commodob=<string>&provider_scopes=<string>,<string>&invitation_token=<string>&screen_hint=sign-in&login_hint=<string>&provider=GoogleOAuth&prompt=<string>&state=<string>&organization_id=<string>&response_type=<string>&redirect_uri=<uri>&client_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "authorize"
+                      ],
+                      "query": [
+                        {
+                          "description": "The only valid PKCE code challenge method is `\"S256\"`. Required when specifying a `code_challenge`.",
+                          "key": "code_challenge_method",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Code challenge derived from the code verifier used for the PKCE flow.",
+                          "key": "code_challenge",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A domain hint for SSO connection lookup.",
+                          "key": "domain_hint",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The ID of an SSO connection to use for authentication.",
+                          "key": "connection_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                          "key": "mollit1",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                          "key": "magna2",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                          "key": "Excepteur_7",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                          "key": "commodob",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Additional OAuth scopes to request from the identity provider.",
+                          "key": "provider_scopes",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "A token representing a user invitation to redeem during authentication.",
+                          "key": "invitation_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Used to specify which screen to display when the provider is `authkit`.",
+                          "key": "screen_hint",
+                          "value": "sign-in"
+                        },
+                        {
+                          "description": "A hint to the authorization server about the login identifier the user might use.",
+                          "key": "login_hint",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The OAuth provider to authenticate with (e.g., GoogleOAuth, MicrosoftOAuth, GitHubOAuth).",
+                          "key": "provider",
+                          "value": "GoogleOAuth"
+                        },
+                        {
+                          "description": "Controls the authentication flow behavior for the user.",
+                          "key": "prompt",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An opaque value used to maintain state between the request and the callback.",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The ID of the organization to authenticate the user against.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The response type of the application.",
+                          "key": "response_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The callback URI where the authorization code will be sent after authentication.",
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "(Required) The unique identifier of the WorkOS environment client.",
+                          "key": "client_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "location",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-5dac4b1d-5ea5-4097-b482-ace4934e59aa"
+                },
+                {
+                  "id": "21d3363e-185a-46a8-9e88-2252e32469be",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/authorize?code_challenge_method=<string>&code_challenge=<string>&domain_hint=<string>&connection_id=<string>&mollit1=<string>&magna2=<string>&Excepteur_7=<string>&commodob=<string>&provider_scopes=<string>,<string>&invitation_token=<string>&screen_hint=sign-in&login_hint=<string>&provider=GoogleOAuth&prompt=<string>&state=<string>&organization_id=<string>&response_type=<string>&redirect_uri=<uri>&client_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "authorize"
+                      ],
+                      "query": [
+                        {
+                          "description": "The only valid PKCE code challenge method is `\"S256\"`. Required when specifying a `code_challenge`.",
+                          "key": "code_challenge_method",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Code challenge derived from the code verifier used for the PKCE flow.",
+                          "key": "code_challenge",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "A domain hint for SSO connection lookup.",
+                          "key": "domain_hint",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The ID of an SSO connection to use for authentication.",
+                          "key": "connection_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                          "key": "mollit1",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                          "key": "magna2",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                          "key": "Excepteur_7",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Key/value pairs of query parameters to pass to the OAuth provider.",
+                          "key": "commodob",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Additional OAuth scopes to request from the identity provider.",
+                          "key": "provider_scopes",
+                          "value": "<string>,<string>"
+                        },
+                        {
+                          "description": "A token representing a user invitation to redeem during authentication.",
+                          "key": "invitation_token",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Used to specify which screen to display when the provider is `authkit`.",
+                          "key": "screen_hint",
+                          "value": "sign-in"
+                        },
+                        {
+                          "description": "A hint to the authorization server about the login identifier the user might use.",
+                          "key": "login_hint",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The OAuth provider to authenticate with (e.g., GoogleOAuth, MicrosoftOAuth, GitHubOAuth).",
+                          "key": "provider",
+                          "value": "GoogleOAuth"
+                        },
+                        {
+                          "description": "Controls the authentication flow behavior for the user.",
+                          "key": "prompt",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An opaque value used to maintain state between the request and the callback.",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The ID of the organization to authenticate the user against.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The response type of the application.",
+                          "key": "response_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The callback URI where the authorization code will be sent after authentication.",
+                          "key": "redirect_uri",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "(Required) The unique identifier of the WorkOS environment client.",
+                          "key": "client_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Found",
+                  "code": 302,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "location",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-21d3363e-185a-46a8-9e88-2252e32469be"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:35.000Z",
+              "updatedAt": "2026-07-28T03:34:35.000Z",
+              "uid": "35240-c5e8ad7b-d560-4ff8-b373-6e2322cf6938"
+            }
+          ],
+          "id": "39b77b4e-d434-4a22-a7e5-fd8d720f3143",
+          "createdAt": "2026-07-28T03:34:35.000Z",
+          "updatedAt": "2026-07-28T03:34:35.000Z",
+          "uid": "35240-39b77b4e-d434-4a22-a7e5-fd8d720f3143"
+        },
+        {
+          "name": "sessions",
+          "item": [
+            {
+              "name": "logout",
+              "item": [
+                {
+                  "name": "Logout",
+                  "id": "46e4cc01-6a61-4196-95d3-be7801773e3c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/sessions/logout?session_id=<string>&return_to=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "sessions",
+                        "logout"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The ID of the session to revoke. This can be extracted from the `sid` claim of the access token.",
+                          "key": "session_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The URL to redirect the user to after session revocation.",
+                          "key": "return_to",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Logout a user from the current [session](/reference/authkit/session)."
+                  },
+                  "response": [
+                    {
+                      "id": "fb1f6996-8219-4d40-99ba-181d4fd8d990",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/sessions/logout?session_id=<string>&return_to=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "sessions",
+                            "logout"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The ID of the session to revoke. This can be extracted from the `sid` claim of the access token.",
+                              "key": "session_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The URL to redirect the user to after session revocation.",
+                              "key": "return_to",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "location",
+                          "value": "<uri>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:35.000Z",
+                      "updatedAt": "2026-07-28T03:34:35.000Z",
+                      "uid": "35240-fb1f6996-8219-4d40-99ba-181d4fd8d990"
+                    },
+                    {
+                      "id": "c6ba7423-287c-4495-a3b9-e5633154d19c",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/sessions/logout?session_id=<string>&return_to=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "sessions",
+                            "logout"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The ID of the session to revoke. This can be extracted from the `sid` claim of the access token.",
+                              "key": "session_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The URL to redirect the user to after session revocation.",
+                              "key": "return_to",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Found",
+                      "code": 302,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "location",
+                          "value": "<uri>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:35.000Z",
+                      "updatedAt": "2026-07-28T03:34:35.000Z",
+                      "uid": "35240-c6ba7423-287c-4495-a3b9-e5633154d19c"
+                    },
+                    {
+                      "id": "166a2668-e18b-49f9-8507-d9555d2d55d0",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/sessions/logout?session_id=<string>&return_to=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "sessions",
+                            "logout"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The ID of the session to revoke. This can be extracted from the `sid` claim of the access token.",
+                              "key": "session_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The URL to redirect the user to after session revocation.",
+                              "key": "return_to",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:35.000Z",
+                      "updatedAt": "2026-07-28T03:34:35.000Z",
+                      "uid": "35240-166a2668-e18b-49f9-8507-d9555d2d55d0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-46e4cc01-6a61-4196-95d3-be7801773e3c"
+                }
+              ],
+              "id": "18ce9555-8989-4e7a-a3b6-78d088b12778",
+              "createdAt": "2026-07-28T03:34:35.000Z",
+              "updatedAt": "2026-07-28T03:34:35.000Z",
+              "uid": "35240-18ce9555-8989-4e7a-a3b6-78d088b12778"
+            },
+            {
+              "name": "revoke",
+              "item": [
+                {
+                  "name": "Revoke Session",
+                  "id": "f4bf8736-8600-434f-8012-440fff01a779",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"session_id\": \"<string>\",\n  \"return_to\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/sessions/revoke",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "sessions",
+                        "revoke"
+                      ]
+                    },
+                    "description": "Revoke a [user session](/reference/authkit/session)."
+                  },
+                  "response": [
+                    {
+                      "id": "79696b55-6380-4ccf-a19f-fc4e1bf62bfc",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"session_id\": \"<string>\",\n  \"return_to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/sessions/revoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "sessions",
+                            "revoke"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:35.000Z",
+                      "updatedAt": "2026-07-28T03:34:35.000Z",
+                      "uid": "35240-79696b55-6380-4ccf-a19f-fc4e1bf62bfc"
+                    },
+                    {
+                      "id": "42e02be8-83f4-44ad-a172-74c372cf048a",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"session_id\": \"<string>\",\n  \"return_to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/sessions/revoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "sessions",
+                            "revoke"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:35.000Z",
+                      "updatedAt": "2026-07-28T03:34:35.000Z",
+                      "uid": "35240-42e02be8-83f4-44ad-a172-74c372cf048a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:35.000Z",
+                  "updatedAt": "2026-07-28T03:34:35.000Z",
+                  "uid": "35240-f4bf8736-8600-434f-8012-440fff01a779"
+                }
+              ],
+              "id": "c4540c52-d92e-476b-be8c-58e36bcbd2c0",
+              "createdAt": "2026-07-28T03:34:35.000Z",
+              "updatedAt": "2026-07-28T03:34:35.000Z",
+              "uid": "35240-c4540c52-d92e-476b-be8c-58e36bcbd2c0"
+            }
+          ],
+          "id": "294593f8-808a-4ea3-846f-0fed6465a384",
+          "createdAt": "2026-07-28T03:34:35.000Z",
+          "updatedAt": "2026-07-28T03:34:35.000Z",
+          "uid": "35240-294593f8-808a-4ea3-846f-0fed6465a384"
+        }
+      ],
+      "id": "9bd6958f-25d9-4610-b1d9-570b49c6fdef",
+      "createdAt": "2026-07-28T03:34:35.000Z",
+      "updatedAt": "2026-07-28T03:34:35.000Z",
+      "uid": "35240-9bd6958f-25d9-4610-b1d9-570b49c6fdef"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "info": {
+    "_postman_id": "3b279ab7-116b-4681-b0e8-cec160d099db",
+    "name": "WorkOS admin-portal workos-connect API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:26.000Z",
+    "updatedAt": "2026-07-28T03:35:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3b279ab7-116b-4681-b0e8-cec160d099db"
+  },
+  "item": [
+    {
+      "name": "authkit",
+      "item": [
+        {
+          "name": "oauth2",
+          "item": [
+            {
+              "name": "complete",
+              "item": [
+                {
+                  "name": "Complete External Authentication",
+                  "id": "ad8df27c-bc21-4c5b-99bd-c34ffe06f600",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"external_auth_id\": \"<string>\",\n  \"user\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_42\": \"<string>\",\n      \"culpa_3\": \"<string>\",\n      \"mollit_7\": \"<string>\",\n      \"ut__f\": \"<string>\",\n      \"dolore6\": \"<string>\",\n      \"proident0\": \"<string>\",\n      \"Duis2\": \"<string>\",\n      \"ullamcob4\": \"<string>\",\n      \"cupidatat2\": \"<string>\",\n      \"laborise_8\": \"<string>\",\n      \"enim_1\": \"<string>\",\n      \"minim_283\": \"<string>\",\n      \"fugiat_3\": \"<string>\",\n      \"fugiatbbb\": \"<string>\",\n      \"magnaf\": \"<string>\",\n      \"in75\": \"<string>\",\n      \"labore_1\": \"<string>\",\n      \"reprehenderit_0\": \"<string>\",\n      \"incididunt41a\": \"<string>\",\n      \"sunt_446\": \"<string>\",\n      \"ipsum_4\": \"<string>\",\n      \"ea_9e\": \"<string>\",\n      \"Duis_2\": \"<string>\",\n      \"sunt19\": \"<string>\",\n      \"occaecat58a\": \"<string>\",\n      \"laborisb5\": \"<string>\",\n      \"cillum9\": \"<string>\",\n      \"sunt_c_\": \"<string>\",\n      \"in6e\": \"<string>\",\n      \"aliquac0e\": \"<string>\",\n      \"aliqua_ac\": \"<string>\",\n      \"mollita\": \"<string>\",\n      \"adipisicing_d06\": \"<string>\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/authkit/oauth2/complete",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "authkit",
+                        "oauth2",
+                        "complete"
+                      ]
+                    },
+                    "description": "Completes an external authentication flow and returns control to AuthKit. This endpoint is used with [Standalone Connect](/authkit/connect/standalone) to bridge your existing authentication system with the Connect OAuth API infrastructure.\n\nAfter successfully authenticating a user in your application, calling this endpoint will:\n\n- Create or update the user in AuthKit, using the given `id` as its `external_id`.\n- Return a `redirect_uri` your application should redirect to in order for AuthKit to complete the flow\n\nUsers are automatically created or updated based on the `id` and `email` provided. If a user with the same `id` exists, their information is updated. Otherwise, a new user is created.\n\nIf you provide a new `id` with an `email` that already belongs to an existing user, the request will fail with an error as email addresses are unique to a user."
+                  },
+                  "response": [
+                    {
+                      "id": "5e9939ee-28fb-4c54-9517-dda72958ef2e",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"external_auth_id\": \"<string>\",\n  \"user\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_42\": \"<string>\",\n      \"culpa_3\": \"<string>\",\n      \"mollit_7\": \"<string>\",\n      \"ut__f\": \"<string>\",\n      \"dolore6\": \"<string>\",\n      \"proident0\": \"<string>\",\n      \"Duis2\": \"<string>\",\n      \"ullamcob4\": \"<string>\",\n      \"cupidatat2\": \"<string>\",\n      \"laborise_8\": \"<string>\",\n      \"enim_1\": \"<string>\",\n      \"minim_283\": \"<string>\",\n      \"fugiat_3\": \"<string>\",\n      \"fugiatbbb\": \"<string>\",\n      \"magnaf\": \"<string>\",\n      \"in75\": \"<string>\",\n      \"labore_1\": \"<string>\",\n      \"reprehenderit_0\": \"<string>\",\n      \"incididunt41a\": \"<string>\",\n      \"sunt_446\": \"<string>\",\n      \"ipsum_4\": \"<string>\",\n      \"ea_9e\": \"<string>\",\n      \"Duis_2\": \"<string>\",\n      \"sunt19\": \"<string>\",\n      \"occaecat58a\": \"<string>\",\n      \"laborisb5\": \"<string>\",\n      \"cillum9\": \"<string>\",\n      \"sunt_c_\": \"<string>\",\n      \"in6e\": \"<string>\",\n      \"aliquac0e\": \"<string>\",\n      \"aliqua_ac\": \"<string>\",\n      \"mollita\": \"<string>\",\n      \"adipisicing_d06\": \"<string>\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/authkit/oauth2/complete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "authkit",
+                            "oauth2",
+                            "complete"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"redirect_uri\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:35:27.000Z",
+                      "updatedAt": "2026-07-28T03:35:27.000Z",
+                      "uid": "35240-5e9939ee-28fb-4c54-9517-dda72958ef2e"
+                    },
+                    {
+                      "id": "a8d25522-1049-4731-ad0e-936c41016ebd",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"external_auth_id\": \"<string>\",\n  \"user\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_42\": \"<string>\",\n      \"culpa_3\": \"<string>\",\n      \"mollit_7\": \"<string>\",\n      \"ut__f\": \"<string>\",\n      \"dolore6\": \"<string>\",\n      \"proident0\": \"<string>\",\n      \"Duis2\": \"<string>\",\n      \"ullamcob4\": \"<string>\",\n      \"cupidatat2\": \"<string>\",\n      \"laborise_8\": \"<string>\",\n      \"enim_1\": \"<string>\",\n      \"minim_283\": \"<string>\",\n      \"fugiat_3\": \"<string>\",\n      \"fugiatbbb\": \"<string>\",\n      \"magnaf\": \"<string>\",\n      \"in75\": \"<string>\",\n      \"labore_1\": \"<string>\",\n      \"reprehenderit_0\": \"<string>\",\n      \"incididunt41a\": \"<string>\",\n      \"sunt_446\": \"<string>\",\n      \"ipsum_4\": \"<string>\",\n      \"ea_9e\": \"<string>\",\n      \"Duis_2\": \"<string>\",\n      \"sunt19\": \"<string>\",\n      \"occaecat58a\": \"<string>\",\n      \"laborisb5\": \"<string>\",\n      \"cillum9\": \"<string>\",\n      \"sunt_c_\": \"<string>\",\n      \"in6e\": \"<string>\",\n      \"aliquac0e\": \"<string>\",\n      \"aliqua_ac\": \"<string>\",\n      \"mollita\": \"<string>\",\n      \"adipisicing_d06\": \"<string>\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/authkit/oauth2/complete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "authkit",
+                            "oauth2",
+                            "complete"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:35:27.000Z",
+                      "updatedAt": "2026-07-28T03:35:27.000Z",
+                      "uid": "35240-a8d25522-1049-4731-ad0e-936c41016ebd"
+                    },
+                    {
+                      "id": "150f273a-b2d3-444f-b115-2b70761834d0",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"external_auth_id\": \"<string>\",\n  \"user\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_42\": \"<string>\",\n      \"culpa_3\": \"<string>\",\n      \"mollit_7\": \"<string>\",\n      \"ut__f\": \"<string>\",\n      \"dolore6\": \"<string>\",\n      \"proident0\": \"<string>\",\n      \"Duis2\": \"<string>\",\n      \"ullamcob4\": \"<string>\",\n      \"cupidatat2\": \"<string>\",\n      \"laborise_8\": \"<string>\",\n      \"enim_1\": \"<string>\",\n      \"minim_283\": \"<string>\",\n      \"fugiat_3\": \"<string>\",\n      \"fugiatbbb\": \"<string>\",\n      \"magnaf\": \"<string>\",\n      \"in75\": \"<string>\",\n      \"labore_1\": \"<string>\",\n      \"reprehenderit_0\": \"<string>\",\n      \"incididunt41a\": \"<string>\",\n      \"sunt_446\": \"<string>\",\n      \"ipsum_4\": \"<string>\",\n      \"ea_9e\": \"<string>\",\n      \"Duis_2\": \"<string>\",\n      \"sunt19\": \"<string>\",\n      \"occaecat58a\": \"<string>\",\n      \"laborisb5\": \"<string>\",\n      \"cillum9\": \"<string>\",\n      \"sunt_c_\": \"<string>\",\n      \"in6e\": \"<string>\",\n      \"aliquac0e\": \"<string>\",\n      \"aliqua_ac\": \"<string>\",\n      \"mollita\": \"<string>\",\n      \"adipisicing_d06\": \"<string>\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/authkit/oauth2/complete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "authkit",
+                            "oauth2",
+                            "complete"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:35:27.000Z",
+                      "updatedAt": "2026-07-28T03:35:27.000Z",
+                      "uid": "35240-150f273a-b2d3-444f-b115-2b70761834d0"
+                    },
+                    {
+                      "id": "6c33a4ad-e23d-4089-85b0-cf0d0f02143b",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"external_auth_id\": \"<string>\",\n  \"user\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"metadata\": {\n      \"Excepteur_42\": \"<string>\",\n      \"culpa_3\": \"<string>\",\n      \"mollit_7\": \"<string>\",\n      \"ut__f\": \"<string>\",\n      \"dolore6\": \"<string>\",\n      \"proident0\": \"<string>\",\n      \"Duis2\": \"<string>\",\n      \"ullamcob4\": \"<string>\",\n      \"cupidatat2\": \"<string>\",\n      \"laborise_8\": \"<string>\",\n      \"enim_1\": \"<string>\",\n      \"minim_283\": \"<string>\",\n      \"fugiat_3\": \"<string>\",\n      \"fugiatbbb\": \"<string>\",\n      \"magnaf\": \"<string>\",\n      \"in75\": \"<string>\",\n      \"labore_1\": \"<string>\",\n      \"reprehenderit_0\": \"<string>\",\n      \"incididunt41a\": \"<string>\",\n      \"sunt_446\": \"<string>\",\n      \"ipsum_4\": \"<string>\",\n      \"ea_9e\": \"<string>\",\n      \"Duis_2\": \"<string>\",\n      \"sunt19\": \"<string>\",\n      \"occaecat58a\": \"<string>\",\n      \"laborisb5\": \"<string>\",\n      \"cillum9\": \"<string>\",\n      \"sunt_c_\": \"<string>\",\n      \"in6e\": \"<string>\",\n      \"aliquac0e\": \"<string>\",\n      \"aliqua_ac\": \"<string>\",\n      \"mollita\": \"<string>\",\n      \"adipisicing_d06\": \"<string>\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/authkit/oauth2/complete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "authkit",
+                            "oauth2",
+                            "complete"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:35:27.000Z",
+                      "updatedAt": "2026-07-28T03:35:27.000Z",
+                      "uid": "35240-6c33a4ad-e23d-4089-85b0-cf0d0f02143b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:35:27.000Z",
+                  "updatedAt": "2026-07-28T03:35:27.000Z",
+                  "uid": "35240-ad8df27c-bc21-4c5b-99bd-c34ffe06f600"
+                }
+              ],
+              "id": "4fe03b14-524a-4bdd-8690-f1bcf3d0ebca",
+              "createdAt": "2026-07-28T03:35:27.000Z",
+              "updatedAt": "2026-07-28T03:35:27.000Z",
+              "uid": "35240-4fe03b14-524a-4bdd-8690-f1bcf3d0ebca"
+            }
+          ],
+          "id": "b406aa05-ed4d-4040-ba91-886caf3e2c3c",
+          "createdAt": "2026-07-28T03:35:27.000Z",
+          "updatedAt": "2026-07-28T03:35:27.000Z",
+          "uid": "35240-b406aa05-ed4d-4040-ba91-886caf3e2c3c"
+        }
+      ],
+      "id": "4bea2b66-b6f4-4dc3-a1af-90d43e4ab4bc",
+      "createdAt": "2026-07-28T03:35:27.000Z",
+      "updatedAt": "2026-07-28T03:35:27.000Z",
+      "uid": "35240-4bea2b66-b6f4-4dc3-a1af-90d43e4ab4bc"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

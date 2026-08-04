@@ -1,0 +1,378 @@
+{
+  "info": {
+    "_postman_id": "5728d3d7-7b17-44b8-bead-87c7f354b3af",
+    "name": "WorkOS admin-portal multi-factor-auth.challenges API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:17.000Z",
+    "updatedAt": "2026-07-28T03:34:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5728d3d7-7b17-44b8-bead-87c7f354b3af"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "challenges",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "verify",
+                  "item": [
+                    {
+                      "name": "Verify Challenge",
+                      "id": "1de26369-2c92-4508-afda-f9365de4f7a8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"code\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/challenges/:id/verify",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "challenges",
+                            ":id",
+                            "verify"
+                          ],
+                          "variable": [
+                            {
+                              "id": "271158e1-6b74-4dd2-af3c-18fe3addb0a2",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The unique ID of the Authentication Challenge."
+                            }
+                          ]
+                        },
+                        "description": "Verifies an Authentication Challenge."
+                      },
+                      "response": [
+                        {
+                          "id": "bf009811-5e5f-43a5-98cd-a8a1b6baa6f8",
+                          "name": "Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"code\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/challenges/:id/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "challenges",
+                                ":id",
+                                "verify"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"challenge\": {\n    \"object\": \"<string>\",\n    \"id\": \"<string>\",\n    \"authentication_factor_id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"expires_at\": \"<dateTime>\",\n    \"code\": \"<string>\"\n  },\n  \"valid\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T03:34:18.000Z",
+                          "updatedAt": "2026-07-28T03:34:18.000Z",
+                          "uid": "35240-bf009811-5e5f-43a5-98cd-a8a1b6baa6f8"
+                        },
+                        {
+                          "id": "fe4d5b7e-934f-4b97-96f0-7f0469b3762b",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"code\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/challenges/:id/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "challenges",
+                                ":id",
+                                "verify"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:18.000Z",
+                          "updatedAt": "2026-07-28T03:34:18.000Z",
+                          "uid": "35240-fe4d5b7e-934f-4b97-96f0-7f0469b3762b"
+                        },
+                        {
+                          "id": "0297e983-877b-45f7-9084-f67d01e2a12c",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"code\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/challenges/:id/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "challenges",
+                                ":id",
+                                "verify"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:18.000Z",
+                          "updatedAt": "2026-07-28T03:34:18.000Z",
+                          "uid": "35240-0297e983-877b-45f7-9084-f67d01e2a12c"
+                        },
+                        {
+                          "id": "4f8a2c37-2455-48c5-ba35-9db32be48395",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"code\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/challenges/:id/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "challenges",
+                                ":id",
+                                "verify"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:18.000Z",
+                          "updatedAt": "2026-07-28T03:34:18.000Z",
+                          "uid": "35240-4f8a2c37-2455-48c5-ba35-9db32be48395"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:18.000Z",
+                      "updatedAt": "2026-07-28T03:34:18.000Z",
+                      "uid": "35240-1de26369-2c92-4508-afda-f9365de4f7a8"
+                    }
+                  ],
+                  "id": "745887d9-ce82-41a9-8298-4ac60127da4c",
+                  "createdAt": "2026-07-28T03:34:18.000Z",
+                  "updatedAt": "2026-07-28T03:34:18.000Z",
+                  "uid": "35240-745887d9-ce82-41a9-8298-4ac60127da4c"
+                }
+              ],
+              "id": "d3599059-3457-4e7b-9186-2184d8022795",
+              "createdAt": "2026-07-28T03:34:18.000Z",
+              "updatedAt": "2026-07-28T03:34:18.000Z",
+              "uid": "35240-d3599059-3457-4e7b-9186-2184d8022795"
+            }
+          ],
+          "id": "81427eaf-c50a-47ff-ad5b-1a92766f41dc",
+          "createdAt": "2026-07-28T03:34:18.000Z",
+          "updatedAt": "2026-07-28T03:34:18.000Z",
+          "uid": "35240-81427eaf-c50a-47ff-ad5b-1a92766f41dc"
+        }
+      ],
+      "id": "0ab82ad1-f898-4e28-adf1-3abf59e20852",
+      "createdAt": "2026-07-28T03:34:18.000Z",
+      "updatedAt": "2026-07-28T03:34:18.000Z",
+      "uid": "35240-0ab82ad1-f898-4e28-adf1-3abf59e20852"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

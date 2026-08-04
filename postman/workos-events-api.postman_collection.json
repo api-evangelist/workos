@@ -1,0 +1,364 @@
+{
+  "info": {
+    "_postman_id": "275c33ae-8a89-47ba-bcd9-26d45a6cb053",
+    "name": "WorkOS admin-portal events API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:16.000Z",
+    "updatedAt": "2026-07-28T03:33:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-275c33ae-8a89-47ba-bcd9-26d45a6cb053"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "List Events",
+          "id": "566b3fba-4c92-4bf4-8692-f8af7158eb97",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events?before=<string>&after=<string>&limit=10&order=desc&events=<string>,<string>&range_start=<string>&range_end=<string>&organization_id=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                  "key": "before",
+                  "value": "<string>"
+                },
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                  "key": "after",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                  "key": "order",
+                  "value": "desc"
+                },
+                {
+                  "description": "Filter events by one or more event types (e.g. `dsync.user.created`).",
+                  "key": "events",
+                  "value": "<string>,<string>"
+                },
+                {
+                  "description": "ISO-8601 date string to filter events created after this date.",
+                  "key": "range_start",
+                  "value": "<string>"
+                },
+                {
+                  "description": "ISO-8601 date string to filter events created before this date.",
+                  "key": "range_end",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter events by the [Organization](/reference/organization) that the event is associated with.",
+                  "key": "organization_id",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List events for the current environment."
+          },
+          "response": [
+            {
+              "id": "f6f354ee-f1f6-4aed-bc83-6361ca8bf2ad",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?before=<string>&after=<string>&limit=10&order=desc&events=<string>,<string>&range_start=<string>&range_end=<string>&organization_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter events by one or more event types (e.g. `dsync.user.created`).",
+                      "key": "events",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "ISO-8601 date string to filter events created after this date.",
+                      "key": "range_start",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "ISO-8601 date string to filter events created before this date.",
+                      "key": "range_end",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events by the [Organization](/reference/organization) that the event is associated with.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"event\": \"<string>\",\n      \"data\": {\n        \"action_endpoint_id\": \"<string>\",\n        \"action_execution_id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"verdict\": \"<string>\",\n        \"user_id\": \"<string>\",\n        \"organization_id\": \"<string,null>\",\n        \"email\": \"<string>\",\n        \"ip_address\": \"<string,null>\",\n        \"user_agent\": \"<string,null>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"context\": {\n        \"google_analytics_client_id\": \"<string>\",\n        \"google_analytics_sessions\": [\n          {\n            \"containerId\": \"<string>\",\n            \"sessionId\": \"<string>\",\n            \"sessionNumber\": \"<string>\"\n          },\n          {\n            \"containerId\": \"<string>\",\n            \"sessionId\": \"<string>\",\n            \"sessionNumber\": \"<string>\"\n          }\n        ],\n        \"ajs_anonymous_id\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"actor\": {\n          \"id\": \"<string>\",\n          \"source\": \"dashboard\",\n          \"name\": \"<string,null>\"\n        },\n        \"previous_attributes\": {}\n      }\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"event\": \"<string>\",\n      \"data\": {\n        \"action_endpoint_id\": \"<string>\",\n        \"action_execution_id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"verdict\": \"<string>\",\n        \"user_id\": \"<string>\",\n        \"organization_id\": \"<string,null>\",\n        \"email\": \"<string>\",\n        \"ip_address\": \"<string,null>\",\n        \"user_agent\": \"<string,null>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"context\": {\n        \"google_analytics_client_id\": \"<string>\",\n        \"google_analytics_sessions\": [\n          {\n            \"containerId\": \"<string>\",\n            \"sessionId\": \"<string>\",\n            \"sessionNumber\": \"<string>\"\n          },\n          {\n            \"containerId\": \"<string>\",\n            \"sessionId\": \"<string>\",\n            \"sessionNumber\": \"<string>\"\n          }\n        ],\n        \"ajs_anonymous_id\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"actor\": {\n          \"id\": \"<string>\",\n          \"source\": \"admin_portal\",\n          \"name\": \"<string,null>\"\n        },\n        \"previous_attributes\": {}\n      }\n    }\n  ],\n  \"list_metadata\": {\n    \"after\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:33:17.000Z",
+              "updatedAt": "2026-07-28T03:33:17.000Z",
+              "uid": "35240-f6f354ee-f1f6-4aed-bc83-6361ca8bf2ad"
+            },
+            {
+              "id": "d3f85457-2d4e-4059-b45c-ef20ab8d3ff5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?before=<string>&after=<string>&limit=10&order=desc&events=<string>,<string>&range_start=<string>&range_end=<string>&organization_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter events by one or more event types (e.g. `dsync.user.created`).",
+                      "key": "events",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "ISO-8601 date string to filter events created after this date.",
+                      "key": "range_start",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "ISO-8601 date string to filter events created before this date.",
+                      "key": "range_end",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events by the [Organization](/reference/organization) that the event is associated with.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:17.000Z",
+              "updatedAt": "2026-07-28T03:33:17.000Z",
+              "uid": "35240-d3f85457-2d4e-4059-b45c-ef20ab8d3ff5"
+            },
+            {
+              "id": "e1594986-b425-4fe9-8228-f6a59e8c0b02",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?before=<string>&after=<string>&limit=10&order=desc&events=<string>,<string>&range_start=<string>&range_end=<string>&organization_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter events by one or more event types (e.g. `dsync.user.created`).",
+                      "key": "events",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "ISO-8601 date string to filter events created after this date.",
+                      "key": "range_start",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "ISO-8601 date string to filter events created before this date.",
+                      "key": "range_end",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter events by the [Organization](/reference/organization) that the event is associated with.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ],\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:17.000Z",
+              "updatedAt": "2026-07-28T03:33:17.000Z",
+              "uid": "35240-e1594986-b425-4fe9-8228-f6a59e8c0b02"
+            }
+          ],
+          "createdAt": "2026-07-28T03:33:17.000Z",
+          "updatedAt": "2026-07-28T03:33:17.000Z",
+          "uid": "35240-566b3fba-4c92-4bf4-8692-f8af7158eb97"
+        }
+      ],
+      "id": "909f8dd9-01ce-40f8-ae83-c1073ab9b736",
+      "createdAt": "2026-07-28T03:33:17.000Z",
+      "updatedAt": "2026-07-28T03:33:17.000Z",
+      "uid": "35240-909f8dd9-01ce-40f8-ae83-c1073ab9b736"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

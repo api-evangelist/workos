@@ -1,0 +1,986 @@
+{
+  "info": {
+    "_postman_id": "5bb55172-220a-4f70-8f48-72b9d6df1428",
+    "name": "WorkOS admin-portal applications API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:07.000Z",
+    "updatedAt": "2026-07-28T03:33:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5bb55172-220a-4f70-8f48-72b9d6df1428"
+  },
+  "item": [
+    {
+      "name": "connect",
+      "item": [
+        {
+          "name": "applications",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get a Connect Application",
+                  "id": "f4df7db2-9ff6-4fa0-847e-68292ef7f454",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/applications/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "applications",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0b56be61-9ef8-4165-b6fb-5f24c048b369",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID or client ID of the Connect Application."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details for a specific Connect Application by ID or client ID."
+                  },
+                  "response": [
+                    {
+                      "id": "9b28ee6b-d37e-4996-b021-a3914d3d776b",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/connect/applications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "connect",
+                            "applications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"application_type\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"description\": \"<string,null>\",\n  \"id\": \"<string>\",\n  \"is_first_party\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"object\": \"<string>\",\n  \"redirect_uris\": [\n    {\n      \"uri\": \"<uri>\",\n      \"default\": \"<boolean>\"\n    },\n    {\n      \"uri\": \"<uri>\",\n      \"default\": \"<boolean>\"\n    }\n  ],\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"updated_at\": \"<dateTime>\",\n  \"uses_pkce\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T03:33:08.000Z",
+                      "updatedAt": "2026-07-28T03:33:08.000Z",
+                      "uid": "35240-9b28ee6b-d37e-4996-b021-a3914d3d776b"
+                    },
+                    {
+                      "id": "59a511fd-824b-4238-bf4e-1b70522985df",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/connect/applications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "connect",
+                            "applications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:08.000Z",
+                      "updatedAt": "2026-07-28T03:33:08.000Z",
+                      "uid": "35240-59a511fd-824b-4238-bf4e-1b70522985df"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:33:08.000Z",
+                  "updatedAt": "2026-07-28T03:33:08.000Z",
+                  "uid": "35240-f4df7db2-9ff6-4fa0-847e-68292ef7f454"
+                },
+                {
+                  "name": "Update a Connect Application",
+                  "id": "94dca246-d7c2-4f5b-bf51-ae156cda7c37",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": null,\n  \"redirect_uris\": [\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/applications/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "applications",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a270fb99-2534-4574-9f91-773e5727d6fc",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID or client ID of the Connect Application."
+                        }
+                      ]
+                    },
+                    "description": "Update an existing Connect Application. For OAuth applications, you can update redirect URIs. For all applications, you can update the name, description, and scopes."
+                  },
+                  "response": [
+                    {
+                      "id": "3a175e76-b5bf-49bd-81c0-e3ef6db273dd",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": null,\n  \"redirect_uris\": [\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/connect/applications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "connect",
+                            "applications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"application_type\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"description\": \"<string,null>\",\n  \"id\": \"<string>\",\n  \"is_first_party\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"object\": \"<string>\",\n  \"redirect_uris\": [\n    {\n      \"uri\": \"<uri>\",\n      \"default\": \"<boolean>\"\n    },\n    {\n      \"uri\": \"<uri>\",\n      \"default\": \"<boolean>\"\n    }\n  ],\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"updated_at\": \"<dateTime>\",\n  \"uses_pkce\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T03:33:08.000Z",
+                      "updatedAt": "2026-07-28T03:33:08.000Z",
+                      "uid": "35240-3a175e76-b5bf-49bd-81c0-e3ef6db273dd"
+                    },
+                    {
+                      "id": "e28f69d8-ae00-4358-817f-db6cd1af4f52",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": null,\n  \"redirect_uris\": [\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/connect/applications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "connect",
+                            "applications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:08.000Z",
+                      "updatedAt": "2026-07-28T03:33:08.000Z",
+                      "uid": "35240-e28f69d8-ae00-4358-817f-db6cd1af4f52"
+                    },
+                    {
+                      "id": "9a70c82c-24c6-45a5-aa1d-bf6429b1a3a8",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": null,\n  \"redirect_uris\": [\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/connect/applications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "connect",
+                            "applications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:08.000Z",
+                      "updatedAt": "2026-07-28T03:33:08.000Z",
+                      "uid": "35240-9a70c82c-24c6-45a5-aa1d-bf6429b1a3a8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:33:08.000Z",
+                  "updatedAt": "2026-07-28T03:33:08.000Z",
+                  "uid": "35240-94dca246-d7c2-4f5b-bf51-ae156cda7c37"
+                },
+                {
+                  "name": "Delete a Connect Application",
+                  "id": "05d158d0-553b-473b-89fa-7aad481eabbc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/applications/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "applications",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "425f394b-dac3-44bc-8332-25e007acc8dc",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The application ID or client ID of the Connect Application."
+                        }
+                      ]
+                    },
+                    "description": "Delete an existing Connect Application."
+                  },
+                  "response": [
+                    {
+                      "id": "594da146-481c-44b3-8868-95a4f1a79246",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/connect/applications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "connect",
+                            "applications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:33:08.000Z",
+                      "updatedAt": "2026-07-28T03:33:08.000Z",
+                      "uid": "35240-594da146-481c-44b3-8868-95a4f1a79246"
+                    },
+                    {
+                      "id": "b730cee8-756f-4e11-8d1b-f30fa9390d51",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/connect/applications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "connect",
+                            "applications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:08.000Z",
+                      "updatedAt": "2026-07-28T03:33:08.000Z",
+                      "uid": "35240-b730cee8-756f-4e11-8d1b-f30fa9390d51"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:33:08.000Z",
+                  "updatedAt": "2026-07-28T03:33:08.000Z",
+                  "uid": "35240-05d158d0-553b-473b-89fa-7aad481eabbc"
+                }
+              ],
+              "id": "7ba799dc-2628-4849-b55e-f395430d93d8",
+              "createdAt": "2026-07-28T03:33:08.000Z",
+              "updatedAt": "2026-07-28T03:33:08.000Z",
+              "uid": "35240-7ba799dc-2628-4849-b55e-f395430d93d8"
+            },
+            {
+              "name": "List Connect Applications",
+              "id": "04e3f727-456e-49db-9028-34017a620df6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connect/applications?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connect",
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter Connect Applications by organization ID.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "List all Connect Applications in the current environment with optional filtering."
+              },
+              "response": [
+                {
+                  "id": "631dc846-0618-4fa0-bfdf-131ce8c02a94",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/applications?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "applications"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                          "key": "order",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "Filter Connect Applications by organization ID.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"application_type\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"description\": \"<string,null>\",\n      \"id\": \"<string>\",\n      \"is_first_party\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"object\": \"<string>\",\n      \"redirect_uris\": [\n        {\n          \"uri\": \"<uri>\",\n          \"default\": \"<boolean>\"\n        },\n        {\n          \"uri\": \"<uri>\",\n          \"default\": \"<boolean>\"\n        }\n      ],\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"updated_at\": \"<dateTime>\",\n      \"uses_pkce\": \"<boolean>\"\n    },\n    {\n      \"application_type\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"description\": \"<string,null>\",\n      \"id\": \"<string>\",\n      \"is_first_party\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"object\": \"<string>\",\n      \"redirect_uris\": [\n        {\n          \"uri\": \"<uri>\",\n          \"default\": \"<boolean>\"\n        },\n        {\n          \"uri\": \"<uri>\",\n          \"default\": \"<boolean>\"\n        }\n      ],\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"updated_at\": \"<dateTime>\",\n      \"uses_pkce\": \"<boolean>\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:33:08.000Z",
+                  "updatedAt": "2026-07-28T03:33:08.000Z",
+                  "uid": "35240-631dc846-0618-4fa0-bfdf-131ce8c02a94"
+                },
+                {
+                  "id": "27c2df75-c4c5-4c59-ae24-76766c1dff6c",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/applications?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "applications"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                          "key": "order",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "Filter Connect Applications by organization ID.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:08.000Z",
+                  "updatedAt": "2026-07-28T03:33:08.000Z",
+                  "uid": "35240-27c2df75-c4c5-4c59-ae24-76766c1dff6c"
+                }
+              ],
+              "createdAt": "2026-07-28T03:33:08.000Z",
+              "updatedAt": "2026-07-28T03:33:08.000Z",
+              "uid": "35240-04e3f727-456e-49db-9028-34017a620df6"
+            },
+            {
+              "name": "Create a Connect Application",
+              "id": "deb93512-c7a8-480a-ac1f-46d6d830e97e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"application_type\": \"<string>\",\n  \"is_first_party\": \"<boolean>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": null,\n  \"redirect_uris\": [\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    }\n  ],\n  \"uses_pkce\": \"<boolean,null>\",\n  \"organization_id\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/connect/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connect",
+                    "applications"
+                  ]
+                },
+                "description": "Create a new Connect Application. Supports both OAuth and Machine-to-Machine (M2M) application types."
+              },
+              "response": [
+                {
+                  "id": "7b17c367-6d01-4133-bd7f-5440ce2d86a1",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"application_type\": \"<string>\",\n  \"is_first_party\": \"<boolean>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": null,\n  \"redirect_uris\": [\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    }\n  ],\n  \"uses_pkce\": \"<boolean,null>\",\n  \"organization_id\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"application_type\": \"<string>\",\n  \"client_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"description\": \"<string,null>\",\n  \"id\": \"<string>\",\n  \"is_first_party\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"object\": \"<string>\",\n  \"redirect_uris\": [\n    {\n      \"uri\": \"<uri>\",\n      \"default\": \"<boolean>\"\n    },\n    {\n      \"uri\": \"<uri>\",\n      \"default\": \"<boolean>\"\n    }\n  ],\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"updated_at\": \"<dateTime>\",\n  \"uses_pkce\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T03:33:08.000Z",
+                  "updatedAt": "2026-07-28T03:33:08.000Z",
+                  "uid": "35240-7b17c367-6d01-4133-bd7f-5440ce2d86a1"
+                },
+                {
+                  "id": "4da1a3d0-cd15-43be-8164-0bda613f5768",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"application_type\": \"<string>\",\n  \"is_first_party\": \"<boolean>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": null,\n  \"redirect_uris\": [\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    }\n  ],\n  \"uses_pkce\": \"<boolean,null>\",\n  \"organization_id\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:08.000Z",
+                  "updatedAt": "2026-07-28T03:33:08.000Z",
+                  "uid": "35240-4da1a3d0-cd15-43be-8164-0bda613f5768"
+                },
+                {
+                  "id": "46d01037-36bf-4524-9ba1-c302a412d9f3",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"application_type\": \"<string>\",\n  \"is_first_party\": \"<boolean>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": null,\n  \"redirect_uris\": [\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"type\": [\n        \"boolean\",\n        \"null\"\n      ],\n      \"description\": \"Whether this is the default redirect URI.\",\n      \"example\": true,\n      \"default\": \"<boolean,null>\"\n    }\n  ],\n  \"uses_pkce\": \"<boolean,null>\",\n  \"organization_id\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/applications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "applications"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:08.000Z",
+                  "updatedAt": "2026-07-28T03:33:08.000Z",
+                  "uid": "35240-46d01037-36bf-4524-9ba1-c302a412d9f3"
+                }
+              ],
+              "createdAt": "2026-07-28T03:33:08.000Z",
+              "updatedAt": "2026-07-28T03:33:08.000Z",
+              "uid": "35240-deb93512-c7a8-480a-ac1f-46d6d830e97e"
+            }
+          ],
+          "id": "dfb4d963-e041-471c-8cfe-28706ccc4696",
+          "createdAt": "2026-07-28T03:33:08.000Z",
+          "updatedAt": "2026-07-28T03:33:08.000Z",
+          "uid": "35240-dfb4d963-e041-471c-8cfe-28706ccc4696"
+        }
+      ],
+      "id": "b7d10887-4f1c-4053-92fc-33db6ca2ab33",
+      "createdAt": "2026-07-28T03:33:08.000Z",
+      "updatedAt": "2026-07-28T03:33:08.000Z",
+      "uid": "35240-b7d10887-4f1c-4053-92fc-33db6ca2ab33"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

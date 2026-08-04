@@ -1,0 +1,503 @@
+{
+  "info": {
+    "_postman_id": "ed5eb9d8-f278-4548-8473-21d5fe2c64f8",
+    "name": "WorkOS admin-portal user-management.users.authorized-applications API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:20.000Z",
+    "updatedAt": "2026-07-28T03:35:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ed5eb9d8-f278-4548-8473-21d5fe2c64f8"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "{user_id}",
+              "item": [
+                {
+                  "name": "authorized_applications",
+                  "item": [
+                    {
+                      "name": "{application_id}",
+                      "item": [
+                        {
+                          "name": "Delete an Authorized Application",
+                          "id": "ead6ee00-2555-49aa-b262-9d4ba5922922",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:user_id/authorized_applications/:application_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":user_id",
+                                "authorized_applications",
+                                ":application_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9c39c660-6116-4620-bfb7-9689f6cf1f16",
+                                  "key": "user_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the user."
+                                },
+                                {
+                                  "id": "db7ad667-0d36-4e6a-a521-d197ca9a176d",
+                                  "key": "application_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID or client ID of the application."
+                                }
+                              ]
+                            },
+                            "description": "Delete an existing Authorized Connect Application."
+                          },
+                          "response": [
+                            {
+                              "id": "f80a34a9-36ae-4d68-bcd2-436633447357",
+                              "name": "No Content",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/user_management/users/:user_id/authorized_applications/:application_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "user_management",
+                                    "users",
+                                    ":user_id",
+                                    "authorized_applications",
+                                    ":application_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "user_id"
+                                    },
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:35:21.000Z",
+                              "updatedAt": "2026-07-28T03:35:21.000Z",
+                              "uid": "35240-f80a34a9-36ae-4d68-bcd2-436633447357"
+                            },
+                            {
+                              "id": "3b64e66a-1588-4096-8b23-094c45d1c643",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/user_management/users/:user_id/authorized_applications/:application_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "user_management",
+                                    "users",
+                                    ":user_id",
+                                    "authorized_applications",
+                                    ":application_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "user_id"
+                                    },
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:35:21.000Z",
+                              "updatedAt": "2026-07-28T03:35:21.000Z",
+                              "uid": "35240-3b64e66a-1588-4096-8b23-094c45d1c643"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:35:21.000Z",
+                          "updatedAt": "2026-07-28T03:35:21.000Z",
+                          "uid": "35240-ead6ee00-2555-49aa-b262-9d4ba5922922"
+                        }
+                      ],
+                      "id": "4600ef50-cc23-43cb-8c2d-a5c6d77c7dea",
+                      "createdAt": "2026-07-28T03:35:21.000Z",
+                      "updatedAt": "2026-07-28T03:35:21.000Z",
+                      "uid": "35240-4600ef50-cc23-43cb-8c2d-a5c6d77c7dea"
+                    },
+                    {
+                      "name": "List Authorized Applications",
+                      "id": "b783446d-d07b-4198-8348-841fcf09ce66",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/users/:user_id/authorized_applications?before=<string>&after=<string>&limit=10&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "users",
+                            ":user_id",
+                            "authorized_applications"
+                          ],
+                          "query": [
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "320d6866-c4e9-4810-916a-1ddc02a45ade",
+                              "key": "user_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the user."
+                            }
+                          ]
+                        },
+                        "description": "Get a list of all Connect applications that the user has authorized."
+                      },
+                      "response": [
+                        {
+                          "id": "9895a7ea-2a0c-41b5-ab6a-f6d9afd704fb",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:user_id/authorized_applications?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":user_id",
+                                "authorized_applications"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "user_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"granted_scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"application\": {\n        \"application_type\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"description\": \"<string,null>\",\n        \"id\": \"<string>\",\n        \"is_first_party\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"object\": \"<string>\",\n        \"redirect_uris\": [\n          {\n            \"uri\": \"<uri>\",\n            \"default\": \"<boolean>\"\n          },\n          {\n            \"uri\": \"<uri>\",\n            \"default\": \"<boolean>\"\n          }\n        ],\n        \"scopes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"updated_at\": \"<dateTime>\",\n        \"uses_pkce\": \"<boolean>\"\n      },\n      \"oauth_resource\": \"<string>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"granted_scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"application\": {\n        \"application_type\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"description\": \"<string,null>\",\n        \"id\": \"<string>\",\n        \"is_first_party\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"object\": \"<string>\",\n        \"redirect_uris\": [\n          {\n            \"uri\": \"<uri>\",\n            \"default\": \"<boolean>\"\n          },\n          {\n            \"uri\": \"<uri>\",\n            \"default\": \"<boolean>\"\n          }\n        ],\n        \"scopes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"updated_at\": \"<dateTime>\",\n        \"uses_pkce\": \"<boolean>\"\n      },\n      \"oauth_resource\": \"<string>\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:35:21.000Z",
+                          "updatedAt": "2026-07-28T03:35:21.000Z",
+                          "uid": "35240-9895a7ea-2a0c-41b5-ab6a-f6d9afd704fb"
+                        },
+                        {
+                          "id": "e7222a86-77cd-4c71-b6a9-ed223c21db36",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:user_id/authorized_applications?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":user_id",
+                                "authorized_applications"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "user_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:35:21.000Z",
+                          "updatedAt": "2026-07-28T03:35:21.000Z",
+                          "uid": "35240-e7222a86-77cd-4c71-b6a9-ed223c21db36"
+                        },
+                        {
+                          "id": "8218d5fc-14fe-4b66-8f58-aa441da56b4e",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:user_id/authorized_applications?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":user_id",
+                                "authorized_applications"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "user_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:35:21.000Z",
+                          "updatedAt": "2026-07-28T03:35:21.000Z",
+                          "uid": "35240-8218d5fc-14fe-4b66-8f58-aa441da56b4e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:35:21.000Z",
+                      "updatedAt": "2026-07-28T03:35:21.000Z",
+                      "uid": "35240-b783446d-d07b-4198-8348-841fcf09ce66"
+                    }
+                  ],
+                  "id": "90d58ec6-8a58-432b-a86f-f579c8246062",
+                  "createdAt": "2026-07-28T03:35:21.000Z",
+                  "updatedAt": "2026-07-28T03:35:21.000Z",
+                  "uid": "35240-90d58ec6-8a58-432b-a86f-f579c8246062"
+                }
+              ],
+              "id": "82050b42-8876-4415-8315-f30534e103aa",
+              "createdAt": "2026-07-28T03:35:21.000Z",
+              "updatedAt": "2026-07-28T03:35:21.000Z",
+              "uid": "35240-82050b42-8876-4415-8315-f30534e103aa"
+            }
+          ],
+          "id": "d06d28c1-dbba-4e8a-9808-605b72e03572",
+          "createdAt": "2026-07-28T03:35:21.000Z",
+          "updatedAt": "2026-07-28T03:35:21.000Z",
+          "uid": "35240-d06d28c1-dbba-4e8a-9808-605b72e03572"
+        }
+      ],
+      "id": "9879fa35-923e-4e9b-84fe-0b74f481d913",
+      "createdAt": "2026-07-28T03:35:21.000Z",
+      "updatedAt": "2026-07-28T03:35:21.000Z",
+      "uid": "35240-9879fa35-923e-4e9b-84fe-0b74f481d913"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

@@ -1,0 +1,458 @@
+{
+  "info": {
+    "_postman_id": "4aa0ca0e-1eab-447e-ab75-113627130e9b",
+    "name": "WorkOS admin-portal user-management.multi-factor-authentication API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:54.000Z",
+    "updatedAt": "2026-07-28T03:34:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4aa0ca0e-1eab-447e-ab75-113627130e9b"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "{userlandUserId}",
+              "item": [
+                {
+                  "name": "auth_factors",
+                  "item": [
+                    {
+                      "name": "Enroll an Authentication Factor",
+                      "id": "db97b517-5efb-4e8b-8864-e706952c3276",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"totp_issuer\": \"<string>\",\n  \"totp_user\": \"<string>\",\n  \"totp_secret\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/users/:userlandUserId/auth_factors",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "users",
+                            ":userlandUserId",
+                            "auth_factors"
+                          ],
+                          "variable": [
+                            {
+                              "id": "63598c82-5f37-4146-b8be-c8913cfad3b0",
+                              "key": "userlandUserId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the [user](/reference/authkit/user)."
+                            }
+                          ]
+                        },
+                        "description": "Enrolls a user in a new [authentication factor](/reference/authkit/mfa/authentication-factor)."
+                      },
+                      "response": [
+                        {
+                          "id": "78932887-7b24-4713-9b78-0d193ad416b2",
+                          "name": "Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"totp_issuer\": \"<string>\",\n  \"totp_user\": \"<string>\",\n  \"totp_secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:userlandUserId/auth_factors",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":userlandUserId",
+                                "auth_factors"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userlandUserId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"authentication_factor\": {\n    \"object\": \"<string>\",\n    \"id\": \"<string>\",\n    \"type\": \"generic_otp\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"user_id\": \"<string>\",\n    \"sms\": {\n      \"phone_number\": \"<string>\"\n    },\n    \"totp\": {\n      \"issuer\": \"<string>\",\n      \"user\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"qr_code\": \"<string>\",\n      \"uri\": \"<string>\"\n    }\n  },\n  \"authentication_challenge\": {\n    \"object\": \"<string>\",\n    \"id\": \"<string>\",\n    \"authentication_factor_id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"expires_at\": \"<dateTime>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:34:54.000Z",
+                          "updatedAt": "2026-07-28T03:34:54.000Z",
+                          "uid": "35240-78932887-7b24-4713-9b78-0d193ad416b2"
+                        },
+                        {
+                          "id": "43db95d8-c035-4177-a25a-00c84e9db749",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"totp_issuer\": \"<string>\",\n  \"totp_user\": \"<string>\",\n  \"totp_secret\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:userlandUserId/auth_factors",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":userlandUserId",
+                                "auth_factors"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userlandUserId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:54.000Z",
+                          "updatedAt": "2026-07-28T03:34:54.000Z",
+                          "uid": "35240-43db95d8-c035-4177-a25a-00c84e9db749"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:54.000Z",
+                      "updatedAt": "2026-07-28T03:34:54.000Z",
+                      "uid": "35240-db97b517-5efb-4e8b-8864-e706952c3276"
+                    },
+                    {
+                      "name": "List Authentication Factors",
+                      "id": "eb54830e-c04f-434f-926e-808041a1f494",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/users/:userlandUserId/auth_factors?before=<string>&after=<string>&limit=10&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "users",
+                            ":userlandUserId",
+                            "auth_factors"
+                          ],
+                          "query": [
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order the results by the creation time.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "e25b929b-abdf-4154-ae34-0e4a5a2e4f0b",
+                              "key": "userlandUserId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the [user](/reference/authkit/user)."
+                            }
+                          ]
+                        },
+                        "description": "Lists the [authentication factors](/reference/authkit/mfa/authentication-factor) for a user."
+                      },
+                      "response": [
+                        {
+                          "id": "e74b9b2e-0da8-4306-a389-f959846b5e89",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:userlandUserId/auth_factors?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":userlandUserId",
+                                "auth_factors"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userlandUserId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"generic_otp\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"user_id\": \"<string>\",\n      \"sms\": {\n        \"phone_number\": \"<string>\"\n      },\n      \"totp\": {\n        \"issuer\": \"<string>\",\n        \"user\": \"<string>\"\n      }\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"sms\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"user_id\": \"<string>\",\n      \"sms\": {\n        \"phone_number\": \"<string>\"\n      },\n      \"totp\": {\n        \"issuer\": \"<string>\",\n        \"user\": \"<string>\"\n      }\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:34:54.000Z",
+                          "updatedAt": "2026-07-28T03:34:54.000Z",
+                          "uid": "35240-e74b9b2e-0da8-4306-a389-f959846b5e89"
+                        },
+                        {
+                          "id": "d32f81fe-54a7-4be1-933f-e3d77aee8aca",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:userlandUserId/auth_factors?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":userlandUserId",
+                                "auth_factors"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userlandUserId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:54.000Z",
+                          "updatedAt": "2026-07-28T03:34:54.000Z",
+                          "uid": "35240-d32f81fe-54a7-4be1-933f-e3d77aee8aca"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:54.000Z",
+                      "updatedAt": "2026-07-28T03:34:54.000Z",
+                      "uid": "35240-eb54830e-c04f-434f-926e-808041a1f494"
+                    }
+                  ],
+                  "id": "7c4fcaaa-e69e-442b-b1d2-c0d4f98f9c67",
+                  "createdAt": "2026-07-28T03:34:54.000Z",
+                  "updatedAt": "2026-07-28T03:34:54.000Z",
+                  "uid": "35240-7c4fcaaa-e69e-442b-b1d2-c0d4f98f9c67"
+                }
+              ],
+              "id": "345f51d8-4854-41b7-b55f-c768ea788c08",
+              "createdAt": "2026-07-28T03:34:54.000Z",
+              "updatedAt": "2026-07-28T03:34:54.000Z",
+              "uid": "35240-345f51d8-4854-41b7-b55f-c768ea788c08"
+            }
+          ],
+          "id": "d4ef08c3-776e-4fd3-86ba-bebc92491319",
+          "createdAt": "2026-07-28T03:34:54.000Z",
+          "updatedAt": "2026-07-28T03:34:54.000Z",
+          "uid": "35240-d4ef08c3-776e-4fd3-86ba-bebc92491319"
+        }
+      ],
+      "id": "438b8e29-6831-4a77-8f31-4d58beb37c4f",
+      "createdAt": "2026-07-28T03:34:54.000Z",
+      "updatedAt": "2026-07-28T03:34:54.000Z",
+      "uid": "35240-438b8e29-6831-4a77-8f31-4d58beb37c4f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

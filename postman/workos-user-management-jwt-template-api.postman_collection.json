@@ -1,0 +1,326 @@
+{
+  "info": {
+    "_postman_id": "53559e85-f69c-486d-b20e-de785b3d50fc",
+    "name": "WorkOS admin-portal user-management.jwt-template API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:47.000Z",
+    "updatedAt": "2026-07-28T03:34:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-53559e85-f69c-486d-b20e-de785b3d50fc"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "jwt_template",
+          "item": [
+            {
+              "name": "Get JWT Template",
+              "id": "beb3bfa9-9fea-4366-bd48-f9d19a8c4748",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/jwt_template",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "jwt_template"
+                  ]
+                },
+                "description": "Get the JWT template for the current environment."
+              },
+              "response": [
+                {
+                  "id": "7f7b9872-c4b8-4e91-8647-2719123c96ea",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/jwt_template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "jwt_template"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"content\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:48.000Z",
+                  "updatedAt": "2026-07-28T03:34:48.000Z",
+                  "uid": "35240-7f7b9872-c4b8-4e91-8647-2719123c96ea"
+                },
+                {
+                  "id": "0d0e2c58-facc-4512-8145-fbcc74fc17d8",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/jwt_template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "jwt_template"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:48.000Z",
+                  "updatedAt": "2026-07-28T03:34:48.000Z",
+                  "uid": "35240-0d0e2c58-facc-4512-8145-fbcc74fc17d8"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:48.000Z",
+              "updatedAt": "2026-07-28T03:34:48.000Z",
+              "uid": "35240-beb3bfa9-9fea-4366-bd48-f9d19a8c4748"
+            },
+            {
+              "name": "Update JWT Template",
+              "id": "7bbfa280-6e71-43b2-8b85-b819d89fc805",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/jwt_template",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "jwt_template"
+                  ]
+                },
+                "description": "Update the JWT template for the current environment."
+              },
+              "response": [
+                {
+                  "id": "63bb5b28-a01a-4b4d-a403-fbe9d21d4017",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"content\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/jwt_template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "jwt_template"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"content\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:48.000Z",
+                  "updatedAt": "2026-07-28T03:34:48.000Z",
+                  "uid": "35240-63bb5b28-a01a-4b4d-a403-fbe9d21d4017"
+                },
+                {
+                  "id": "2ed855a3-967c-458d-9020-70a0512c7a12",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"content\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/jwt_template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "jwt_template"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:48.000Z",
+                  "updatedAt": "2026-07-28T03:34:48.000Z",
+                  "uid": "35240-2ed855a3-967c-458d-9020-70a0512c7a12"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:48.000Z",
+              "updatedAt": "2026-07-28T03:34:48.000Z",
+              "uid": "35240-7bbfa280-6e71-43b2-8b85-b819d89fc805"
+            }
+          ],
+          "id": "b7457669-9dfa-4e41-91b1-0c1f99027f70",
+          "createdAt": "2026-07-28T03:34:48.000Z",
+          "updatedAt": "2026-07-28T03:34:48.000Z",
+          "uid": "35240-b7457669-9dfa-4e41-91b1-0c1f99027f70"
+        }
+      ],
+      "id": "697fe78a-00b3-409f-a545-42861a624369",
+      "createdAt": "2026-07-28T03:34:48.000Z",
+      "updatedAt": "2026-07-28T03:34:48.000Z",
+      "uid": "35240-697fe78a-00b3-409f-a545-42861a624369"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

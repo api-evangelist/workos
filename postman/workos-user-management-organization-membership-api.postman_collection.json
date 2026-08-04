@@ -1,0 +1,1735 @@
+{
+  "info": {
+    "_postman_id": "bd830cbb-0f17-4d09-a74a-3883fcd3d052",
+    "name": "WorkOS admin-portal user-management.organization-membership API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:55.000Z",
+    "updatedAt": "2026-07-28T03:34:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bd830cbb-0f17-4d09-a74a-3883fcd3d052"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "organization_memberships",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "deactivate",
+                  "item": [
+                    {
+                      "name": "Deactivate an Organization Membership",
+                      "id": "4aaf1610-e57d-4cb9-8dd3-e0e01a47a72d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:id/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":id",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a0d36b8c-b1be-42c3-a4cc-26958ef8c3f2",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The unique ID of the organization membership."
+                            }
+                          ]
+                        },
+                        "description": "Deactivates an `active` organization membership. Emits an [organization_membership.updated](/events/organization-membership) event upon successful deactivation.\n\n- Deactivating an `inactive` membership is a no-op and does not emit an event.\n- Deactivating a `pending` membership returns an error. This membership should be [deleted](/reference/authkit/organization-membership/delete) instead.\n\nSee the [membership management documentation](/authkit/users-organizations/organizations/membership-management) for additional details."
+                      },
+                      "response": [
+                        {
+                          "id": "ca0c22a8-39fe-429c-8350-d7a0ec2523c3",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:id/deactivate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":id",
+                                "deactivate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"status\": \"inactive\",\n  \"directory_managed\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"role\": {\n    \"slug\": \"<string>\"\n  },\n  \"user\": {\n    \"object\": \"<string>\",\n    \"id\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\",\n    \"profile_picture_url\": \"<string,null>\",\n    \"email\": \"<string>\",\n    \"email_verified\": \"<boolean>\",\n    \"external_id\": \"<string,null>\",\n    \"last_sign_in_at\": \"<string,null-date-time>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"metadata\": {\n      \"cillum_bde\": \"<string>\",\n      \"irure_78\": \"<string>\",\n      \"ipsumd\": \"<string>\",\n      \"id_c5\": \"<string>\",\n      \"exercitation_7__\": \"<string>\",\n      \"Duis_a\": \"<string>\",\n      \"id_b95\": \"<string>\",\n      \"ea_722\": \"<string>\",\n      \"officia_e\": \"<string>\",\n      \"ipsum_5\": \"<string>\",\n      \"nulla_d\": \"<string>\",\n      \"officia_bfd\": \"<string>\",\n      \"est8\": \"<string>\",\n      \"elit_98b\": \"<string>\",\n      \"ex_e89\": \"<string>\",\n      \"adipisicing_d82\": \"<string>\",\n      \"cillumae\": \"<string>\",\n      \"do0\": \"<string>\",\n      \"aute3f1\": \"<string>\",\n      \"dolore_61\": \"<string>\",\n      \"in3f4\": \"<string>\",\n      \"officia7cf\": \"<string>\",\n      \"laboris3ad\": \"<string>\",\n      \"cillum97\": \"<string>\",\n      \"do8d3\": \"<string>\",\n      \"voluptate6b7\": \"<string>\"\n    },\n    \"locale\": \"<string,null>\"\n  },\n  \"organization_name\": \"<string>\",\n  \"custom_attributes\": {\n    \"consequat_21d\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T03:34:56.000Z",
+                          "updatedAt": "2026-07-28T03:34:56.000Z",
+                          "uid": "35240-ca0c22a8-39fe-429c-8350-d7a0ec2523c3"
+                        },
+                        {
+                          "id": "fdd6ffa2-688b-4893-bd7c-b646db707e4a",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:id/deactivate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":id",
+                                "deactivate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:56.000Z",
+                          "updatedAt": "2026-07-28T03:34:56.000Z",
+                          "uid": "35240-fdd6ffa2-688b-4893-bd7c-b646db707e4a"
+                        },
+                        {
+                          "id": "8925f3d7-4bd8-4973-bf3d-98609fd0bcc6",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:id/deactivate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":id",
+                                "deactivate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:56.000Z",
+                          "updatedAt": "2026-07-28T03:34:56.000Z",
+                          "uid": "35240-8925f3d7-4bd8-4973-bf3d-98609fd0bcc6"
+                        },
+                        {
+                          "id": "6c541079-561f-434d-9bd0-afc488ded54f",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:id/deactivate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":id",
+                                "deactivate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:56.000Z",
+                          "updatedAt": "2026-07-28T03:34:56.000Z",
+                          "uid": "35240-6c541079-561f-434d-9bd0-afc488ded54f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:56.000Z",
+                      "updatedAt": "2026-07-28T03:34:56.000Z",
+                      "uid": "35240-4aaf1610-e57d-4cb9-8dd3-e0e01a47a72d"
+                    }
+                  ],
+                  "id": "7e82d15d-1cd5-41fb-9fdd-8c95ee4c11f3",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-7e82d15d-1cd5-41fb-9fdd-8c95ee4c11f3"
+                },
+                {
+                  "name": "reactivate",
+                  "item": [
+                    {
+                      "name": "Reactivate an Organization Membership",
+                      "id": "d8c059fd-f56d-4dc0-8db1-96aeb512206e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:id/reactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":id",
+                            "reactivate"
+                          ],
+                          "variable": [
+                            {
+                              "id": "bf731e3c-73ce-46b3-9b5d-f8faab473f53",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The unique ID of the organization membership."
+                            }
+                          ]
+                        },
+                        "description": "Reactivates an `inactive` organization membership, retaining the pre-existing role(s). Emits an [organization_membership.updated](/events/organization-membership) event upon successful reactivation.\n\n- Reactivating an `active` membership is a no-op and does not emit an event.\n- Reactivating a `pending` membership returns an error. The user needs to [accept the invitation](/authkit/invitations) instead.\n\nSee the [membership management documentation](/authkit/users-organizations/organizations/membership-management) for additional details."
+                      },
+                      "response": [
+                        {
+                          "id": "6a420835-852f-4489-bbf7-4c48d18e09a8",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:id/reactivate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":id",
+                                "reactivate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"status\": \"pending\",\n  \"directory_managed\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"role\": {\n    \"slug\": \"<string>\"\n  },\n  \"user\": {\n    \"object\": \"<string>\",\n    \"id\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\",\n    \"profile_picture_url\": \"<string,null>\",\n    \"email\": \"<string>\",\n    \"email_verified\": \"<boolean>\",\n    \"external_id\": \"<string,null>\",\n    \"last_sign_in_at\": \"<string,null-date-time>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"metadata\": {\n      \"anim_286\": \"<string>\",\n      \"fugiat83\": \"<string>\",\n      \"sed5\": \"<string>\",\n      \"enimbaf\": \"<string>\",\n      \"ea2f\": \"<string>\",\n      \"non_613\": \"<string>\",\n      \"officiac0b\": \"<string>\",\n      \"dolor23\": \"<string>\",\n      \"quis_2bf\": \"<string>\",\n      \"sunt6\": \"<string>\",\n      \"non_b5\": \"<string>\",\n      \"qui3d\": \"<string>\",\n      \"ipsum_4\": \"<string>\",\n      \"sunt7\": \"<string>\",\n      \"laboris__64\": \"<string>\"\n    },\n    \"locale\": \"<string,null>\"\n  },\n  \"organization_name\": \"<string>\",\n  \"custom_attributes\": {\n    \"cillumb\": {},\n    \"ut1be\": {},\n    \"amet_001\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T03:34:56.000Z",
+                          "updatedAt": "2026-07-28T03:34:56.000Z",
+                          "uid": "35240-6a420835-852f-4489-bbf7-4c48d18e09a8"
+                        },
+                        {
+                          "id": "dadf93bb-b0a9-4c3f-b0d6-af81a779d6f6",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:id/reactivate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":id",
+                                "reactivate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:56.000Z",
+                          "updatedAt": "2026-07-28T03:34:56.000Z",
+                          "uid": "35240-dadf93bb-b0a9-4c3f-b0d6-af81a779d6f6"
+                        },
+                        {
+                          "id": "3578498c-ba67-46ef-9061-5bf3ef69c4e3",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:id/reactivate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":id",
+                                "reactivate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:56.000Z",
+                          "updatedAt": "2026-07-28T03:34:56.000Z",
+                          "uid": "35240-3578498c-ba67-46ef-9061-5bf3ef69c4e3"
+                        },
+                        {
+                          "id": "ea011968-dbd2-4424-a2a0-c6d6e3a04bc6",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:id/reactivate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":id",
+                                "reactivate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:56.000Z",
+                          "updatedAt": "2026-07-28T03:34:56.000Z",
+                          "uid": "35240-ea011968-dbd2-4424-a2a0-c6d6e3a04bc6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:56.000Z",
+                      "updatedAt": "2026-07-28T03:34:56.000Z",
+                      "uid": "35240-d8c059fd-f56d-4dc0-8db1-96aeb512206e"
+                    }
+                  ],
+                  "id": "25a8d637-59a3-4ffc-bf25-7fcb49476ef6",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-25a8d637-59a3-4ffc-bf25-7fcb49476ef6"
+                },
+                {
+                  "name": "Get an Organization Membership",
+                  "id": "2314b78e-2d91-454c-bc9a-86b574bae83b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dec46ac2-c318-4f1a-bd2d-a0b29de9e14b",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The unique ID of the organization membership."
+                        }
+                      ]
+                    },
+                    "description": "Get the details of an existing organization membership."
+                  },
+                  "response": [
+                    {
+                      "id": "bacad045-6213-49f4-a893-5f726ba7a406",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"status\": \"pending\",\n  \"directory_managed\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"role\": {\n    \"slug\": \"<string>\"\n  },\n  \"user\": {\n    \"object\": \"<string>\",\n    \"id\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\",\n    \"profile_picture_url\": \"<string,null>\",\n    \"email\": \"<string>\",\n    \"email_verified\": \"<boolean>\",\n    \"external_id\": \"<string,null>\",\n    \"last_sign_in_at\": \"<string,null-date-time>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"metadata\": {\n      \"anim_286\": \"<string>\",\n      \"fugiat83\": \"<string>\",\n      \"sed5\": \"<string>\",\n      \"enimbaf\": \"<string>\",\n      \"ea2f\": \"<string>\",\n      \"non_613\": \"<string>\",\n      \"officiac0b\": \"<string>\",\n      \"dolor23\": \"<string>\",\n      \"quis_2bf\": \"<string>\",\n      \"sunt6\": \"<string>\",\n      \"non_b5\": \"<string>\",\n      \"qui3d\": \"<string>\",\n      \"ipsum_4\": \"<string>\",\n      \"sunt7\": \"<string>\",\n      \"laboris__64\": \"<string>\"\n    },\n    \"locale\": \"<string,null>\"\n  },\n  \"organization_name\": \"<string>\",\n  \"custom_attributes\": {\n    \"cillumb\": {},\n    \"ut1be\": {},\n    \"amet_001\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T03:34:56.000Z",
+                      "updatedAt": "2026-07-28T03:34:56.000Z",
+                      "uid": "35240-bacad045-6213-49f4-a893-5f726ba7a406"
+                    },
+                    {
+                      "id": "c721e5d8-3fab-432f-acd4-5dae75b3a0ed",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:56.000Z",
+                      "updatedAt": "2026-07-28T03:34:56.000Z",
+                      "uid": "35240-c721e5d8-3fab-432f-acd4-5dae75b3a0ed"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-2314b78e-2d91-454c-bc9a-86b574bae83b"
+                },
+                {
+                  "name": "Delete an Organization Membership",
+                  "id": "63e56c82-c43a-4292-ab36-6f8a4d02b089",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f102cf10-a050-4c6c-93dd-6f94149ddd80",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The unique ID of the organization membership."
+                        }
+                      ]
+                    },
+                    "description": "Permanently deletes an existing organization membership. It cannot be undone."
+                  },
+                  "response": [
+                    {
+                      "id": "cd5fee69-e08a-49df-aed4-23e02eb26c4d",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:56.000Z",
+                      "updatedAt": "2026-07-28T03:34:56.000Z",
+                      "uid": "35240-cd5fee69-e08a-49df-aed4-23e02eb26c4d"
+                    },
+                    {
+                      "id": "31f6b66c-ba20-4769-ab61-68c8cc8854c1",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:56.000Z",
+                      "updatedAt": "2026-07-28T03:34:56.000Z",
+                      "uid": "35240-31f6b66c-ba20-4769-ab61-68c8cc8854c1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-63e56c82-c43a-4292-ab36-6f8a4d02b089"
+                },
+                {
+                  "name": "Update an Organization Membership",
+                  "id": "b7c2ef5f-1e5a-409e-abb4-a035787813b3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c81bd5f8-1aeb-45c8-99e3-847df0672df7",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The unique ID of the organization membership."
+                        }
+                      ]
+                    },
+                    "description": "Update the details of an existing organization membership."
+                  },
+                  "response": [
+                    {
+                      "id": "8b0e9245-7715-4c3c-83a4-167e8e89413f",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"status\": \"pending\",\n  \"directory_managed\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"role\": {\n    \"slug\": \"<string>\"\n  },\n  \"user\": {\n    \"object\": \"<string>\",\n    \"id\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\",\n    \"profile_picture_url\": \"<string,null>\",\n    \"email\": \"<string>\",\n    \"email_verified\": \"<boolean>\",\n    \"external_id\": \"<string,null>\",\n    \"last_sign_in_at\": \"<string,null-date-time>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"metadata\": {\n      \"anim_286\": \"<string>\",\n      \"fugiat83\": \"<string>\",\n      \"sed5\": \"<string>\",\n      \"enimbaf\": \"<string>\",\n      \"ea2f\": \"<string>\",\n      \"non_613\": \"<string>\",\n      \"officiac0b\": \"<string>\",\n      \"dolor23\": \"<string>\",\n      \"quis_2bf\": \"<string>\",\n      \"sunt6\": \"<string>\",\n      \"non_b5\": \"<string>\",\n      \"qui3d\": \"<string>\",\n      \"ipsum_4\": \"<string>\",\n      \"sunt7\": \"<string>\",\n      \"laboris__64\": \"<string>\"\n    },\n    \"locale\": \"<string,null>\"\n  },\n  \"organization_name\": \"<string>\",\n  \"custom_attributes\": {\n    \"cillumb\": {},\n    \"ut1be\": {},\n    \"amet_001\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T03:34:56.000Z",
+                      "updatedAt": "2026-07-28T03:34:56.000Z",
+                      "uid": "35240-8b0e9245-7715-4c3c-83a4-167e8e89413f"
+                    },
+                    {
+                      "id": "c5c96b76-1f83-440c-8967-70a0304c47e6",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:56.000Z",
+                      "updatedAt": "2026-07-28T03:34:56.000Z",
+                      "uid": "35240-c5c96b76-1f83-440c-8967-70a0304c47e6"
+                    },
+                    {
+                      "id": "a37113a4-4f48-4dec-8328-b8a4fddce710",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:56.000Z",
+                      "updatedAt": "2026-07-28T03:34:56.000Z",
+                      "uid": "35240-a37113a4-4f48-4dec-8328-b8a4fddce710"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-b7c2ef5f-1e5a-409e-abb4-a035787813b3"
+                }
+              ],
+              "id": "6f04c597-a35a-415c-9086-0ce4d79cd16a",
+              "createdAt": "2026-07-28T03:34:56.000Z",
+              "updatedAt": "2026-07-28T03:34:56.000Z",
+              "uid": "35240-6f04c597-a35a-415c-9086-0ce4d79cd16a"
+            },
+            {
+              "name": "List Organization Memberships",
+              "id": "359026c0-f01c-447b-b65c-8acc07839de3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/organization_memberships?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&statuses=active,pending&user_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "The ID of the [organization](/reference/organization) which the user belongs to.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the status of the organization membership. Array including any of `active`, `inactive`, or `pending`.",
+                      "key": "statuses",
+                      "value": "active,pending"
+                    },
+                    {
+                      "description": "The ID of the [user](/reference/authkit/user).",
+                      "key": "user_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get a list of all organization memberships matching the criteria specified. At least one of `user_id` or `organization_id` must be provided. By default only active memberships are returned. Use the `statuses` parameter to filter by other statuses."
+              },
+              "response": [
+                {
+                  "id": "f3e47e11-2f28-42c5-89ac-3521d93344f4",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&statuses=active,pending&user_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                          "key": "order",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "The ID of the [organization](/reference/organization) which the user belongs to.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by the status of the organization membership. Array including any of `active`, `inactive`, or `pending`.",
+                          "key": "statuses",
+                          "value": "active,pending"
+                        },
+                        {
+                          "description": "The ID of the [user](/reference/authkit/user).",
+                          "key": "user_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  },\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"status\": \"active\",\n      \"directory_managed\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"role\": {\n        \"slug\": \"<string>\"\n      },\n      \"user\": {\n        \"object\": \"<string>\",\n        \"id\": \"<string>\",\n        \"first_name\": \"<string,null>\",\n        \"last_name\": \"<string,null>\",\n        \"profile_picture_url\": \"<string,null>\",\n        \"email\": \"<string>\",\n        \"email_verified\": \"<boolean>\",\n        \"external_id\": \"<string,null>\",\n        \"last_sign_in_at\": \"<string,null-date-time>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"metadata\": {\n          \"consectetur_75\": \"<string>\",\n          \"Excepteur__1\": \"<string>\",\n          \"mollit_9\": \"<string>\",\n          \"commodo384\": \"<string>\",\n          \"dolorebac\": \"<string>\",\n          \"non_2f\": \"<string>\",\n          \"ullamco_479\": \"<string>\",\n          \"dolora39\": \"<string>\",\n          \"occaecatd\": \"<string>\",\n          \"nulla_3\": \"<string>\",\n          \"pariatur6\": \"<string>\",\n          \"exercitationd\": \"<string>\"\n        },\n        \"locale\": \"<string,null>\"\n      },\n      \"organization_name\": \"<string>\",\n      \"custom_attributes\": {}\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"status\": \"inactive\",\n      \"directory_managed\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"role\": {\n        \"slug\": \"<string>\"\n      },\n      \"user\": {\n        \"object\": \"<string>\",\n        \"id\": \"<string>\",\n        \"first_name\": \"<string,null>\",\n        \"last_name\": \"<string,null>\",\n        \"profile_picture_url\": \"<string,null>\",\n        \"email\": \"<string>\",\n        \"email_verified\": \"<boolean>\",\n        \"external_id\": \"<string,null>\",\n        \"last_sign_in_at\": \"<string,null-date-time>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"metadata\": {\n          \"labore_f2\": \"<string>\",\n          \"dolor_f\": \"<string>\",\n          \"utb\": \"<string>\",\n          \"esse8\": \"<string>\",\n          \"velit_7c\": \"<string>\",\n          \"temporbd0\": \"<string>\",\n          \"sintdd0\": \"<string>\",\n          \"ullamco_96\": \"<string>\",\n          \"in_dc\": \"<string>\",\n          \"labore_acf\": \"<string>\",\n          \"commodo_0_\": \"<string>\",\n          \"elit_6f\": \"<string>\",\n          \"dolore8_\": \"<string>\",\n          \"sint_ea\": \"<string>\",\n          \"anim1_9\": \"<string>\",\n          \"adipisicing_1cb\": \"<string>\",\n          \"officia5\": \"<string>\",\n          \"doloreaa9\": \"<string>\",\n          \"pariatur_ef\": \"<string>\",\n          \"esseec9\": \"<string>\",\n          \"dobf_\": \"<string>\"\n        },\n        \"locale\": \"<string,null>\"\n      },\n      \"organization_name\": \"<string>\",\n      \"custom_attributes\": {}\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-f3e47e11-2f28-42c5-89ac-3521d93344f4"
+                },
+                {
+                  "id": "39751cdb-0a68-4cec-83e3-56309543616c",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&statuses=active,pending&user_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                          "key": "order",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "The ID of the [organization](/reference/organization) which the user belongs to.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by the status of the organization membership. Array including any of `active`, `inactive`, or `pending`.",
+                          "key": "statuses",
+                          "value": "active,pending"
+                        },
+                        {
+                          "description": "The ID of the [user](/reference/authkit/user).",
+                          "key": "user_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-39751cdb-0a68-4cec-83e3-56309543616c"
+                },
+                {
+                  "id": "f6fcad9c-0dc8-4da4-8b80-6f98f4d4eed4",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&statuses=active,pending&user_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                          "key": "order",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "The ID of the [organization](/reference/organization) which the user belongs to.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by the status of the organization membership. Array including any of `active`, `inactive`, or `pending`.",
+                          "key": "statuses",
+                          "value": "active,pending"
+                        },
+                        {
+                          "description": "The ID of the [user](/reference/authkit/user).",
+                          "key": "user_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-f6fcad9c-0dc8-4da4-8b80-6f98f4d4eed4"
+                },
+                {
+                  "id": "a7899a69-5ba1-48f9-b83a-34f57254fa6c",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&statuses=active,pending&user_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                          "key": "order",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "The ID of the [organization](/reference/organization) which the user belongs to.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by the status of the organization membership. Array including any of `active`, `inactive`, or `pending`.",
+                          "key": "statuses",
+                          "value": "active,pending"
+                        },
+                        {
+                          "description": "The ID of the [user](/reference/authkit/user).",
+                          "key": "user_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-a7899a69-5ba1-48f9-b83a-34f57254fa6c"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:56.000Z",
+              "updatedAt": "2026-07-28T03:34:56.000Z",
+              "uid": "35240-359026c0-f01c-447b-b65c-8acc07839de3"
+            },
+            {
+              "name": "Create an Organization Membership",
+              "id": "b352dfe4-c669-4a2b-bc1a-b549626fcb53",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/organization_memberships",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ]
+                },
+                "description": "Creates a new `active` organization membership for the given organization and user.\n\nCalling this API with an organization and user that match an `inactive` organization membership will activate the membership with the specified role(s)."
+              },
+              "response": [
+                {
+                  "id": "7e4bf25d-2a22-467f-ae42-9f865b3b5ac7",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"status\": \"active\",\n  \"directory_managed\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"role\": {\n    \"slug\": \"<string>\"\n  },\n  \"user\": {\n    \"object\": \"<string>\",\n    \"id\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\",\n    \"profile_picture_url\": \"<string,null>\",\n    \"email\": \"<string>\",\n    \"email_verified\": \"<boolean>\",\n    \"external_id\": \"<string,null>\",\n    \"last_sign_in_at\": \"<string,null-date-time>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"metadata\": {\n      \"minim6c\": \"<string>\",\n      \"laborisd1b\": \"<string>\",\n      \"elit_35f\": \"<string>\",\n      \"culpa9e\": \"<string>\",\n      \"occaecata4\": \"<string>\",\n      \"dolor_2d\": \"<string>\",\n      \"ullamco_25\": \"<string>\",\n      \"cillum3b\": \"<string>\",\n      \"sed_25b\": \"<string>\",\n      \"esse_60_\": \"<string>\",\n      \"ex_9\": \"<string>\",\n      \"tempor58\": \"<string>\",\n      \"veniam_f3\": \"<string>\",\n      \"animd\": \"<string>\",\n      \"Excepteur_3e_\": \"<string>\",\n      \"commodo000\": \"<string>\",\n      \"Ut_d8\": \"<string>\",\n      \"enimf5a\": \"<string>\",\n      \"aliquip_36\": \"<string>\"\n    },\n    \"locale\": \"<string,null>\"\n  },\n  \"organization_name\": \"<string>\",\n  \"custom_attributes\": {\n    \"ullamco_2\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-7e4bf25d-2a22-467f-ae42-9f865b3b5ac7"
+                },
+                {
+                  "id": "d394471a-6657-448d-b9a2-71ecc43cede6",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-d394471a-6657-448d-b9a2-71ecc43cede6"
+                },
+                {
+                  "id": "4c096bf0-0aec-43a3-a9f7-21532bc635c0",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-4c096bf0-0aec-43a3-a9f7-21532bc635c0"
+                },
+                {
+                  "id": "c5d355b9-cbfb-49e9-babb-541a4892c07d",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/organization_memberships",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "organization_memberships"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:56.000Z",
+                  "updatedAt": "2026-07-28T03:34:56.000Z",
+                  "uid": "35240-c5d355b9-cbfb-49e9-babb-541a4892c07d"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:56.000Z",
+              "updatedAt": "2026-07-28T03:34:56.000Z",
+              "uid": "35240-b352dfe4-c669-4a2b-bc1a-b549626fcb53"
+            }
+          ],
+          "id": "cc78e023-028f-459c-97a2-d2663027430c",
+          "createdAt": "2026-07-28T03:34:56.000Z",
+          "updatedAt": "2026-07-28T03:34:56.000Z",
+          "uid": "35240-cc78e023-028f-459c-97a2-d2663027430c"
+        }
+      ],
+      "id": "2bc7dce5-5f38-4e55-b612-ee2791406587",
+      "createdAt": "2026-07-28T03:34:56.000Z",
+      "updatedAt": "2026-07-28T03:34:56.000Z",
+      "uid": "35240-2bc7dce5-5f38-4e55-b612-ee2791406587"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

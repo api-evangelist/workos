@@ -1,0 +1,1517 @@
+{
+  "info": {
+    "_postman_id": "33088eb2-1c21-47fb-bbc0-7af5d3c0b164",
+    "name": "WorkOS admin-portal user-management.invitations API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:45.000Z",
+    "updatedAt": "2026-07-28T03:34:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-33088eb2-1c21-47fb-bbc0-7af5d3c0b164"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "invitations",
+          "item": [
+            {
+              "name": "by_token",
+              "item": [
+                {
+                  "name": "{token}",
+                  "item": [
+                    {
+                      "name": "Find an Invitation by Token",
+                      "id": "73c1ce89-c664-43bb-a17f-b41346632091",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/invitations/by_token/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "invitations",
+                            "by_token",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "id": "aaac6100-8ccb-465f-933b-c860a5db8d15",
+                              "key": "token",
+                              "value": "<string>",
+                              "description": "(Required) The token used to accept the invitation."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve an existing invitation using the token."
+                      },
+                      "response": [
+                        {
+                          "id": "86ca06aa-7343-4585-9b6e-6ee92ac8b735",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/by_token/:token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                "by_token",
+                                ":token"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"state\": \"accepted\",\n  \"accepted_at\": \"<string,null-date-time>\",\n  \"revoked_at\": \"<string,null-date-time>\",\n  \"expires_at\": \"<dateTime>\",\n  \"organization_id\": \"<string,null>\",\n  \"inviter_user_id\": \"<string,null>\",\n  \"accepted_user_id\": \"<string,null>\",\n  \"role_slug\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"accept_invitation_url\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-86ca06aa-7343-4585-9b6e-6ee92ac8b735"
+                        },
+                        {
+                          "id": "9346041b-5f2f-4fed-971e-facc72ad548c",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/by_token/:token",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                "by_token",
+                                ":token"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "token"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-9346041b-5f2f-4fed-971e-facc72ad548c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:46.000Z",
+                      "updatedAt": "2026-07-28T03:34:46.000Z",
+                      "uid": "35240-73c1ce89-c664-43bb-a17f-b41346632091"
+                    }
+                  ],
+                  "id": "662e5706-7825-44dc-b3f1-3a7408354f51",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-662e5706-7825-44dc-b3f1-3a7408354f51"
+                }
+              ],
+              "id": "f310f8e5-79c9-4e15-8d8a-97144368b054",
+              "createdAt": "2026-07-28T03:34:46.000Z",
+              "updatedAt": "2026-07-28T03:34:46.000Z",
+              "uid": "35240-f310f8e5-79c9-4e15-8d8a-97144368b054"
+            },
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "accept",
+                  "item": [
+                    {
+                      "name": "Accept an Invitation",
+                      "id": "2f4212d9-4dc5-42ce-8bef-5b8bdeb1a2cf",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/invitations/:id/accept",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "invitations",
+                            ":id",
+                            "accept"
+                          ],
+                          "variable": [
+                            {
+                              "id": "57d5f207-68fe-425e-900d-d583b0eb2e8c",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The unique ID of the invitation."
+                            }
+                          ]
+                        },
+                        "description": "Accepts an invitation and, if linked to an organization, activates the user's membership in that organization."
+                      },
+                      "response": [
+                        {
+                          "id": "713e56f9-93b3-4177-9e58-3fa608a14fca",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/:id/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                ":id",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"state\": \"accepted\",\n  \"accepted_at\": \"<string,null-date-time>\",\n  \"revoked_at\": \"<string,null-date-time>\",\n  \"expires_at\": \"<dateTime>\",\n  \"organization_id\": \"<string,null>\",\n  \"inviter_user_id\": \"<string,null>\",\n  \"accepted_user_id\": \"<string,null>\",\n  \"role_slug\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"accept_invitation_url\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-713e56f9-93b3-4177-9e58-3fa608a14fca"
+                        },
+                        {
+                          "id": "5445977f-4919-49dd-9355-5bf8b40383b4",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/:id/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                ":id",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"invalid_invite\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-5445977f-4919-49dd-9355-5bf8b40383b4"
+                        },
+                        {
+                          "id": "12dbd4f7-b4b0-4fc8-9e26-3501ff137d93",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/:id/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                ":id",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-12dbd4f7-b4b0-4fc8-9e26-3501ff137d93"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:46.000Z",
+                      "updatedAt": "2026-07-28T03:34:46.000Z",
+                      "uid": "35240-2f4212d9-4dc5-42ce-8bef-5b8bdeb1a2cf"
+                    }
+                  ],
+                  "id": "a41ceb01-faa5-4991-b27b-a7149db12601",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-a41ceb01-faa5-4991-b27b-a7149db12601"
+                },
+                {
+                  "name": "resend",
+                  "item": [
+                    {
+                      "name": "Resend an Invitation",
+                      "id": "8d1ef8e0-e895-406a-a6ad-0cacbba3515c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"locale\": \"uk\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/invitations/:id/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "invitations",
+                            ":id",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3e40c94b-36c6-4b3f-b20f-4572c5c9874b",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The unique ID of the invitation."
+                            }
+                          ]
+                        },
+                        "description": "Resends an invitation email to the recipient. The invitation must be in a pending state."
+                      },
+                      "response": [
+                        {
+                          "id": "c26ef7d7-870c-40a3-b9fb-886e864f8e00",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"locale\": \"uk\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/:id/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                ":id",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"state\": \"accepted\",\n  \"accepted_at\": \"<string,null-date-time>\",\n  \"revoked_at\": \"<string,null-date-time>\",\n  \"expires_at\": \"<dateTime>\",\n  \"organization_id\": \"<string,null>\",\n  \"inviter_user_id\": \"<string,null>\",\n  \"accepted_user_id\": \"<string,null>\",\n  \"role_slug\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"accept_invitation_url\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-c26ef7d7-870c-40a3-b9fb-886e864f8e00"
+                        },
+                        {
+                          "id": "1bbdfd96-e619-42bd-8be0-3abcf2fbed27",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"locale\": \"uk\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/:id/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                ":id",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-1bbdfd96-e619-42bd-8be0-3abcf2fbed27"
+                        },
+                        {
+                          "id": "823e422f-fc44-4ac9-b4bc-851269c7c881",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"locale\": \"uk\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/:id/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                ":id",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-823e422f-fc44-4ac9-b4bc-851269c7c881"
+                        },
+                        {
+                          "id": "fca4b30d-f8ba-43d9-923e-a54b7c1684ef",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"locale\": \"uk\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/:id/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                ":id",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-fca4b30d-f8ba-43d9-923e-a54b7c1684ef"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:46.000Z",
+                      "updatedAt": "2026-07-28T03:34:46.000Z",
+                      "uid": "35240-8d1ef8e0-e895-406a-a6ad-0cacbba3515c"
+                    }
+                  ],
+                  "id": "09d244ee-63cf-4abc-a386-9b7e820313a7",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-09d244ee-63cf-4abc-a386-9b7e820313a7"
+                },
+                {
+                  "name": "revoke",
+                  "item": [
+                    {
+                      "name": "Revoke an Invitation",
+                      "id": "2f279416-f2be-479f-8964-0f71b5bd92a5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/invitations/:id/revoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "invitations",
+                            ":id",
+                            "revoke"
+                          ],
+                          "variable": [
+                            {
+                              "id": "249a9851-c707-4aae-9a58-d6c416f13da0",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The unique ID of the invitation."
+                            }
+                          ]
+                        },
+                        "description": "Revokes an existing invitation."
+                      },
+                      "response": [
+                        {
+                          "id": "ebdad37c-fc62-45a5-841b-6b7485fc3446",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/:id/revoke",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                ":id",
+                                "revoke"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"state\": \"pending\",\n  \"accepted_at\": \"<string,null-date-time>\",\n  \"revoked_at\": \"<string,null-date-time>\",\n  \"expires_at\": \"<dateTime>\",\n  \"organization_id\": \"<string,null>\",\n  \"inviter_user_id\": \"<string,null>\",\n  \"accepted_user_id\": \"<string,null>\",\n  \"role_slug\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"accept_invitation_url\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-ebdad37c-fc62-45a5-841b-6b7485fc3446"
+                        },
+                        {
+                          "id": "6665840c-dbcf-4599-ad33-18855ef8be0f",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/invitations/:id/revoke",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "invitations",
+                                ":id",
+                                "revoke"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:46.000Z",
+                          "updatedAt": "2026-07-28T03:34:46.000Z",
+                          "uid": "35240-6665840c-dbcf-4599-ad33-18855ef8be0f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:46.000Z",
+                      "updatedAt": "2026-07-28T03:34:46.000Z",
+                      "uid": "35240-2f279416-f2be-479f-8964-0f71b5bd92a5"
+                    }
+                  ],
+                  "id": "e3c8e0b5-56c0-4127-80ee-d9d3f512144a",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-e3c8e0b5-56c0-4127-80ee-d9d3f512144a"
+                },
+                {
+                  "name": "Get an Invitation",
+                  "id": "4f629db5-1b12-45e1-afe7-dc37ed48d8f0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/invitations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "invitations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3e5749a2-c7ae-44b8-b4ea-40dcc17a2d2f",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The unique ID of the invitation."
+                        }
+                      ]
+                    },
+                    "description": "Get the details of an existing invitation."
+                  },
+                  "response": [
+                    {
+                      "id": "23a25f4a-dad3-49f9-8800-d354b0e72aa4",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/invitations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "invitations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"state\": \"accepted\",\n  \"accepted_at\": \"<string,null-date-time>\",\n  \"revoked_at\": \"<string,null-date-time>\",\n  \"expires_at\": \"<dateTime>\",\n  \"organization_id\": \"<string,null>\",\n  \"inviter_user_id\": \"<string,null>\",\n  \"accepted_user_id\": \"<string,null>\",\n  \"role_slug\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"accept_invitation_url\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:46.000Z",
+                      "updatedAt": "2026-07-28T03:34:46.000Z",
+                      "uid": "35240-23a25f4a-dad3-49f9-8800-d354b0e72aa4"
+                    },
+                    {
+                      "id": "9729c23a-c037-4bd6-b32f-15dc7baa5829",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/invitations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "invitations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:46.000Z",
+                      "updatedAt": "2026-07-28T03:34:46.000Z",
+                      "uid": "35240-9729c23a-c037-4bd6-b32f-15dc7baa5829"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-4f629db5-1b12-45e1-afe7-dc37ed48d8f0"
+                }
+              ],
+              "id": "3613825c-56f2-4357-92bb-df4bb6440882",
+              "createdAt": "2026-07-28T03:34:46.000Z",
+              "updatedAt": "2026-07-28T03:34:46.000Z",
+              "uid": "35240-3613825c-56f2-4357-92bb-df4bb6440882"
+            },
+            {
+              "name": "List Invitations",
+              "id": "90db890e-6823-46e8-bcb5-b667d3eb69bc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/invitations?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&email=<email>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "invitations"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "The ID of the [organization](/reference/organization) that the recipient will join.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The email address of the recipient.",
+                      "key": "email",
+                      "value": "<email>"
+                    }
+                  ]
+                },
+                "description": "Get a list of all of invitations matching the criteria specified."
+              },
+              "response": [
+                {
+                  "id": "e6d25735-d834-48b7-8ed7-e195b31c8668",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/invitations?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&email=<email>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                          "key": "order",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "The ID of the [organization](/reference/organization) that the recipient will join.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The email address of the recipient.",
+                          "key": "email",
+                          "value": "<email>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  },\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"state\": \"expired\",\n      \"accepted_at\": \"<string,null-date-time>\",\n      \"revoked_at\": \"<string,null-date-time>\",\n      \"expires_at\": \"<dateTime>\",\n      \"organization_id\": \"<string,null>\",\n      \"inviter_user_id\": \"<string,null>\",\n      \"accepted_user_id\": \"<string,null>\",\n      \"role_slug\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"token\": \"<string>\",\n      \"accept_invitation_url\": \"<string>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"state\": \"revoked\",\n      \"accepted_at\": \"<string,null-date-time>\",\n      \"revoked_at\": \"<string,null-date-time>\",\n      \"expires_at\": \"<dateTime>\",\n      \"organization_id\": \"<string,null>\",\n      \"inviter_user_id\": \"<string,null>\",\n      \"accepted_user_id\": \"<string,null>\",\n      \"role_slug\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"token\": \"<string>\",\n      \"accept_invitation_url\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-e6d25735-d834-48b7-8ed7-e195b31c8668"
+                },
+                {
+                  "id": "64f22322-f9db-4843-8115-76e545c5f8ce",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/invitations?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&email=<email>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                          "key": "order",
+                          "value": "desc"
+                        },
+                        {
+                          "description": "The ID of the [organization](/reference/organization) that the recipient will join.",
+                          "key": "organization_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The email address of the recipient.",
+                          "key": "email",
+                          "value": "<email>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-64f22322-f9db-4843-8115-76e545c5f8ce"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:46.000Z",
+              "updatedAt": "2026-07-28T03:34:46.000Z",
+              "uid": "35240-90db890e-6823-46e8-bcb5-b667d3eb69bc"
+            },
+            {
+              "name": "Send an Invitation",
+              "id": "132c403e-dc81-45d5-8096-5d5d62f863e3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"organization_id\": \"<string>\",\n  \"role_slug\": \"<string>\",\n  \"expires_in_days\": \"<integer>\",\n  \"inviter_user_id\": \"<string>\",\n  \"locale\": \"ja\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/invitations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "invitations"
+                  ]
+                },
+                "description": "Sends an invitation email to the recipient."
+              },
+              "response": [
+                {
+                  "id": "e74b2a04-2370-481d-aba0-3d2882edc14f",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"organization_id\": \"<string>\",\n  \"role_slug\": \"<string>\",\n  \"expires_in_days\": \"<integer>\",\n  \"inviter_user_id\": \"<string>\",\n  \"locale\": \"ja\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"state\": \"accepted\",\n  \"accepted_at\": \"<string,null-date-time>\",\n  \"revoked_at\": \"<string,null-date-time>\",\n  \"expires_at\": \"<dateTime>\",\n  \"organization_id\": \"<string,null>\",\n  \"inviter_user_id\": \"<string,null>\",\n  \"accepted_user_id\": \"<string,null>\",\n  \"role_slug\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"accept_invitation_url\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-e74b2a04-2370-481d-aba0-3d2882edc14f"
+                },
+                {
+                  "id": "88f3de6f-bbb8-44df-87a4-6b574dd897d9",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"organization_id\": \"<string>\",\n  \"role_slug\": \"<string>\",\n  \"expires_in_days\": \"<integer>\",\n  \"inviter_user_id\": \"<string>\",\n  \"locale\": \"ja\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-88f3de6f-bbb8-44df-87a4-6b574dd897d9"
+                },
+                {
+                  "id": "927c608a-8b05-472b-a44e-1dc4529101f9",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"organization_id\": \"<string>\",\n  \"role_slug\": \"<string>\",\n  \"expires_in_days\": \"<integer>\",\n  \"inviter_user_id\": \"<string>\",\n  \"locale\": \"ja\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-927c608a-8b05-472b-a44e-1dc4529101f9"
+                },
+                {
+                  "id": "d228e1aa-c7c7-43c0-b46a-55035fb3417d",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"organization_id\": \"<string>\",\n  \"role_slug\": \"<string>\",\n  \"expires_in_days\": \"<integer>\",\n  \"inviter_user_id\": \"<string>\",\n  \"locale\": \"ja\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/invitations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "invitations"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:46.000Z",
+                  "updatedAt": "2026-07-28T03:34:46.000Z",
+                  "uid": "35240-d228e1aa-c7c7-43c0-b46a-55035fb3417d"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:46.000Z",
+              "updatedAt": "2026-07-28T03:34:46.000Z",
+              "uid": "35240-132c403e-dc81-45d5-8096-5d5d62f863e3"
+            }
+          ],
+          "id": "a534d89b-f9ff-46ac-a1e9-fc13f77b622c",
+          "createdAt": "2026-07-28T03:34:46.000Z",
+          "updatedAt": "2026-07-28T03:34:46.000Z",
+          "uid": "35240-a534d89b-f9ff-46ac-a1e9-fc13f77b622c"
+        }
+      ],
+      "id": "e073b0a5-847b-455f-b668-c8d08f7782eb",
+      "createdAt": "2026-07-28T03:34:46.000Z",
+      "updatedAt": "2026-07-28T03:34:46.000Z",
+      "uid": "35240-e073b0a5-847b-455f-b668-c8d08f7782eb"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

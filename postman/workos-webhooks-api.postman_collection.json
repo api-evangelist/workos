@@ -1,0 +1,807 @@
+{
+  "info": {
+    "_postman_id": "1d114576-1589-449e-92fc-222895a11e96",
+    "name": "WorkOS admin-portal webhooks API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:23.000Z",
+    "updatedAt": "2026-07-28T03:35:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1d114576-1589-449e-92fc-222895a11e96"
+  },
+  "item": [
+    {
+      "name": "webhook_endpoints",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Update a Webhook Endpoint",
+              "id": "68be66c5-0e9e-4820-80f0-f8eb9af4a2cd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"<string>\",\n  \"status\": \"enabled\",\n  \"events\": [\n    \"organization_domain.verification_failed\",\n    \"dsync.deleted\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook_endpoints/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook_endpoints",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1a87370f-5a2d-4013-9533-6ef3db114615",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier of the Webhook Endpoint."
+                    }
+                  ]
+                },
+                "description": "Update the properties of an existing webhook endpoint."
+              },
+              "response": [
+                {
+                  "id": "f7fa5890-5ed6-4863-9b0e-0092cc9a9d2c",
+                  "name": "Webhook endpoint updated successfully.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"endpoint_url\": \"<string>\",\n  \"status\": \"enabled\",\n  \"events\": [\n    \"organization_domain.verification_failed\",\n    \"dsync.deleted\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook_endpoints/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook_endpoints",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"endpoint_url\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"status\": \"enabled\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:35:23.000Z",
+                  "updatedAt": "2026-07-28T03:35:23.000Z",
+                  "uid": "35240-f7fa5890-5ed6-4863-9b0e-0092cc9a9d2c"
+                },
+                {
+                  "id": "bcf6cee9-1e18-4d9f-a0f0-6b87942ec005",
+                  "name": "Webhook endpoint not found.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"endpoint_url\": \"<string>\",\n  \"status\": \"enabled\",\n  \"events\": [\n    \"organization_domain.verification_failed\",\n    \"dsync.deleted\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook_endpoints/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook_endpoints",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:23.000Z",
+                  "updatedAt": "2026-07-28T03:35:23.000Z",
+                  "uid": "35240-bcf6cee9-1e18-4d9f-a0f0-6b87942ec005"
+                },
+                {
+                  "id": "7401ae0c-206c-4603-af72-a6afd59b95ab",
+                  "name": "A Webhook Endpoint with the same endpoint URL already exists.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"endpoint_url\": \"<string>\",\n  \"status\": \"enabled\",\n  \"events\": [\n    \"organization_domain.verification_failed\",\n    \"dsync.deleted\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook_endpoints/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook_endpoints",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:23.000Z",
+                  "updatedAt": "2026-07-28T03:35:23.000Z",
+                  "uid": "35240-7401ae0c-206c-4603-af72-a6afd59b95ab"
+                },
+                {
+                  "id": "0a9d1e43-4e44-4c22-a98d-510a222a78fc",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"endpoint_url\": \"<string>\",\n  \"status\": \"enabled\",\n  \"events\": [\n    \"organization_domain.verification_failed\",\n    \"dsync.deleted\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook_endpoints/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook_endpoints",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:23.000Z",
+                  "updatedAt": "2026-07-28T03:35:23.000Z",
+                  "uid": "35240-0a9d1e43-4e44-4c22-a98d-510a222a78fc"
+                }
+              ],
+              "createdAt": "2026-07-28T03:35:23.000Z",
+              "updatedAt": "2026-07-28T03:35:23.000Z",
+              "uid": "35240-68be66c5-0e9e-4820-80f0-f8eb9af4a2cd"
+            },
+            {
+              "name": "Delete a Webhook Endpoint",
+              "id": "d153a118-1712-43fb-9c43-f32941c2e574",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook_endpoints/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook_endpoints",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4f450588-2037-407e-8e50-e88538d02aef",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier of the Webhook Endpoint."
+                    }
+                  ]
+                },
+                "description": "Delete an existing webhook endpoint."
+              },
+              "response": [
+                {
+                  "id": "df866926-8d61-4702-9035-fdefb87a96b3",
+                  "name": "Webhook endpoint deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook_endpoints/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook_endpoints",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:35:23.000Z",
+                  "updatedAt": "2026-07-28T03:35:23.000Z",
+                  "uid": "35240-df866926-8d61-4702-9035-fdefb87a96b3"
+                },
+                {
+                  "id": "e2d2b295-94b9-43f8-bdbe-6770faa43047",
+                  "name": "Webhook endpoint not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook_endpoints/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook_endpoints",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:23.000Z",
+                  "updatedAt": "2026-07-28T03:35:23.000Z",
+                  "uid": "35240-e2d2b295-94b9-43f8-bdbe-6770faa43047"
+                }
+              ],
+              "createdAt": "2026-07-28T03:35:23.000Z",
+              "updatedAt": "2026-07-28T03:35:23.000Z",
+              "uid": "35240-d153a118-1712-43fb-9c43-f32941c2e574"
+            }
+          ],
+          "id": "bd1299bf-7220-4f11-9826-f039d5cd716e",
+          "createdAt": "2026-07-28T03:35:23.000Z",
+          "updatedAt": "2026-07-28T03:35:23.000Z",
+          "uid": "35240-bd1299bf-7220-4f11-9826-f039d5cd716e"
+        },
+        {
+          "name": "List Webhook Endpoints",
+          "id": "d8f889a5-ff6e-4c4a-bc83-224bb924666d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/webhook_endpoints?before=<string>&after=<string>&limit=10&order=desc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook_endpoints"
+              ],
+              "query": [
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                  "key": "before",
+                  "value": "<string>"
+                },
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                  "key": "after",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                  "key": "order",
+                  "value": "desc"
+                }
+              ]
+            },
+            "description": "Get a list of all of your existing webhook endpoints."
+          },
+          "response": [
+            {
+              "id": "86e49f64-0e8b-43f5-9b8a-41f716abbffe",
+              "name": "List of webhook endpoints.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook_endpoints?before=<string>&after=<string>&limit=10&order=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook_endpoints"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"endpoint_url\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"status\": \"enabled\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"endpoint_url\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"status\": \"enabled\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:35:23.000Z",
+              "updatedAt": "2026-07-28T03:35:23.000Z",
+              "uid": "35240-86e49f64-0e8b-43f5-9b8a-41f716abbffe"
+            }
+          ],
+          "createdAt": "2026-07-28T03:35:23.000Z",
+          "updatedAt": "2026-07-28T03:35:23.000Z",
+          "uid": "35240-d8f889a5-ff6e-4c4a-bc83-224bb924666d"
+        },
+        {
+          "name": "Create a Webhook Endpoint",
+          "id": "09702321-df13-4734-954a-aa519fb83f3a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_url\": \"<string>\",\n  \"events\": [\n    \"waitlist_user.created\",\n    \"authentication.oauth_succeeded\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhook_endpoints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook_endpoints"
+              ]
+            },
+            "description": "Create a new webhook endpoint to receive event notifications."
+          },
+          "response": [
+            {
+              "id": "6534e362-fbe4-41e3-9de3-601ab36641a0",
+              "name": "Webhook endpoint created successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"<string>\",\n  \"events\": [\n    \"waitlist_user.created\",\n    \"authentication.oauth_succeeded\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook_endpoints",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook_endpoints"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"endpoint_url\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"status\": \"enabled\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T03:35:23.000Z",
+              "updatedAt": "2026-07-28T03:35:23.000Z",
+              "uid": "35240-6534e362-fbe4-41e3-9de3-601ab36641a0"
+            },
+            {
+              "id": "3bb0cc28-acbd-4de7-81ce-f51879bc6ac7",
+              "name": "A Webhook Endpoint with the same endpoint URL already exists.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"<string>\",\n  \"events\": [\n    \"waitlist_user.created\",\n    \"authentication.oauth_succeeded\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook_endpoints",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook_endpoints"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:35:23.000Z",
+              "updatedAt": "2026-07-28T03:35:23.000Z",
+              "uid": "35240-3bb0cc28-acbd-4de7-81ce-f51879bc6ac7"
+            },
+            {
+              "id": "1500fb0a-9607-498a-b7db-3aae828faaba",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"<string>\",\n  \"events\": [\n    \"waitlist_user.created\",\n    \"authentication.oauth_succeeded\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook_endpoints",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook_endpoints"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:35:23.000Z",
+              "updatedAt": "2026-07-28T03:35:23.000Z",
+              "uid": "35240-1500fb0a-9607-498a-b7db-3aae828faaba"
+            }
+          ],
+          "createdAt": "2026-07-28T03:35:23.000Z",
+          "updatedAt": "2026-07-28T03:35:23.000Z",
+          "uid": "35240-09702321-df13-4734-954a-aa519fb83f3a"
+        }
+      ],
+      "id": "74c31497-02b7-4b0e-abba-684842173ca8",
+      "createdAt": "2026-07-28T03:35:23.000Z",
+      "updatedAt": "2026-07-28T03:35:23.000Z",
+      "uid": "35240-74c31497-02b7-4b0e-abba-684842173ca8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

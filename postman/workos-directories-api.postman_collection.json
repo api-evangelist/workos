@@ -1,0 +1,712 @@
+{
+  "info": {
+    "_postman_id": "83418a0f-8081-4e66-a750-6e1bd6457752",
+    "name": "WorkOS admin-portal directories API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:12.000Z",
+    "updatedAt": "2026-07-28T03:33:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-83418a0f-8081-4e66-a750-6e1bd6457752"
+  },
+  "item": [
+    {
+      "name": "directories",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get a Directory",
+              "id": "0d53328c-290a-4b21-b679-ed9b26de28d8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b7c42d58-fe6b-4da0-9a65-f367ca35ca88",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the Directory."
+                    }
+                  ]
+                },
+                "description": "Get the details of an existing directory."
+              },
+              "response": [
+                {
+                  "id": "e232fcac-152f-4e98-8196-1581e9467224",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directories/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directories",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"external_key\": \"<string>\",\n  \"type\": \"personio\",\n  \"state\": \"linked\",\n  \"name\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"domain\": \"<string>\",\n  \"metadata\": {\n    \"users\": {\n      \"active\": \"<integer>\",\n      \"inactive\": \"<integer>\"\n    },\n    \"groups\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:33:13.000Z",
+                  "updatedAt": "2026-07-28T03:33:13.000Z",
+                  "uid": "35240-e232fcac-152f-4e98-8196-1581e9467224"
+                },
+                {
+                  "id": "ab28823b-47f3-4e32-aa50-512cd57484e9",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directories/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directories",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:13.000Z",
+                  "updatedAt": "2026-07-28T03:33:13.000Z",
+                  "uid": "35240-ab28823b-47f3-4e32-aa50-512cd57484e9"
+                },
+                {
+                  "id": "23872620-426d-4046-9050-af535e957d0f",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directories/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directories",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:13.000Z",
+                  "updatedAt": "2026-07-28T03:33:13.000Z",
+                  "uid": "35240-23872620-426d-4046-9050-af535e957d0f"
+                }
+              ],
+              "createdAt": "2026-07-28T03:33:13.000Z",
+              "updatedAt": "2026-07-28T03:33:13.000Z",
+              "uid": "35240-0d53328c-290a-4b21-b679-ed9b26de28d8"
+            },
+            {
+              "name": "Delete a Directory",
+              "id": "f8dd0011-8990-47dd-833e-9e03e21337c1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directories/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directories",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e0609034-bdc8-4eb5-a7a3-9f1cb94c8609",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the Directory."
+                    }
+                  ]
+                },
+                "description": "Permanently deletes an existing directory. It cannot be undone."
+              },
+              "response": [
+                {
+                  "id": "c740ea72-d797-4e09-8e28-6a719a7deba9",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directories/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directories",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:33:13.000Z",
+                  "updatedAt": "2026-07-28T03:33:13.000Z",
+                  "uid": "35240-c740ea72-d797-4e09-8e28-6a719a7deba9"
+                },
+                {
+                  "id": "bb4f466d-595b-4b6b-a4e9-744117626703",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directories/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directories",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T03:33:13.000Z",
+                  "updatedAt": "2026-07-28T03:33:13.000Z",
+                  "uid": "35240-bb4f466d-595b-4b6b-a4e9-744117626703"
+                },
+                {
+                  "id": "cf0ff783-9bb6-4dc6-b447-b640d5bcf9ab",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directories/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directories",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:13.000Z",
+                  "updatedAt": "2026-07-28T03:33:13.000Z",
+                  "uid": "35240-cf0ff783-9bb6-4dc6-b447-b640d5bcf9ab"
+                }
+              ],
+              "createdAt": "2026-07-28T03:33:13.000Z",
+              "updatedAt": "2026-07-28T03:33:13.000Z",
+              "uid": "35240-f8dd0011-8990-47dd-833e-9e03e21337c1"
+            }
+          ],
+          "id": "0fb7c077-c23b-46dd-b7e0-36f94bfe1b6a",
+          "createdAt": "2026-07-28T03:33:13.000Z",
+          "updatedAt": "2026-07-28T03:33:13.000Z",
+          "uid": "35240-0fb7c077-c23b-46dd-b7e0-36f94bfe1b6a"
+        },
+        {
+          "name": "List Directories",
+          "id": "75ba9c07-8e72-4bc9-ae2b-0bed59eaea86",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/directories?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&search=<string>&domain=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "directories"
+              ],
+              "query": [
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                  "key": "before",
+                  "value": "<string>"
+                },
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                  "key": "after",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Order the results by the creation time.",
+                  "key": "order",
+                  "value": "desc"
+                },
+                {
+                  "description": "Filter Directories by their associated organization.",
+                  "key": "organization_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Searchable text to match against Directory names.",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter Directories by their associated domain.",
+                  "key": "domain",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get a list of all of your existing directories matching the criteria specified."
+          },
+          "response": [
+            {
+              "id": "241a23f9-1e8d-4a1d-b29a-b1bfe4be0134",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directories?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&search=<string>&domain=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directories"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter Directories by their associated organization.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Searchable text to match against Directory names.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter Directories by their associated domain.",
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"external_key\": \"<string>\",\n      \"type\": \"fourth hr\",\n      \"state\": \"deleting\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"domain\": \"<string>\",\n      \"metadata\": {\n        \"users\": {\n          \"active\": \"<integer>\",\n          \"inactive\": \"<integer>\"\n        },\n        \"groups\": \"<integer>\"\n      }\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"external_key\": \"<string>\",\n      \"type\": \"gsuite directory\",\n      \"state\": \"linked\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"domain\": \"<string>\",\n      \"metadata\": {\n        \"users\": {\n          \"active\": \"<integer>\",\n          \"inactive\": \"<integer>\"\n        },\n        \"groups\": \"<integer>\"\n      }\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  },\n  \"consectetur_5f\": \"cupidatat elit\"\n}",
+              "createdAt": "2026-07-28T03:33:13.000Z",
+              "updatedAt": "2026-07-28T03:33:13.000Z",
+              "uid": "35240-241a23f9-1e8d-4a1d-b29a-b1bfe4be0134"
+            },
+            {
+              "id": "90373c78-5938-4400-990c-1fd269cb3d56",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directories?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&search=<string>&domain=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directories"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter Directories by their associated organization.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Searchable text to match against Directory names.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter Directories by their associated domain.",
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:13.000Z",
+              "updatedAt": "2026-07-28T03:33:13.000Z",
+              "uid": "35240-90373c78-5938-4400-990c-1fd269cb3d56"
+            },
+            {
+              "id": "5e03d268-469c-4395-902b-5b02e030fdc3",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directories?before=<string>&after=<string>&limit=10&order=desc&organization_id=<string>&search=<string>&domain=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directories"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter Directories by their associated organization.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Searchable text to match against Directory names.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter Directories by their associated domain.",
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:13.000Z",
+              "updatedAt": "2026-07-28T03:33:13.000Z",
+              "uid": "35240-5e03d268-469c-4395-902b-5b02e030fdc3"
+            }
+          ],
+          "createdAt": "2026-07-28T03:33:13.000Z",
+          "updatedAt": "2026-07-28T03:33:13.000Z",
+          "uid": "35240-75ba9c07-8e72-4bc9-ae2b-0bed59eaea86"
+        }
+      ],
+      "id": "dc996e8e-a3e9-4fca-b43a-f0161b9a1aa8",
+      "createdAt": "2026-07-28T03:33:13.000Z",
+      "updatedAt": "2026-07-28T03:33:13.000Z",
+      "uid": "35240-dc996e8e-a3e9-4fca-b43a-f0161b9a1aa8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

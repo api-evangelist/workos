@@ -1,0 +1,665 @@
+{
+  "info": {
+    "_postman_id": "c118e409-9625-4000-bb7a-e4412fa40e0b",
+    "name": "WorkOS admin-portal directory-users API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:14.000Z",
+    "updatedAt": "2026-07-28T03:33:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c118e409-9625-4000-bb7a-e4412fa40e0b"
+  },
+  "item": [
+    {
+      "name": "directory_users",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get a Directory User",
+              "id": "5e756c4d-4b47-4f60-a41f-6b6326f31b05",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directory_users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directory_users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7b9b91d5-f28a-4af2-bb58-e4b754558b5d",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the Directory User."
+                    }
+                  ]
+                },
+                "description": "Get the details of an existing Directory User."
+              },
+              "response": [
+                {
+                  "id": "a983fb11-66e0-4151-ac5e-c1ea1fb084c9",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directory_users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directory_users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"directory_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"idp_id\": \"<string>\",\n  \"email\": \"<string,null>\",\n  \"state\": \"inactive\",\n  \"raw_attributes\": {\n    \"irure_0c\": {},\n    \"cillum9\": {}\n  },\n  \"custom_attributes\": {\n    \"Lorem_26a\": {},\n    \"est_1\": {},\n    \"sunt_7cd\": {}\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"groups\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"idp_id\": \"<string>\",\n      \"directory_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"raw_attributes\": {\n        \"tempord\": {},\n        \"enim_3\": {},\n        \"voluptated4\": {}\n      }\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"idp_id\": \"<string>\",\n      \"directory_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"raw_attributes\": {\n        \"consequat_165\": {}\n      }\n    }\n  ],\n  \"first_name\": \"<string,null>\",\n  \"last_name\": \"<string,null>\",\n  \"name\": \"<string,null>\",\n  \"emails\": [\n    {\n      \"primary\": \"<boolean>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string,null>\"\n    },\n    {\n      \"primary\": \"<boolean>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string,null>\"\n    }\n  ],\n  \"job_title\": \"<string,null>\",\n  \"username\": \"<string,null>\",\n  \"role\": {\n    \"slug\": \"<string>\"\n  },\n  \"roles\": [\n    {\n      \"slug\": \"<string>\"\n    },\n    {\n      \"slug\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:33:15.000Z",
+                  "updatedAt": "2026-07-28T03:33:15.000Z",
+                  "uid": "35240-a983fb11-66e0-4151-ac5e-c1ea1fb084c9"
+                },
+                {
+                  "id": "04548e20-8893-4581-8c4e-d754f95557f9",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directory_users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directory_users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:15.000Z",
+                  "updatedAt": "2026-07-28T03:33:15.000Z",
+                  "uid": "35240-04548e20-8893-4581-8c4e-d754f95557f9"
+                },
+                {
+                  "id": "e853ec16-5021-49dc-ab54-4f5cd93d223b",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/directory_users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "directory_users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:15.000Z",
+                  "updatedAt": "2026-07-28T03:33:15.000Z",
+                  "uid": "35240-e853ec16-5021-49dc-ab54-4f5cd93d223b"
+                }
+              ],
+              "createdAt": "2026-07-28T03:33:15.000Z",
+              "updatedAt": "2026-07-28T03:33:15.000Z",
+              "uid": "35240-5e756c4d-4b47-4f60-a41f-6b6326f31b05"
+            }
+          ],
+          "id": "7a8e3e19-80a4-4fe7-b154-c04be8f8ae7b",
+          "createdAt": "2026-07-28T03:33:15.000Z",
+          "updatedAt": "2026-07-28T03:33:15.000Z",
+          "uid": "35240-7a8e3e19-80a4-4fe7-b154-c04be8f8ae7b"
+        },
+        {
+          "name": "List Directory Users",
+          "id": "cee4df7d-bff7-43b3-97fc-8020ad960f5c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/directory_users?before=<string>&after=<string>&limit=10&order=desc&directory=<string>&group=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "directory_users"
+              ],
+              "query": [
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                  "key": "before",
+                  "value": "<string>"
+                },
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                  "key": "after",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                  "key": "order",
+                  "value": "desc"
+                },
+                {
+                  "description": "Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API.",
+                  "key": "directory",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Unique identifier of the WorkOS Directory Group. This value can be obtained from the WorkOS API.",
+                  "key": "group",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get a list of all of existing Directory Users matching the criteria specified."
+          },
+          "response": [
+            {
+              "id": "f726b2c7-a190-4c20-ba6e-0231789c71fe",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directory_users?before=<string>&after=<string>&limit=10&order=desc&directory=<string>&group=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directory_users"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API.",
+                      "key": "directory",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory Group. This value can be obtained from the WorkOS API.",
+                      "key": "group",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"directory_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"idp_id\": \"<string>\",\n      \"email\": \"<string,null>\",\n      \"state\": \"inactive\",\n      \"raw_attributes\": {\n        \"Excepteur_3\": {},\n        \"Duis_bf\": {}\n      },\n      \"custom_attributes\": {\n        \"sedf\": {},\n        \"deserunt89\": {},\n        \"tempor_4f\": {},\n        \"aliqua51\": {}\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"groups\": [\n        {\n          \"object\": \"<string>\",\n          \"id\": \"<string>\",\n          \"idp_id\": \"<string>\",\n          \"directory_id\": \"<string>\",\n          \"organization_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"raw_attributes\": {\n            \"voluptate821\": {},\n            \"deserunt_b\": {},\n            \"culpa89\": {},\n            \"dolore_9\": {}\n          }\n        },\n        {\n          \"object\": \"<string>\",\n          \"id\": \"<string>\",\n          \"idp_id\": \"<string>\",\n          \"directory_id\": \"<string>\",\n          \"organization_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"raw_attributes\": {\n            \"esse41_\": {},\n            \"sedd\": {}\n          }\n        }\n      ],\n      \"first_name\": \"<string,null>\",\n      \"last_name\": \"<string,null>\",\n      \"name\": \"<string,null>\",\n      \"emails\": [\n        {\n          \"primary\": \"<boolean>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string,null>\"\n        },\n        {\n          \"primary\": \"<boolean>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string,null>\"\n        }\n      ],\n      \"job_title\": \"<string,null>\",\n      \"username\": \"<string,null>\",\n      \"role\": {\n        \"slug\": \"<string>\"\n      },\n      \"roles\": [\n        {\n          \"slug\": \"<string>\"\n        },\n        {\n          \"slug\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"directory_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"idp_id\": \"<string>\",\n      \"email\": \"<string,null>\",\n      \"state\": \"inactive\",\n      \"raw_attributes\": {\n        \"nostrudaa6\": {}\n      },\n      \"custom_attributes\": {\n        \"est_50\": {},\n        \"sint_28\": {}\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"groups\": [\n        {\n          \"object\": \"<string>\",\n          \"id\": \"<string>\",\n          \"idp_id\": \"<string>\",\n          \"directory_id\": \"<string>\",\n          \"organization_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"raw_attributes\": {\n            \"mollita\": {},\n            \"sint_7\": {}\n          }\n        },\n        {\n          \"object\": \"<string>\",\n          \"id\": \"<string>\",\n          \"idp_id\": \"<string>\",\n          \"directory_id\": \"<string>\",\n          \"organization_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"raw_attributes\": {\n            \"Lorem_b\": {},\n            \"eu_1\": {}\n          }\n        }\n      ],\n      \"first_name\": \"<string,null>\",\n      \"last_name\": \"<string,null>\",\n      \"name\": \"<string,null>\",\n      \"emails\": [\n        {\n          \"primary\": \"<boolean>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string,null>\"\n        },\n        {\n          \"primary\": \"<boolean>\",\n          \"type\": \"<string>\",\n          \"value\": \"<string,null>\"\n        }\n      ],\n      \"job_title\": \"<string,null>\",\n      \"username\": \"<string,null>\",\n      \"role\": {\n        \"slug\": \"<string>\"\n      },\n      \"roles\": [\n        {\n          \"slug\": \"<string>\"\n        },\n        {\n          \"slug\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  },\n  \"consequat_1_\": \"ex Excepteur pariatur cupidatat esse\"\n}",
+              "createdAt": "2026-07-28T03:33:15.000Z",
+              "updatedAt": "2026-07-28T03:33:15.000Z",
+              "uid": "35240-f726b2c7-a190-4c20-ba6e-0231789c71fe"
+            },
+            {
+              "id": "d2aaa1b9-638e-4fd3-a258-42ce6b961d03",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directory_users?before=<string>&after=<string>&limit=10&order=desc&directory=<string>&group=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directory_users"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API.",
+                      "key": "directory",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory Group. This value can be obtained from the WorkOS API.",
+                      "key": "group",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:15.000Z",
+              "updatedAt": "2026-07-28T03:33:15.000Z",
+              "uid": "35240-d2aaa1b9-638e-4fd3-a258-42ce6b961d03"
+            },
+            {
+              "id": "7a377c22-2a3f-4b2a-9ef4-5d41ffd554cb",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directory_users?before=<string>&after=<string>&limit=10&order=desc&directory=<string>&group=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directory_users"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API.",
+                      "key": "directory",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory Group. This value can be obtained from the WorkOS API.",
+                      "key": "group",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:15.000Z",
+              "updatedAt": "2026-07-28T03:33:15.000Z",
+              "uid": "35240-7a377c22-2a3f-4b2a-9ef4-5d41ffd554cb"
+            },
+            {
+              "id": "ee1a619f-041d-4a93-8a73-4de8b4696272",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directory_users?before=<string>&after=<string>&limit=10&order=desc&directory=<string>&group=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directory_users"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API.",
+                      "key": "directory",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory Group. This value can be obtained from the WorkOS API.",
+                      "key": "group",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:15.000Z",
+              "updatedAt": "2026-07-28T03:33:15.000Z",
+              "uid": "35240-ee1a619f-041d-4a93-8a73-4de8b4696272"
+            },
+            {
+              "id": "50a3471e-d4ad-4a79-a358-a0bd92e6fc96",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/directory_users?before=<string>&after=<string>&limit=10&order=desc&directory=<string>&group=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "directory_users"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API.",
+                      "key": "directory",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Unique identifier of the WorkOS Directory Group. This value can be obtained from the WorkOS API.",
+                      "key": "group",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T03:33:15.000Z",
+              "updatedAt": "2026-07-28T03:33:15.000Z",
+              "uid": "35240-50a3471e-d4ad-4a79-a358-a0bd92e6fc96"
+            }
+          ],
+          "createdAt": "2026-07-28T03:33:15.000Z",
+          "updatedAt": "2026-07-28T03:33:15.000Z",
+          "uid": "35240-cee4df7d-bff7-43b3-97fc-8020ad960f5c"
+        }
+      ],
+      "id": "c78d6fb8-9779-42fb-bba3-050c31dc0e15",
+      "createdAt": "2026-07-28T03:33:15.000Z",
+      "updatedAt": "2026-07-28T03:33:15.000Z",
+      "uid": "35240-c78d6fb8-9779-42fb-bba3-050c31dc0e15"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

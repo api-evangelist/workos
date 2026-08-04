@@ -1,0 +1,274 @@
+{
+  "info": {
+    "_postman_id": "d97b956e-1183-4777-b574-6334563edd2a",
+    "name": "WorkOS admin-portal user-management.organization-membership.groups API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:59.000Z",
+    "updatedAt": "2026-07-28T03:34:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d97b956e-1183-4777-b574-6334563edd2a"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "organization_memberships",
+          "item": [
+            {
+              "name": "{omId}",
+              "item": [
+                {
+                  "name": "groups",
+                  "item": [
+                    {
+                      "name": "List Groups",
+                      "id": "9ac5af4b-0541-4327-81f9-3455664ad5cc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/organization_memberships/:omId/groups?before=<string>&after=<string>&limit=10&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "organization_memberships",
+                            ":omId",
+                            "groups"
+                          ],
+                          "query": [
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "850ff5c1-6057-4113-b2e4-0f0e2db30b44",
+                              "key": "omId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the Organization Membership."
+                            }
+                          ]
+                        },
+                        "description": "Get a list of groups that an organization membership belongs to."
+                      },
+                      "response": [
+                        {
+                          "id": "e32b5cd9-2f7d-4233-ae25-22f7465389a7",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:omId/groups?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":omId",
+                                "groups"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "omId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:34:59.000Z",
+                          "updatedAt": "2026-07-28T03:34:59.000Z",
+                          "uid": "35240-e32b5cd9-2f7d-4233-ae25-22f7465389a7"
+                        },
+                        {
+                          "id": "acde86fb-a7ed-4cac-a5e0-c038d00f161c",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/organization_memberships/:omId/groups?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "organization_memberships",
+                                ":omId",
+                                "groups"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "omId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:59.000Z",
+                          "updatedAt": "2026-07-28T03:34:59.000Z",
+                          "uid": "35240-acde86fb-a7ed-4cac-a5e0-c038d00f161c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:59.000Z",
+                      "updatedAt": "2026-07-28T03:34:59.000Z",
+                      "uid": "35240-9ac5af4b-0541-4327-81f9-3455664ad5cc"
+                    }
+                  ],
+                  "id": "6b29045f-7b26-4599-bbf1-e9deea42e5f0",
+                  "createdAt": "2026-07-28T03:34:59.000Z",
+                  "updatedAt": "2026-07-28T03:34:59.000Z",
+                  "uid": "35240-6b29045f-7b26-4599-bbf1-e9deea42e5f0"
+                }
+              ],
+              "id": "5cbc85d9-462f-4720-ac34-ba4235e8ea56",
+              "createdAt": "2026-07-28T03:34:59.000Z",
+              "updatedAt": "2026-07-28T03:34:59.000Z",
+              "uid": "35240-5cbc85d9-462f-4720-ac34-ba4235e8ea56"
+            }
+          ],
+          "id": "6620d7c9-0c02-4c05-9b27-efbe72c5c8e4",
+          "createdAt": "2026-07-28T03:34:59.000Z",
+          "updatedAt": "2026-07-28T03:34:59.000Z",
+          "uid": "35240-6620d7c9-0c02-4c05-9b27-efbe72c5c8e4"
+        }
+      ],
+      "id": "77a08152-ecef-4c2a-8946-c17a827cd3f2",
+      "createdAt": "2026-07-28T03:34:59.000Z",
+      "updatedAt": "2026-07-28T03:34:59.000Z",
+      "uid": "35240-77a08152-ecef-4c2a-8946-c17a827cd3f2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

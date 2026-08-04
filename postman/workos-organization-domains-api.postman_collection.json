@@ -1,0 +1,616 @@
+{
+  "info": {
+    "_postman_id": "825bfba6-2fa6-4a44-9b60-35d9026240c8",
+    "name": "WorkOS admin-portal organization-domains API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:20.000Z",
+    "updatedAt": "2026-07-28T03:34:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-825bfba6-2fa6-4a44-9b60-35d9026240c8"
+  },
+  "item": [
+    {
+      "name": "organization_domains",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "verify",
+              "item": [
+                {
+                  "name": "Verify an Organization Domain",
+                  "id": "ef145a16-9121-439a-bb30-a6e59bab12fb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organization_domains/:id/verify",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization_domains",
+                        ":id",
+                        "verify"
+                      ],
+                      "variable": [
+                        {
+                          "id": "74e669d0-befc-4365-8962-11eea94275d5",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the organization domain."
+                        }
+                      ]
+                    },
+                    "description": "Initiates verification process for an Organization Domain."
+                  },
+                  "response": [
+                    {
+                      "id": "d41d14aa-5ef7-4388-8e1f-72871e602f90",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organization_domains/:id/verify",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization_domains",
+                            ":id",
+                            "verify"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"state\": \"failed\",\n  \"verification_prefix\": \"<string>\",\n  \"verification_token\": \"<string>\",\n  \"verification_strategy\": \"dns\"\n}",
+                      "createdAt": "2026-07-28T03:34:20.000Z",
+                      "updatedAt": "2026-07-28T03:34:20.000Z",
+                      "uid": "35240-d41d14aa-5ef7-4388-8e1f-72871e602f90"
+                    },
+                    {
+                      "id": "ce86a2a2-e2d7-40bb-92dc-a574f2722adc",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organization_domains/:id/verify",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization_domains",
+                            ":id",
+                            "verify"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:20.000Z",
+                      "updatedAt": "2026-07-28T03:34:20.000Z",
+                      "uid": "35240-ce86a2a2-e2d7-40bb-92dc-a574f2722adc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:20.000Z",
+                  "updatedAt": "2026-07-28T03:34:20.000Z",
+                  "uid": "35240-ef145a16-9121-439a-bb30-a6e59bab12fb"
+                }
+              ],
+              "id": "98e41a0c-9d02-4f2c-888d-6e6f19468906",
+              "createdAt": "2026-07-28T03:34:20.000Z",
+              "updatedAt": "2026-07-28T03:34:20.000Z",
+              "uid": "35240-98e41a0c-9d02-4f2c-888d-6e6f19468906"
+            },
+            {
+              "name": "Get an Organization Domain",
+              "id": "1277d760-30bc-46d3-882f-6ef341775332",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organization_domains/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organization_domains",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6d9f46a5-92bb-4d82-b5f7-ab6905c02010",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier of the organization domain."
+                    }
+                  ]
+                },
+                "description": "Get the details of an existing organization domain."
+              },
+              "response": [
+                {
+                  "id": "f3b928a5-64d6-476d-889d-5eeda4693060",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organization_domains/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization_domains",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"state\": \"failed\",\n  \"verification_prefix\": \"<string>\",\n  \"verification_token\": \"<string>\",\n  \"verification_strategy\": \"dns\"\n}",
+                  "createdAt": "2026-07-28T03:34:20.000Z",
+                  "updatedAt": "2026-07-28T03:34:20.000Z",
+                  "uid": "35240-f3b928a5-64d6-476d-889d-5eeda4693060"
+                },
+                {
+                  "id": "8b0f41ac-35df-40e6-8165-f31f295fb067",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organization_domains/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization_domains",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:20.000Z",
+                  "updatedAt": "2026-07-28T03:34:20.000Z",
+                  "uid": "35240-8b0f41ac-35df-40e6-8165-f31f295fb067"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:20.000Z",
+              "updatedAt": "2026-07-28T03:34:20.000Z",
+              "uid": "35240-1277d760-30bc-46d3-882f-6ef341775332"
+            },
+            {
+              "name": "Delete an Organization Domain",
+              "id": "f1eafd77-78da-4622-9f53-c8a6b1420aa3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organization_domains/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organization_domains",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8b7a1234-9573-42e3-b6d2-eadfe557a6bb",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier of the organization domain."
+                    }
+                  ]
+                },
+                "description": "Permanently deletes an organization domain. It cannot be undone."
+              },
+              "response": [
+                {
+                  "id": "12762d1a-cec9-4762-93a7-923fdbaec9e0",
+                  "name": "Organization domain deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organization_domains/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization_domains",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:34:20.000Z",
+                  "updatedAt": "2026-07-28T03:34:20.000Z",
+                  "uid": "35240-12762d1a-cec9-4762-93a7-923fdbaec9e0"
+                },
+                {
+                  "id": "269f234b-7ab2-44e9-82eb-cc03385e8d15",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organization_domains/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization_domains",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:20.000Z",
+                  "updatedAt": "2026-07-28T03:34:20.000Z",
+                  "uid": "35240-269f234b-7ab2-44e9-82eb-cc03385e8d15"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:20.000Z",
+              "updatedAt": "2026-07-28T03:34:20.000Z",
+              "uid": "35240-f1eafd77-78da-4622-9f53-c8a6b1420aa3"
+            }
+          ],
+          "id": "3ce452b6-44ad-48e7-bb87-08fe0ca1a4fd",
+          "createdAt": "2026-07-28T03:34:20.000Z",
+          "updatedAt": "2026-07-28T03:34:20.000Z",
+          "uid": "35240-3ce452b6-44ad-48e7-bb87-08fe0ca1a4fd"
+        },
+        {
+          "name": "Create an Organization Domain",
+          "id": "9a27e9cb-4c2f-4eac-9ac4-e3b885636a04",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/organization_domains",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organization_domains"
+              ]
+            },
+            "description": "Creates a new Organization Domain."
+          },
+          "response": [
+            {
+              "id": "4db2e1d0-bc43-4ef2-ba38-bd5cc208a73f",
+              "name": "Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organization_domains",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organization_domains"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"state\": \"failed\",\n  \"verification_prefix\": \"<string>\",\n  \"verification_token\": \"<string>\",\n  \"verification_strategy\": \"manual\"\n}",
+              "createdAt": "2026-07-28T03:34:20.000Z",
+              "updatedAt": "2026-07-28T03:34:20.000Z",
+              "uid": "35240-4db2e1d0-bc43-4ef2-ba38-bd5cc208a73f"
+            },
+            {
+              "id": "1ad98a9c-1c51-4eb4-b608-b9b8ab3c0c2a",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"domain\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organization_domains",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organization_domains"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:34:20.000Z",
+              "updatedAt": "2026-07-28T03:34:20.000Z",
+              "uid": "35240-1ad98a9c-1c51-4eb4-b608-b9b8ab3c0c2a"
+            }
+          ],
+          "createdAt": "2026-07-28T03:34:20.000Z",
+          "updatedAt": "2026-07-28T03:34:20.000Z",
+          "uid": "35240-9a27e9cb-4c2f-4eac-9ac4-e3b885636a04"
+        }
+      ],
+      "id": "c5b7e253-37d8-4889-a7a3-0d5b9dcecc41",
+      "createdAt": "2026-07-28T03:34:20.000Z",
+      "updatedAt": "2026-07-28T03:34:20.000Z",
+      "uid": "35240-c5b7e253-37d8-4889-a7a3-0d5b9dcecc41"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

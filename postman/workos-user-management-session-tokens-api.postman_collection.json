@@ -1,0 +1,196 @@
+{
+  "info": {
+    "_postman_id": "5a016a1c-51f2-4054-8f2a-922ce33acc38",
+    "name": "WorkOS admin-portal user-management.session-tokens API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:02.000Z",
+    "updatedAt": "2026-07-28T03:35:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5a016a1c-51f2-4054-8f2a-922ce33acc38"
+  },
+  "item": [
+    {
+      "name": "sso",
+      "item": [
+        {
+          "name": "jwks",
+          "item": [
+            {
+              "name": "{clientId}",
+              "item": [
+                {
+                  "name": "Get JWKS",
+                  "id": "3dfc0660-271f-495e-8a87-3938d6fcaaa5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sso/jwks/:clientId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sso",
+                        "jwks",
+                        ":clientId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c850ac8d-4c02-4e87-92cf-136906351d44",
+                          "key": "clientId",
+                          "value": "<string>",
+                          "description": "(Required) Identifies the application making the request to the WorkOS server. You can obtain your client ID from the [API Keys](https://dashboard.workos.com/api-keys) page in the dashboard."
+                        }
+                      ]
+                    },
+                    "description": "Returns the JSON Web Key Set (JWKS) containing the public keys used for verifying access tokens."
+                  },
+                  "response": [
+                    {
+                      "id": "b13e3e92-b1c6-4e0e-9ab3-0559b70d24f0",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sso/jwks/:clientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sso",
+                            "jwks",
+                            ":clientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "clientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"keys\": [\n    {\n      \"alg\": \"<string>\",\n      \"kty\": \"<string>\",\n      \"use\": \"<string>\",\n      \"x5c\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"n\": \"<string>\",\n      \"e\": \"<string>\",\n      \"kid\": \"<string>\",\n      \"x5t#S256\": \"<string>\"\n    },\n    {\n      \"alg\": \"<string>\",\n      \"kty\": \"<string>\",\n      \"use\": \"<string>\",\n      \"x5c\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"n\": \"<string>\",\n      \"e\": \"<string>\",\n      \"kid\": \"<string>\",\n      \"x5t#S256\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:35:02.000Z",
+                      "updatedAt": "2026-07-28T03:35:02.000Z",
+                      "uid": "35240-b13e3e92-b1c6-4e0e-9ab3-0559b70d24f0"
+                    },
+                    {
+                      "id": "33ccdb11-7b2b-4302-8f77-684a4e44af72",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sso/jwks/:clientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sso",
+                            "jwks",
+                            ":clientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "clientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:35:02.000Z",
+                      "updatedAt": "2026-07-28T03:35:02.000Z",
+                      "uid": "35240-33ccdb11-7b2b-4302-8f77-684a4e44af72"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:35:02.000Z",
+                  "updatedAt": "2026-07-28T03:35:02.000Z",
+                  "uid": "35240-3dfc0660-271f-495e-8a87-3938d6fcaaa5"
+                }
+              ],
+              "id": "3bcc7840-4e21-46f9-8fb9-5cb33ca4a711",
+              "createdAt": "2026-07-28T03:35:02.000Z",
+              "updatedAt": "2026-07-28T03:35:02.000Z",
+              "uid": "35240-3bcc7840-4e21-46f9-8fb9-5cb33ca4a711"
+            }
+          ],
+          "id": "217fd583-3f73-41c1-8e5d-72dfc66cb516",
+          "createdAt": "2026-07-28T03:35:02.000Z",
+          "updatedAt": "2026-07-28T03:35:02.000Z",
+          "uid": "35240-217fd583-3f73-41c1-8e5d-72dfc66cb516"
+        }
+      ],
+      "id": "7cead673-d140-40de-a33e-2e832adf7c46",
+      "createdAt": "2026-07-28T03:35:02.000Z",
+      "updatedAt": "2026-07-28T03:35:02.000Z",
+      "uid": "35240-7cead673-d140-40de-a33e-2e832adf7c46"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

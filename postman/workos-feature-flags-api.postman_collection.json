@@ -1,0 +1,789 @@
+{
+  "info": {
+    "_postman_id": "4add97e7-6959-482d-bddc-b0a8b24b07b6",
+    "name": "WorkOS admin-portal feature-flags API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:49.000Z",
+    "updatedAt": "2026-07-28T03:33:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4add97e7-6959-482d-bddc-b0a8b24b07b6"
+  },
+  "item": [
+    {
+      "name": "feature-flags",
+      "item": [
+        {
+          "name": "{slug}",
+          "item": [
+            {
+              "name": "disable",
+              "item": [
+                {
+                  "name": "Disable a Feature Flag",
+                  "id": "dcb631c5-b88a-4f48-b32c-118ac38a802b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/feature-flags/:slug/disable",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feature-flags",
+                        ":slug",
+                        "disable"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e330945d-8f3f-47e8-bcce-ecbf3d78973f",
+                          "key": "slug",
+                          "value": "<string>",
+                          "description": "(Required) A unique key to reference the Feature Flag."
+                        }
+                      ]
+                    },
+                    "description": "Disables a feature flag in the current environment."
+                  },
+                  "response": [
+                    {
+                      "id": "31ba5068-b42c-42b4-a849-74dac0abc877",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/feature-flags/:slug/disable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "feature-flags",
+                            ":slug",
+                            "disable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"owner\": {\n    \"email\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"default_value\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T03:33:50.000Z",
+                      "updatedAt": "2026-07-28T03:33:50.000Z",
+                      "uid": "35240-31ba5068-b42c-42b4-a849-74dac0abc877"
+                    },
+                    {
+                      "id": "a150d80d-1c87-4cdb-a1f6-b87c73666289",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/feature-flags/:slug/disable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "feature-flags",
+                            ":slug",
+                            "disable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:50.000Z",
+                      "updatedAt": "2026-07-28T03:33:50.000Z",
+                      "uid": "35240-a150d80d-1c87-4cdb-a1f6-b87c73666289"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:33:50.000Z",
+                  "updatedAt": "2026-07-28T03:33:50.000Z",
+                  "uid": "35240-dcb631c5-b88a-4f48-b32c-118ac38a802b"
+                }
+              ],
+              "id": "e61a5761-31e5-415a-991b-b6e6ae390a09",
+              "createdAt": "2026-07-28T03:33:50.000Z",
+              "updatedAt": "2026-07-28T03:33:50.000Z",
+              "uid": "35240-e61a5761-31e5-415a-991b-b6e6ae390a09"
+            },
+            {
+              "name": "enable",
+              "item": [
+                {
+                  "name": "Enable a Feature Flag",
+                  "id": "f097a580-cea9-4357-9225-5e546da37ad1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/feature-flags/:slug/enable",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feature-flags",
+                        ":slug",
+                        "enable"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5cfa0bc8-3aa3-4456-92ce-6a9fd34b0088",
+                          "key": "slug",
+                          "value": "<string>",
+                          "description": "(Required) A unique key to reference the Feature Flag."
+                        }
+                      ]
+                    },
+                    "description": "Enables a feature flag in the current environment."
+                  },
+                  "response": [
+                    {
+                      "id": "2d1ec9c9-3b7d-4478-a5c5-d23d84118914",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/feature-flags/:slug/enable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "feature-flags",
+                            ":slug",
+                            "enable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"owner\": {\n    \"email\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"default_value\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T03:33:50.000Z",
+                      "updatedAt": "2026-07-28T03:33:50.000Z",
+                      "uid": "35240-2d1ec9c9-3b7d-4478-a5c5-d23d84118914"
+                    },
+                    {
+                      "id": "0b961f00-49c8-49f1-bdc4-eb7986ea3670",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/feature-flags/:slug/enable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "feature-flags",
+                            ":slug",
+                            "enable"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:50.000Z",
+                      "updatedAt": "2026-07-28T03:33:50.000Z",
+                      "uid": "35240-0b961f00-49c8-49f1-bdc4-eb7986ea3670"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:33:50.000Z",
+                  "updatedAt": "2026-07-28T03:33:50.000Z",
+                  "uid": "35240-f097a580-cea9-4357-9225-5e546da37ad1"
+                }
+              ],
+              "id": "819865b8-af58-4df1-b407-379913a824b0",
+              "createdAt": "2026-07-28T03:33:50.000Z",
+              "updatedAt": "2026-07-28T03:33:50.000Z",
+              "uid": "35240-819865b8-af58-4df1-b407-379913a824b0"
+            },
+            {
+              "name": "Get a Feature Flag",
+              "id": "d6172355-4518-445e-b0a0-cee47cef5356",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/feature-flags/:slug",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "feature-flags",
+                    ":slug"
+                  ],
+                  "variable": [
+                    {
+                      "id": "815a9abb-f0be-481d-997a-98259c839cd2",
+                      "key": "slug",
+                      "value": "<string>",
+                      "description": "(Required) A unique key to reference the Feature Flag."
+                    }
+                  ]
+                },
+                "description": "Get the details of an existing feature flag by its slug."
+              },
+              "response": [
+                {
+                  "id": "db73b616-08c0-4097-a13f-f18e09382e4b",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/feature-flags/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feature-flags",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"owner\": {\n    \"email\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"enabled\": \"<boolean>\",\n  \"default_value\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:33:50.000Z",
+                  "updatedAt": "2026-07-28T03:33:50.000Z",
+                  "uid": "35240-db73b616-08c0-4097-a13f-f18e09382e4b"
+                },
+                {
+                  "id": "285b88f5-b164-448f-88d2-19244edc48e7",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/feature-flags/:slug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feature-flags",
+                        ":slug"
+                      ],
+                      "variable": [
+                        {
+                          "key": "slug"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:50.000Z",
+                  "updatedAt": "2026-07-28T03:33:50.000Z",
+                  "uid": "35240-285b88f5-b164-448f-88d2-19244edc48e7"
+                }
+              ],
+              "createdAt": "2026-07-28T03:33:50.000Z",
+              "updatedAt": "2026-07-28T03:33:50.000Z",
+              "uid": "35240-d6172355-4518-445e-b0a0-cee47cef5356"
+            }
+          ],
+          "id": "5f6784e5-665a-403e-b290-8f3ce0ee2ff4",
+          "createdAt": "2026-07-28T03:33:50.000Z",
+          "updatedAt": "2026-07-28T03:33:50.000Z",
+          "uid": "35240-5f6784e5-665a-403e-b290-8f3ce0ee2ff4"
+        },
+        {
+          "name": "List Feature Flags",
+          "id": "aa4d5fcd-ce4a-434d-9930-b49d4711f25b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/feature-flags?before=<string>&after=<string>&limit=10&order=desc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "feature-flags"
+              ],
+              "query": [
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                  "key": "before",
+                  "value": "<string>"
+                },
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                  "key": "after",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Order the results by the creation time.",
+                  "key": "order",
+                  "value": "desc"
+                }
+              ]
+            },
+            "description": "Get a list of all of your existing feature flags matching the criteria specified."
+          },
+          "response": [
+            {
+              "id": "88be6cff-2612-4b6c-a8e4-e388bda89509",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/feature-flags?before=<string>&after=<string>&limit=10&order=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "feature-flags"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"owner\": {\n        \"email\": \"<string>\",\n        \"first_name\": \"<string,null>\",\n        \"last_name\": \"<string,null>\"\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\",\n      \"default_value\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"owner\": {\n        \"email\": \"<string>\",\n        \"first_name\": \"<string,null>\",\n        \"last_name\": \"<string,null>\"\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\",\n      \"default_value\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:33:50.000Z",
+              "updatedAt": "2026-07-28T03:33:50.000Z",
+              "uid": "35240-88be6cff-2612-4b6c-a8e4-e388bda89509"
+            },
+            {
+              "id": "1e9e5985-9270-44da-bcd5-d60c7aba119a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/feature-flags?before=<string>&after=<string>&limit=10&order=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "feature-flags"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:50.000Z",
+              "updatedAt": "2026-07-28T03:33:50.000Z",
+              "uid": "35240-1e9e5985-9270-44da-bcd5-d60c7aba119a"
+            },
+            {
+              "id": "86e2fa87-5f40-4477-a24a-421703dfd198",
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/feature-flags?before=<string>&after=<string>&limit=10&order=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "feature-flags"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:50.000Z",
+              "updatedAt": "2026-07-28T03:33:50.000Z",
+              "uid": "35240-86e2fa87-5f40-4477-a24a-421703dfd198"
+            },
+            {
+              "id": "eb10bb8c-bc8f-4d86-90b2-4955d308788e",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/feature-flags?before=<string>&after=<string>&limit=10&order=desc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "feature-flags"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:50.000Z",
+              "updatedAt": "2026-07-28T03:33:50.000Z",
+              "uid": "35240-eb10bb8c-bc8f-4d86-90b2-4955d308788e"
+            }
+          ],
+          "createdAt": "2026-07-28T03:33:50.000Z",
+          "updatedAt": "2026-07-28T03:33:50.000Z",
+          "uid": "35240-aa4d5fcd-ce4a-434d-9930-b49d4711f25b"
+        }
+      ],
+      "id": "12ef9a36-f3b0-48f3-9fee-001c4e0fef95",
+      "createdAt": "2026-07-28T03:33:50.000Z",
+      "updatedAt": "2026-07-28T03:33:50.000Z",
+      "uid": "35240-12ef9a36-f3b0-48f3-9fee-001c4e0fef95"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

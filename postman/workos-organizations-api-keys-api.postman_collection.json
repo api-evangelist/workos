@@ -1,0 +1,506 @@
+{
+  "info": {
+    "_postman_id": "06ab6429-1d5e-43e8-8ab4-5c782033506f",
+    "name": "WorkOS admin-portal organizations.api_keys API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:21.000Z",
+    "updatedAt": "2026-07-28T03:34:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-06ab6429-1d5e-43e8-8ab4-5c782033506f"
+  },
+  "item": [
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{organizationId}",
+          "item": [
+            {
+              "name": "api_keys",
+              "item": [
+                {
+                  "name": "List API Keys for an Organization",
+                  "id": "bae1b5c9-fcb9-4eb0-b444-0a71a4785d45",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organizationId/api_keys?before=<string>&after=<string>&limit=10&order=desc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organizationId",
+                        "api_keys"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time.",
+                          "key": "order",
+                          "value": "desc"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e67511a1-a966-4389-a34c-2d4748e6c5ad",
+                          "key": "organizationId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the Organization."
+                        }
+                      ]
+                    },
+                    "description": "Get a list of all API keys for an organization."
+                  },
+                  "response": [
+                    {
+                      "id": "e4c3118f-7c94-4ec7-b9ed-76be226c6463",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/api_keys?before=<string>&after=<string>&limit=10&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "api_keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order the results by the creation time.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"obfuscated_value\": \"<string>\",\n      \"last_used_at\": \"<string,null-date-time>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"owner\": {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"obfuscated_value\": \"<string>\",\n      \"last_used_at\": \"<string,null-date-time>\",\n      \"permissions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:34:21.000Z",
+                      "updatedAt": "2026-07-28T03:34:21.000Z",
+                      "uid": "35240-e4c3118f-7c94-4ec7-b9ed-76be226c6463"
+                    },
+                    {
+                      "id": "3bd8f9d6-6b8c-40be-bb2b-fa1151267228",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/api_keys?before=<string>&after=<string>&limit=10&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "api_keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order the results by the creation time.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:21.000Z",
+                      "updatedAt": "2026-07-28T03:34:21.000Z",
+                      "uid": "35240-3bd8f9d6-6b8c-40be-bb2b-fa1151267228"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:21.000Z",
+                  "updatedAt": "2026-07-28T03:34:21.000Z",
+                  "uid": "35240-bae1b5c9-fcb9-4eb0-b444-0a71a4785d45"
+                },
+                {
+                  "name": "Create an API Key for an Organization",
+                  "id": "ffbf1151-0fbf-4c17-8443-b78f415a9877",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organizationId/api_keys",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organizationId",
+                        "api_keys"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d62e447a-998c-4802-a55d-0f6eb3dad6c5",
+                          "key": "organizationId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the Organization."
+                        }
+                      ]
+                    },
+                    "description": "Create a new API key for an organization."
+                  },
+                  "response": [
+                    {
+                      "id": "e41e6b2c-3d0c-4edf-95c6-602a8ee03bbe",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/api_keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "api_keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"owner\": {\n    \"type\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"obfuscated_value\": \"<string>\",\n  \"last_used_at\": \"<string,null-date-time>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"value\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:21.000Z",
+                      "updatedAt": "2026-07-28T03:34:21.000Z",
+                      "uid": "35240-e41e6b2c-3d0c-4edf-95c6-602a8ee03bbe"
+                    },
+                    {
+                      "id": "4d73dae3-29d6-4884-b9f6-64dae896c9e3",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/api_keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "api_keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:21.000Z",
+                      "updatedAt": "2026-07-28T03:34:21.000Z",
+                      "uid": "35240-4d73dae3-29d6-4884-b9f6-64dae896c9e3"
+                    },
+                    {
+                      "id": "2d382a75-2771-4e0c-bbac-769e197d4ece",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"permissions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/api_keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "api_keys"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:34:21.000Z",
+                      "updatedAt": "2026-07-28T03:34:21.000Z",
+                      "uid": "35240-2d382a75-2771-4e0c-bbac-769e197d4ece"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:21.000Z",
+                  "updatedAt": "2026-07-28T03:34:21.000Z",
+                  "uid": "35240-ffbf1151-0fbf-4c17-8443-b78f415a9877"
+                }
+              ],
+              "id": "7295468e-d170-4d92-b1bc-e09dc6585786",
+              "createdAt": "2026-07-28T03:34:21.000Z",
+              "updatedAt": "2026-07-28T03:34:21.000Z",
+              "uid": "35240-7295468e-d170-4d92-b1bc-e09dc6585786"
+            }
+          ],
+          "id": "a62dad24-9897-4e11-82df-03ba3df576b1",
+          "createdAt": "2026-07-28T03:34:21.000Z",
+          "updatedAt": "2026-07-28T03:34:21.000Z",
+          "uid": "35240-a62dad24-9897-4e11-82df-03ba3df576b1"
+        }
+      ],
+      "id": "8d2575c6-51ed-4b04-bd3c-fa87aeb5a77b",
+      "createdAt": "2026-07-28T03:34:21.000Z",
+      "updatedAt": "2026-07-28T03:34:21.000Z",
+      "uid": "35240-8d2575c6-51ed-4b04-bd3c-fa87aeb5a77b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

@@ -1,0 +1,725 @@
+{
+  "info": {
+    "_postman_id": "6e9e51d5-3d62-4f59-8f8c-1e690f48c952",
+    "name": "WorkOS admin-portal pipes API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:30.000Z",
+    "updatedAt": "2026-07-28T03:34:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6e9e51d5-3d62-4f59-8f8c-1e690f48c952"
+  },
+  "item": [
+    {
+      "name": "data-integrations",
+      "item": [
+        {
+          "name": "{slug}",
+          "item": [
+            {
+              "name": "authorize",
+              "item": [
+                {
+                  "name": "Get Authorization URL",
+                  "id": "7a6f40c3-8d95-4fc2-a820-fc847c075d1d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"return_to\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-integrations/:slug/authorize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-integrations",
+                        ":slug",
+                        "authorize"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b733be73-e086-4fc0-b2cd-4e167d35aeea",
+                          "key": "slug",
+                          "value": "<string>",
+                          "description": "(Required) The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+                        }
+                      ]
+                    },
+                    "description": "Generates an OAuth authorization URL to initiate the connection flow for a user. Redirect the user to the returned URL to begin the OAuth flow with the third-party provider."
+                  },
+                  "response": [
+                    {
+                      "id": "301550e4-e092-4ce4-9ea5-9489a6da12d9",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"return_to\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data-integrations/:slug/authorize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-integrations",
+                            ":slug",
+                            "authorize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"url\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:31.000Z",
+                      "updatedAt": "2026-07-28T03:34:31.000Z",
+                      "uid": "35240-301550e4-e092-4ce4-9ea5-9489a6da12d9"
+                    },
+                    {
+                      "id": "db3dfe28-f951-4ae2-888f-bffd5e7707e7",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"return_to\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data-integrations/:slug/authorize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-integrations",
+                            ":slug",
+                            "authorize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:31.000Z",
+                      "updatedAt": "2026-07-28T03:34:31.000Z",
+                      "uid": "35240-db3dfe28-f951-4ae2-888f-bffd5e7707e7"
+                    },
+                    {
+                      "id": "665cacaf-dde7-420b-a854-4476b4db75b5",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"return_to\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data-integrations/:slug/authorize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-integrations",
+                            ":slug",
+                            "authorize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:31.000Z",
+                      "updatedAt": "2026-07-28T03:34:31.000Z",
+                      "uid": "35240-665cacaf-dde7-420b-a854-4476b4db75b5"
+                    },
+                    {
+                      "id": "5513a8dd-5a01-4f08-a9b3-41ba7aa24747",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"return_to\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data-integrations/:slug/authorize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-integrations",
+                            ":slug",
+                            "authorize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:31.000Z",
+                      "updatedAt": "2026-07-28T03:34:31.000Z",
+                      "uid": "35240-5513a8dd-5a01-4f08-a9b3-41ba7aa24747"
+                    },
+                    {
+                      "id": "c935540e-cbe8-4b5e-adfc-5f932e98850a",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"return_to\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data-integrations/:slug/authorize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-integrations",
+                            ":slug",
+                            "authorize"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:31.000Z",
+                      "updatedAt": "2026-07-28T03:34:31.000Z",
+                      "uid": "35240-c935540e-cbe8-4b5e-adfc-5f932e98850a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:31.000Z",
+                  "updatedAt": "2026-07-28T03:34:31.000Z",
+                  "uid": "35240-7a6f40c3-8d95-4fc2-a820-fc847c075d1d"
+                }
+              ],
+              "id": "bb56c49e-9079-4c59-a05d-19e5f0226f55",
+              "createdAt": "2026-07-28T03:34:31.000Z",
+              "updatedAt": "2026-07-28T03:34:31.000Z",
+              "uid": "35240-bb56c49e-9079-4c59-a05d-19e5f0226f55"
+            },
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "Get an Access Token for a Connected Account",
+                  "id": "c679e0b2-86e9-4c17-b187-8ec5766add4a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/data-integrations/:slug/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data-integrations",
+                        ":slug",
+                        "token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "136fcbf3-1324-4f69-ba4f-c247864a8fd5",
+                          "key": "slug",
+                          "value": "<string>",
+                          "description": "(Required) The identifier of the integration."
+                        }
+                      ]
+                    },
+                    "description": "Fetches a valid OAuth access token for a user's connected account. WorkOS automatically handles token refresh, ensuring you always receive a valid, non-expired token."
+                  },
+                  "response": [
+                    {
+                      "id": "977e077e-6bd7-4ea3-9b08-7f64ec244814",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data-integrations/:slug/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-integrations",
+                            ":slug",
+                            "token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"active\": \"<boolean>\",\n  \"access_token\": {\n    \"object\": \"<string>\",\n    \"access_token\": \"<string>\",\n    \"expires_at\": \"<string,null>\",\n    \"scopes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"missing_scopes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:34:31.000Z",
+                      "updatedAt": "2026-07-28T03:34:31.000Z",
+                      "uid": "35240-977e077e-6bd7-4ea3-9b08-7f64ec244814"
+                    },
+                    {
+                      "id": "d6705e41-76cd-4ea2-aeba-7e8202770df4",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data-integrations/:slug/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-integrations",
+                            ":slug",
+                            "token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:31.000Z",
+                      "updatedAt": "2026-07-28T03:34:31.000Z",
+                      "uid": "35240-d6705e41-76cd-4ea2-aeba-7e8202770df4"
+                    },
+                    {
+                      "id": "82998fdf-5733-44c2-a461-ac80b52cbb61",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data-integrations/:slug/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-integrations",
+                            ":slug",
+                            "token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:31.000Z",
+                      "updatedAt": "2026-07-28T03:34:31.000Z",
+                      "uid": "35240-82998fdf-5733-44c2-a461-ac80b52cbb61"
+                    },
+                    {
+                      "id": "10150f51-e4df-4cdd-a873-76c66cc689bf",
+                      "name": "Data integration not found for the given provider slug.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"organization_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data-integrations/:slug/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data-integrations",
+                            ":slug",
+                            "token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "slug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:31.000Z",
+                      "updatedAt": "2026-07-28T03:34:31.000Z",
+                      "uid": "35240-10150f51-e4df-4cdd-a873-76c66cc689bf"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:31.000Z",
+                  "updatedAt": "2026-07-28T03:34:31.000Z",
+                  "uid": "35240-c679e0b2-86e9-4c17-b187-8ec5766add4a"
+                }
+              ],
+              "id": "0119846a-39e6-4ab7-ada9-a94442237c7e",
+              "createdAt": "2026-07-28T03:34:31.000Z",
+              "updatedAt": "2026-07-28T03:34:31.000Z",
+              "uid": "35240-0119846a-39e6-4ab7-ada9-a94442237c7e"
+            }
+          ],
+          "id": "24c599ff-10fa-4be8-977c-28feab2a338d",
+          "createdAt": "2026-07-28T03:34:31.000Z",
+          "updatedAt": "2026-07-28T03:34:31.000Z",
+          "uid": "35240-24c599ff-10fa-4be8-977c-28feab2a338d"
+        }
+      ],
+      "id": "c9d225db-a577-4e1f-bd32-8362f399e32d",
+      "createdAt": "2026-07-28T03:34:31.000Z",
+      "updatedAt": "2026-07-28T03:34:31.000Z",
+      "uid": "35240-c9d225db-a577-4e1f-bd32-8362f399e32d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

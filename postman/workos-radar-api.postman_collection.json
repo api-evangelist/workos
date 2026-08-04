@@ -1,0 +1,1045 @@
+{
+  "info": {
+    "_postman_id": "aedc9691-941b-4aaa-8b93-65585187d450",
+    "name": "WorkOS admin-portal radar API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:31.000Z",
+    "updatedAt": "2026-07-28T03:34:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aedc9691-941b-4aaa-8b93-65585187d450"
+  },
+  "item": [
+    {
+      "name": "radar",
+      "item": [
+        {
+          "name": "attempts",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Update a Radar Attempt",
+                  "id": "57012aca-8199-4e09-bac8-bd8caeec2b94",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"challenge_status\": \"<string>\",\n  \"attempt_status\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/radar/attempts/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "radar",
+                        "attempts",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c4425041-d248-44a7-b175-66f5ad2dcef9",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the Radar attempt to update."
+                        }
+                      ]
+                    },
+                    "description": "You may optionally inform Radar that an authentication attempt or challenge was successful using this endpoint. Some Radar controls depend on tracking recent successful attempts, such as impossible travel."
+                  },
+                  "response": [
+                    {
+                      "id": "eb474942-725d-4b17-8b2c-313c6ccde3e1",
+                      "name": "Radar attempt updated.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"challenge_status\": \"<string>\",\n  \"attempt_status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/radar/attempts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "radar",
+                            "attempts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:32.000Z",
+                      "updatedAt": "2026-07-28T03:34:32.000Z",
+                      "uid": "35240-eb474942-725d-4b17-8b2c-313c6ccde3e1"
+                    },
+                    {
+                      "id": "d141d3f9-3ee5-49a5-9566-5f29162620b4",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"challenge_status\": \"<string>\",\n  \"attempt_status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/radar/attempts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "radar",
+                            "attempts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:32.000Z",
+                      "updatedAt": "2026-07-28T03:34:32.000Z",
+                      "uid": "35240-d141d3f9-3ee5-49a5-9566-5f29162620b4"
+                    },
+                    {
+                      "id": "ec00e1de-c8c1-4730-9a37-cec620cb6f99",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"challenge_status\": \"<string>\",\n  \"attempt_status\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/radar/attempts/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "radar",
+                            "attempts",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:32.000Z",
+                      "updatedAt": "2026-07-28T03:34:32.000Z",
+                      "uid": "35240-ec00e1de-c8c1-4730-9a37-cec620cb6f99"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:32.000Z",
+                  "updatedAt": "2026-07-28T03:34:32.000Z",
+                  "uid": "35240-57012aca-8199-4e09-bac8-bd8caeec2b94"
+                }
+              ],
+              "id": "df480cbf-d3ce-47ba-a2ae-c1d21108600b",
+              "createdAt": "2026-07-28T03:34:32.000Z",
+              "updatedAt": "2026-07-28T03:34:32.000Z",
+              "uid": "35240-df480cbf-d3ce-47ba-a2ae-c1d21108600b"
+            },
+            {
+              "name": "Create an Attempt",
+              "id": "6fb4f319-f6cf-4fb9-9fdd-71b98e56c1b2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ip_address\": \"<string>\",\n  \"user_agent\": \"<string>\",\n  \"email\": \"<email>\",\n  \"auth_method\": \"Password\",\n  \"action\": \"sign_in\",\n  \"device_fingerprint\": \"<string>\",\n  \"bot_score\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/radar/attempts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "radar",
+                    "attempts"
+                  ]
+                },
+                "description": "Assess a request for risk using the Radar engine and receive a verdict."
+              },
+              "response": [
+                {
+                  "id": "88398791-33d2-4b1b-b6d1-78b52e253eff",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ip_address\": \"<string>\",\n  \"user_agent\": \"<string>\",\n  \"email\": \"<email>\",\n  \"auth_method\": \"Password\",\n  \"action\": \"sign_in\",\n  \"device_fingerprint\": \"<string>\",\n  \"bot_score\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/radar/attempts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "radar",
+                        "attempts"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"verdict\": \"block\",\n  \"reason\": \"<string>\",\n  \"attempt_id\": \"<string>\",\n  \"control\": \"impossible_travel\",\n  \"blocklist_type\": \"country\"\n}",
+                  "createdAt": "2026-07-28T03:34:32.000Z",
+                  "updatedAt": "2026-07-28T03:34:32.000Z",
+                  "uid": "35240-88398791-33d2-4b1b-b6d1-78b52e253eff"
+                },
+                {
+                  "id": "ee8f96b0-b0be-43ee-8ab7-1ff2985241e4",
+                  "name": "Standalone radar is not enabled.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ip_address\": \"<string>\",\n  \"user_agent\": \"<string>\",\n  \"email\": \"<email>\",\n  \"auth_method\": \"Password\",\n  \"action\": \"sign_in\",\n  \"device_fingerprint\": \"<string>\",\n  \"bot_score\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/radar/attempts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "radar",
+                        "attempts"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:32.000Z",
+                  "updatedAt": "2026-07-28T03:34:32.000Z",
+                  "uid": "35240-ee8f96b0-b0be-43ee-8ab7-1ff2985241e4"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:32.000Z",
+              "updatedAt": "2026-07-28T03:34:32.000Z",
+              "uid": "35240-6fb4f319-f6cf-4fb9-9fdd-71b98e56c1b2"
+            }
+          ],
+          "id": "8b83a2e3-bfef-4c55-ba79-00fbdf1c1504",
+          "createdAt": "2026-07-28T03:34:32.000Z",
+          "updatedAt": "2026-07-28T03:34:32.000Z",
+          "uid": "35240-8b83a2e3-bfef-4c55-ba79-00fbdf1c1504"
+        },
+        {
+          "name": "lists",
+          "item": [
+            {
+              "name": "{type}",
+              "item": [
+                {
+                  "name": "{action}",
+                  "item": [
+                    {
+                      "name": "Add an Entry to a Radar List",
+                      "id": "80f7580b-17c2-4c22-918c-784c51e17bf3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entry\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/radar/lists/:type/:action",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "radar",
+                            "lists",
+                            ":type",
+                            ":action"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e6059e41-a4e1-4487-9d82-573a5c7e0b29",
+                              "key": "type",
+                              "value": "device",
+                              "description": "(Required) The type of the Radar list (e.g. ip_address, domain, email)."
+                            },
+                            {
+                              "id": "22fdd1e4-a4fa-4f68-84d9-20223a88b919",
+                              "key": "action",
+                              "value": "block",
+                              "description": "(Required) The list action indicating whether to add the entry to the allow or block list."
+                            }
+                          ]
+                        },
+                        "description": "Add an entry to a Radar list."
+                      },
+                      "response": [
+                        {
+                          "id": "6f190d47-10ce-4b77-a51a-d31ee95f3eca",
+                          "name": "Entry already present in the list.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"entry\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/radar/lists/:type/:action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "radar",
+                                "lists",
+                                ":type",
+                                ":action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "type"
+                                },
+                                {
+                                  "key": "action"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:32.000Z",
+                          "updatedAt": "2026-07-28T03:34:32.000Z",
+                          "uid": "35240-6f190d47-10ce-4b77-a51a-d31ee95f3eca"
+                        },
+                        {
+                          "id": "91de6058-6fa0-4b82-bab6-83afe63748c4",
+                          "name": "Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"entry\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/radar/lists/:type/:action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "radar",
+                                "lists",
+                                ":type",
+                                ":action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "type"
+                                },
+                                {
+                                  "key": "action"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:34:32.000Z",
+                          "updatedAt": "2026-07-28T03:34:32.000Z",
+                          "uid": "35240-91de6058-6fa0-4b82-bab6-83afe63748c4"
+                        },
+                        {
+                          "id": "762522fd-8b99-4dfe-a68b-176017c15aea",
+                          "name": "Entry successfully added to the list.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"entry\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/radar/lists/:type/:action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "radar",
+                                "lists",
+                                ":type",
+                                ":action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "type"
+                                },
+                                {
+                                  "key": "action"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:34:32.000Z",
+                          "updatedAt": "2026-07-28T03:34:32.000Z",
+                          "uid": "35240-762522fd-8b99-4dfe-a68b-176017c15aea"
+                        },
+                        {
+                          "id": "77fccede-9021-4780-b749-a47124814b9a",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"entry\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/radar/lists/:type/:action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "radar",
+                                "lists",
+                                ":type",
+                                ":action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "type"
+                                },
+                                {
+                                  "key": "action"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:32.000Z",
+                          "updatedAt": "2026-07-28T03:34:32.000Z",
+                          "uid": "35240-77fccede-9021-4780-b749-a47124814b9a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:32.000Z",
+                      "updatedAt": "2026-07-28T03:34:32.000Z",
+                      "uid": "35240-80f7580b-17c2-4c22-918c-784c51e17bf3"
+                    },
+                    {
+                      "name": "Remove an Entry from a Radar List",
+                      "id": "81f5ffe8-8102-4376-a8e1-1caa4584f404",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"entry\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/radar/lists/:type/:action",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "radar",
+                            "lists",
+                            ":type",
+                            ":action"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3937788e-ee4b-406e-898f-88d3edad755f",
+                              "key": "type",
+                              "value": "device",
+                              "description": "(Required) The type of the Radar list (e.g. ip_address, domain, email)."
+                            },
+                            {
+                              "id": "ffb1f832-9d8e-463c-bc58-44927d8c88f3",
+                              "key": "action",
+                              "value": "block",
+                              "description": "(Required) The list action indicating whether to remove the entry from the allow or block list."
+                            }
+                          ]
+                        },
+                        "description": "Remove an entry from a Radar list."
+                      },
+                      "response": [
+                        {
+                          "id": "8172ea40-bd2c-45d3-9667-e4e63fc2a6d8",
+                          "name": "Radar list updated.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"entry\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/radar/lists/:type/:action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "radar",
+                                "lists",
+                                ":type",
+                                ":action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "type"
+                                },
+                                {
+                                  "key": "action"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:34:32.000Z",
+                          "updatedAt": "2026-07-28T03:34:32.000Z",
+                          "uid": "35240-8172ea40-bd2c-45d3-9667-e4e63fc2a6d8"
+                        },
+                        {
+                          "id": "fdf3e868-7162-4a07-aa7a-511af7bc780f",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"entry\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/radar/lists/:type/:action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "radar",
+                                "lists",
+                                ":type",
+                                ":action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "type"
+                                },
+                                {
+                                  "key": "action"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:32.000Z",
+                          "updatedAt": "2026-07-28T03:34:32.000Z",
+                          "uid": "35240-fdf3e868-7162-4a07-aa7a-511af7bc780f"
+                        },
+                        {
+                          "id": "26b535f6-456e-4245-aafd-d55883d66ca4",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"entry\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/radar/lists/:type/:action",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "radar",
+                                "lists",
+                                ":type",
+                                ":action"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "type"
+                                },
+                                {
+                                  "key": "action"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:32.000Z",
+                          "updatedAt": "2026-07-28T03:34:32.000Z",
+                          "uid": "35240-26b535f6-456e-4245-aafd-d55883d66ca4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:32.000Z",
+                      "updatedAt": "2026-07-28T03:34:32.000Z",
+                      "uid": "35240-81f5ffe8-8102-4376-a8e1-1caa4584f404"
+                    }
+                  ],
+                  "id": "ddd6815e-5195-4154-bf3c-0eb070af4dbe",
+                  "createdAt": "2026-07-28T03:34:32.000Z",
+                  "updatedAt": "2026-07-28T03:34:32.000Z",
+                  "uid": "35240-ddd6815e-5195-4154-bf3c-0eb070af4dbe"
+                }
+              ],
+              "id": "e17647b3-d342-4054-ab90-240f16c8893d",
+              "createdAt": "2026-07-28T03:34:32.000Z",
+              "updatedAt": "2026-07-28T03:34:32.000Z",
+              "uid": "35240-e17647b3-d342-4054-ab90-240f16c8893d"
+            }
+          ],
+          "id": "07db2907-1513-4210-985e-c91bba8f6bad",
+          "createdAt": "2026-07-28T03:34:32.000Z",
+          "updatedAt": "2026-07-28T03:34:32.000Z",
+          "uid": "35240-07db2907-1513-4210-985e-c91bba8f6bad"
+        }
+      ],
+      "id": "de2380ee-927e-405f-a7a1-2feb3f1e7bd9",
+      "createdAt": "2026-07-28T03:34:32.000Z",
+      "updatedAt": "2026-07-28T03:34:32.000Z",
+      "uid": "35240-de2380ee-927e-405f-a7a1-2feb3f1e7bd9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

@@ -1,0 +1,470 @@
+{
+  "info": {
+    "_postman_id": "8a57f427-681c-4c96-aae0-a1a8a49297ab",
+    "name": "WorkOS admin-portal user-management.magic-auth API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:53.000Z",
+    "updatedAt": "2026-07-28T03:34:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8a57f427-681c-4c96-aae0-a1a8a49297ab"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "magic_auth",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get Magic Auth Code Details",
+                  "id": "cdfd75c0-ffb9-4042-95bd-6c023f17fce4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/magic_auth/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "magic_auth",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a730d5e6-7c50-4f7a-9c1a-3c7ca181381d",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The unique ID of the Magic Auth code."
+                        }
+                      ]
+                    },
+                    "description": "Get the details of an existing [Magic Auth](/reference/authkit/magic-auth) code that can be used to send an email to a user for authentication."
+                  },
+                  "response": [
+                    {
+                      "id": "a93d496d-7667-4de1-b1b0-ef9bbc53228a",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/magic_auth/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "magic_auth",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"expires_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"code\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:53.000Z",
+                      "updatedAt": "2026-07-28T03:34:53.000Z",
+                      "uid": "35240-a93d496d-7667-4de1-b1b0-ef9bbc53228a"
+                    },
+                    {
+                      "id": "ac73fb1a-4051-4800-b035-1d446cb3597a",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/magic_auth/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "magic_auth",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:53.000Z",
+                      "updatedAt": "2026-07-28T03:34:53.000Z",
+                      "uid": "35240-ac73fb1a-4051-4800-b035-1d446cb3597a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:53.000Z",
+                  "updatedAt": "2026-07-28T03:34:53.000Z",
+                  "uid": "35240-cdfd75c0-ffb9-4042-95bd-6c023f17fce4"
+                }
+              ],
+              "id": "991b3b00-caab-4b03-a644-5023fd7ee491",
+              "createdAt": "2026-07-28T03:34:53.000Z",
+              "updatedAt": "2026-07-28T03:34:53.000Z",
+              "uid": "35240-991b3b00-caab-4b03-a644-5023fd7ee491"
+            },
+            {
+              "name": "Create a Magic Auth Code",
+              "id": "5a93b16f-7f69-4941-aa76-c3f8ac75a78f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"invitation_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/magic_auth",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "magic_auth"
+                  ]
+                },
+                "description": "Creates a one-time authentication code that can be sent to the user's email address. The code expires in 10 minutes. To verify the code, [authenticate the user with Magic Auth](/reference/authkit/authentication/magic-auth)."
+              },
+              "response": [
+                {
+                  "id": "285291e9-6065-463d-9f34-0c69ce3be7f1",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"invitation_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/magic_auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "magic_auth"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"email\": \"<string>\",\n  \"expires_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"code\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:53.000Z",
+                  "updatedAt": "2026-07-28T03:34:53.000Z",
+                  "uid": "35240-285291e9-6065-463d-9f34-0c69ce3be7f1"
+                },
+                {
+                  "id": "de51e9f0-4e9b-4d0d-956b-19c9dedec47a",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"invitation_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/magic_auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "magic_auth"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:53.000Z",
+                  "updatedAt": "2026-07-28T03:34:53.000Z",
+                  "uid": "35240-de51e9f0-4e9b-4d0d-956b-19c9dedec47a"
+                },
+                {
+                  "id": "8b77044f-fdd5-4c9a-a72c-31eb044ba8f7",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"invitation_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/magic_auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "magic_auth"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:53.000Z",
+                  "updatedAt": "2026-07-28T03:34:53.000Z",
+                  "uid": "35240-8b77044f-fdd5-4c9a-a72c-31eb044ba8f7"
+                },
+                {
+                  "id": "69592856-90e2-41c4-84d9-f93d60a2fdcc",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"invitation_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/magic_auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "magic_auth"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:53.000Z",
+                  "updatedAt": "2026-07-28T03:34:53.000Z",
+                  "uid": "35240-69592856-90e2-41c4-84d9-f93d60a2fdcc"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:53.000Z",
+              "updatedAt": "2026-07-28T03:34:53.000Z",
+              "uid": "35240-5a93b16f-7f69-4941-aa76-c3f8ac75a78f"
+            }
+          ],
+          "id": "ed440375-e524-423e-93b9-a6a350e88e0f",
+          "createdAt": "2026-07-28T03:34:53.000Z",
+          "updatedAt": "2026-07-28T03:34:53.000Z",
+          "uid": "35240-ed440375-e524-423e-93b9-a6a350e88e0f"
+        }
+      ],
+      "id": "229f226b-de6b-4261-9b40-9ba77fc0c99c",
+      "createdAt": "2026-07-28T03:34:53.000Z",
+      "updatedAt": "2026-07-28T03:34:53.000Z",
+      "uid": "35240-229f226b-de6b-4261-9b40-9ba77fc0c99c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

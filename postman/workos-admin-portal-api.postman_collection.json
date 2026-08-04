@@ -1,0 +1,379 @@
+{
+  "info": {
+    "_postman_id": "ac5dc609-c47e-42d1-910e-bae7602ec533",
+    "name": "WorkOS admin-portal API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:04.000Z",
+    "updatedAt": "2026-07-28T03:33:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ac5dc609-c47e-42d1-910e-bae7602ec533"
+  },
+  "item": [
+    {
+      "name": "portal",
+      "item": [
+        {
+          "name": "generate_link",
+          "item": [
+            {
+              "name": "Generate a Portal Link",
+              "id": "c8ab1c94-e312-4c14-a134-b570fc602f16",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization\": \"<string>\",\n  \"return_url\": \"<string>\",\n  \"success_url\": \"<string>\",\n  \"intent\": \"bring_your_own_key\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"<string>\",\n      \"provider_type\": \"<string>\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"<string>\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"<email>\",\n    \"<email>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/portal/generate_link",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "portal",
+                    "generate_link"
+                  ]
+                },
+                "description": "Generate a Portal Link scoped to an Organization."
+              },
+              "response": [
+                {
+                  "id": "d2baeb8a-9259-4062-b4a5-f6c9c12bbb91",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"organization\": \"<string>\",\n  \"return_url\": \"<string>\",\n  \"success_url\": \"<string>\",\n  \"intent\": \"bring_your_own_key\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"<string>\",\n      \"provider_type\": \"<string>\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"<string>\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"<email>\",\n    \"<email>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/portal/generate_link",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portal",
+                        "generate_link"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"link\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:05.000Z",
+                  "updatedAt": "2026-07-28T03:33:05.000Z",
+                  "uid": "35240-d2baeb8a-9259-4062-b4a5-f6c9c12bbb91"
+                },
+                {
+                  "id": "0c4a2cd0-f96c-438f-9a23-fa38ac63164c",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"organization\": \"<string>\",\n  \"return_url\": \"<string>\",\n  \"success_url\": \"<string>\",\n  \"intent\": \"bring_your_own_key\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"<string>\",\n      \"provider_type\": \"<string>\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"<string>\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"<email>\",\n    \"<email>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/portal/generate_link",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portal",
+                        "generate_link"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:05.000Z",
+                  "updatedAt": "2026-07-28T03:33:05.000Z",
+                  "uid": "35240-0c4a2cd0-f96c-438f-9a23-fa38ac63164c"
+                },
+                {
+                  "id": "2f714536-3c7a-4c08-9c49-ef9409747ec5",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"organization\": \"<string>\",\n  \"return_url\": \"<string>\",\n  \"success_url\": \"<string>\",\n  \"intent\": \"bring_your_own_key\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"<string>\",\n      \"provider_type\": \"<string>\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"<string>\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"<email>\",\n    \"<email>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/portal/generate_link",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portal",
+                        "generate_link"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:05.000Z",
+                  "updatedAt": "2026-07-28T03:33:05.000Z",
+                  "uid": "35240-2f714536-3c7a-4c08-9c49-ef9409747ec5"
+                },
+                {
+                  "id": "de8f25f7-5458-4e67-9451-4d78bc52dc1a",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"organization\": \"<string>\",\n  \"return_url\": \"<string>\",\n  \"success_url\": \"<string>\",\n  \"intent\": \"bring_your_own_key\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"<string>\",\n      \"provider_type\": \"<string>\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"<string>\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"<email>\",\n    \"<email>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/portal/generate_link",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portal",
+                        "generate_link"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:05.000Z",
+                  "updatedAt": "2026-07-28T03:33:05.000Z",
+                  "uid": "35240-de8f25f7-5458-4e67-9451-4d78bc52dc1a"
+                },
+                {
+                  "id": "054175da-7f38-4bb6-8889-ddaedbf9f7a8",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"organization\": \"<string>\",\n  \"return_url\": \"<string>\",\n  \"success_url\": \"<string>\",\n  \"intent\": \"bring_your_own_key\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"<string>\",\n      \"provider_type\": \"<string>\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"<string>\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"<email>\",\n    \"<email>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/portal/generate_link",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "portal",
+                        "generate_link"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:05.000Z",
+                  "updatedAt": "2026-07-28T03:33:05.000Z",
+                  "uid": "35240-054175da-7f38-4bb6-8889-ddaedbf9f7a8"
+                }
+              ],
+              "createdAt": "2026-07-28T03:33:05.000Z",
+              "updatedAt": "2026-07-28T03:33:05.000Z",
+              "uid": "35240-c8ab1c94-e312-4c14-a134-b570fc602f16"
+            }
+          ],
+          "id": "e34188b6-db00-4834-bace-786be8bc441a",
+          "createdAt": "2026-07-28T03:33:05.000Z",
+          "updatedAt": "2026-07-28T03:33:05.000Z",
+          "uid": "35240-e34188b6-db00-4834-bace-786be8bc441a"
+        }
+      ],
+      "id": "64440315-e544-4900-8b14-022f93459858",
+      "createdAt": "2026-07-28T03:33:05.000Z",
+      "updatedAt": "2026-07-28T03:33:05.000Z",
+      "uid": "35240-64440315-e544-4900-8b14-022f93459858"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

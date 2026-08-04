@@ -1,0 +1,322 @@
+{
+  "info": {
+    "_postman_id": "cf45ec83-ab92-4781-9f4e-032e9d51ec09",
+    "name": "WorkOS admin-portal widgets API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:25.000Z",
+    "updatedAt": "2026-07-28T03:35:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cf45ec83-ab92-4781-9f4e-032e9d51ec09"
+  },
+  "item": [
+    {
+      "name": "widgets",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Generate a Widget Token",
+              "id": "a593f402-6844-4446-95b6-d3df4459b621",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"scopes\": [\n    \"widgets:dsync:manage\",\n    \"widgets:domain-verification:manage\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/widgets/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "widgets",
+                    "token"
+                  ]
+                },
+                "description": "Generate a widget token scoped to an organization and user with the specified scopes."
+              },
+              "response": [
+                {
+                  "id": "a26fb206-ab47-4ee9-af88-9230719d22ca",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"organization_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"scopes\": [\n    \"widgets:dsync:manage\",\n    \"widgets:domain-verification:manage\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/widgets/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "widgets",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"token\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:26.000Z",
+                  "updatedAt": "2026-07-28T03:35:26.000Z",
+                  "uid": "35240-a26fb206-ab47-4ee9-af88-9230719d22ca"
+                },
+                {
+                  "id": "f6dedc04-95e6-4ed4-93ad-5d0656d260a9",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"organization_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"scopes\": [\n    \"widgets:dsync:manage\",\n    \"widgets:domain-verification:manage\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/widgets/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "widgets",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:26.000Z",
+                  "updatedAt": "2026-07-28T03:35:26.000Z",
+                  "uid": "35240-f6dedc04-95e6-4ed4-93ad-5d0656d260a9"
+                },
+                {
+                  "id": "1109f18f-7cd2-497e-a914-0080eb5c9d7b",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"organization_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"scopes\": [\n    \"widgets:dsync:manage\",\n    \"widgets:domain-verification:manage\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/widgets/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "widgets",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:26.000Z",
+                  "updatedAt": "2026-07-28T03:35:26.000Z",
+                  "uid": "35240-1109f18f-7cd2-497e-a914-0080eb5c9d7b"
+                },
+                {
+                  "id": "91eff4cc-b4d9-41b3-8b10-897f5d04f7fb",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"organization_id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"scopes\": [\n    \"widgets:dsync:manage\",\n    \"widgets:domain-verification:manage\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/widgets/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "widgets",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:26.000Z",
+                  "updatedAt": "2026-07-28T03:35:26.000Z",
+                  "uid": "35240-91eff4cc-b4d9-41b3-8b10-897f5d04f7fb"
+                }
+              ],
+              "createdAt": "2026-07-28T03:35:26.000Z",
+              "updatedAt": "2026-07-28T03:35:26.000Z",
+              "uid": "35240-a593f402-6844-4446-95b6-d3df4459b621"
+            }
+          ],
+          "id": "506bfb2b-a19c-4ce0-ba25-9349271c5499",
+          "createdAt": "2026-07-28T03:35:26.000Z",
+          "updatedAt": "2026-07-28T03:35:26.000Z",
+          "uid": "35240-506bfb2b-a19c-4ce0-ba25-9349271c5499"
+        }
+      ],
+      "id": "d55daee8-e5db-4b6b-8d50-17dcf003f0b3",
+      "createdAt": "2026-07-28T03:35:26.000Z",
+      "updatedAt": "2026-07-28T03:35:26.000Z",
+      "uid": "35240-d55daee8-e5db-4b6b-8d50-17dcf003f0b3"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

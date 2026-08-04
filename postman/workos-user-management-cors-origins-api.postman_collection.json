@@ -1,0 +1,265 @@
+{
+  "info": {
+    "_postman_id": "b69901a5-cb45-456a-a554-bda5a55b30bc",
+    "name": "WorkOS admin-portal user-management.cors-origins API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:36.000Z",
+    "updatedAt": "2026-07-28T03:34:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b69901a5-cb45-456a-a554-bda5a55b30bc"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "cors_origins",
+          "item": [
+            {
+              "name": "Create a CORS Origin",
+              "id": "dc43d2de-fe3c-4976-8987-8fbd6290fa55",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"origin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/cors_origins",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "cors_origins"
+                  ]
+                },
+                "description": "Creates a new CORS origin for the current environment. CORS origins allow browser-based applications to make requests to the WorkOS API."
+              },
+              "response": [
+                {
+                  "id": "b50c68ac-9fd6-4d35-ab3f-36e5e81752d1",
+                  "name": "CORS origin created successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"origin\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/cors_origins",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "cors_origins"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"origin\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:34:36.000Z",
+                  "updatedAt": "2026-07-28T03:34:36.000Z",
+                  "uid": "35240-b50c68ac-9fd6-4d35-ab3f-36e5e81752d1"
+                },
+                {
+                  "id": "71fcf073-22e6-41ed-aa99-351953b779bf",
+                  "name": "Duplicate CORS origin.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"origin\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/cors_origins",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "cors_origins"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:36.000Z",
+                  "updatedAt": "2026-07-28T03:34:36.000Z",
+                  "uid": "35240-71fcf073-22e6-41ed-aa99-351953b779bf"
+                },
+                {
+                  "id": "082d1dae-4d5a-449d-84f9-f72439ad4c69",
+                  "name": "Validation error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"origin\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/cors_origins",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "cors_origins"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errors\": [\n    {\n      \"property\": \"<string>\",\n      \"constraints\": {}\n    },\n    {\n      \"property\": \"<string>\",\n      \"constraints\": {}\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:34:36.000Z",
+                  "updatedAt": "2026-07-28T03:34:36.000Z",
+                  "uid": "35240-082d1dae-4d5a-449d-84f9-f72439ad4c69"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:36.000Z",
+              "updatedAt": "2026-07-28T03:34:36.000Z",
+              "uid": "35240-dc43d2de-fe3c-4976-8987-8fbd6290fa55"
+            }
+          ],
+          "id": "6f83e22e-6df6-4277-8e22-7292b6a2bbc2",
+          "createdAt": "2026-07-28T03:34:36.000Z",
+          "updatedAt": "2026-07-28T03:34:36.000Z",
+          "uid": "35240-6f83e22e-6df6-4277-8e22-7292b6a2bbc2"
+        }
+      ],
+      "id": "6e097cc3-756d-4227-9f06-24c93122dc60",
+      "createdAt": "2026-07-28T03:34:36.000Z",
+      "updatedAt": "2026-07-28T03:34:36.000Z",
+      "uid": "35240-6e097cc3-756d-4227-9f06-24c93122dc60"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

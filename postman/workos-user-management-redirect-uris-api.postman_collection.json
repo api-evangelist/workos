@@ -1,0 +1,322 @@
+{
+  "info": {
+    "_postman_id": "b9aaf70f-702e-4f13-8394-8e0596179cfd",
+    "name": "WorkOS admin-portal user-management.redirect-uris API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:00.000Z",
+    "updatedAt": "2026-07-28T03:35:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b9aaf70f-702e-4f13-8394-8e0596179cfd"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "redirect_uris",
+          "item": [
+            {
+              "name": "Create a Redirect URI",
+              "id": "c0f2d8a5-b078-44e6-ba69-0b91c8a42ef9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user_management/redirect_uris",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user_management",
+                    "redirect_uris"
+                  ]
+                },
+                "description": "Creates a new redirect URI for an environment."
+              },
+              "response": [
+                {
+                  "id": "3dcd8ba7-705d-4efa-b012-e5861b217055",
+                  "name": "Redirect URI created successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"uri\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/redirect_uris",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "redirect_uris"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"uri\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:00.000Z",
+                  "updatedAt": "2026-07-28T03:35:00.000Z",
+                  "uid": "35240-3dcd8ba7-705d-4efa-b012-e5861b217055"
+                },
+                {
+                  "id": "41cbbd7e-7170-4108-88eb-f803c1688f50",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"uri\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/redirect_uris",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "redirect_uris"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:00.000Z",
+                  "updatedAt": "2026-07-28T03:35:00.000Z",
+                  "uid": "35240-41cbbd7e-7170-4108-88eb-f803c1688f50"
+                },
+                {
+                  "id": "638cc104-2006-4752-9e72-9ca6a617a5e9",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"uri\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/redirect_uris",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "redirect_uris"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:00.000Z",
+                  "updatedAt": "2026-07-28T03:35:00.000Z",
+                  "uid": "35240-638cc104-2006-4752-9e72-9ca6a617a5e9"
+                },
+                {
+                  "id": "045e9317-af43-4432-b9e4-beb1ed3fb18f",
+                  "name": "Validation failed.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"uri\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/user_management/redirect_uris",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user_management",
+                        "redirect_uris"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:35:00.000Z",
+                  "updatedAt": "2026-07-28T03:35:00.000Z",
+                  "uid": "35240-045e9317-af43-4432-b9e4-beb1ed3fb18f"
+                }
+              ],
+              "createdAt": "2026-07-28T03:35:00.000Z",
+              "updatedAt": "2026-07-28T03:35:00.000Z",
+              "uid": "35240-c0f2d8a5-b078-44e6-ba69-0b91c8a42ef9"
+            }
+          ],
+          "id": "8d404b08-9f83-4686-8148-57c3d5983563",
+          "createdAt": "2026-07-28T03:35:00.000Z",
+          "updatedAt": "2026-07-28T03:35:00.000Z",
+          "uid": "35240-8d404b08-9f83-4686-8148-57c3d5983563"
+        }
+      ],
+      "id": "7bd3c888-8639-48f4-bc1c-775c5a95cd05",
+      "createdAt": "2026-07-28T03:35:00.000Z",
+      "updatedAt": "2026-07-28T03:35:00.000Z",
+      "uid": "35240-7bd3c888-8639-48f4-bc1c-775c5a95cd05"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

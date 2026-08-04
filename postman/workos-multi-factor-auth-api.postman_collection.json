@@ -1,0 +1,795 @@
+{
+  "info": {
+    "_postman_id": "1a4b18f8-d1d4-40fc-868b-5aad9d5148fa",
+    "name": "WorkOS admin-portal multi-factor-auth API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:59.000Z",
+    "updatedAt": "2026-07-28T03:34:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1a4b18f8-d1d4-40fc-868b-5aad9d5148fa"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "factors",
+          "item": [
+            {
+              "name": "enroll",
+              "item": [
+                {
+                  "name": "Enroll Factor",
+                  "id": "e1d6f81d-7359-4896-8648-ecd3a876c772",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"sms\",\n  \"phone_number\": \"<string>\",\n  \"totp_issuer\": \"<string>\",\n  \"totp_user\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/factors/enroll",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "factors",
+                        "enroll"
+                      ]
+                    },
+                    "description": "Enrolls an Authentication Factor to be used as an additional factor of authentication. The returned ID should be used to create an authentication Challenge."
+                  },
+                  "response": [
+                    {
+                      "id": "b144b779-b335-4a3e-b438-49df99d0921f",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"sms\",\n  \"phone_number\": \"<string>\",\n  \"totp_issuer\": \"<string>\",\n  \"totp_user\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/factors/enroll",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "factors",
+                            "enroll"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"type\": \"webauthn\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"user_id\": \"<string>\",\n  \"sms\": {\n    \"phone_number\": \"<string>\"\n  },\n  \"totp\": {\n    \"issuer\": \"<string>\",\n    \"user\": \"<string>\",\n    \"secret\": \"<string>\",\n    \"qr_code\": \"<string>\",\n    \"uri\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:34:00.000Z",
+                      "updatedAt": "2026-07-28T03:34:00.000Z",
+                      "uid": "35240-b144b779-b335-4a3e-b438-49df99d0921f"
+                    },
+                    {
+                      "id": "bef4b32f-de5e-4b2b-b751-542a2b002c73",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"sms\",\n  \"phone_number\": \"<string>\",\n  \"totp_issuer\": \"<string>\",\n  \"totp_user\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/factors/enroll",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "factors",
+                            "enroll"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:00.000Z",
+                      "updatedAt": "2026-07-28T03:34:00.000Z",
+                      "uid": "35240-bef4b32f-de5e-4b2b-b751-542a2b002c73"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:00.000Z",
+                  "updatedAt": "2026-07-28T03:34:00.000Z",
+                  "uid": "35240-e1d6f81d-7359-4896-8648-ecd3a876c772"
+                }
+              ],
+              "id": "62e87f07-5cda-4626-a83d-8d3c958dd8af",
+              "createdAt": "2026-07-28T03:34:00.000Z",
+              "updatedAt": "2026-07-28T03:34:00.000Z",
+              "uid": "35240-62e87f07-5cda-4626-a83d-8d3c958dd8af"
+            },
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "challenge",
+                  "item": [
+                    {
+                      "name": "Challenge Factor",
+                      "id": "9452c331-30b4-4506-9ad4-166aa250d4e3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sms_template\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/factors/:id/challenge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "factors",
+                            ":id",
+                            "challenge"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b798edc2-5fcd-4dc1-9163-972ddef7f977",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The unique ID of the Authentication Factor to be challenged."
+                            }
+                          ]
+                        },
+                        "description": "Creates a Challenge for an Authentication Factor."
+                      },
+                      "response": [
+                        {
+                          "id": "ad2eda73-9ccd-49dd-85ac-1e31cbb34743",
+                          "name": "Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"sms_template\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/factors/:id/challenge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "factors",
+                                ":id",
+                                "challenge"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"authentication_factor_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"code\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:00.000Z",
+                          "updatedAt": "2026-07-28T03:34:00.000Z",
+                          "uid": "35240-ad2eda73-9ccd-49dd-85ac-1e31cbb34743"
+                        },
+                        {
+                          "id": "b56cf7c3-a764-478f-8373-c6400d8d9f87",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"sms_template\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/factors/:id/challenge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "factors",
+                                ":id",
+                                "challenge"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:00.000Z",
+                          "updatedAt": "2026-07-28T03:34:00.000Z",
+                          "uid": "35240-b56cf7c3-a764-478f-8373-c6400d8d9f87"
+                        },
+                        {
+                          "id": "3faff1d5-ebd0-43b4-adad-1ba139cb20c9",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"sms_template\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/auth/factors/:id/challenge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "auth",
+                                "factors",
+                                ":id",
+                                "challenge"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:34:00.000Z",
+                          "updatedAt": "2026-07-28T03:34:00.000Z",
+                          "uid": "35240-3faff1d5-ebd0-43b4-adad-1ba139cb20c9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:34:00.000Z",
+                      "updatedAt": "2026-07-28T03:34:00.000Z",
+                      "uid": "35240-9452c331-30b4-4506-9ad4-166aa250d4e3"
+                    }
+                  ],
+                  "id": "14c9e1b9-a8fa-45df-af06-6896192a5169",
+                  "createdAt": "2026-07-28T03:34:00.000Z",
+                  "updatedAt": "2026-07-28T03:34:00.000Z",
+                  "uid": "35240-14c9e1b9-a8fa-45df-af06-6896192a5169"
+                },
+                {
+                  "name": "Get Factor",
+                  "id": "164cb2b4-50a6-43ad-8642-4ef561c16934",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/factors/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "factors",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1ed09403-88e6-41bd-b005-ded490bca486",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The unique ID of the Factor."
+                        }
+                      ]
+                    },
+                    "description": "Gets an Authentication Factor."
+                  },
+                  "response": [
+                    {
+                      "id": "87012233-4da3-4949-8818-0f14c2c0b5ac",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/factors/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "factors",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"type\": \"sms\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"user_id\": \"<string>\",\n  \"sms\": {\n    \"phone_number\": \"<string>\"\n  },\n  \"totp\": {\n    \"issuer\": \"<string>\",\n    \"user\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:34:00.000Z",
+                      "updatedAt": "2026-07-28T03:34:00.000Z",
+                      "uid": "35240-87012233-4da3-4949-8818-0f14c2c0b5ac"
+                    },
+                    {
+                      "id": "a5b67202-8190-4eef-9331-960ad0ccc45a",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/factors/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "factors",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:00.000Z",
+                      "updatedAt": "2026-07-28T03:34:00.000Z",
+                      "uid": "35240-a5b67202-8190-4eef-9331-960ad0ccc45a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:00.000Z",
+                  "updatedAt": "2026-07-28T03:34:00.000Z",
+                  "uid": "35240-164cb2b4-50a6-43ad-8642-4ef561c16934"
+                },
+                {
+                  "name": "Delete Factor",
+                  "id": "07c42ae0-f760-4bdd-998f-81d8b465a5d8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/factors/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "factors",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c00c4f97-9e3c-42e4-aa23-f11671f7f91b",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The unique ID of the Factor."
+                        }
+                      ]
+                    },
+                    "description": "Permanently deletes an Authentication Factor. It cannot be undone."
+                  },
+                  "response": [
+                    {
+                      "id": "24ac0c9c-8154-4f73-bc01-3c614d85da4c",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/factors/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "factors",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:00.000Z",
+                      "updatedAt": "2026-07-28T03:34:00.000Z",
+                      "uid": "35240-24ac0c9c-8154-4f73-bc01-3c614d85da4c"
+                    },
+                    {
+                      "id": "3c01152e-a6b9-4c7b-bc43-af120e7c0c28",
+                      "name": "No Content",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/factors/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "factors",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:34:00.000Z",
+                      "updatedAt": "2026-07-28T03:34:00.000Z",
+                      "uid": "35240-3c01152e-a6b9-4c7b-bc43-af120e7c0c28"
+                    },
+                    {
+                      "id": "14a277f1-5c4a-4e65-b631-7d86eb50e7db",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/auth/factors/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "auth",
+                            "factors",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:00.000Z",
+                      "updatedAt": "2026-07-28T03:34:00.000Z",
+                      "uid": "35240-14a277f1-5c4a-4e65-b631-7d86eb50e7db"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:00.000Z",
+                  "updatedAt": "2026-07-28T03:34:00.000Z",
+                  "uid": "35240-07c42ae0-f760-4bdd-998f-81d8b465a5d8"
+                }
+              ],
+              "id": "379f5553-2936-4a0c-b642-656873c7fc6c",
+              "createdAt": "2026-07-28T03:34:00.000Z",
+              "updatedAt": "2026-07-28T03:34:00.000Z",
+              "uid": "35240-379f5553-2936-4a0c-b642-656873c7fc6c"
+            }
+          ],
+          "id": "d353a72e-715e-42f7-9472-3e653285a1c3",
+          "createdAt": "2026-07-28T03:34:00.000Z",
+          "updatedAt": "2026-07-28T03:34:00.000Z",
+          "uid": "35240-d353a72e-715e-42f7-9472-3e653285a1c3"
+        }
+      ],
+      "id": "88d16534-4d66-47cd-9b27-beaaef045a38",
+      "createdAt": "2026-07-28T03:34:00.000Z",
+      "updatedAt": "2026-07-28T03:34:00.000Z",
+      "uid": "35240-88d16534-4d66-47cd-9b27-beaaef045a38"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

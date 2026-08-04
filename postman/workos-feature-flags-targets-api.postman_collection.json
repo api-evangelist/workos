@@ -1,0 +1,568 @@
+{
+  "info": {
+    "_postman_id": "2c495134-23aa-4d49-a8cc-8241cf4402a4",
+    "name": "WorkOS admin-portal feature-flags.targets API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:50.000Z",
+    "updatedAt": "2026-07-28T03:33:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2c495134-23aa-4d49-a8cc-8241cf4402a4"
+  },
+  "item": [
+    {
+      "name": "feature-flags",
+      "item": [
+        {
+          "name": "{slug}",
+          "item": [
+            {
+              "name": "targets",
+              "item": [
+                {
+                  "name": "{resourceId}",
+                  "item": [
+                    {
+                      "name": "Add a Feature Flag Target",
+                      "id": "6dec4931-f378-4eed-9bde-1b9b79a8e4d7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "feature-flags",
+                            ":slug",
+                            "targets",
+                            ":resourceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fd543173-6d13-4228-a2bd-bc9a6e6f6921",
+                              "key": "slug",
+                              "value": "<string>",
+                              "description": "(Required) The unique slug identifier of the feature flag."
+                            },
+                            {
+                              "id": "583356d5-3aa2-4a20-8cfc-d76bef1e1cb8",
+                              "key": "resourceId",
+                              "value": "<string>",
+                              "description": "(Required) The resource ID in format \"user_<id>\" or \"org_<id>\"."
+                            }
+                          ]
+                        },
+                        "description": "Enables a feature flag for a specific target in the current environment. Currently, supported targets include users and organizations."
+                      },
+                      "response": [
+                        {
+                          "id": "b044095e-3e2e-4c0e-ae5a-49931faa9cfc",
+                          "name": "Target created or updated successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "feature-flags",
+                                ":slug",
+                                "targets",
+                                ":resourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slug"
+                                },
+                                {
+                                  "key": "resourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:33:51.000Z",
+                          "updatedAt": "2026-07-28T03:33:51.000Z",
+                          "uid": "35240-b044095e-3e2e-4c0e-ae5a-49931faa9cfc"
+                        },
+                        {
+                          "id": "83a0dea5-e766-4295-b1be-21aeb468fe2a",
+                          "name": "Invalid resourceId format.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "feature-flags",
+                                ":slug",
+                                "targets",
+                                ":resourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slug"
+                                },
+                                {
+                                  "key": "resourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"statusCode\": \"<number>\"\n}",
+                          "createdAt": "2026-07-28T03:33:51.000Z",
+                          "updatedAt": "2026-07-28T03:33:51.000Z",
+                          "uid": "35240-83a0dea5-e766-4295-b1be-21aeb468fe2a"
+                        },
+                        {
+                          "id": "266568c7-a10c-4948-88fa-b820a92f7849",
+                          "name": "Access denied.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "feature-flags",
+                                ":slug",
+                                "targets",
+                                ":resourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slug"
+                                },
+                                {
+                                  "key": "resourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:51.000Z",
+                          "updatedAt": "2026-07-28T03:33:51.000Z",
+                          "uid": "35240-266568c7-a10c-4948-88fa-b820a92f7849"
+                        },
+                        {
+                          "id": "2a4a5743-7f38-42e5-9f73-aa5a7bc0d08f",
+                          "name": "Feature flag, user, or organization not found.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "feature-flags",
+                                ":slug",
+                                "targets",
+                                ":resourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slug"
+                                },
+                                {
+                                  "key": "resourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:51.000Z",
+                          "updatedAt": "2026-07-28T03:33:51.000Z",
+                          "uid": "35240-2a4a5743-7f38-42e5-9f73-aa5a7bc0d08f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:33:51.000Z",
+                      "updatedAt": "2026-07-28T03:33:51.000Z",
+                      "uid": "35240-6dec4931-f378-4eed-9bde-1b9b79a8e4d7"
+                    },
+                    {
+                      "name": "Remove a Feature Flag Target",
+                      "id": "fc74e652-000f-4e6c-b0e1-17b345c57193",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "feature-flags",
+                            ":slug",
+                            "targets",
+                            ":resourceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "008be80c-0453-4d1f-b79f-2d57f6c55476",
+                              "key": "slug",
+                              "value": "<string>",
+                              "description": "(Required) The unique slug identifier of the feature flag."
+                            },
+                            {
+                              "id": "6ccb6b3e-0f89-498c-a8c9-91754e9ddde7",
+                              "key": "resourceId",
+                              "value": "<string>",
+                              "description": "(Required) The resource ID in format \"user_<id>\" or \"org_<id>\"."
+                            }
+                          ]
+                        },
+                        "description": "Removes a target from the feature flag's target list in the current environment. Currently, supported targets include users and organizations."
+                      },
+                      "response": [
+                        {
+                          "id": "2cf003b5-29fe-4877-8057-73b4a9b0430e",
+                          "name": "Target deleted successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "feature-flags",
+                                ":slug",
+                                "targets",
+                                ":resourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slug"
+                                },
+                                {
+                                  "key": "resourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:33:51.000Z",
+                          "updatedAt": "2026-07-28T03:33:51.000Z",
+                          "uid": "35240-2cf003b5-29fe-4877-8057-73b4a9b0430e"
+                        },
+                        {
+                          "id": "c621ffa3-fc83-4c4e-a9f1-074613797502",
+                          "name": "Invalid resourceId format.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "feature-flags",
+                                ":slug",
+                                "targets",
+                                ":resourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slug"
+                                },
+                                {
+                                  "key": "resourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\",\n  \"statusCode\": \"<number>\"\n}",
+                          "createdAt": "2026-07-28T03:33:51.000Z",
+                          "updatedAt": "2026-07-28T03:33:51.000Z",
+                          "uid": "35240-c621ffa3-fc83-4c4e-a9f1-074613797502"
+                        },
+                        {
+                          "id": "dbcc9a3d-63cd-41b9-b41f-1248cd1ef269",
+                          "name": "Access denied.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "feature-flags",
+                                ":slug",
+                                "targets",
+                                ":resourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slug"
+                                },
+                                {
+                                  "key": "resourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:51.000Z",
+                          "updatedAt": "2026-07-28T03:33:51.000Z",
+                          "uid": "35240-dbcc9a3d-63cd-41b9-b41f-1248cd1ef269"
+                        },
+                        {
+                          "id": "4f2a6f10-9284-4291-9c4d-c5e5ab6c5f30",
+                          "name": "Feature flag, user, or organization not found.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/feature-flags/:slug/targets/:resourceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "feature-flags",
+                                ":slug",
+                                "targets",
+                                ":resourceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "slug"
+                                },
+                                {
+                                  "key": "resourceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:51.000Z",
+                          "updatedAt": "2026-07-28T03:33:51.000Z",
+                          "uid": "35240-4f2a6f10-9284-4291-9c4d-c5e5ab6c5f30"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:33:51.000Z",
+                      "updatedAt": "2026-07-28T03:33:51.000Z",
+                      "uid": "35240-fc74e652-000f-4e6c-b0e1-17b345c57193"
+                    }
+                  ],
+                  "id": "8ebf127b-8f9d-4736-ba26-2ed271985b6e",
+                  "createdAt": "2026-07-28T03:33:51.000Z",
+                  "updatedAt": "2026-07-28T03:33:51.000Z",
+                  "uid": "35240-8ebf127b-8f9d-4736-ba26-2ed271985b6e"
+                }
+              ],
+              "id": "681e6618-b295-4699-8de0-056e4d697116",
+              "createdAt": "2026-07-28T03:33:51.000Z",
+              "updatedAt": "2026-07-28T03:33:51.000Z",
+              "uid": "35240-681e6618-b295-4699-8de0-056e4d697116"
+            }
+          ],
+          "id": "db539fc8-d3aa-4ac3-acba-9876f6232679",
+          "createdAt": "2026-07-28T03:33:51.000Z",
+          "updatedAt": "2026-07-28T03:33:51.000Z",
+          "uid": "35240-db539fc8-d3aa-4ac3-acba-9876f6232679"
+        }
+      ],
+      "id": "715b3cdc-0e7a-46e1-884a-d5a60fea46c3",
+      "createdAt": "2026-07-28T03:33:51.000Z",
+      "updatedAt": "2026-07-28T03:33:51.000Z",
+      "uid": "35240-715b3cdc-0e7a-46e1-884a-d5a60fea46c3"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

@@ -1,0 +1,2455 @@
+{
+  "info": {
+    "_postman_id": "24002d59-a12e-4a1f-8610-30afabd7fdc6",
+    "name": "WorkOS admin-portal groups API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:51.000Z",
+    "updatedAt": "2026-07-28T03:33:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-24002d59-a12e-4a1f-8610-30afabd7fdc6"
+  },
+  "item": [
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{organizationId}",
+          "item": [
+            {
+              "name": "groups",
+              "item": [
+                {
+                  "name": "{groupId}",
+                  "item": [
+                    {
+                      "name": "organization-memberships",
+                      "item": [
+                        {
+                          "name": "{omId}",
+                          "item": [
+                            {
+                              "name": "Remove a Member from a Group",
+                              "id": "d35c1c01-98ec-4c92-8f88-bb1dbb137505",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships/:omId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "groups",
+                                    ":groupId",
+                                    "organization-memberships",
+                                    ":omId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7054aefd-e600-49aa-a838-d5d054e9780b",
+                                      "key": "organizationId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique identifier of the Organization."
+                                    },
+                                    {
+                                      "id": "1984d826-5b77-4723-8a8b-ac2a3e49dd1b",
+                                      "key": "groupId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique identifier of the Group."
+                                    },
+                                    {
+                                      "id": "8ab4441d-2e87-4cac-b133-b267d4c39429",
+                                      "key": "omId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique identifier of the Organization Membership."
+                                    }
+                                  ]
+                                },
+                                "description": "Remove an organization membership from a group."
+                              },
+                              "response": [
+                                {
+                                  "id": "85f462b7-e146-464a-9492-990ca4673de1",
+                                  "name": "No Content",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships/:omId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "groups",
+                                        ":groupId",
+                                        "organization-memberships",
+                                        ":omId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "groupId"
+                                        },
+                                        {
+                                          "key": "omId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T03:33:52.000Z",
+                                  "updatedAt": "2026-07-28T03:33:52.000Z",
+                                  "uid": "35240-85f462b7-e146-464a-9492-990ca4673de1"
+                                },
+                                {
+                                  "id": "548a1447-096e-4862-8850-efee6c0ee02e",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships/:omId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "groups",
+                                        ":groupId",
+                                        "organization-memberships",
+                                        ":omId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "groupId"
+                                        },
+                                        {
+                                          "key": "omId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:33:52.000Z",
+                                  "updatedAt": "2026-07-28T03:33:52.000Z",
+                                  "uid": "35240-548a1447-096e-4862-8850-efee6c0ee02e"
+                                },
+                                {
+                                  "id": "c864545e-8232-4234-88a0-1458497bcae5",
+                                  "name": "Not Found",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships/:omId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":organizationId",
+                                        "groups",
+                                        ":groupId",
+                                        "organization-memberships",
+                                        ":omId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organizationId"
+                                        },
+                                        {
+                                          "key": "groupId"
+                                        },
+                                        {
+                                          "key": "omId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:33:52.000Z",
+                                  "updatedAt": "2026-07-28T03:33:52.000Z",
+                                  "uid": "35240-c864545e-8232-4234-88a0-1458497bcae5"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:33:52.000Z",
+                              "updatedAt": "2026-07-28T03:33:52.000Z",
+                              "uid": "35240-d35c1c01-98ec-4c92-8f88-bb1dbb137505"
+                            }
+                          ],
+                          "id": "82301a45-8a78-4d52-b4a3-609481f7fdc0",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-82301a45-8a78-4d52-b4a3-609481f7fdc0"
+                        },
+                        {
+                          "name": "Add a Member to a Group",
+                          "id": "ade8fb6f-dab7-499d-a6a2-6c46a1eca52d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"organization_membership_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId",
+                                "organization-memberships"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "db9c93b6-1cc1-4146-aab5-6712bda6ddf4",
+                                  "key": "organizationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the Organization."
+                                },
+                                {
+                                  "id": "5d515024-5c85-48e9-bf97-535a6156c498",
+                                  "key": "groupId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the Group."
+                                }
+                              ]
+                            },
+                            "description": "Add an organization membership to a group."
+                          },
+                          "response": [
+                            {
+                              "id": "948212c2-de21-4b0e-8249-64de21924996",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"organization_membership_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "groups",
+                                    ":groupId",
+                                    "organization-memberships"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T03:33:52.000Z",
+                              "updatedAt": "2026-07-28T03:33:52.000Z",
+                              "uid": "35240-948212c2-de21-4b0e-8249-64de21924996"
+                            },
+                            {
+                              "id": "6d5591d3-5e56-4500-8ac3-96199f30d312",
+                              "name": "Bad Request",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"organization_membership_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "groups",
+                                    ":groupId",
+                                    "organization-memberships"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:33:52.000Z",
+                              "updatedAt": "2026-07-28T03:33:52.000Z",
+                              "uid": "35240-6d5591d3-5e56-4500-8ac3-96199f30d312"
+                            },
+                            {
+                              "id": "820a86e6-30eb-462c-ae2c-114213d6acd8",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"organization_membership_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "groups",
+                                    ":groupId",
+                                    "organization-memberships"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:33:52.000Z",
+                              "updatedAt": "2026-07-28T03:33:52.000Z",
+                              "uid": "35240-820a86e6-30eb-462c-ae2c-114213d6acd8"
+                            },
+                            {
+                              "id": "b8bcaffd-81b9-4d52-8a97-6b13212278de",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"organization_membership_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "groups",
+                                    ":groupId",
+                                    "organization-memberships"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:33:52.000Z",
+                              "updatedAt": "2026-07-28T03:33:52.000Z",
+                              "uid": "35240-b8bcaffd-81b9-4d52-8a97-6b13212278de"
+                            },
+                            {
+                              "id": "59d029c9-0c67-4a38-994c-18bd03b9fd2e",
+                              "name": "Unprocessable Entity",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"organization_membership_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "groups",
+                                    ":groupId",
+                                    "organization-memberships"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:33:52.000Z",
+                              "updatedAt": "2026-07-28T03:33:52.000Z",
+                              "uid": "35240-59d029c9-0c67-4a38-994c-18bd03b9fd2e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-ade8fb6f-dab7-499d-a6a2-6c46a1eca52d"
+                        },
+                        {
+                          "name": "List Group Members",
+                          "id": "2498d156-6323-4d53-aaa3-e946d2dc33ea",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId",
+                                "organization-memberships"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f2968391-d522-4357-9da5-414fb383ac44",
+                                  "key": "organizationId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the Organization."
+                                },
+                                {
+                                  "id": "f532258e-e6e0-449a-9bee-db001842420e",
+                                  "key": "groupId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the Group."
+                                }
+                              ]
+                            },
+                            "description": "Get a list of organization memberships in a group."
+                          },
+                          "response": [
+                            {
+                              "id": "43f0d8cb-819b-4a44-aacf-246a0ef62049",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships?before=<string>&after=<string>&limit=10&order=desc",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "groups",
+                                    ":groupId",
+                                    "organization-memberships"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                                      "key": "before",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                                      "key": "after",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                      "key": "limit",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                                      "key": "order",
+                                      "value": "desc"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"status\": \"pending\",\n      \"directory_managed\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"organization_name\": \"<string>\",\n      \"custom_attributes\": {\n        \"ut_a\": {},\n        \"Lorem_3\": {},\n        \"sit3\": {}\n      }\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"user_id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"status\": \"pending\",\n      \"directory_managed\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"organization_name\": \"<string>\",\n      \"custom_attributes\": {\n        \"qui_8\": {},\n        \"animb03\": {}\n      }\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:33:52.000Z",
+                              "updatedAt": "2026-07-28T03:33:52.000Z",
+                              "uid": "35240-43f0d8cb-819b-4a44-aacf-246a0ef62049"
+                            },
+                            {
+                              "id": "31705253-64e4-4b03-b297-b9805de03cf5",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships?before=<string>&after=<string>&limit=10&order=desc",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "groups",
+                                    ":groupId",
+                                    "organization-memberships"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                                      "key": "before",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                                      "key": "after",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                      "key": "limit",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                                      "key": "order",
+                                      "value": "desc"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:33:52.000Z",
+                              "updatedAt": "2026-07-28T03:33:52.000Z",
+                              "uid": "35240-31705253-64e4-4b03-b297-b9805de03cf5"
+                            },
+                            {
+                              "id": "f6082ccc-4707-412b-90a3-f24bf42cdb90",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId/organization-memberships?before=<string>&after=<string>&limit=10&order=desc",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":organizationId",
+                                    "groups",
+                                    ":groupId",
+                                    "organization-memberships"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                                      "key": "before",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                                      "key": "after",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                      "key": "limit",
+                                      "value": "10"
+                                    },
+                                    {
+                                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                                      "key": "order",
+                                      "value": "desc"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "organizationId"
+                                    },
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:33:52.000Z",
+                              "updatedAt": "2026-07-28T03:33:52.000Z",
+                              "uid": "35240-f6082ccc-4707-412b-90a3-f24bf42cdb90"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-2498d156-6323-4d53-aaa3-e946d2dc33ea"
+                        }
+                      ],
+                      "id": "6286c6c8-30b2-4ad5-8ef4-d8d25d2abe29",
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-6286c6c8-30b2-4ad5-8ef4-d8d25d2abe29"
+                    },
+                    {
+                      "name": "Get a Group",
+                      "id": "073a9feb-93f0-425d-91ec-881d1d651f74",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1193a1d6-f241-4da3-b6b0-f98b048471ff",
+                              "key": "organizationId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the organization."
+                            },
+                            {
+                              "id": "0c5b9823-1466-4351-9462-118f1046df03",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the group."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a group by its ID within an organization."
+                      },
+                      "response": [
+                        {
+                          "id": "a8811ea6-de16-462b-93dd-fbb57a455d9f",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-a8811ea6-de16-462b-93dd-fbb57a455d9f"
+                        },
+                        {
+                          "id": "827e98eb-ce2a-449c-a644-8749334ef11a",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-827e98eb-ce2a-449c-a644-8749334ef11a"
+                        },
+                        {
+                          "id": "120784d0-4e33-4665-8a66-98dd53bf8ffa",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-120784d0-4e33-4665-8a66-98dd53bf8ffa"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-073a9feb-93f0-425d-91ec-881d1d651f74"
+                    },
+                    {
+                      "name": "Update a Group",
+                      "id": "f7475986-b14e-4b98-abec-0e4cfd129e3a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e15c5c36-969d-46c3-a3f7-419df359fa58",
+                              "key": "organizationId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the organization."
+                            },
+                            {
+                              "id": "da20f30c-0089-44f6-8f44-26cdb407a40a",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the group."
+                            }
+                          ]
+                        },
+                        "description": "Update an existing group. Only the fields provided in the request body will be updated."
+                      },
+                      "response": [
+                        {
+                          "id": "3548286b-1eac-4ea9-98ae-279d3afeca87",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-3548286b-1eac-4ea9-98ae-279d3afeca87"
+                        },
+                        {
+                          "id": "0791e307-edda-4776-95d4-889146adb78f",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-0791e307-edda-4776-95d4-889146adb78f"
+                        },
+                        {
+                          "id": "b83dae27-aec6-4a1f-bcff-fe655415c774",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-b83dae27-aec6-4a1f-bcff-fe655415c774"
+                        },
+                        {
+                          "id": "151833d9-1894-4a99-ba7d-391a452093f7",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-151833d9-1894-4a99-ba7d-391a452093f7"
+                        },
+                        {
+                          "id": "4c111839-2aff-4a4c-aec1-f0aa556053d0",
+                          "name": "Unprocessable Entity",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-4c111839-2aff-4a4c-aec1-f0aa556053d0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-f7475986-b14e-4b98-abec-0e4cfd129e3a"
+                    },
+                    {
+                      "name": "Delete a Group",
+                      "id": "c8050a5c-d6de-4beb-a533-5458e45af919",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "94e2b400-0cce-46d7-bfa8-247a89e59d9d",
+                              "key": "organizationId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the organization."
+                            },
+                            {
+                              "id": "e7091bcc-2bde-43b7-87bd-f0ea3d91370f",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the group."
+                            }
+                          ]
+                        },
+                        "description": "Delete a group from an organization."
+                      },
+                      "response": [
+                        {
+                          "id": "4d015977-228f-460c-97ea-1fedcc1f383f",
+                          "name": "No Content",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-4d015977-228f-460c-97ea-1fedcc1f383f"
+                        },
+                        {
+                          "id": "1c7b1d77-4659-4a8c-87d6-64528ccbe62a",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-1c7b1d77-4659-4a8c-87d6-64528ccbe62a"
+                        },
+                        {
+                          "id": "71fffad4-9a16-4a13-9fe2-d5b6c205c0f4",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:organizationId/groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":organizationId",
+                                "groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "organizationId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:33:52.000Z",
+                          "updatedAt": "2026-07-28T03:33:52.000Z",
+                          "uid": "35240-71fffad4-9a16-4a13-9fe2-d5b6c205c0f4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-c8050a5c-d6de-4beb-a533-5458e45af919"
+                    }
+                  ],
+                  "id": "015289f2-2252-4ad0-8cea-a9ccaebab498",
+                  "createdAt": "2026-07-28T03:33:52.000Z",
+                  "updatedAt": "2026-07-28T03:33:52.000Z",
+                  "uid": "35240-015289f2-2252-4ad0-8cea-a9ccaebab498"
+                },
+                {
+                  "name": "Create a Group",
+                  "id": "15c05e8b-2a35-4d3b-ae11-d9f11ac727df",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organizationId/groups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organizationId",
+                        "groups"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5c7aecf8-5346-444b-bcd8-999bb051fd8f",
+                          "key": "organizationId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the organization."
+                        }
+                      ]
+                    },
+                    "description": "Create a new group within an organization."
+                  },
+                  "response": [
+                    {
+                      "id": "49886801-90a9-4146-89bc-f62402e1392f",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"organization_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-49886801-90a9-4146-89bc-f62402e1392f"
+                    },
+                    {
+                      "id": "1642fac6-3162-4566-8cf3-98848b8ad01d",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-1642fac6-3162-4566-8cf3-98848b8ad01d"
+                    },
+                    {
+                      "id": "4a21021c-ced5-4a43-8759-0ab546f446f2",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-4a21021c-ced5-4a43-8759-0ab546f446f2"
+                    },
+                    {
+                      "id": "f5a26e5b-aa82-4a13-a3b5-dbc216c5ec04",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-f5a26e5b-aa82-4a13-a3b5-dbc216c5ec04"
+                    },
+                    {
+                      "id": "a355eff0-9572-48da-9584-4bad726029f8",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-a355eff0-9572-48da-9584-4bad726029f8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:33:52.000Z",
+                  "updatedAt": "2026-07-28T03:33:52.000Z",
+                  "uid": "35240-15c05e8b-2a35-4d3b-ae11-d9f11ac727df"
+                },
+                {
+                  "name": "List Groups",
+                  "id": "df228373-dc79-4543-b30a-feb81bdc7df3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organizationId/groups?before=<string>&after=<string>&limit=10&order=desc",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organizationId",
+                        "groups"
+                      ],
+                      "query": [
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                          "key": "before",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                          "key": "order",
+                          "value": "desc"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "85b617ff-f2b4-4374-b54c-0aadd295b319",
+                          "key": "organizationId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the organization."
+                        }
+                      ]
+                    },
+                    "description": "Get a paginated list of groups within an organization."
+                  },
+                  "response": [
+                    {
+                      "id": "31828580-81c8-4bbc-94bd-4ae807166f7a",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups?before=<string>&after=<string>&limit=10&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups"
+                          ],
+                          "query": [
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-31828580-81c8-4bbc-94bd-4ae807166f7a"
+                    },
+                    {
+                      "id": "5b9f3276-0c42-4c33-a130-e3c9eaa38d96",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups?before=<string>&after=<string>&limit=10&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups"
+                          ],
+                          "query": [
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-5b9f3276-0c42-4c33-a130-e3c9eaa38d96"
+                    },
+                    {
+                      "id": "4ec5e06c-3713-48ce-a70f-1402ecdba141",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organizationId/groups?before=<string>&after=<string>&limit=10&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organizationId",
+                            "groups"
+                          ],
+                          "query": [
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "organizationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:33:52.000Z",
+                      "updatedAt": "2026-07-28T03:33:52.000Z",
+                      "uid": "35240-4ec5e06c-3713-48ce-a70f-1402ecdba141"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:33:52.000Z",
+                  "updatedAt": "2026-07-28T03:33:52.000Z",
+                  "uid": "35240-df228373-dc79-4543-b30a-feb81bdc7df3"
+                }
+              ],
+              "id": "ed37a0e2-bc84-438d-a7e7-ce0358634cdd",
+              "createdAt": "2026-07-28T03:33:52.000Z",
+              "updatedAt": "2026-07-28T03:33:52.000Z",
+              "uid": "35240-ed37a0e2-bc84-438d-a7e7-ce0358634cdd"
+            }
+          ],
+          "id": "3aa6b45f-abe9-4dc6-9841-e9f62c79735c",
+          "createdAt": "2026-07-28T03:33:52.000Z",
+          "updatedAt": "2026-07-28T03:33:52.000Z",
+          "uid": "35240-3aa6b45f-abe9-4dc6-9841-e9f62c79735c"
+        }
+      ],
+      "id": "5d0a0d46-6219-4b97-80a6-25e7899dc0c9",
+      "createdAt": "2026-07-28T03:33:52.000Z",
+      "updatedAt": "2026-07-28T03:33:52.000Z",
+      "uid": "35240-5d0a0d46-6219-4b97-80a6-25e7899dc0c9"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

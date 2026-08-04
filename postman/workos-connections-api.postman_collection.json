@@ -1,0 +1,771 @@
+{
+  "info": {
+    "_postman_id": "7b02e36d-a42a-4ca4-9a2f-cddaa65cee6f",
+    "name": "WorkOS admin-portal connections API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:33:12.000Z",
+    "updatedAt": "2026-07-28T03:33:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7b02e36d-a42a-4ca4-9a2f-cddaa65cee6f"
+  },
+  "item": [
+    {
+      "name": "connections",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get a Connection",
+              "id": "29e81745-abce-44fb-a770-ad8c94926d8d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connections/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connections",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e408ced9-39f6-487e-af7d-3f610daa8db8",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the Connection."
+                    }
+                  ]
+                },
+                "description": "Get the details of an existing connection."
+              },
+              "response": [
+                {
+                  "id": "305c3c06-dc2f-4b48-8d54-c6fd680c1026",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connections/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connections",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"connection_type\": \"GenericSAML\",\n  \"name\": \"<string>\",\n  \"state\": \"requires_type\",\n  \"status\": \"linked\",\n  \"domains\": [\n    {\n      \"id\": \"<string>\",\n      \"object\": \"<string>\",\n      \"domain\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"object\": \"<string>\",\n      \"domain\": \"<string>\"\n    }\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"organization_id\": \"<string>\",\n  \"options\": {\n    \"signing_cert\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-07-28T03:33:12.000Z",
+                  "updatedAt": "2026-07-28T03:33:12.000Z",
+                  "uid": "35240-305c3c06-dc2f-4b48-8d54-c6fd680c1026"
+                },
+                {
+                  "id": "7df73801-f0dd-4ce7-a5f7-3bf3cc4fb023",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connections/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connections",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:12.000Z",
+                  "updatedAt": "2026-07-28T03:33:12.000Z",
+                  "uid": "35240-7df73801-f0dd-4ce7-a5f7-3bf3cc4fb023"
+                },
+                {
+                  "id": "7fbf221c-456f-420d-9119-00e69cd75ccf",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connections/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connections",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:12.000Z",
+                  "updatedAt": "2026-07-28T03:33:12.000Z",
+                  "uid": "35240-7fbf221c-456f-420d-9119-00e69cd75ccf"
+                }
+              ],
+              "createdAt": "2026-07-28T03:33:12.000Z",
+              "updatedAt": "2026-07-28T03:33:12.000Z",
+              "uid": "35240-29e81745-abce-44fb-a770-ad8c94926d8d"
+            },
+            {
+              "name": "Delete a Connection",
+              "id": "981f035d-d7e9-41c4-8782-adc33935a1d1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connections/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connections",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b45b5e1f-09da-42c9-afc3-0a6aa0dbdcd2",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the Connection."
+                    }
+                  ]
+                },
+                "description": "Permanently deletes an existing connection. It cannot be undone."
+              },
+              "response": [
+                {
+                  "id": "9fcdfb99-3cb3-4e97-abae-9658c82b257a",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connections/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connections",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:33:12.000Z",
+                  "updatedAt": "2026-07-28T03:33:12.000Z",
+                  "uid": "35240-9fcdfb99-3cb3-4e97-abae-9658c82b257a"
+                },
+                {
+                  "id": "26f14e72-c986-4ec0-9c78-5171e5a9b01f",
+                  "name": "No Content",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connections/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connections",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:33:12.000Z",
+                  "updatedAt": "2026-07-28T03:33:12.000Z",
+                  "uid": "35240-26f14e72-c986-4ec0-9c78-5171e5a9b01f"
+                },
+                {
+                  "id": "0f0686e7-6327-4413-b721-e2d151401c21",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connections/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connections",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:12.000Z",
+                  "updatedAt": "2026-07-28T03:33:12.000Z",
+                  "uid": "35240-0f0686e7-6327-4413-b721-e2d151401c21"
+                },
+                {
+                  "id": "206970ce-f643-445f-ada2-95ec5acc0c98",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connections/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connections",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:33:12.000Z",
+                  "updatedAt": "2026-07-28T03:33:12.000Z",
+                  "uid": "35240-206970ce-f643-445f-ada2-95ec5acc0c98"
+                }
+              ],
+              "createdAt": "2026-07-28T03:33:12.000Z",
+              "updatedAt": "2026-07-28T03:33:12.000Z",
+              "uid": "35240-981f035d-d7e9-41c4-8782-adc33935a1d1"
+            }
+          ],
+          "id": "c1170f46-f76a-4c22-890f-5b26bf48a8e7",
+          "createdAt": "2026-07-28T03:33:12.000Z",
+          "updatedAt": "2026-07-28T03:33:12.000Z",
+          "uid": "35240-c1170f46-f76a-4c22-890f-5b26bf48a8e7"
+        },
+        {
+          "name": "List Connections",
+          "id": "e67d4d73-34a2-46aa-89cf-d67f00a22507",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/connections?before=<string>&after=<string>&limit=10&order=desc&connection_type=VercelMarketplaceOAuth&domain=<string>&organization_id=<string>&search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "connections"
+              ],
+              "query": [
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                  "key": "before",
+                  "value": "<string>"
+                },
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                  "key": "after",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Order the results by the creation time.",
+                  "key": "order",
+                  "value": "desc"
+                },
+                {
+                  "description": "Filter Connections by their type.",
+                  "key": "connection_type",
+                  "value": "VercelMarketplaceOAuth"
+                },
+                {
+                  "description": "Filter Connections by their associated domain.",
+                  "key": "domain",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter Connections by their associated organization.",
+                  "key": "organization_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Searchable text to match against Connection names.",
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get a list of all of your existing connections matching the criteria specified."
+          },
+          "response": [
+            {
+              "id": "10a2b14a-27af-4fad-a726-8b82aa763519",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connections?before=<string>&after=<string>&limit=10&order=desc&connection_type=VercelMarketplaceOAuth&domain=<string>&organization_id=<string>&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connections"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter Connections by their type.",
+                      "key": "connection_type",
+                      "value": "VercelMarketplaceOAuth"
+                    },
+                    {
+                      "description": "Filter Connections by their associated domain.",
+                      "key": "domain",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter Connections by their associated organization.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Searchable text to match against Connection names.",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"connection_type\": \"MagicLink\",\n      \"name\": \"<string>\",\n      \"state\": \"deleting\",\n      \"status\": \"unlinked\",\n      \"domains\": [\n        {\n          \"id\": \"<string>\",\n          \"object\": \"<string>\",\n          \"domain\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"object\": \"<string>\",\n          \"domain\": \"<string>\"\n        }\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"organization_id\": \"<string>\",\n      \"options\": {\n        \"signing_cert\": \"<string,null>\"\n      }\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"connection_type\": \"OktaOIDC\",\n      \"name\": \"<string>\",\n      \"state\": \"validating\",\n      \"status\": \"linked\",\n      \"domains\": [\n        {\n          \"id\": \"<string>\",\n          \"object\": \"<string>\",\n          \"domain\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"object\": \"<string>\",\n          \"domain\": \"<string>\"\n        }\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"organization_id\": \"<string>\",\n      \"options\": {\n        \"signing_cert\": \"<string,null>\"\n      }\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  },\n  \"laborum9\": true\n}",
+              "createdAt": "2026-07-28T03:33:12.000Z",
+              "updatedAt": "2026-07-28T03:33:12.000Z",
+              "uid": "35240-10a2b14a-27af-4fad-a726-8b82aa763519"
+            },
+            {
+              "id": "5b952f54-8e80-46b7-85e8-79a7ec19cc1b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connections?before=<string>&after=<string>&limit=10&order=desc&connection_type=VercelMarketplaceOAuth&domain=<string>&organization_id=<string>&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connections"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter Connections by their type.",
+                      "key": "connection_type",
+                      "value": "VercelMarketplaceOAuth"
+                    },
+                    {
+                      "description": "Filter Connections by their associated domain.",
+                      "key": "domain",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter Connections by their associated organization.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Searchable text to match against Connection names.",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:12.000Z",
+              "updatedAt": "2026-07-28T03:33:12.000Z",
+              "uid": "35240-5b952f54-8e80-46b7-85e8-79a7ec19cc1b"
+            },
+            {
+              "id": "cfa5c5f2-5354-46e2-acc2-752f85666b94",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connections?before=<string>&after=<string>&limit=10&order=desc&connection_type=VercelMarketplaceOAuth&domain=<string>&organization_id=<string>&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connections"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Filter Connections by their type.",
+                      "key": "connection_type",
+                      "value": "VercelMarketplaceOAuth"
+                    },
+                    {
+                      "description": "Filter Connections by their associated domain.",
+                      "key": "domain",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter Connections by their associated organization.",
+                      "key": "organization_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Searchable text to match against Connection names.",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:33:12.000Z",
+              "updatedAt": "2026-07-28T03:33:12.000Z",
+              "uid": "35240-cfa5c5f2-5354-46e2-acc2-752f85666b94"
+            }
+          ],
+          "createdAt": "2026-07-28T03:33:12.000Z",
+          "updatedAt": "2026-07-28T03:33:12.000Z",
+          "uid": "35240-e67d4d73-34a2-46aa-89cf-d67f00a22507"
+        }
+      ],
+      "id": "c9e7ae97-81e2-4d25-b5b7-d98d44031a81",
+      "createdAt": "2026-07-28T03:33:12.000Z",
+      "updatedAt": "2026-07-28T03:33:12.000Z",
+      "uid": "35240-c9e7ae97-81e2-4d25-b5b7-d98d44031a81"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

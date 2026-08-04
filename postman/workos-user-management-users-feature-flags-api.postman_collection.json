@@ -1,0 +1,274 @@
+{
+  "info": {
+    "_postman_id": "13642a65-7c15-4369-8e1c-0a47d25d8433",
+    "name": "WorkOS admin-portal user-management.users.feature-flags API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:35:22.000Z",
+    "updatedAt": "2026-07-28T03:35:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-13642a65-7c15-4369-8e1c-0a47d25d8433"
+  },
+  "item": [
+    {
+      "name": "user_management",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "{userId}",
+              "item": [
+                {
+                  "name": "feature-flags",
+                  "item": [
+                    {
+                      "name": "List Enabled Feature Flags for a User",
+                      "id": "97d354e7-7afd-4279-a4c2-49633263fbc0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/user_management/users/:userId/feature-flags?before=<string>&after=<string>&limit=10&order=desc",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "user_management",
+                            "users",
+                            ":userId",
+                            "feature-flags"
+                          ],
+                          "query": [
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                              "key": "before",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Order the results by the creation time.",
+                              "key": "order",
+                              "value": "desc"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "1dbcc6c0-2118-4dc8-9c05-a1c03f64cb48",
+                              "key": "userId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the user."
+                            }
+                          ]
+                        },
+                        "description": "Get a list of all enabled feature flags for the provided user. This includes feature flags enabled specifically for the user as well as any organizations that the user is a member of."
+                      },
+                      "response": [
+                        {
+                          "id": "9f7669c3-14b7-4d7c-b098-e26d6dc8d5af",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:userId/feature-flags?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":userId",
+                                "feature-flags"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"owner\": {\n        \"email\": \"<string>\",\n        \"first_name\": \"<string,null>\",\n        \"last_name\": \"<string,null>\"\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\",\n      \"default_value\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"owner\": {\n        \"email\": \"<string>\",\n        \"first_name\": \"<string,null>\",\n        \"last_name\": \"<string,null>\"\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\",\n      \"default_value\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:35:22.000Z",
+                          "updatedAt": "2026-07-28T03:35:22.000Z",
+                          "uid": "35240-9f7669c3-14b7-4d7c-b098-e26d6dc8d5af"
+                        },
+                        {
+                          "id": "9ca3f868-c44c-44c6-9e7f-98ffc5195dba",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/user_management/users/:userId/feature-flags?before=<string>&after=<string>&limit=10&order=desc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "user_management",
+                                "users",
+                                ":userId",
+                                "feature-flags"
+                              ],
+                              "query": [
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                                  "key": "before",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.",
+                                  "key": "after",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                                  "key": "limit",
+                                  "value": "10"
+                                },
+                                {
+                                  "description": "Order the results by the creation time.",
+                                  "key": "order",
+                                  "value": "desc"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "userId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:35:22.000Z",
+                          "updatedAt": "2026-07-28T03:35:22.000Z",
+                          "uid": "35240-9ca3f868-c44c-44c6-9e7f-98ffc5195dba"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:35:22.000Z",
+                      "updatedAt": "2026-07-28T03:35:22.000Z",
+                      "uid": "35240-97d354e7-7afd-4279-a4c2-49633263fbc0"
+                    }
+                  ],
+                  "id": "36326c22-f08f-4581-9dec-6b7c115a0ad2",
+                  "createdAt": "2026-07-28T03:35:22.000Z",
+                  "updatedAt": "2026-07-28T03:35:22.000Z",
+                  "uid": "35240-36326c22-f08f-4581-9dec-6b7c115a0ad2"
+                }
+              ],
+              "id": "b454bca4-814f-4691-a7c5-3a027f4c6ab6",
+              "createdAt": "2026-07-28T03:35:22.000Z",
+              "updatedAt": "2026-07-28T03:35:22.000Z",
+              "uid": "35240-b454bca4-814f-4691-a7c5-3a027f4c6ab6"
+            }
+          ],
+          "id": "3980fb26-6cbf-4af5-b528-cda8d7c00b1a",
+          "createdAt": "2026-07-28T03:35:22.000Z",
+          "updatedAt": "2026-07-28T03:35:22.000Z",
+          "uid": "35240-3980fb26-6cbf-4af5-b528-cda8d7c00b1a"
+        }
+      ],
+      "id": "6e3b99fa-e8b2-42d9-814e-ccad2730b5ea",
+      "createdAt": "2026-07-28T03:35:22.000Z",
+      "updatedAt": "2026-07-28T03:35:22.000Z",
+      "uid": "35240-6e3b99fa-e8b2-42d9-814e-ccad2730b5ea"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}

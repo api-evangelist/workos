@@ -1,0 +1,1561 @@
+{
+  "info": {
+    "_postman_id": "67d7d54b-058b-42e0-b14e-e8fa2a2ea3f5",
+    "name": "WorkOS admin-portal organizations API",
+    "description": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:34:23.000Z",
+    "updatedAt": "2026-07-28T03:34:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-67d7d54b-058b-42e0-b14e-e8fa2a2ea3f5"
+  },
+  "item": [
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "external_id",
+          "item": [
+            {
+              "name": "{external_id}",
+              "item": [
+                {
+                  "name": "Get an Organization by External ID",
+                  "id": "bb5cba27-335a-4ec9-acfb-cfcbd2012345",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/external_id/:external_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        "external_id",
+                        ":external_id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "474276b9-90a3-42d1-9a2b-20a9702982ab",
+                          "key": "external_id",
+                          "value": "<string>",
+                          "description": "(Required) The external ID of the Organization."
+                        }
+                      ]
+                    },
+                    "description": "Get the details of an existing organization by an [external identifier](/authkit/metadata/external-identifiers)."
+                  },
+                  "response": [
+                    {
+                      "id": "54f2e5f7-b066-4293-8164-f7cfe7d88552",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/external_id/:external_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            "external_id",
+                            ":external_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "external_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"domains\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"failed\",\n      \"verification_prefix\": \"<string>\",\n      \"verification_token\": \"<string>\",\n      \"verification_strategy\": \"manual\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"legacy_verified\",\n      \"verification_prefix\": \"<string>\",\n      \"verification_token\": \"<string>\",\n      \"verification_strategy\": \"manual\"\n    }\n  ],\n  \"metadata\": {\n    \"et_b\": \"<string>\",\n    \"sint_a\": \"<string>\",\n    \"incididuntdb\": \"<string>\",\n    \"nisic_\": \"<string>\",\n    \"nisi_e20\": \"<string>\",\n    \"pariatur_62\": \"<string>\",\n    \"ut__\": \"<string>\",\n    \"adipisicing_ac\": \"<string>\",\n    \"esse_a\": \"<string>\",\n    \"in_64b\": \"<string>\",\n    \"cupidatat_f8\": \"<string>\",\n    \"irure83\": \"<string>\",\n    \"esse_0ba\": \"<string>\",\n    \"mollit7e\": \"<string>\",\n    \"ex___\": \"<string>\",\n    \"non_580\": \"<string>\",\n    \"Duis_59\": \"<string>\",\n    \"none\": \"<string>\",\n    \"non_9\": \"<string>\",\n    \"laborum_17\": \"<string>\",\n    \"do2\": \"<string>\",\n    \"voluptate_2\": \"<string>\",\n    \"aute6\": \"<string>\",\n    \"ut_72\": \"<string>\",\n    \"fugiat7\": \"<string>\",\n    \"exercitation_21\": \"<string>\",\n    \"esse_e2\": \"<string>\",\n    \"cupidatat_e8\": \"<string>\",\n    \"eiusmod7\": \"<string>\",\n    \"voluptatef\": \"<string>\",\n    \"autea\": \"<string>\",\n    \"minim_5d\": \"<string>\",\n    \"labore_25\": \"<string>\",\n    \"minim9\": \"<string>\",\n    \"consectetur_be\": \"<string>\",\n    \"anim__a\": \"<string>\",\n    \"sunt_118\": \"<string>\",\n    \"quis5\": \"<string>\",\n    \"Ut__\": \"<string>\",\n    \"labore_674\": \"<string>\",\n    \"esse6f\": \"<string>\",\n    \"et_61_\": \"<string>\",\n    \"dolor_85e\": \"<string>\",\n    \"anim834\": \"<string>\",\n    \"pariatur_b73\": \"<string>\",\n    \"deserunt_c9\": \"<string>\",\n    \"ut_0\": \"<string>\",\n    \"dolore_c\": \"<string>\"\n  },\n  \"external_id\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"stripe_customer_id\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T03:34:24.000Z",
+                      "updatedAt": "2026-07-28T03:34:24.000Z",
+                      "uid": "35240-54f2e5f7-b066-4293-8164-f7cfe7d88552"
+                    },
+                    {
+                      "id": "376e858e-af5c-4d09-b161-d05116bec9d9",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/external_id/:external_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            "external_id",
+                            ":external_id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "external_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:24.000Z",
+                      "updatedAt": "2026-07-28T03:34:24.000Z",
+                      "uid": "35240-376e858e-af5c-4d09-b161-d05116bec9d9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-bb5cba27-335a-4ec9-acfb-cfcbd2012345"
+                }
+              ],
+              "id": "030bac7c-fdf9-4194-bfc3-b967596a2d0e",
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-030bac7c-fdf9-4194-bfc3-b967596a2d0e"
+            }
+          ],
+          "id": "b48ad2a8-bfd9-413e-a797-003d53824073",
+          "createdAt": "2026-07-28T03:34:24.000Z",
+          "updatedAt": "2026-07-28T03:34:24.000Z",
+          "uid": "35240-b48ad2a8-bfd9-413e-a797-003d53824073"
+        },
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "audit_log_configuration",
+              "item": [
+                {
+                  "name": "Get Audit Log Configuration",
+                  "id": "5c7e4413-e3dc-48c0-ac8c-5f35e2c995ff",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id/audit_log_configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id",
+                        "audit_log_configuration"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b7c5b8a7-78e3-4404-816b-9eec32f7977d",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the Organization."
+                        }
+                      ]
+                    },
+                    "description": "Get the unified view of audit log trail and stream configuration for an organization."
+                  },
+                  "response": [
+                    {
+                      "id": "2aacc6bb-3329-4046-8974-55a2d8e7fe01",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:id/audit_log_configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":id",
+                            "audit_log_configuration"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"organization_id\": \"<string>\",\n  \"retention_period_in_days\": \"<integer>\",\n  \"state\": \"disabled\",\n  \"log_stream\": {\n    \"id\": \"<string>\",\n    \"type\": \"GenericHttps\",\n    \"state\": \"inactive\",\n    \"last_synced_at\": \"<string,null>\",\n    \"created_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:34:24.000Z",
+                      "updatedAt": "2026-07-28T03:34:24.000Z",
+                      "uid": "35240-2aacc6bb-3329-4046-8974-55a2d8e7fe01"
+                    },
+                    {
+                      "id": "38f3d555-5a17-4612-b9c1-a46a6ede7e3f",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:id/audit_log_configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":id",
+                            "audit_log_configuration"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:34:24.000Z",
+                      "updatedAt": "2026-07-28T03:34:24.000Z",
+                      "uid": "35240-38f3d555-5a17-4612-b9c1-a46a6ede7e3f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-5c7e4413-e3dc-48c0-ac8c-5f35e2c995ff"
+                }
+              ],
+              "id": "e704d89a-0fe8-4701-bb27-2fcb703dc9fe",
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-e704d89a-0fe8-4701-bb27-2fcb703dc9fe"
+            },
+            {
+              "name": "Get an Organization",
+              "id": "966aaff0-854d-4580-a356-0faca9eb7a8a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organizations/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "783bb082-8d28-4ef8-b402-8e56e3f3ff54",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "description": "Get the details of an existing organization."
+              },
+              "response": [
+                {
+                  "id": "0e24bfed-e9af-44c0-8873-b57b55ca80ed",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"domains\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"failed\",\n      \"verification_prefix\": \"<string>\",\n      \"verification_token\": \"<string>\",\n      \"verification_strategy\": \"manual\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"legacy_verified\",\n      \"verification_prefix\": \"<string>\",\n      \"verification_token\": \"<string>\",\n      \"verification_strategy\": \"manual\"\n    }\n  ],\n  \"metadata\": {\n    \"et_b\": \"<string>\",\n    \"sint_a\": \"<string>\",\n    \"incididuntdb\": \"<string>\",\n    \"nisic_\": \"<string>\",\n    \"nisi_e20\": \"<string>\",\n    \"pariatur_62\": \"<string>\",\n    \"ut__\": \"<string>\",\n    \"adipisicing_ac\": \"<string>\",\n    \"esse_a\": \"<string>\",\n    \"in_64b\": \"<string>\",\n    \"cupidatat_f8\": \"<string>\",\n    \"irure83\": \"<string>\",\n    \"esse_0ba\": \"<string>\",\n    \"mollit7e\": \"<string>\",\n    \"ex___\": \"<string>\",\n    \"non_580\": \"<string>\",\n    \"Duis_59\": \"<string>\",\n    \"none\": \"<string>\",\n    \"non_9\": \"<string>\",\n    \"laborum_17\": \"<string>\",\n    \"do2\": \"<string>\",\n    \"voluptate_2\": \"<string>\",\n    \"aute6\": \"<string>\",\n    \"ut_72\": \"<string>\",\n    \"fugiat7\": \"<string>\",\n    \"exercitation_21\": \"<string>\",\n    \"esse_e2\": \"<string>\",\n    \"cupidatat_e8\": \"<string>\",\n    \"eiusmod7\": \"<string>\",\n    \"voluptatef\": \"<string>\",\n    \"autea\": \"<string>\",\n    \"minim_5d\": \"<string>\",\n    \"labore_25\": \"<string>\",\n    \"minim9\": \"<string>\",\n    \"consectetur_be\": \"<string>\",\n    \"anim__a\": \"<string>\",\n    \"sunt_118\": \"<string>\",\n    \"quis5\": \"<string>\",\n    \"Ut__\": \"<string>\",\n    \"labore_674\": \"<string>\",\n    \"esse6f\": \"<string>\",\n    \"et_61_\": \"<string>\",\n    \"dolor_85e\": \"<string>\",\n    \"anim834\": \"<string>\",\n    \"pariatur_b73\": \"<string>\",\n    \"deserunt_c9\": \"<string>\",\n    \"ut_0\": \"<string>\",\n    \"dolore_c\": \"<string>\"\n  },\n  \"external_id\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"stripe_customer_id\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-0e24bfed-e9af-44c0-8873-b57b55ca80ed"
+                },
+                {
+                  "id": "785f42fd-44e3-4b41-b885-da624ff482e0",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-785f42fd-44e3-4b41-b885-da624ff482e0"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-966aaff0-854d-4580-a356-0faca9eb7a8a"
+            },
+            {
+              "name": "Update an Organization",
+              "id": "55663e2a-2dfc-4c95-976c-1c82c4b48a1d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"stripe_customer_id\": \"<string>\",\n  \"metadata\": null,\n  \"external_id\": \"G)pw^3xH/Wh\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organizations/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "93d7873b-3472-45ce-ab43-474f24e7f430",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "description": "Updates an organization in the current environment."
+              },
+              "response": [
+                {
+                  "id": "19f391fa-81ea-4b75-8e0f-b3fa71efc962",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"stripe_customer_id\": \"<string>\",\n  \"metadata\": null,\n  \"external_id\": \"G)pw^3xH/Wh\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"domains\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"failed\",\n      \"verification_prefix\": \"<string>\",\n      \"verification_token\": \"<string>\",\n      \"verification_strategy\": \"manual\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"legacy_verified\",\n      \"verification_prefix\": \"<string>\",\n      \"verification_token\": \"<string>\",\n      \"verification_strategy\": \"manual\"\n    }\n  ],\n  \"metadata\": {\n    \"et_b\": \"<string>\",\n    \"sint_a\": \"<string>\",\n    \"incididuntdb\": \"<string>\",\n    \"nisic_\": \"<string>\",\n    \"nisi_e20\": \"<string>\",\n    \"pariatur_62\": \"<string>\",\n    \"ut__\": \"<string>\",\n    \"adipisicing_ac\": \"<string>\",\n    \"esse_a\": \"<string>\",\n    \"in_64b\": \"<string>\",\n    \"cupidatat_f8\": \"<string>\",\n    \"irure83\": \"<string>\",\n    \"esse_0ba\": \"<string>\",\n    \"mollit7e\": \"<string>\",\n    \"ex___\": \"<string>\",\n    \"non_580\": \"<string>\",\n    \"Duis_59\": \"<string>\",\n    \"none\": \"<string>\",\n    \"non_9\": \"<string>\",\n    \"laborum_17\": \"<string>\",\n    \"do2\": \"<string>\",\n    \"voluptate_2\": \"<string>\",\n    \"aute6\": \"<string>\",\n    \"ut_72\": \"<string>\",\n    \"fugiat7\": \"<string>\",\n    \"exercitation_21\": \"<string>\",\n    \"esse_e2\": \"<string>\",\n    \"cupidatat_e8\": \"<string>\",\n    \"eiusmod7\": \"<string>\",\n    \"voluptatef\": \"<string>\",\n    \"autea\": \"<string>\",\n    \"minim_5d\": \"<string>\",\n    \"labore_25\": \"<string>\",\n    \"minim9\": \"<string>\",\n    \"consectetur_be\": \"<string>\",\n    \"anim__a\": \"<string>\",\n    \"sunt_118\": \"<string>\",\n    \"quis5\": \"<string>\",\n    \"Ut__\": \"<string>\",\n    \"labore_674\": \"<string>\",\n    \"esse6f\": \"<string>\",\n    \"et_61_\": \"<string>\",\n    \"dolor_85e\": \"<string>\",\n    \"anim834\": \"<string>\",\n    \"pariatur_b73\": \"<string>\",\n    \"deserunt_c9\": \"<string>\",\n    \"ut_0\": \"<string>\",\n    \"dolore_c\": \"<string>\"\n  },\n  \"external_id\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"stripe_customer_id\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-19f391fa-81ea-4b75-8e0f-b3fa71efc962"
+                },
+                {
+                  "id": "97bed3bb-c5f9-4bb4-8a95-47c125784b33",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"stripe_customer_id\": \"<string>\",\n  \"metadata\": null,\n  \"external_id\": \"G)pw^3xH/Wh\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-97bed3bb-c5f9-4bb4-8a95-47c125784b33"
+                },
+                {
+                  "id": "ab658f11-014c-4f22-bc83-f43caa0c4be2",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"stripe_customer_id\": \"<string>\",\n  \"metadata\": null,\n  \"external_id\": \"G)pw^3xH/Wh\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-ab658f11-014c-4f22-bc83-f43caa0c4be2"
+                },
+                {
+                  "id": "f2a091cd-68a9-4dac-a55d-4fca112d6c97",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"stripe_customer_id\": \"<string>\",\n  \"metadata\": null,\n  \"external_id\": \"G)pw^3xH/Wh\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-f2a091cd-68a9-4dac-a55d-4fca112d6c97"
+                },
+                {
+                  "id": "dbcbc346-c790-4cad-85d7-7eab4d06cf56",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"stripe_customer_id\": \"<string>\",\n  \"metadata\": null,\n  \"external_id\": \"G)pw^3xH/Wh\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-dbcbc346-c790-4cad-85d7-7eab4d06cf56"
+                },
+                {
+                  "id": "3dfc80a3-362f-4bec-81a5-4c53b6dd2686",
+                  "name": "Unprocessable Entity",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"stripe_customer_id\": \"<string>\",\n  \"metadata\": null,\n  \"external_id\": \"G)pw^3xH/Wh\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-3dfc80a3-362f-4bec-81a5-4c53b6dd2686"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-55663e2a-2dfc-4c95-976c-1c82c4b48a1d"
+            },
+            {
+              "name": "Delete an Organization",
+              "id": "d7f38787-5e34-43bb-8f07-cd5f2f17181d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organizations/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0afc1d1e-db04-4246-bc39-ec0eae2db4c0",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "description": "Permanently deletes an organization in the current environment. It cannot be undone."
+              },
+              "response": [
+                {
+                  "id": "53f77948-43d8-4624-b62c-b1c6e1cd9632",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-53f77948-43d8-4624-b62c-b1c6e1cd9632"
+                },
+                {
+                  "id": "34c3591c-1ea2-49e9-8cdc-9c23b1ae7b65",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-34c3591c-1ea2-49e9-8cdc-9c23b1ae7b65"
+                },
+                {
+                  "id": "2691f5c6-4a1d-403a-a634-5a6839d80070",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:34:24.000Z",
+                  "updatedAt": "2026-07-28T03:34:24.000Z",
+                  "uid": "35240-2691f5c6-4a1d-403a-a634-5a6839d80070"
+                }
+              ],
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-d7f38787-5e34-43bb-8f07-cd5f2f17181d"
+            }
+          ],
+          "id": "87051b75-a581-4b02-8576-5b9a80ddb95d",
+          "createdAt": "2026-07-28T03:34:24.000Z",
+          "updatedAt": "2026-07-28T03:34:24.000Z",
+          "uid": "35240-87051b75-a581-4b02-8576-5b9a80ddb95d"
+        },
+        {
+          "name": "List Organizations",
+          "id": "4af8045d-3418-4030-97c1-8f35a2a034b6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/organizations?before=<string>&after=<string>&limit=10&order=desc&domains=<string>,<string>&search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizations"
+              ],
+              "query": [
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                  "key": "before",
+                  "value": "<string>"
+                },
+                {
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                  "key": "after",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                  "key": "order",
+                  "value": "desc"
+                },
+                {
+                  "description": "The domains of an Organization. Any Organization with a matching domain will be returned.",
+                  "key": "domains",
+                  "value": "<string>,<string>"
+                },
+                {
+                  "description": "Searchable text for an Organization. Matches against the organization name.",
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get a list of all of your existing organizations matching the criteria specified."
+          },
+          "response": [
+            {
+              "id": "5da7487f-6e98-4052-a98c-1e14e8735f73",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organizations?before=<string>&after=<string>&limit=10&order=desc&domains=<string>,<string>&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "The domains of an Organization. Any Organization with a matching domain will be returned.",
+                      "key": "domains",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Searchable text for an Organization. Matches against the organization name.",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"domains\": [\n        {\n          \"object\": \"<string>\",\n          \"id\": \"<string>\",\n          \"organization_id\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"state\": \"unverified\",\n          \"verification_prefix\": \"<string>\",\n          \"verification_token\": \"<string>\",\n          \"verification_strategy\": \"manual\"\n        },\n        {\n          \"object\": \"<string>\",\n          \"id\": \"<string>\",\n          \"organization_id\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"state\": \"failed\",\n          \"verification_prefix\": \"<string>\",\n          \"verification_token\": \"<string>\",\n          \"verification_strategy\": \"dns\"\n        }\n      ],\n      \"metadata\": {\n        \"commodo_71\": \"<string>\",\n        \"qui9f\": \"<string>\",\n        \"quifeb\": \"<string>\",\n        \"ipsum14\": \"<string>\",\n        \"laboris54d\": \"<string>\",\n        \"consecteturf6\": \"<string>\",\n        \"labore_24\": \"<string>\",\n        \"ad_a3\": \"<string>\",\n        \"eu0\": \"<string>\",\n        \"culpa8d\": \"<string>\",\n        \"proident__4\": \"<string>\",\n        \"mollit7\": \"<string>\",\n        \"consequat__6d\": \"<string>\",\n        \"culpa_6_\": \"<string>\",\n        \"ex_64c\": \"<string>\",\n        \"Uted\": \"<string>\",\n        \"laborum6\": \"<string>\",\n        \"dolora\": \"<string>\",\n        \"veniamc\": \"<string>\",\n        \"id_c53\": \"<string>\",\n        \"laborisb\": \"<string>\",\n        \"Excepteur_b62\": \"<string>\",\n        \"laborum36\": \"<string>\",\n        \"officia_3\": \"<string>\",\n        \"in_1\": \"<string>\",\n        \"incididunt8b3\": \"<string>\",\n        \"aute_72\": \"<string>\",\n        \"reprehenderite4\": \"<string>\",\n        \"velit_95\": \"<string>\",\n        \"in3_4\": \"<string>\",\n        \"proidentf0\": \"<string>\",\n        \"sunt_54\": \"<string>\",\n        \"aliqua_5_f\": \"<string>\",\n        \"dolore55\": \"<string>\",\n        \"sintf\": \"<string>\",\n        \"minimae8\": \"<string>\",\n        \"magna6c0\": \"<string>\",\n        \"Excepteur_e80\": \"<string>\",\n        \"eu_82\": \"<string>\",\n        \"eiusmod_d85\": \"<string>\"\n      },\n      \"external_id\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"stripe_customer_id\": \"<string>\",\n      \"allow_profiles_outside_organization\": \"<boolean>\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"domains\": [\n        {\n          \"object\": \"<string>\",\n          \"id\": \"<string>\",\n          \"organization_id\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"state\": \"verified\",\n          \"verification_prefix\": \"<string>\",\n          \"verification_token\": \"<string>\",\n          \"verification_strategy\": \"manual\"\n        },\n        {\n          \"object\": \"<string>\",\n          \"id\": \"<string>\",\n          \"organization_id\": \"<string>\",\n          \"domain\": \"<string>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"state\": \"failed\",\n          \"verification_prefix\": \"<string>\",\n          \"verification_token\": \"<string>\",\n          \"verification_strategy\": \"manual\"\n        }\n      ],\n      \"metadata\": {\n        \"aute3\": \"<string>\",\n        \"deseruntfd8\": \"<string>\",\n        \"ea_22\": \"<string>\",\n        \"laborisc34\": \"<string>\",\n        \"velit1\": \"<string>\",\n        \"doa\": \"<string>\",\n        \"in_6\": \"<string>\",\n        \"commodof\": \"<string>\",\n        \"reprehenderit_d\": \"<string>\",\n        \"dolor_0\": \"<string>\",\n        \"nisi_8\": \"<string>\",\n        \"consequat_dbf\": \"<string>\",\n        \"aliqua9\": \"<string>\",\n        \"pariatur_a\": \"<string>\",\n        \"suntcb5\": \"<string>\",\n        \"consequat_92\": \"<string>\",\n        \"nisi4c_\": \"<string>\",\n        \"consectetura\": \"<string>\",\n        \"fugiat_ea1\": \"<string>\",\n        \"eiusmod_0\": \"<string>\",\n        \"pariatur_2\": \"<string>\",\n        \"et_9b0\": \"<string>\",\n        \"fugiat12b\": \"<string>\"\n      },\n      \"external_id\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"stripe_customer_id\": \"<string>\",\n      \"allow_profiles_outside_organization\": \"<boolean>\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"<string,null>\",\n    \"after\": \"<string,null>\"\n  },\n  \"consectetur__\": \"elit incidi\"\n}",
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-5da7487f-6e98-4052-a98c-1e14e8735f73"
+            },
+            {
+              "id": "37f712ce-ba49-4a50-a8e9-6a7d83364abd",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organizations?before=<string>&after=<string>&limit=10&order=desc&domains=<string>,<string>&search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations"
+                  ],
+                  "query": [
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`.",
+                      "key": "before",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`.",
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Upper limit on the number of objects to return, between `1` and `100`.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending.",
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "The domains of an Organization. Any Organization with a matching domain will be returned.",
+                      "key": "domains",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "description": "Searchable text for an Organization. Matches against the organization name.",
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-37f712ce-ba49-4a50-a8e9-6a7d83364abd"
+            }
+          ],
+          "createdAt": "2026-07-28T03:34:24.000Z",
+          "updatedAt": "2026-07-28T03:34:24.000Z",
+          "uid": "35240-4af8045d-3418-4030-97c1-8f35a2a034b6"
+        },
+        {
+          "name": "Create an Organization",
+          "id": "b960f62d-0e41-4058-a864-105f2665e71a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"metadata\": {\n    \"Duis2\": \"<string>\",\n    \"sit790\": \"<string>\",\n    \"in_1a\": \"<string>\",\n    \"cillum_b9f\": \"<string>\",\n    \"ipsum_9\": \"<string>\",\n    \"ut_fc\": \"<string>\",\n    \"quis__6\": \"<string>\",\n    \"eiusmod_22f\": \"<string>\",\n    \"laborisa\": \"<string>\",\n    \"Lorem99c\": \"<string>\",\n    \"exercitation5\": \"<string>\",\n    \"ut_81\": \"<string>\",\n    \"tempor_3_f\": \"<string>\",\n    \"deserunt92\": \"<string>\",\n    \"deserunt1af\": \"<string>\",\n    \"laborum_cc\": \"<string>\",\n    \"dolor_30\": \"<string>\",\n    \"nostrud_0\": \"<string>\",\n    \"laboredf\": \"<string>\",\n    \"aliquip_5\": \"<string>\",\n    \"qui_9a\": \"<string>\",\n    \"ut_dfd\": \"<string>\",\n    \"Excepteur5\": \"<string>\",\n    \"magna6\": \"<string>\",\n    \"ut_50\": \"<string>\",\n    \"deserunt_3_\": \"<string>\",\n    \"doloreff\": \"<string>\",\n    \"sit_0\": \"<string>\",\n    \"commodo_f\": \"<string>\",\n    \"do_4b6\": \"<string>\",\n    \"cillum36\": \"<string>\",\n    \"Lorem_9e6\": \"<string>\",\n    \"exercitation6\": \"<string>\"\n  },\n  \"external_id\": \"|\\n1[{+\\u001c\\\"W\\u001d\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/organizations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizations"
+              ]
+            },
+            "description": "Creates a new organization in the current environment."
+          },
+          "response": [
+            {
+              "id": "2736b467-6633-4012-9beb-d9a24ffb27af",
+              "name": "Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"metadata\": {\n    \"Duis2\": \"<string>\",\n    \"sit790\": \"<string>\",\n    \"in_1a\": \"<string>\",\n    \"cillum_b9f\": \"<string>\",\n    \"ipsum_9\": \"<string>\",\n    \"ut_fc\": \"<string>\",\n    \"quis__6\": \"<string>\",\n    \"eiusmod_22f\": \"<string>\",\n    \"laborisa\": \"<string>\",\n    \"Lorem99c\": \"<string>\",\n    \"exercitation5\": \"<string>\",\n    \"ut_81\": \"<string>\",\n    \"tempor_3_f\": \"<string>\",\n    \"deserunt92\": \"<string>\",\n    \"deserunt1af\": \"<string>\",\n    \"laborum_cc\": \"<string>\",\n    \"dolor_30\": \"<string>\",\n    \"nostrud_0\": \"<string>\",\n    \"laboredf\": \"<string>\",\n    \"aliquip_5\": \"<string>\",\n    \"qui_9a\": \"<string>\",\n    \"ut_dfd\": \"<string>\",\n    \"Excepteur5\": \"<string>\",\n    \"magna6\": \"<string>\",\n    \"ut_50\": \"<string>\",\n    \"deserunt_3_\": \"<string>\",\n    \"doloreff\": \"<string>\",\n    \"sit_0\": \"<string>\",\n    \"commodo_f\": \"<string>\",\n    \"do_4b6\": \"<string>\",\n    \"cillum36\": \"<string>\",\n    \"Lorem_9e6\": \"<string>\",\n    \"exercitation6\": \"<string>\"\n  },\n  \"external_id\": \"|\\n1[{+\\u001c\\\"W\\u001d\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"object\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"domains\": [\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"failed\",\n      \"verification_prefix\": \"<string>\",\n      \"verification_token\": \"<string>\",\n      \"verification_strategy\": \"manual\"\n    },\n    {\n      \"object\": \"<string>\",\n      \"id\": \"<string>\",\n      \"organization_id\": \"<string>\",\n      \"domain\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"legacy_verified\",\n      \"verification_prefix\": \"<string>\",\n      \"verification_token\": \"<string>\",\n      \"verification_strategy\": \"manual\"\n    }\n  ],\n  \"metadata\": {\n    \"et_b\": \"<string>\",\n    \"sint_a\": \"<string>\",\n    \"incididuntdb\": \"<string>\",\n    \"nisic_\": \"<string>\",\n    \"nisi_e20\": \"<string>\",\n    \"pariatur_62\": \"<string>\",\n    \"ut__\": \"<string>\",\n    \"adipisicing_ac\": \"<string>\",\n    \"esse_a\": \"<string>\",\n    \"in_64b\": \"<string>\",\n    \"cupidatat_f8\": \"<string>\",\n    \"irure83\": \"<string>\",\n    \"esse_0ba\": \"<string>\",\n    \"mollit7e\": \"<string>\",\n    \"ex___\": \"<string>\",\n    \"non_580\": \"<string>\",\n    \"Duis_59\": \"<string>\",\n    \"none\": \"<string>\",\n    \"non_9\": \"<string>\",\n    \"laborum_17\": \"<string>\",\n    \"do2\": \"<string>\",\n    \"voluptate_2\": \"<string>\",\n    \"aute6\": \"<string>\",\n    \"ut_72\": \"<string>\",\n    \"fugiat7\": \"<string>\",\n    \"exercitation_21\": \"<string>\",\n    \"esse_e2\": \"<string>\",\n    \"cupidatat_e8\": \"<string>\",\n    \"eiusmod7\": \"<string>\",\n    \"voluptatef\": \"<string>\",\n    \"autea\": \"<string>\",\n    \"minim_5d\": \"<string>\",\n    \"labore_25\": \"<string>\",\n    \"minim9\": \"<string>\",\n    \"consectetur_be\": \"<string>\",\n    \"anim__a\": \"<string>\",\n    \"sunt_118\": \"<string>\",\n    \"quis5\": \"<string>\",\n    \"Ut__\": \"<string>\",\n    \"labore_674\": \"<string>\",\n    \"esse6f\": \"<string>\",\n    \"et_61_\": \"<string>\",\n    \"dolor_85e\": \"<string>\",\n    \"anim834\": \"<string>\",\n    \"pariatur_b73\": \"<string>\",\n    \"deserunt_c9\": \"<string>\",\n    \"ut_0\": \"<string>\",\n    \"dolore_c\": \"<string>\"\n  },\n  \"external_id\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"stripe_customer_id\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-2736b467-6633-4012-9beb-d9a24ffb27af"
+            },
+            {
+              "id": "cb5c4120-cb4c-447b-9cc8-c01266cb1235",
+              "name": "Bad Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"metadata\": {\n    \"Duis2\": \"<string>\",\n    \"sit790\": \"<string>\",\n    \"in_1a\": \"<string>\",\n    \"cillum_b9f\": \"<string>\",\n    \"ipsum_9\": \"<string>\",\n    \"ut_fc\": \"<string>\",\n    \"quis__6\": \"<string>\",\n    \"eiusmod_22f\": \"<string>\",\n    \"laborisa\": \"<string>\",\n    \"Lorem99c\": \"<string>\",\n    \"exercitation5\": \"<string>\",\n    \"ut_81\": \"<string>\",\n    \"tempor_3_f\": \"<string>\",\n    \"deserunt92\": \"<string>\",\n    \"deserunt1af\": \"<string>\",\n    \"laborum_cc\": \"<string>\",\n    \"dolor_30\": \"<string>\",\n    \"nostrud_0\": \"<string>\",\n    \"laboredf\": \"<string>\",\n    \"aliquip_5\": \"<string>\",\n    \"qui_9a\": \"<string>\",\n    \"ut_dfd\": \"<string>\",\n    \"Excepteur5\": \"<string>\",\n    \"magna6\": \"<string>\",\n    \"ut_50\": \"<string>\",\n    \"deserunt_3_\": \"<string>\",\n    \"doloreff\": \"<string>\",\n    \"sit_0\": \"<string>\",\n    \"commodo_f\": \"<string>\",\n    \"do_4b6\": \"<string>\",\n    \"cillum36\": \"<string>\",\n    \"Lorem_9e6\": \"<string>\",\n    \"exercitation6\": \"<string>\"\n  },\n  \"external_id\": \"|\\n1[{+\\u001c\\\"W\\u001d\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-cb5c4120-cb4c-447b-9cc8-c01266cb1235"
+            },
+            {
+              "id": "527465f5-d202-4542-8bde-8b493bd81fd2",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"metadata\": {\n    \"Duis2\": \"<string>\",\n    \"sit790\": \"<string>\",\n    \"in_1a\": \"<string>\",\n    \"cillum_b9f\": \"<string>\",\n    \"ipsum_9\": \"<string>\",\n    \"ut_fc\": \"<string>\",\n    \"quis__6\": \"<string>\",\n    \"eiusmod_22f\": \"<string>\",\n    \"laborisa\": \"<string>\",\n    \"Lorem99c\": \"<string>\",\n    \"exercitation5\": \"<string>\",\n    \"ut_81\": \"<string>\",\n    \"tempor_3_f\": \"<string>\",\n    \"deserunt92\": \"<string>\",\n    \"deserunt1af\": \"<string>\",\n    \"laborum_cc\": \"<string>\",\n    \"dolor_30\": \"<string>\",\n    \"nostrud_0\": \"<string>\",\n    \"laboredf\": \"<string>\",\n    \"aliquip_5\": \"<string>\",\n    \"qui_9a\": \"<string>\",\n    \"ut_dfd\": \"<string>\",\n    \"Excepteur5\": \"<string>\",\n    \"magna6\": \"<string>\",\n    \"ut_50\": \"<string>\",\n    \"deserunt_3_\": \"<string>\",\n    \"doloreff\": \"<string>\",\n    \"sit_0\": \"<string>\",\n    \"commodo_f\": \"<string>\",\n    \"do_4b6\": \"<string>\",\n    \"cillum36\": \"<string>\",\n    \"Lorem_9e6\": \"<string>\",\n    \"exercitation6\": \"<string>\"\n  },\n  \"external_id\": \"|\\n1[{+\\u001c\\\"W\\u001d\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-527465f5-d202-4542-8bde-8b493bd81fd2"
+            },
+            {
+              "id": "61db3f5c-13c6-41bd-af35-e52b3cc6f90f",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"pending\"\n    }\n  ],\n  \"metadata\": {\n    \"Duis2\": \"<string>\",\n    \"sit790\": \"<string>\",\n    \"in_1a\": \"<string>\",\n    \"cillum_b9f\": \"<string>\",\n    \"ipsum_9\": \"<string>\",\n    \"ut_fc\": \"<string>\",\n    \"quis__6\": \"<string>\",\n    \"eiusmod_22f\": \"<string>\",\n    \"laborisa\": \"<string>\",\n    \"Lorem99c\": \"<string>\",\n    \"exercitation5\": \"<string>\",\n    \"ut_81\": \"<string>\",\n    \"tempor_3_f\": \"<string>\",\n    \"deserunt92\": \"<string>\",\n    \"deserunt1af\": \"<string>\",\n    \"laborum_cc\": \"<string>\",\n    \"dolor_30\": \"<string>\",\n    \"nostrud_0\": \"<string>\",\n    \"laboredf\": \"<string>\",\n    \"aliquip_5\": \"<string>\",\n    \"qui_9a\": \"<string>\",\n    \"ut_dfd\": \"<string>\",\n    \"Excepteur5\": \"<string>\",\n    \"magna6\": \"<string>\",\n    \"ut_50\": \"<string>\",\n    \"deserunt_3_\": \"<string>\",\n    \"doloreff\": \"<string>\",\n    \"sit_0\": \"<string>\",\n    \"commodo_f\": \"<string>\",\n    \"do_4b6\": \"<string>\",\n    \"cillum36\": \"<string>\",\n    \"Lorem_9e6\": \"<string>\",\n    \"exercitation6\": \"<string>\"\n  },\n  \"external_id\": \"|\\n1[{+\\u001c\\\"W\\u001d\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:34:24.000Z",
+              "updatedAt": "2026-07-28T03:34:24.000Z",
+              "uid": "35240-61db3f5c-13c6-41bd-af35-e52b3cc6f90f"
+            }
+          ],
+          "createdAt": "2026-07-28T03:34:24.000Z",
+          "updatedAt": "2026-07-28T03:34:24.000Z",
+          "uid": "35240-b960f62d-0e41-4058-a864-105f2665e71a"
+        }
+      ],
+      "id": "9ef53451-481b-4039-98b3-8675ca922e5c",
+      "createdAt": "2026-07-28T03:34:24.000Z",
+      "updatedAt": "2026-07-28T03:34:24.000Z",
+      "uid": "35240-9ef53451-481b-4039-98b3-8675ca922e5c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.workos.com"
+    }
+  ]
+}
