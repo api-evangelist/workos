@@ -5,7 +5,7 @@
       "source": "https://workos.com/blog/rss.xml",
       "feed_url": "https://workos.com/blog/rss.xml",
       "title": "",
-      "saved": 0,
+      "saved": 3,
       "method": "feed"
     },
     {
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 99,
-  "fetched": "2026-08-01T15:49:00Z"
+  "post_count": 125,
+  "fetched": "2026-08-06T14:08:46Z"
 }
