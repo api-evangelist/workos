@@ -1355,6 +1355,9 @@ apis:
   - type: GraphQL
     url: graphql/workos-graphql.md
 common:
+- type: License
+  name: MIT
+  url: https://github.com/workos/openapi-spec/blob/main/LICENSE
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/workos/overview
 - type: AgenticAccess
