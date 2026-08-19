@@ -1,0 +1,187 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal user-management.invitations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-management.invitations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Invitations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/invitations",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the [organization](/reference/organization) that the recipient will join."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The email address of the recipient."
+              }
+            ]
+          },
+          "docs": "Get a list of all of invitations matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Send an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/invitations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an invitation email to the recipient."
+        },
+        {
+          "info": {
+            "name": "Find an Invitation by Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/invitations/by_token/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "The token used to accept the invitation."
+              }
+            ]
+          },
+          "docs": "Retrieve an existing invitation using the token."
+        },
+        {
+          "info": {
+            "name": "Get an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/invitations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the invitation."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing invitation."
+        },
+        {
+          "info": {
+            "name": "Accept an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/invitations/:id/accept",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the invitation."
+              }
+            ]
+          },
+          "docs": "Accepts an invitation and, if linked to an organization, activates the user's membership in that organization."
+        },
+        {
+          "info": {
+            "name": "Resend an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/invitations/:id/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the invitation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resends an invitation email to the recipient. The invitation must be in a pending state."
+        },
+        {
+          "info": {
+            "name": "Revoke an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/invitations/:id/revoke",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the invitation."
+              }
+            ]
+          },
+          "docs": "Revokes an existing invitation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

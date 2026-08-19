@@ -1,0 +1,251 @@
+{
+  "item": [
+    {
+      "id": "4c3e18fe-3038-4f53-8a0a-ddd75d0ccc30",
+      "name": "organizations.feature-flags",
+      "description": {
+        "content": "Manage organization-scoped feature flags.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36ea97b7-55bf-4e3e-b949-6c09044324b9",
+          "name": "List Enabled Feature Flags for an Organization",
+          "request": {
+            "name": "List Enabled Feature Flags for an Organization",
+            "description": {
+              "content": "Get a list of all enabled feature flags for an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organizationId",
+                "feature-flags"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order the results by the creation time."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) Unique identifier of the Organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b21bb32-50d1-45cc-9dbf-717d4ea75db2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "feature-flags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"flag_01EHZNVPK3SFK441A1RGBFSHRT\",\n      \"slug\": \"advanced-analytics\",\n      \"name\": \"Advanced Analytics\",\n      \"description\": \"Enable advanced analytics dashboard feature\",\n      \"owner\": {\n        \"email\": \"jane@example.com\",\n        \"first_name\": \"Jane\",\n        \"last_name\": \"Doe\"\n      },\n      \"tags\": [\n        \"reports\"\n      ],\n      \"enabled\": true,\n      \"default_value\": false,\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\"\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"flag_01EHZNVPK3SFK441A1RGBFSHRT\",\n      \"slug\": \"advanced-analytics\",\n      \"name\": \"Advanced Analytics\",\n      \"description\": \"Enable advanced analytics dashboard feature\",\n      \"owner\": {\n        \"email\": \"jane@example.com\",\n        \"first_name\": \"Jane\",\n        \"last_name\": \"Doe\"\n      },\n      \"tags\": [\n        \"reports\"\n      ],\n      \"enabled\": true,\n      \"default_value\": false,\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\"\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"flag_01HXYZ123456789ABCDEFGHIJ\",\n    \"after\": \"flag_01HXYZ987654321KJIHGFEDCBA\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe851c64-63e7-4eff-a9dd-93aea558baf5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "feature-flags"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "812e00f2-c517-4855-844c-e70d805b6a79",
+    "name": "WorkOS admin-portal organizations.feature-flags API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

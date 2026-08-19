@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal user-management.cors-origins API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-management.cors-origins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a CORS Origin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/cors_origins",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new CORS origin for the current environment. CORS origins allow browser-based applications to make requests to the WorkOS API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

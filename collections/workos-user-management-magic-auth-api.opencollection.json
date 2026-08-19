@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal user-management.magic-auth API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-management.magic-auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Magic Auth Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/magic_auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a one-time authentication code that can be sent to the user's email address. The code expires in 10 minutes. To verify the code, [authenticate the user with Magic Auth](/reference/authkit/authentication/magic-auth)."
+        },
+        {
+          "info": {
+            "name": "Get Magic Auth Code Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/magic_auth/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Magic Auth code."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing [Magic Auth](/reference/authkit/magic-auth) code that can be used to send an email to a user for authentication."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

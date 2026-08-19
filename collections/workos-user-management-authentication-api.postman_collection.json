@@ -1,0 +1,1351 @@
+{
+  "item": [
+    {
+      "id": "d3982348-1d05-4997-94c9-30a1fd67d442",
+      "name": "user-management.authentication",
+      "description": {
+        "content": "User authentication endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e39d428-55a0-432f-af3a-5001f56e6941",
+          "name": "Authenticate",
+          "request": {
+            "name": "Authenticate",
+            "description": {
+              "content": "Authenticate a user with a specified [authentication method](/reference/authkit/authentication).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "authenticate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"<string>\",\n  \"code_verifier\": \"<string>\",\n  \"invitation_token\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"user_agent\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc54ce42-8b1b-494e-9de0-e95adbb69a3a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n  \"client_secret\": \"sk_test_....\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"vBqZKaPpsnJlPfXiDqN7b6VTz\",\n  \"code_verifier\": \"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk\",\n  \"invitation_token\": \"inv_tok_01HXYZ123456789ABCDEFGHIJ\",\n  \"ip_address\": \"203.0.113.42\",\n  \"device_id\": \"device_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_agent\": \"Mozilla/5.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"object\": \"string\",\n    \"id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"profile_picture_url\": \"https://workoscdn.com/images/v1/123abc\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"email_verified\": true,\n    \"external_id\": \"f1ffa2b2-c20b-4d39-be5c-212726e11222\",\n    \"last_sign_in_at\": \"2025-06-25T19:07:33.155Z\",\n    \"created_at\": \"2026-01-15T12:00:00.000Z\",\n    \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n    \"metadata\": {\n      \"timezone\": \"America/New_York\"\n    },\n    \"locale\": \"en-US\"\n  },\n  \"access_token\": \"eyJhb.nNzb19vaWRjX2tleV9.lc5Uk4yWVk5In0\",\n  \"refresh_token\": \"yAjhKk123NLIjdrBdGZPf8pLIDvK\",\n  \"organization_id\": \"org_01H945H0YD4F97JN9MATX7BYAG\",\n  \"authkit_authorization_code\": \"authkit_authz_code_abc123\",\n  \"authentication_method\": \"SSO\",\n  \"impersonator\": {\n    \"email\": \"admin@foocorp.com\",\n    \"reason\": \"Investigating an issue with the customer's account.\"\n  },\n  \"oauth_tokens\": {\n    \"provider\": \"GoogleOAuth\",\n    \"refresh_token\": \"1//04g...\",\n    \"access_token\": \"ya29.a0ARrdaM...\",\n    \"expires_at\": 1735141800,\n    \"scopes\": [\n      \"profile\",\n      \"email\",\n      \"openid\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac523abc-4f4a-49ae-9480-dd04a70b0521",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n  \"client_secret\": \"sk_test_....\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"vBqZKaPpsnJlPfXiDqN7b6VTz\",\n  \"code_verifier\": \"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk\",\n  \"invitation_token\": \"inv_tok_01HXYZ123456789ABCDEFGHIJ\",\n  \"ip_address\": \"203.0.113.42\",\n  \"device_id\": \"device_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_agent\": \"Mozilla/5.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"invalid_organization_id\",\n  \"message\": \"Request could not be processed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce67b54f-894b-4abc-9d19-3a55ab90f64e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n  \"client_secret\": \"sk_test_....\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"vBqZKaPpsnJlPfXiDqN7b6VTz\",\n  \"code_verifier\": \"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk\",\n  \"invitation_token\": \"inv_tok_01HXYZ123456789ABCDEFGHIJ\",\n  \"ip_address\": \"203.0.113.42\",\n  \"device_id\": \"device_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_agent\": \"Mozilla/5.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"mfa_enrollment\",\n  \"message\": \"Request could not be processed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "304d3617-7a6c-4800-8fb3-6af3271800eb",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n  \"client_secret\": \"sk_test_....\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"vBqZKaPpsnJlPfXiDqN7b6VTz\",\n  \"code_verifier\": \"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk\",\n  \"invitation_token\": \"inv_tok_01HXYZ123456789ABCDEFGHIJ\",\n  \"ip_address\": \"203.0.113.42\",\n  \"device_id\": \"device_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_agent\": \"Mozilla/5.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7392838-3bfe-407b-88bd-a234d47a82be",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n  \"client_secret\": \"sk_test_....\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"vBqZKaPpsnJlPfXiDqN7b6VTz\",\n  \"code_verifier\": \"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk\",\n  \"invitation_token\": \"inv_tok_01HXYZ123456789ABCDEFGHIJ\",\n  \"ip_address\": \"203.0.113.42\",\n  \"device_id\": \"device_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_agent\": \"Mozilla/5.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"invalid_request_parameters\",\n  \"message\": \"Validation failed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb47263d-cebf-4fef-87ce-119fcd070ed8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n  \"client_secret\": \"sk_test_....\",\n  \"grant_type\": \"<string>\",\n  \"code\": \"vBqZKaPpsnJlPfXiDqN7b6VTz\",\n  \"code_verifier\": \"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk\",\n  \"invitation_token\": \"inv_tok_01HXYZ123456789ABCDEFGHIJ\",\n  \"ip_address\": \"203.0.113.42\",\n  \"device_id\": \"device_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_agent\": \"Mozilla/5.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"daily_quota_exceeded\",\n  \"message\": \"Request could not be processed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f647f60c-693f-4ae7-af18-17c191c72992",
+          "name": "Get an Authorization URL",
+          "request": {
+            "name": "Get an Authorization URL",
+            "description": {
+              "content": "Generates an OAuth 2.0 authorization URL to authenticate a user with AuthKit or SSO.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "code_challenge_method",
+                  "value": "<string>",
+                  "description": "The only valid PKCE code challenge method is `\"S256\"`. Required when specifying a `code_challenge`."
+                },
+                {
+                  "disabled": false,
+                  "key": "code_challenge",
+                  "value": "<string>",
+                  "description": "Code challenge derived from the code verifier used for the PKCE flow."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain_hint",
+                  "value": "<string>",
+                  "description": "A domain hint for SSO connection lookup."
+                },
+                {
+                  "disabled": false,
+                  "key": "connection_id",
+                  "value": "<string>",
+                  "description": "The ID of an SSO connection to use for authentication."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "<string>",
+                  "description": "Key/value pairs of query parameters to pass to the OAuth provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "<string>",
+                  "description": "Key/value pairs of query parameters to pass to the OAuth provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "<string>",
+                  "description": "Key/value pairs of query parameters to pass to the OAuth provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_3",
+                  "value": "<string>",
+                  "description": "Key/value pairs of query parameters to pass to the OAuth provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "provider_scopes",
+                  "value": "<string>,<string>",
+                  "description": "Additional OAuth scopes to request from the identity provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "invitation_token",
+                  "value": "<string>",
+                  "description": "A token representing a user invitation to redeem during authentication."
+                },
+                {
+                  "disabled": false,
+                  "key": "screen_hint",
+                  "value": "sign-in",
+                  "description": "Used to specify which screen to display when the provider is `authkit`."
+                },
+                {
+                  "disabled": false,
+                  "key": "login_hint",
+                  "value": "<string>",
+                  "description": "A hint to the authorization server about the login identifier the user might use."
+                },
+                {
+                  "disabled": false,
+                  "key": "provider",
+                  "value": "<string>",
+                  "description": "The OAuth provider to authenticate with (e.g., GoogleOAuth, MicrosoftOAuth, GitHubOAuth)."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt",
+                  "value": "<string>",
+                  "description": "Controls the authentication flow behavior for the user."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "An opaque value used to maintain state between the request and the callback."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<string>",
+                  "description": "The ID of the organization to authenticate the user against."
+                },
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "(Required) The response type of the application."
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<uri>",
+                  "description": "(Required) The callback URI where the authorization code will be sent after authentication."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the WorkOS environment client."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7769fbd7-72cd-4a7b-a85c-59959c85fd35",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "code_challenge_method",
+                      "value": "S256"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM"
+                    },
+                    {
+                      "key": "domain_hint",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "connection_id",
+                      "value": "conn_01EHQMYV6MBK39QC5PZXHY59C3"
+                    },
+                    {
+                      "key": "hd",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "access_type",
+                      "value": "offline"
+                    },
+                    {
+                      "key": "provider_scopes",
+                      "value": "openid,profile,email"
+                    },
+                    {
+                      "key": "invitation_token",
+                      "value": "inv_token_abc123"
+                    },
+                    {
+                      "key": "screen_hint",
+                      "value": "sign-in"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "GoogleOAuth"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "login"
+                    },
+                    {
+                      "key": "state",
+                      "value": "eyJyZXR1cm5UbyI6ICIvZGFzaGJvYXJkIn0="
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHQMYV6MBK39QC5PZXHY59C3"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "code"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/callback"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "client_01HZBC6N1EB1ZY7KG32X"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "https://qYnPUfIQRXjaLZyFbqHYTyXKUXlFMA.kujnNed7fuAi-s3Z.h,U9BOaupjV1xrAwjgB+RGPnaF6e",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "03346f68-ff6e-499d-8b76-886a4cf8aff8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "code_challenge_method",
+                      "value": "S256"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM"
+                    },
+                    {
+                      "key": "domain_hint",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "connection_id",
+                      "value": "conn_01EHQMYV6MBK39QC5PZXHY59C3"
+                    },
+                    {
+                      "key": "hd",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "access_type",
+                      "value": "offline"
+                    },
+                    {
+                      "key": "provider_scopes",
+                      "value": "openid,profile,email"
+                    },
+                    {
+                      "key": "invitation_token",
+                      "value": "inv_token_abc123"
+                    },
+                    {
+                      "key": "screen_hint",
+                      "value": "sign-in"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "GoogleOAuth"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "login"
+                    },
+                    {
+                      "key": "state",
+                      "value": "eyJyZXR1cm5UbyI6ICIvZGFzaGJvYXJkIn0="
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHQMYV6MBK39QC5PZXHY59C3"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "code"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/callback"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "client_01HZBC6N1EB1ZY7KG32X"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "https://qYnPUfIQRXjaLZyFbqHYTyXKUXlFMA.kujnNed7fuAi-s3Z.h,U9BOaupjV1xrAwjgB+RGPnaF6e",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d0c7424-7ea8-4267-853a-8316bd647993",
+          "name": "Get Device Authorization URL",
+          "request": {
+            "name": "Get Device Authorization URL",
+            "description": {
+              "content": "Initiates the CLI Auth flow by requesting a device code and verification URLs. This endpoint implements the OAuth 2.0 Device Authorization Flow ([RFC 8628](https://datatracker.ietf.org/doc/html/rfc8628)) and is designed for command-line applications or other devices with limited input capabilities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "authorize",
+                "device"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b313aae-ca4e-46a4-8ab6-d0b4d3e378cc",
+              "name": "Device authorization response with codes and verification URI.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authorize",
+                    "device"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HZBC6N1EB1ZY7KG32X\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"device_code\": \"CVE2wOfIFK4vhmiDBntpX9s8KT2f0qngpWYL0LGy9HxYgBRXUKIUkZB9BgIFho5h\",\n  \"user_code\": \"BCDF-GHJK\",\n  \"verification_uri\": \"https://authkit_domain/device\",\n  \"expires_in\": 300,\n  \"verification_uri_complete\": \"https://authkit_domain/device?user_code=BCDF-GHJK\",\n  \"interval\": 5\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76bcb107-86e9-4678-b506-6b93e5a5c687",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authorize",
+                    "device"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HZBC6N1EB1ZY7KG32X\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_client\",\n  \"error_description\": \"Unknown client\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5aec4e4d-902e-4c3f-b66c-2088601b061b",
+              "name": "Feature not enabled for team.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "authorize",
+                    "device"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HZBC6N1EB1ZY7KG32X\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"access_denied\",\n  \"error_description\": \"Device authorization grant is not enabled for this team\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b398039b-c242-4a44-b4a5-4d543d614d13",
+          "name": "Logout",
+          "request": {
+            "name": "Logout",
+            "description": {
+              "content": "Logout a user from the current [session](/reference/authkit/session).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "sessions",
+                "logout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "session_id",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the session to revoke. This can be extracted from the `sid` claim of the access token."
+                },
+                {
+                  "disabled": false,
+                  "key": "return_to",
+                  "value": "<string>",
+                  "description": "The URL to redirect the user to after session revocation."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6784bda-749d-4f95-91b9-b36bf3926b1f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "sessions",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "session_id",
+                      "value": "session_01H93ZY4F80QPBEZ1R5B2SHQG8"
+                    },
+                    {
+                      "key": "return_to",
+                      "value": "https://example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "https://qYnPUfIQRXjaLZyFbqHYTyXKUXlFMA.kujnNed7fuAi-s3Z.h,U9BOaupjV1xrAwjgB+RGPnaF6e",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d260922e-ff2c-423d-985d-58846e54dcf9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "sessions",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "session_id",
+                      "value": "session_01H93ZY4F80QPBEZ1R5B2SHQG8"
+                    },
+                    {
+                      "key": "return_to",
+                      "value": "https://example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "location",
+                  "value": "https://qYnPUfIQRXjaLZyFbqHYTyXKUXlFMA.kujnNed7fuAi-s3Z.h,U9BOaupjV1xrAwjgB+RGPnaF6e",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b28539cb-a7cd-453e-aaa2-59b93990d490",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "sessions",
+                    "logout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "session_id",
+                      "value": "session_01H93ZY4F80QPBEZ1R5B2SHQG8"
+                    },
+                    {
+                      "key": "return_to",
+                      "value": "https://example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dfab03eb-c57e-4dd9-935c-e236187aa12f",
+          "name": "Revoke Session",
+          "request": {
+            "name": "Revoke Session",
+            "description": {
+              "content": "Revoke a [user session](/reference/authkit/session).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "sessions",
+                "revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_id\": \"<string>\",\n  \"return_to\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31ae1055-341d-4103-aa06-4623fd22fa8b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "sessions",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"session_01H93ZY4F80QPBEZ1R5B2SHQG8\",\n  \"return_to\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8064df9-98c7-4bdb-bd2e-15fd9e7e7fbf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "sessions",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_id\": \"session_01H93ZY4F80QPBEZ1R5B2SHQG8\",\n  \"return_to\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "268ee1ca-7b4a-4164-8d1c-4d38e797efe4",
+    "name": "WorkOS admin-portal user-management.authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

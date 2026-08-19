@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal api_keys API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "api_keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/api_keys/validations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate an API key value and return the API key object if valid."
+        },
+        {
+          "info": {
+            "name": "Delete an API Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/api_keys/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the API key."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an API key. This action cannot be undone. Once deleted, any requests using this API key will fail authentication."
+        },
+        {
+          "info": {
+            "name": "List API Keys for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:userId/api_keys",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the organization to filter user API keys by. When provided, only API keys created against that organization membership are returned."
+              }
+            ]
+          },
+          "docs": "Get a list of API keys owned by a specific user."
+        },
+        {
+          "info": {
+            "name": "Create an API Key for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/users/:userId/api_keys",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new API key owned by a user. The user must have an active membership in the specified organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

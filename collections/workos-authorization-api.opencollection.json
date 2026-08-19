@@ -1,0 +1,1164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal authorization API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check Authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/check",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership to check."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check if an organization membership has a specific permission on a resource. Supports identification by resource_id OR by resource_external_id + resource_type_slug."
+        },
+        {
+          "info": {
+            "name": "List Resources for Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/resources",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "permission_slug",
+                "value": "",
+                "type": "query",
+                "description": "The permission slug to filter by. Only child resources where the organization membership has this permission are returned."
+              },
+              {
+                "name": "parent_resource_id",
+                "value": "",
+                "type": "query",
+                "description": "The WorkOS ID of the parent resource. Provide this or both `parent_resource_external_id` and `parent_resource_type_slug`, but not both. Mutually exclusive with `parent_resource_type_slug` and `parent_resource_external_id`."
+              },
+              {
+                "name": "parent_resource_type_slug",
+                "value": "",
+                "type": "query",
+                "description": "The slug of the parent resource type. Must be provided together with `parent_resource_external_id`. Required with `parent_resource_external_id`. Mutually exclusive with `parent_resource_id`."
+              },
+              {
+                "name": "parent_resource_external_id",
+                "value": "",
+                "type": "query",
+                "description": "The application-specific external identifier of the parent resource. Must be provided together with `parent_resource_type_slug`. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`."
+              }
+            ]
+          },
+          "docs": "Returns all child resources of a parent resource where the organization membership has a specific permission. This is useful for resource discovery—answering \"What projects can this user access in this workspace?\"\n\nYou must provide either `parent_resource_id` or both `parent_resource_external_id` and `parent_resource_type_slug` to identify the parent resource."
+        },
+        {
+          "info": {
+            "name": "List Effective Permissions for an Organization Membership on a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/resources/:resource_id/permissions",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Returns all permissions the organization membership effectively has on a resource, including permissions inherited through roles assigned to ancestor resources."
+        },
+        {
+          "info": {
+            "name": "List Effective Permissions for an Organization Membership on a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/resources/:resource_type_slug/:external_id/permissions",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              }
+            ]
+          },
+          "docs": "Returns all permissions the organization membership effectively has on a resource identified by its external ID, including permissions inherited through roles assigned to ancestor resources."
+        },
+        {
+          "info": {
+            "name": "List Role Assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/role_assignments",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the ID of the resource."
+              },
+              {
+                "name": "resource_external_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the external ID of the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the slug of the resource type."
+              }
+            ]
+          },
+          "docs": "List all role assignments for an organization membership. This returns all roles that have been assigned to the user on resources, including organization-level and sub-resource roles."
+        },
+        {
+          "info": {
+            "name": "Assign a Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/role_assignments",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign a role to an organization membership on a specific resource."
+        },
+        {
+          "info": {
+            "name": "Remove a Role Assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/role_assignments",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a role assignment by role slug and resource."
+        },
+        {
+          "info": {
+            "name": "Remove a Role Assignment by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organization_memberships/:organization_membership_id/role_assignments/:role_assignment_id",
+            "params": [
+              {
+                "name": "organization_membership_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization membership."
+              },
+              {
+                "name": "role_assignment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the role assignment to remove."
+              }
+            ]
+          },
+          "docs": "Remove a role assignment using its ID."
+        },
+        {
+          "info": {
+            "name": "List Custom Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              }
+            ]
+          },
+          "docs": "Get a list of all roles that apply to an organization. This includes both environment roles and custom roles, returned in priority order."
+        },
+        {
+          "info": {
+            "name": "Create a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom role for this organization."
+        },
+        {
+          "info": {
+            "name": "Get a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ]
+          },
+          "docs": "Retrieve a role that applies to an organization by its slug. This can return either an environment role or a custom role."
+        },
+        {
+          "info": {
+            "name": "Update a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing custom role. Only the fields provided in the request body will be updated."
+        },
+        {
+          "info": {
+            "name": "Delete a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ]
+          },
+          "docs": "Delete an existing custom role."
+        },
+        {
+          "info": {
+            "name": "Add a Permission to a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug/permissions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a single permission to a custom role. If the permission is already assigned to the role, this operation has no effect."
+        },
+        {
+          "info": {
+            "name": "Set Permissions for a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug/permissions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace all permissions on a custom role with the provided list."
+        },
+        {
+          "info": {
+            "name": "Remove a Permission from a Custom Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organizations/:organizationId/roles/:slug/permissions/:permissionSlug",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the role."
+              },
+              {
+                "name": "permissionSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the permission to remove."
+              }
+            ]
+          },
+          "docs": "Remove a single permission from a custom role by its slug."
+        },
+        {
+          "info": {
+            "name": "Get a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              }
+            ]
+          },
+          "docs": "Retrieve the details of an authorization resource by its external ID, organization, and resource type. This is useful when you only have the external ID from your system and need to fetch the full resource details."
+        },
+        {
+          "info": {
+            "name": "Update a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing authorization resource using its external ID."
+        },
+        {
+          "info": {
+            "name": "Delete an Authorization Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              },
+              {
+                "name": "cascade_delete",
+                "value": "",
+                "type": "query",
+                "description": "If true, deletes all descendant resources and role assignments. If not set and the resource has children or assignments, the request will fail."
+              }
+            ]
+          },
+          "docs": "Delete an authorization resource by organization, resource type, and external ID. This also deletes all descendant resources."
+        },
+        {
+          "info": {
+            "name": "List Memberships for a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id/organization_memberships",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type this resource belongs to."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "permission_slug",
+                "value": "",
+                "type": "query",
+                "description": "The permission slug to filter by. Only users with this permission on the resource are returned."
+              },
+              {
+                "name": "assignment",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assignment type. Use \"direct\" for direct assignments only, or \"indirect\" to include inherited assignments."
+              }
+            ]
+          },
+          "docs": "Returns all organization memberships that have a specific permission on a resource, using the resource's external ID. This is useful for answering \"Who can access this resource?\" when you only have the external ID."
+        },
+        {
+          "info": {
+            "name": "List Role Assignments for a Resource by External ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/organizations/:organization_id/resources/:resource_type_slug/:external_id/role_assignments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the organization that owns the resource."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the resource type."
+              },
+              {
+                "name": "external_id",
+                "value": "",
+                "type": "path",
+                "description": "An identifier you provide to reference the resource in your system."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "role_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the slug of the role."
+              }
+            ]
+          },
+          "docs": "List all role assignments granted on a resource, identified by its external ID. Each assignment includes the organization membership it was granted to."
+        },
+        {
+          "info": {
+            "name": "List Resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/resources",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by organization ID."
+              },
+              {
+                "name": "resource_type_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by resource type slug."
+              },
+              {
+                "name": "resource_external_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by external ID."
+              },
+              {
+                "name": "parent_resource_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by parent resource ID. Mutually exclusive with `parent_resource_type_slug` and `parent_external_id`."
+              },
+              {
+                "name": "parent_resource_type_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by parent resource type slug. Required with `parent_external_id`. Mutually exclusive with `parent_resource_id`."
+              },
+              {
+                "name": "parent_external_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter resources by parent external ID. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of authorization resources."
+        },
+        {
+          "info": {
+            "name": "Create an Authorization Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/resources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new authorization resource."
+        },
+        {
+          "info": {
+            "name": "Get a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/resources/:resource_id",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              }
+            ]
+          },
+          "docs": "Retrieve the details of an authorization resource by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/authorization/resources/:resource_id",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing authorization resource."
+        },
+        {
+          "info": {
+            "name": "Delete an Authorization Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/authorization/resources/:resource_id",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              },
+              {
+                "name": "cascade_delete",
+                "value": "",
+                "type": "query",
+                "description": "If true, deletes all descendant resources and role assignments. If not set and the resource has children or assignments, the request will fail."
+              }
+            ]
+          },
+          "docs": "Delete an authorization resource and all its descendants."
+        },
+        {
+          "info": {
+            "name": "List Organization Memberships for Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/resources/:resource_id/organization_memberships",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "permission_slug",
+                "value": "",
+                "type": "query",
+                "description": "The permission slug to filter by. Only users with this permission on the resource are returned."
+              },
+              {
+                "name": "assignment",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assignment type. Use `direct` for direct assignments only, or `indirect` to include inherited assignments."
+              }
+            ]
+          },
+          "docs": "Returns all organization memberships that have a specific permission on a resource instance. This is useful for answering \"Who can access this resource?\"."
+        },
+        {
+          "info": {
+            "name": "List Role Assignments for a Resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/resources/:resource_id/role_assignments",
+            "params": [
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the authorization resource."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "role_slug",
+                "value": "",
+                "type": "query",
+                "description": "Filter assignments by the slug of the role."
+              }
+            ]
+          },
+          "docs": "List all role assignments granted on a specific resource instance. Each assignment includes the organization membership it was granted to."
+        },
+        {
+          "info": {
+            "name": "List Environment Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/roles"
+          },
+          "docs": "List all environment roles in priority order."
+        },
+        {
+          "info": {
+            "name": "Create an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new environment role."
+        },
+        {
+          "info": {
+            "name": "Get an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/authorization/roles/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the environment role."
+              }
+            ]
+          },
+          "docs": "Get an environment role by its slug."
+        },
+        {
+          "info": {
+            "name": "Update an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.workos.com/authorization/roles/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the environment role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing environment role."
+        },
+        {
+          "info": {
+            "name": "Add a Permission to an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/authorization/roles/:slug/permissions",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the environment role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a single permission to an environment role. If the permission is already assigned to the role, this operation has no effect."
+        },
+        {
+          "info": {
+            "name": "Set Permissions for an Environment Role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/authorization/roles/:slug/permissions",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the environment role."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace all permissions on an environment role with the provided list."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

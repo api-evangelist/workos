@@ -1,0 +1,1732 @@
+{
+  "item": [
+    {
+      "id": "5a4b7c83-c4f0-4c7d-bd78-50b8bf53ae30",
+      "name": "user-management.organization-membership",
+      "description": {
+        "content": "Manage user organization memberships.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e3f3df4-8163-416e-a097-5f73d40e7924",
+          "name": "List Organization Memberships",
+          "request": {
+            "name": "List Organization Memberships",
+            "description": {
+              "content": "Get a list of all organization memberships matching the criteria specified. At least one of `user_id` or `organization_id` must be provided. By default only active memberships are returned. Use the `statuses` parameter to filter by other statuses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "organization_memberships"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<string>",
+                  "description": "The ID of the [organization](/reference/organization) which the user belongs to."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>,<string>",
+                  "description": "Filter by the status of the organization membership. Array including any of `active`, `inactive`, or `pending`."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>",
+                  "description": "The ID of the [user](/reference/authkit/user)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "124301e4-145a-442b-a2f4-b22421fb434b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01E4ZCR3C56J083X43JQXF3JK5"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "active"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"list_metadata\": {\n    \"before\": \"om_01HXYZ123456789ABCDEFGHIJ\",\n    \"after\": \"om_01HXYZ987654321KJIHGFEDCBA\"\n  },\n  \"data\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"om_01HXYZ123456789ABCDEFGHIJ\",\n      \"user_id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n      \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n      \"status\": \"active\",\n      \"directory_managed\": false,\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"role\": {\n        \"slug\": \"admin\"\n      },\n      \"user\": {\n        \"object\": \"string\",\n        \"id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n        \"first_name\": \"Marcelina\",\n        \"last_name\": \"Davis\",\n        \"profile_picture_url\": \"https://workoscdn.com/images/v1/123abc\",\n        \"email\": \"marcelina.davis@example.com\",\n        \"email_verified\": true,\n        \"external_id\": \"f1ffa2b2-c20b-4d39-be5c-212726e11222\",\n        \"last_sign_in_at\": \"2025-06-25T19:07:33.155Z\",\n        \"created_at\": \"2026-01-15T12:00:00.000Z\",\n        \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n        \"metadata\": {\n          \"timezone\": \"America/New_York\"\n        },\n        \"locale\": \"en-US\"\n      },\n      \"organization_name\": \"Acme Corp\",\n      \"custom_attributes\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"om_01HXYZ123456789ABCDEFGHIJ\",\n      \"user_id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n      \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n      \"status\": \"active\",\n      \"directory_managed\": false,\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"role\": {\n        \"slug\": \"admin\"\n      },\n      \"user\": {\n        \"object\": \"string\",\n        \"id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n        \"first_name\": \"Marcelina\",\n        \"last_name\": \"Davis\",\n        \"profile_picture_url\": \"https://workoscdn.com/images/v1/123abc\",\n        \"email\": \"marcelina.davis@example.com\",\n        \"email_verified\": true,\n        \"external_id\": \"f1ffa2b2-c20b-4d39-be5c-212726e11222\",\n        \"last_sign_in_at\": \"2025-06-25T19:07:33.155Z\",\n        \"created_at\": \"2026-01-15T12:00:00.000Z\",\n        \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n        \"metadata\": {\n          \"timezone\": \"America/New_York\"\n        },\n        \"locale\": \"en-US\"\n      },\n      \"organization_name\": \"Acme Corp\",\n      \"custom_attributes\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "deaa7567-7987-432d-87e3-6eb3016413a8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01E4ZCR3C56J083X43JQXF3JK5"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "active"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"invalid_request_parameters\",\n  \"message\": \"Validation failed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afe876b9-02b2-4a28-9d62-b13ec2034e45",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01E4ZCR3C56J083X43JQXF3JK5"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "active"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa09cdee-760a-48cb-b1ea-53c9c1663f7e",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01E4ZCR3C56J083X43JQXF3JK5"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "active"
+                    },
+                    {
+                      "key": "user_id",
+                      "value": "user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9d007c0-689d-4baa-844b-e9190bdcfe9a",
+          "name": "Create an Organization Membership",
+          "request": {
+            "name": "Create an Organization Membership",
+            "description": {
+              "content": "Creates a new `active` organization membership for the given organization and user.\n\nCalling this API with an organization and user that match an `inactive` organization membership will activate the membership with the specified role(s).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "organization_memberships"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1b20916-7fcc-44fa-a786-bd76d2b41d7e",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"id\": \"om_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_id\": \"user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E\",\n  \"organization_id\": \"org_01E4ZCR3C56J083X43JQXF3JK5\",\n  \"status\": \"active\",\n  \"directory_managed\": false,\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"role\": {\n    \"slug\": \"admin\"\n  },\n  \"user\": {\n    \"object\": \"string\",\n    \"id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"profile_picture_url\": \"https://workoscdn.com/images/v1/123abc\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"email_verified\": true,\n    \"external_id\": \"f1ffa2b2-c20b-4d39-be5c-212726e11222\",\n    \"last_sign_in_at\": \"2025-06-25T19:07:33.155Z\",\n    \"created_at\": \"2026-01-15T12:00:00.000Z\",\n    \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n    \"metadata\": {\n      \"timezone\": \"America/New_York\"\n    },\n    \"locale\": \"en-US\"\n  },\n  \"organization_name\": \"Acme Corp\",\n  \"custom_attributes\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "617d1c09-7030-4f06-94a2-e8c13cd41e96",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A pending organization membership cannot be reactivated. The user needs to accept the invitation instead.\",\n  \"code\": \"cannot_reactivate_pending_organization_membership\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4369dd1-6f18-4fa9-b833-a9bc311f9521",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c57be39b-def1-4163-b569-95dfbb60cc2f",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"invalid_request_parameters\",\n  \"message\": \"Validation failed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39a6c9d6-a970-45b8-b5f8-db370c79b352",
+          "name": "Get an Organization Membership",
+          "request": {
+            "name": "Get an Organization Membership",
+            "description": {
+              "content": "Get the details of an existing organization membership.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "organization_memberships",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique ID of the organization membership."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2716a374-8ce4-4d8f-b32d-955497d9c82e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"id\": \"om_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"status\": \"active\",\n  \"directory_managed\": false,\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"role\": {\n    \"slug\": \"admin\"\n  },\n  \"user\": {\n    \"object\": \"string\",\n    \"id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"profile_picture_url\": \"https://workoscdn.com/images/v1/123abc\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"email_verified\": true,\n    \"external_id\": \"f1ffa2b2-c20b-4d39-be5c-212726e11222\",\n    \"last_sign_in_at\": \"2025-06-25T19:07:33.155Z\",\n    \"created_at\": \"2026-01-15T12:00:00.000Z\",\n    \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n    \"metadata\": {\n      \"timezone\": \"America/New_York\"\n    },\n    \"locale\": \"en-US\"\n  },\n  \"organization_name\": \"Acme Corp\",\n  \"custom_attributes\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b270a8a-640b-4e6c-9635-1e29cf008592",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23fc491a-81ed-4e29-b24c-a0ec69ae41b5",
+          "name": "Delete an Organization Membership",
+          "request": {
+            "name": "Delete an Organization Membership",
+            "description": {
+              "content": "Permanently deletes an existing organization membership. It cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "organization_memberships",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique ID of the organization membership."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62b7605b-b421-4c66-91f1-488b84b4c8a4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7932ab46-293c-4ece-9f20-f74ecf30b0d5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb793b7c-08e4-4bd8-bf8a-ec2a93d5da45",
+          "name": "Update an Organization Membership",
+          "request": {
+            "name": "Update an Organization Membership",
+            "description": {
+              "content": "Update the details of an existing organization membership.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "organization_memberships",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique ID of the organization membership."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "354a476c-d0a2-4f09-9247-0956517924ee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"id\": \"om_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"status\": \"active\",\n  \"directory_managed\": false,\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"role\": {\n    \"slug\": \"admin\"\n  },\n  \"user\": {\n    \"object\": \"string\",\n    \"id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"profile_picture_url\": \"https://workoscdn.com/images/v1/123abc\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"email_verified\": true,\n    \"external_id\": \"f1ffa2b2-c20b-4d39-be5c-212726e11222\",\n    \"last_sign_in_at\": \"2025-06-25T19:07:33.155Z\",\n    \"created_at\": \"2026-01-15T12:00:00.000Z\",\n    \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n    \"metadata\": {\n      \"timezone\": \"America/New_York\"\n    },\n    \"locale\": \"en-US\"\n  },\n  \"organization_name\": \"Acme Corp\",\n  \"custom_attributes\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2e66a8c-2ec9-434d-b886-8e96dc096eee",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8f9090a-9efa-43e9-96f4-4f7fdfd71b21",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"invalid_request_parameters\",\n  \"message\": \"Validation failed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec7e865c-b85c-46f5-bac8-505cb5b2dd5e",
+          "name": "Deactivate an Organization Membership",
+          "request": {
+            "name": "Deactivate an Organization Membership",
+            "description": {
+              "content": "Deactivates an `active` organization membership. Emits an [organization_membership.updated](/events/organization-membership) event upon successful deactivation.\n\n- Deactivating an `inactive` membership is a no-op and does not emit an event.\n- Deactivating a `pending` membership returns an error. This membership should be [deleted](/reference/authkit/organization-membership/delete) instead.\n\nSee the [membership management documentation](/authkit/users-organizations/organizations/membership-management) for additional details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "organization_memberships",
+                ":id",
+                "deactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique ID of the organization membership."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74cec22e-f9fe-4916-8f02-8c524a1243f0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"id\": \"om_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"status\": \"inactive\",\n  \"directory_managed\": false,\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"role\": {\n    \"slug\": \"admin\"\n  },\n  \"user\": {\n    \"object\": \"string\",\n    \"id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"profile_picture_url\": \"https://workoscdn.com/images/v1/123abc\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"email_verified\": true,\n    \"external_id\": \"f1ffa2b2-c20b-4d39-be5c-212726e11222\",\n    \"last_sign_in_at\": \"2025-06-25T19:07:33.155Z\",\n    \"created_at\": \"2026-01-15T12:00:00.000Z\",\n    \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n    \"metadata\": {\n      \"timezone\": \"America/New_York\"\n    },\n    \"locale\": \"en-US\"\n  },\n  \"organization_name\": \"Acme Corp\",\n  \"custom_attributes\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11d6b562-6097-4256-a945-c3baebd87787",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A pending organization membership cannot be deactivated. This membership should be deleted instead.\",\n  \"code\": \"cannot_deactivate_pending_organization_membership\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "935acce4-bd9e-4735-bd3f-72e3c47b5f67",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5453434d-5661-4846-b17e-a622d32c341f",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"invalid_request_parameters\",\n  \"message\": \"Validation failed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02e337f6-9f03-4702-b352-63999e5eba6e",
+          "name": "Reactivate an Organization Membership",
+          "request": {
+            "name": "Reactivate an Organization Membership",
+            "description": {
+              "content": "Reactivates an `inactive` organization membership, retaining the pre-existing role(s). Emits an [organization_membership.updated](/events/organization-membership) event upon successful reactivation.\n\n- Reactivating an `active` membership is a no-op and does not emit an event.\n- Reactivating a `pending` membership returns an error. The user needs to [accept the invitation](/authkit/invitations) instead.\n\nSee the [membership management documentation](/authkit/users-organizations/organizations/membership-management) for additional details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "organization_memberships",
+                ":id",
+                "reactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique ID of the organization membership."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31feda4a-1eeb-4b74-9f1d-168775fd5141",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id",
+                    "reactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"id\": \"om_01HXYZ123456789ABCDEFGHIJ\",\n  \"user_id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"status\": \"active\",\n  \"directory_managed\": false,\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"role\": {\n    \"slug\": \"admin\"\n  },\n  \"user\": {\n    \"object\": \"string\",\n    \"id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"profile_picture_url\": \"https://workoscdn.com/images/v1/123abc\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"email_verified\": true,\n    \"external_id\": \"f1ffa2b2-c20b-4d39-be5c-212726e11222\",\n    \"last_sign_in_at\": \"2025-06-25T19:07:33.155Z\",\n    \"created_at\": \"2026-01-15T12:00:00.000Z\",\n    \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n    \"metadata\": {\n      \"timezone\": \"America/New_York\"\n    },\n    \"locale\": \"en-US\"\n  },\n  \"organization_name\": \"Acme Corp\",\n  \"custom_attributes\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c63f4c46-e4b2-4837-bc09-2231d071f2b6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id",
+                    "reactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A pending organization membership cannot be reactivated. The user needs to accept the invitation instead.\",\n  \"code\": \"cannot_reactivate_pending_organization_membership\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7dbe71d-41ff-4eb0-a876-b6e8be5cb404",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id",
+                    "reactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f489252-af0a-4acd-9d5d-21e860720633",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "organization_memberships",
+                    ":id",
+                    "reactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the organization membership."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"invalid_request_parameters\",\n  \"message\": \"Validation failed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "279e993a-8dbe-433e-acc3-73e5b6784381",
+    "name": "WorkOS admin-portal user-management.organization-membership API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

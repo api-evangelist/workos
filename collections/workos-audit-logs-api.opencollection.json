@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal audit-logs API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "audit-logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/audit_logs/actions",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Get a list of all Audit Log actions in the current environment."
+        },
+        {
+          "info": {
+            "name": "List Schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/audit_logs/actions/:actionName/schemas",
+            "params": [
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Audit Log action."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Get a list of all schemas for the Audit Logs action identified by `:name`."
+        },
+        {
+          "info": {
+            "name": "Create Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/audit_logs/actions/:actionName/schemas",
+            "params": [
+              {
+                "name": "actionName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Audit Log action."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Audit Log schema used to validate the payload of incoming Audit Log Events. If the `action` does not exist, it will also be created."
+        },
+        {
+          "info": {
+            "name": "Create Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/audit_logs/events",
+            "headers": [
+              {
+                "name": "idempotency-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Audit Log Event.\n\nThis API supports idempotency which guarantees that performing the same operation multiple times will have the same result as if the operation were performed only once. This is handy in situations where you may need to retry a request due to a failure or prevent accidental duplicate requests from creating more than one resource.\n\nTo achieve idempotency, you can add `Idempotency-Key` request header to a Create Event request with a unique string as the value. Each subse"
+        },
+        {
+          "info": {
+            "name": "Create Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/audit_logs/exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Audit Log Export. Exports are scoped to a single organization within a specified date range."
+        },
+        {
+          "info": {
+            "name": "Get Export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/audit_logs/exports/:auditLogExportId",
+            "params": [
+              {
+                "name": "auditLogExportId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Audit Log Export."
+              }
+            ]
+          },
+          "docs": "Get an Audit Log Export. The URL will expire after 10 minutes. If the export is needed again at a later time, refetching the export will regenerate the URL."
+        },
+        {
+          "info": {
+            "name": "Get Retention",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organizations/:id/audit_logs_retention",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              }
+            ]
+          },
+          "docs": "Get the configured event retention period for the given Organization."
+        },
+        {
+          "info": {
+            "name": "Set Retention",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/organizations/:id/audit_logs_retention",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the Organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the event retention period for the given Organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal user-management.redirect-uris API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-management.redirect-uris",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Redirect URI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/redirect_uris",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new redirect URI for an environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

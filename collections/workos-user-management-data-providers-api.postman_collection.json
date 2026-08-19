@@ -1,0 +1,779 @@
+{
+  "item": [
+    {
+      "id": "4d5dc33b-5826-4237-86d9-4bae553adde6",
+      "name": "user-management.data-providers",
+      "description": {
+        "content": "Manage data providers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "db72af4f-d83c-4437-8d92-ca9eb5b0be75",
+          "name": "Get a Connected Account",
+          "request": {
+            "name": "Get a Connected Account",
+            "description": {
+              "content": "Retrieves a user's [connected account](/reference/pipes/connected-account) for a specific provider.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "users",
+                ":user_id",
+                "connected_accounts",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<string>",
+                  "description": "An [Organization](/reference/organization) identifier. Optional parameter if the connection is scoped to an organization."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_id",
+                  "description": "(Required) A [User](/reference/authkit/user) identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8caa8cf-64b0-498f-bb3e-230e9def1f2b",
+              "name": "The connected account was retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":user_id",
+                    "connected_accounts",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) A [User](/reference/authkit/user) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"id\": \"data_installation_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"user_id\": \"user_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"organization_id\": \"string\",\n  \"scopes\": [\n    \"repo\",\n    \"user:email\"\n  ],\n  \"state\": \"connected\",\n  \"created_at\": \"2024-01-16T14:20:00.000Z\",\n  \"updated_at\": \"2024-01-16T14:20:00.000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddb1d3af-f602-4643-b234-90f7a3f1dab0",
+              "name": "The request is missing a valid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":user_id",
+                    "connected_accounts",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) A [User](/reference/authkit/user) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f20c2dd0-14a9-4f0d-b22e-5c2a7fe86576",
+              "name": "The user, organization, or connected account was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":user_id",
+                    "connected_accounts",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) A [User](/reference/authkit/user) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c29dc34-159d-4472-b35c-609885981a7b",
+          "name": "Delete a Connected Account",
+          "request": {
+            "name": "Delete a Connected Account",
+            "description": {
+              "content": "Disconnects WorkOS's account for the user, including removing any stored access and refresh tokens. The user will need to reauthorize if they want to reconnect. This does not revoke access on the provider side.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "users",
+                ":user_id",
+                "connected_accounts",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<string>",
+                  "description": "An [Organization](/reference/organization) identifier. Optional parameter if the connection is scoped to an organization."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_id",
+                  "description": "(Required) A [User](/reference/authkit/user) identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "942ea86b-41f1-42a9-a333-4763b7db696a",
+              "name": "The connected account was deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":user_id",
+                    "connected_accounts",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) A [User](/reference/authkit/user) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c3a593f-53fe-4684-b640-50e5867dda0e",
+              "name": "The request is missing a valid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":user_id",
+                    "connected_accounts",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) A [User](/reference/authkit/user) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "70622099-de7f-4c66-b455-703d6d780070",
+              "name": "The user, organization, or connected account was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":user_id",
+                    "connected_accounts",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) A [User](/reference/authkit/user) identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b211dbc6-249d-4a9c-a3a4-647a2e947c94",
+          "name": "List Providers",
+          "request": {
+            "name": "List Providers",
+            "description": {
+              "content": "Retrieves a list of available providers and the user's connection status for each. Returns all providers configured for your environment, along with the user's [connected account](/reference/pipes/connected-account) information where applicable.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "users",
+                ":user_id",
+                "data_providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<string>",
+                  "description": "An [Organization](/reference/organization) identifier. Optional parameter to filter connections for a specific organization."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_id",
+                  "description": "(Required) A [User](/reference/authkit/user) identifier to list providers and connected accounts for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b58137c-6eee-4f70-9ac5-95576679a1bd",
+              "name": "The list of data providers was retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":user_id",
+                    "data_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) A [User](/reference/authkit/user) identifier to list providers and connected accounts for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"data_integration_01EHZNVPK3SFK441A1RGBFSHRT\",\n      \"name\": \"GitHub\",\n      \"description\": \"Connect your GitHub account to access repositories.\",\n      \"slug\": \"github\",\n      \"integration_type\": \"github\",\n      \"credentials_type\": \"oauth2\",\n      \"scopes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownership\": \"userland_user\",\n      \"created_at\": \"2024-01-15T10:30:00.000Z\",\n      \"updated_at\": \"2024-01-15T10:30:00.000Z\",\n      \"integrationType\": \"string\",\n      \"credentialsType\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"connected_account\": {\n        \"object\": \"string\",\n        \"id\": \"data_installation_01EHZNVPK3SFK441A1RGBFSHRT\",\n        \"user_id\": \"user_01EHZNVPK3SFK441A1RGBFSHRT\",\n        \"organization_id\": \"string\",\n        \"scopes\": [\n          \"repo\",\n          \"user:email\"\n        ],\n        \"state\": \"connected\",\n        \"created_at\": \"2024-01-16T14:20:00.000Z\",\n        \"updated_at\": \"2024-01-16T14:20:00.000Z\",\n        \"userlandUserId\": \"string\",\n        \"organizationId\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\"\n      }\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"data_integration_01EHZNVPK3SFK441A1RGBFSHRT\",\n      \"name\": \"GitHub\",\n      \"description\": \"Connect your GitHub account to access repositories.\",\n      \"slug\": \"github\",\n      \"integration_type\": \"github\",\n      \"credentials_type\": \"oauth2\",\n      \"scopes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownership\": \"userland_user\",\n      \"created_at\": \"2024-01-15T10:30:00.000Z\",\n      \"updated_at\": \"2024-01-15T10:30:00.000Z\",\n      \"integrationType\": \"string\",\n      \"credentialsType\": \"string\",\n      \"createdAt\": \"string\",\n      \"updatedAt\": \"string\",\n      \"connected_account\": {\n        \"object\": \"string\",\n        \"id\": \"data_installation_01EHZNVPK3SFK441A1RGBFSHRT\",\n        \"user_id\": \"user_01EHZNVPK3SFK441A1RGBFSHRT\",\n        \"organization_id\": \"string\",\n        \"scopes\": [\n          \"repo\",\n          \"user:email\"\n        ],\n        \"state\": \"connected\",\n        \"created_at\": \"2024-01-16T14:20:00.000Z\",\n        \"updated_at\": \"2024-01-16T14:20:00.000Z\",\n        \"userlandUserId\": \"string\",\n        \"organizationId\": \"string\",\n        \"createdAt\": \"string\",\n        \"updatedAt\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91c1a9de-40fe-41ff-a113-8189688414a8",
+              "name": "The request is missing a valid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":user_id",
+                    "data_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) A [User](/reference/authkit/user) identifier to list providers and connected accounts for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f444db2-7f61-4ffa-8899-276687c41108",
+              "name": "The user or organization was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":user_id",
+                    "data_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) A [User](/reference/authkit/user) identifier to list providers and connected accounts for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "29f297c9-3cb3-4772-84bf-885b05455883",
+    "name": "WorkOS admin-portal user-management.data-providers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

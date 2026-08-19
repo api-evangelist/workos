@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "7d2b6754-ece6-43d0-8d09-1b16cc67c47c",
+      "name": "events",
+      "description": {
+        "content": "Query events and event streams.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3646a50-b40a-491c-af54-e2650d11a16c",
+          "name": "List Events",
+          "request": {
+            "name": "List Events",
+            "description": {
+              "content": "List events for the current environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "events",
+                  "value": "<string>,<string>",
+                  "description": "Filter events by one or more event types (e.g. `dsync.user.created`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "range_start",
+                  "value": "<string>",
+                  "description": "ISO-8601 date string to filter events created after this date."
+                },
+                {
+                  "disabled": false,
+                  "key": "range_end",
+                  "value": "<string>",
+                  "description": "ISO-8601 date string to filter events created before this date."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<string>",
+                  "description": "Filter events by the [Organization](/reference/organization) that the event is associated with."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac691f2b-7cf4-4c55-b1c9-1874d8179a14",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "events",
+                      "value": "dsync.user.created,dsync.user.updated"
+                    },
+                    {
+                      "key": "range_start",
+                      "value": "2025-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "range_end",
+                      "value": "2025-12-31T23:59:59Z"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHQMYV6MBK39QC5PZXHY59C3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"event_01EHZNVPK3SFK441A1RGBFSHRT\",\n      \"event\": \"dsync.user.created\",\n      \"data\": {\n        \"action_endpoint_id\": \"action_endpoint_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"action_execution_id\": \"action_execution_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"type\": \"string\",\n        \"verdict\": \"string\",\n        \"user_id\": \"user_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"organization_id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"email\": \"user@example.com\",\n        \"ip_address\": \"203.0.113.1\",\n        \"user_agent\": \"Mozilla/5.0\"\n      },\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"context\": {\n        \"google_analytics_client_id\": \"GA1.2.1234567890.1234567890\",\n        \"google_analytics_sessions\": [\n          {\n            \"containerId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sessionId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sessionNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"containerId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sessionId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sessionNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"ajs_anonymous_id\": \"ajs_anon_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"client_id\": \"client_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"actor\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"previous_attributes\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      }\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"event_01EHZNVPK3SFK441A1RGBFSHRT\",\n      \"event\": \"dsync.user.created\",\n      \"data\": {\n        \"action_endpoint_id\": \"action_endpoint_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"action_execution_id\": \"action_execution_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"type\": \"string\",\n        \"verdict\": \"string\",\n        \"user_id\": \"user_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"organization_id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"email\": \"user@example.com\",\n        \"ip_address\": \"203.0.113.1\",\n        \"user_agent\": \"Mozilla/5.0\"\n      },\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"context\": {\n        \"google_analytics_client_id\": \"GA1.2.1234567890.1234567890\",\n        \"google_analytics_sessions\": [\n          {\n            \"containerId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sessionId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sessionNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"containerId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sessionId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sessionNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"ajs_anonymous_id\": \"ajs_anon_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"client_id\": \"client_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n        \"actor\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"source\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"previous_attributes\": {\n          \"key_0\": {}\n        },\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    }\n  ],\n  \"list_metadata\": {\n    \"after\": \"event_01EHZNVPK3SFK441A1RGBFSHRT\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d8369be-90a6-4223-88c1-aa1326bed7e2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "events",
+                      "value": "dsync.user.created,dsync.user.updated"
+                    },
+                    {
+                      "key": "range_start",
+                      "value": "2025-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "range_end",
+                      "value": "2025-12-31T23:59:59Z"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHQMYV6MBK39QC5PZXHY59C3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67805b6d-37f1-4777-bd2a-2d07b4e10075",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "events",
+                      "value": "dsync.user.created,dsync.user.updated"
+                    },
+                    {
+                      "key": "range_start",
+                      "value": "2025-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "range_end",
+                      "value": "2025-12-31T23:59:59Z"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHQMYV6MBK39QC5PZXHY59C3"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"required\",\n      \"field\": \"events\"\n    },\n    {\n      \"code\": \"required\",\n      \"field\": \"events\"\n    }\n  ],\n  \"message\": \"Validation failed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "29d9edcf-8070-407a-91af-00e231f3140b",
+    "name": "WorkOS admin-portal events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

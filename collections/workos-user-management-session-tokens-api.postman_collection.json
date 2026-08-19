@@ -1,0 +1,192 @@
+{
+  "item": [
+    {
+      "id": "b220dfd8-311c-4e68-89a6-c450a7d24d02",
+      "name": "user-management.session-tokens",
+      "description": {
+        "content": "Session token verification keys.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62c13981-4d30-403a-98a6-756c0515dc81",
+          "name": "Get JWKS",
+          "request": {
+            "name": "Get JWKS",
+            "description": {
+              "content": "Returns the JSON Web Key Set (JWKS) containing the public keys used for verifying access tokens.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sso",
+                "jwks",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) Identifies the application making the request to the WorkOS server. You can obtain your client ID from the [API Keys](https://dashboard.workos.com/api-keys) page in the dashboard."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "457c2dfa-a8a4-472a-9b9e-77e1ceed7879",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "jwks",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) Identifies the application making the request to the WorkOS server. You can obtain your client ID from the [API Keys](https://dashboard.workos.com/api-keys) page in the dashboard."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"keys\": [\n    {\n      \"alg\": \"string\",\n      \"kty\": \"string\",\n      \"use\": \"string\",\n      \"x5c\": [\n        \"MIIDQjCCAiqgAwIBAgIGATz/FuLiMA0GCSqGSIb3DQEBCwUA...\"\n      ],\n      \"n\": \"0vx7agoebGc...eKnNs\",\n      \"e\": \"AQAB\",\n      \"kid\": \"key_01HXYZ123456789ABCDEFGHIJ\",\n      \"x5t#S256\": \"ZjQzYjI0OT...NmNjU0\"\n    },\n    {\n      \"alg\": \"string\",\n      \"kty\": \"string\",\n      \"use\": \"string\",\n      \"x5c\": [\n        \"MIIDQjCCAiqgAwIBAgIGATz/FuLiMA0GCSqGSIb3DQEBCwUA...\"\n      ],\n      \"n\": \"0vx7agoebGc...eKnNs\",\n      \"e\": \"AQAB\",\n      \"kid\": \"key_01HXYZ123456789ABCDEFGHIJ\",\n      \"x5t#S256\": \"ZjQzYjI0OT...NmNjU0\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8403b8f5-919d-4a36-acbd-5bc993b8b1f0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "jwks",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) Identifies the application making the request to the WorkOS server. You can obtain your client ID from the [API Keys](https://dashboard.workos.com/api-keys) page in the dashboard."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8af16b05-1895-40c8-9e05-044cc70f78aa",
+    "name": "WorkOS admin-portal user-management.session-tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

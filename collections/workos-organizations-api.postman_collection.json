@@ -1,0 +1,1557 @@
+{
+  "item": [
+    {
+      "id": "e3626537-76e4-4707-a29f-96382a4cbb14",
+      "name": "organizations",
+      "description": {
+        "content": "Manage organizations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8002ca9-5153-4a1c-b4d8-1544daf12ce7",
+          "name": "List Organizations",
+          "request": {
+            "name": "List Organizations",
+            "description": {
+              "content": "Get a list of all of your existing organizations matching the criteria specified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "domains",
+                  "value": "<string>,<string>",
+                  "description": "The domains of an Organization. Any Organization with a matching domain will be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Searchable text for an Organization. Matches against the organization name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3e7891b-613f-4cec-a7c1-82219380422e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "foo-corp.com"
+                    },
+                    {
+                      "key": "search",
+                      "value": "Acme Corp"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n      \"name\": \"Acme Inc.\",\n      \"domains\": [\n        {\n          \"object\": \"string\",\n          \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n          \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n          \"domain\": \"foo-corp.com\",\n          \"created_at\": \"2026-01-15T12:00:00.000Z\",\n          \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n          \"state\": \"pending\",\n          \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n          \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n          \"verification_strategy\": \"dns\"\n        },\n        {\n          \"object\": \"string\",\n          \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n          \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n          \"domain\": \"foo-corp.com\",\n          \"created_at\": \"2026-01-15T12:00:00.000Z\",\n          \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n          \"state\": \"pending\",\n          \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n          \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n          \"verification_strategy\": \"dns\"\n        }\n      ],\n      \"metadata\": {\n        \"tier\": \"diamond\"\n      },\n      \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n      \"allow_profiles_outside_organization\": false\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n      \"name\": \"Acme Inc.\",\n      \"domains\": [\n        {\n          \"object\": \"string\",\n          \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n          \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n          \"domain\": \"foo-corp.com\",\n          \"created_at\": \"2026-01-15T12:00:00.000Z\",\n          \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n          \"state\": \"pending\",\n          \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n          \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n          \"verification_strategy\": \"dns\"\n        },\n        {\n          \"object\": \"string\",\n          \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n          \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n          \"domain\": \"foo-corp.com\",\n          \"created_at\": \"2026-01-15T12:00:00.000Z\",\n          \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n          \"state\": \"pending\",\n          \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n          \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n          \"verification_strategy\": \"dns\"\n        }\n      ],\n      \"metadata\": {\n        \"tier\": \"diamond\"\n      },\n      \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n      \"allow_profiles_outside_organization\": false\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"org_01HXYZ123456789ABCDEFGHIJ\",\n    \"after\": \"org_01HXYZ987654321KJIHGFEDCBA\"\n  },\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "816afd44-861f-4faf-8b4b-6492db70a2c2",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "domains",
+                      "value": "foo-corp.com"
+                    },
+                    {
+                      "key": "search",
+                      "value": "Acme Corp"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4721ff5b-67eb-465e-ba62-3e523afaeb20",
+          "name": "Create an Organization",
+          "request": {
+            "name": "Create an Organization",
+            "description": {
+              "content": "Creates a new organization in the current environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\",\n    \"key_4\": \"<string>\",\n    \"key_5\": \"<string>\",\n    \"key_6\": \"<string>\",\n    \"key_7\": \"<string>\",\n    \"key_8\": \"<string>\",\n    \"key_9\": \"<string>\",\n    \"key_10\": \"<string>\",\n    \"key_11\": \"<string>\",\n    \"key_12\": \"<string>\",\n    \"key_13\": \"<string>\",\n    \"key_14\": \"<string>\",\n    \"key_15\": \"<string>\",\n    \"key_16\": \"<string>\",\n    \"key_17\": \"<string>\",\n    \"key_18\": \"<string>\",\n    \"key_19\": \"<string>\",\n    \"key_20\": \"<string>\",\n    \"key_21\": \"<string>\",\n    \"key_22\": \"<string>\",\n    \"key_23\": \"<string>\",\n    \"key_24\": \"<string>\",\n    \"key_25\": \"<string>\",\n    \"key_26\": \"<string>\",\n    \"key_27\": \"<string>\",\n    \"key_28\": \"<string>\",\n    \"key_29\": \"<string>\",\n    \"key_30\": \"<string>\",\n    \"key_31\": \"<string>\",\n    \"key_32\": \"<string>\",\n    \"key_33\": \"<string>\",\n    \"key_34\": \"<string>\",\n    \"key_35\": \"<string>\"\n  },\n  \"external_id\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68b38f8b-ebda-41db-b142-5904ab31cc37",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"example.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"ext_12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"organization\",\n  \"name\": \"Foo Corp\",\n  \"domains\": [\n    {\n      \"object\": \"organization_domain\",\n      \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n      \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"pending\",\n      \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n      \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n      \"verification_strategy\": \"dns\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\"\n    }\n  ],\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"allow_profiles_outside_organization\": false,\n  \"id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n  \"external_id\": \"ext_12345\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5fdf112-aa48-46cc-a353-b0b236ed5273",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"example.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"ext_12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"invalid_metadata\",\n  \"message\": \"Request could not be processed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12f92e41-720c-45e3-8fba-ed1b3def6ac7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"example.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"ext_12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7f0f4a9-fc72-4483-98a5-2445a70fd7ec",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"example.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"ext_12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07ca8811-8784-4342-89af-75d4ed75e06e",
+          "name": "Get an Organization by External ID",
+          "request": {
+            "name": "Get an Organization by External ID",
+            "description": {
+              "content": "Get the details of an existing organization by an [external identifier](/authkit/metadata/external-identifiers).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "external_id",
+                ":external_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "external_id",
+                  "description": "(Required) The external ID of the Organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ae311b7-a112-409d-b06c-2efd07916a63",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "external_id",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) The external ID of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n  \"name\": \"Acme Inc.\",\n  \"domains\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n      \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n      \"domain\": \"foo-corp.com\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"state\": \"pending\",\n      \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n      \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n      \"verification_strategy\": \"dns\"\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n      \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n      \"domain\": \"foo-corp.com\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"state\": \"pending\",\n      \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n      \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n      \"verification_strategy\": \"dns\"\n    }\n  ],\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\",\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"allow_profiles_outside_organization\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f099551f-2388-4877-ac39-7766bab941bf",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "external_id",
+                    ":external_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "external_id",
+                      "description": "(Required) The external ID of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8222e0d6-6307-44aa-8a1d-72c1de170678",
+          "name": "Get an Organization",
+          "request": {
+            "name": "Get an Organization",
+            "description": {
+              "content": "Get the details of an existing organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the Organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7081fd28-7ad2-4149-93e2-05722b3d8c4a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n  \"name\": \"Acme Inc.\",\n  \"domains\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n      \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n      \"domain\": \"foo-corp.com\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"state\": \"pending\",\n      \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n      \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n      \"verification_strategy\": \"dns\"\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n      \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n      \"domain\": \"foo-corp.com\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"state\": \"pending\",\n      \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n      \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n      \"verification_strategy\": \"dns\"\n    }\n  ],\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\",\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"allow_profiles_outside_organization\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fac2812-a895-4a48-b9d8-66bd79d66306",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc585b8b-76f8-40a0-9b52-3492c78aef60",
+          "name": "Update an Organization",
+          "request": {
+            "name": "Update an Organization",
+            "description": {
+              "content": "Updates an organization in the current environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the Organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"allow_profiles_outside_organization\": \"<boolean>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"state\": \"<string>\"\n    }\n  ],\n  \"stripe_customer_id\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\",\n    \"key_4\": \"<string>\",\n    \"key_5\": \"<string>\",\n    \"key_6\": \"<string>\",\n    \"key_7\": \"<string>\",\n    \"key_8\": \"<string>\",\n    \"key_9\": \"<string>\",\n    \"key_10\": \"<string>\",\n    \"key_11\": \"<string>\",\n    \"key_12\": \"<string>\",\n    \"key_13\": \"<string>\",\n    \"key_14\": \"<string>\",\n    \"key_15\": \"<string>\",\n    \"key_16\": \"<string>\",\n    \"key_17\": \"<string>\",\n    \"key_18\": \"<string>\",\n    \"key_19\": \"<string>\",\n    \"key_20\": \"<string>\",\n    \"key_21\": \"<string>\",\n    \"key_22\": \"<string>\",\n    \"key_23\": \"<string>\",\n    \"key_24\": \"<string>\",\n    \"key_25\": \"<string>\",\n    \"key_26\": \"<string>\",\n    \"key_27\": \"<string>\",\n    \"key_28\": \"<string>\",\n    \"key_29\": \"<string>\",\n    \"key_30\": \"<string>\",\n    \"key_31\": \"<string>\",\n    \"key_32\": \"<string>\",\n    \"key_33\": \"<string>\",\n    \"key_34\": \"<string>\",\n    \"key_35\": \"<string>\",\n    \"key_36\": \"<string>\",\n    \"key_37\": \"<string>\",\n    \"key_38\": \"<string>\",\n    \"key_39\": \"<string>\",\n    \"key_40\": \"<string>\",\n    \"key_41\": \"<string>\",\n    \"key_42\": \"<string>\",\n    \"key_43\": \"<string>\",\n    \"key_44\": \"<string>\",\n    \"key_45\": \"<string>\",\n    \"key_46\": \"<string>\",\n    \"key_47\": \"<string>\"\n  },\n  \"external_id\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "353c7d1e-fc88-472a-b3d8-6bbc846bcfd0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"foo-corp.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"organization\",\n  \"name\": \"Foo Corp\",\n  \"domains\": [\n    {\n      \"object\": \"organization_domain\",\n      \"id\": \"org_domain_01EHZNVPK2QXHMVWCEDQEKY69A\",\n      \"organization_id\": \"org_01HE8GSH8FQPASKSY27THRKRBP\",\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"pending\",\n      \"verification_prefix\": \"superapp-domain-verification-z3kjny\",\n      \"verification_token\": \"m5Oztg3jdK4NJLgs8uIlIprMw\",\n      \"verification_strategy\": \"dns\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\"\n    }\n  ],\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"allow_profiles_outside_organization\": false,\n  \"id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06b5cd65-dab9-4d10-9df9-9a5a3ca6ada3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"foo-corp.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"invalid_metadata\",\n  \"message\": \"Request could not be processed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ae465de-7b9c-453b-a47f-311a89ce88ec",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"foo-corp.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29daca12-6979-4698-88c4-299d45de07d4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"foo-corp.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2382671-b635-463f-b8f3-4caf52666284",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"foo-corp.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afee712c-e49d-404d-bd75-4d8bca42e021",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Foo Corp\",\n  \"allow_profiles_outside_organization\": false,\n  \"domains\": [\n    \"foo-corp.com\"\n  ],\n  \"domain_data\": [\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    },\n    {\n      \"domain\": \"foo-corp.com\",\n      \"state\": \"verified\"\n    }\n  ],\n  \"stripe_customer_id\": \"cus_R9qWAGMQ6nGE7V\",\n  \"metadata\": {\n    \"tier\": \"diamond\"\n  },\n  \"external_id\": \"2fe01467-f7ea-4dd2-8b79-c2b4f56d0191\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e23c6f6-538d-4ba4-a73b-98854bd0e26c",
+          "name": "Delete an Organization",
+          "request": {
+            "name": "Delete an Organization",
+            "description": {
+              "content": "Permanently deletes an organization in the current environment. It cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the Organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b53b875b-5705-4466-b5a0-e4020e38d8dc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "725d282f-69e4-4107-92e5-5dbe3fa16e79",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f5a84c2-6240-407d-9fd6-8c9ac6488af2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be94b087-34fd-44f8-8ea5-eecb0024d32a",
+          "name": "Get Audit Log Configuration",
+          "request": {
+            "name": "Get Audit Log Configuration",
+            "description": {
+              "content": "Get the unified view of audit log trail and stream configuration for an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":id",
+                "audit_log_configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the Organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6dd76c86-e862-4b45-aa82-58c4b7db763f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id",
+                    "audit_log_configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"retention_period_in_days\": 30,\n  \"state\": \"active\",\n  \"log_stream\": {\n    \"id\": \"als_01EHZNVPK3SFK441A1RGBFSHRT\",\n    \"type\": \"Datadog\",\n    \"state\": \"active\",\n    \"last_synced_at\": \"2026-01-15T12:00:00.000Z\",\n    \"created_at\": \"2026-01-15T12:00:00.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4da28621-2b19-4115-9592-3ed31b525a48",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id",
+                    "audit_log_configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2828ce86-cf94-4613-b19e-5a6155d8f69a",
+    "name": "WorkOS admin-portal organizations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "item": [
+    {
+      "id": "7b776f4c-5d04-46e0-83b5-d76ab788f6f0",
+      "name": "workos-connect",
+      "description": {
+        "content": "A unified interface that simplifies authentication and authorization across customers, partners, and external SaaS tools.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "20e4443f-a74a-4d5c-bf26-990d32a81e15",
+          "name": "Complete External Authentication",
+          "request": {
+            "name": "Complete External Authentication",
+            "description": {
+              "content": "Completes an external authentication flow and returns control to AuthKit. This endpoint is used with [Standalone Connect](/authkit/connect/standalone) to bridge your existing authentication system with the Connect OAuth API infrastructure.\n\nAfter successfully authenticating a user in your application, calling this endpoint will:\n\n- Create or update the user in AuthKit, using the given `id` as its `external_id`.\n- Return a `redirect_uri` your application should redirect to in order for AuthKit to complete the flow\n\nUsers are automatically created or updated based on the `id` and `email` provided. If a user with the same `id` exists, their information is updated. Otherwise, a new user is created.\n\nIf you provide a new `id` with an `email` that already belongs to an existing user, the request will fail with an error as email addresses are unique to a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "authkit",
+                "oauth2",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_auth_id\": \"<string>\",\n  \"user\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\",\n      \"key_4\": \"<string>\",\n      \"key_5\": \"<string>\",\n      \"key_6\": \"<string>\",\n      \"key_7\": \"<string>\",\n      \"key_8\": \"<string>\",\n      \"key_9\": \"<string>\",\n      \"key_10\": \"<string>\",\n      \"key_11\": \"<string>\",\n      \"key_12\": \"<string>\",\n      \"key_13\": \"<string>\",\n      \"key_14\": \"<string>\",\n      \"key_15\": \"<string>\",\n      \"key_16\": \"<string>\",\n      \"key_17\": \"<string>\",\n      \"key_18\": \"<string>\",\n      \"key_19\": \"<string>\",\n      \"key_20\": \"<string>\",\n      \"key_21\": \"<string>\",\n      \"key_22\": \"<string>\",\n      \"key_23\": \"<string>\",\n      \"key_24\": \"<string>\",\n      \"key_25\": \"<string>\",\n      \"key_26\": \"<string>\",\n      \"key_27\": \"<string>\",\n      \"key_28\": \"<string>\",\n      \"key_29\": \"<string>\",\n      \"key_30\": \"<string>\",\n      \"key_31\": \"<string>\",\n      \"key_32\": \"<string>\",\n      \"key_33\": \"<string>\",\n      \"key_34\": \"<string>\",\n      \"key_35\": \"<string>\",\n      \"key_36\": \"<string>\",\n      \"key_37\": \"<string>\",\n      \"key_38\": \"<string>\",\n      \"key_39\": \"<string>\",\n      \"key_40\": \"<string>\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"<string>\",\n      \"type\": \"<string>\",\n      \"label\": \"<string>\",\n      \"choices\": [\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"value\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "078f0ec9-1ee5-406c-bc55-7dccc02fa6ff",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authkit",
+                    "oauth2",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_auth_id\": \"ext_auth_01HXYZ123456789ABCDEFGHIJ\",\n  \"user\": {\n    \"id\": \"user_12345\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"metadata\": {\n      \"department\": \"Engineering\",\n      \"role\": \"Developer\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"tos_accepted\",\n      \"type\": \"string\",\n      \"label\": \"Terms of Service\",\n      \"choices\": [\n        {\n          \"value\": \"accepted\",\n          \"label\": \"I accept the Terms of Service\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"tos_accepted\",\n      \"type\": \"string\",\n      \"label\": \"Terms of Service\",\n      \"choices\": [\n        {\n          \"value\": \"accepted\",\n          \"label\": \"I accept the Terms of Service\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"redirect_uri\": \"https://your-authkit-domain.workos.com/oauth/authorize/complete?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0ZSI6InJhbmRvbV9zdGF0ZV9zdHJpbmciLCJpYXQiOjE3NDI2MDQ4NTN9.abc123def456ghi789\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24ad3270-6a41-495f-8ff5-9cbe4ab00433",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authkit",
+                    "oauth2",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_auth_id\": \"ext_auth_01HXYZ123456789ABCDEFGHIJ\",\n  \"user\": {\n    \"id\": \"user_12345\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"metadata\": {\n      \"department\": \"Engineering\",\n      \"role\": \"Developer\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"tos_accepted\",\n      \"type\": \"string\",\n      \"label\": \"Terms of Service\",\n      \"choices\": [\n        {\n          \"value\": \"accepted\",\n          \"label\": \"I accept the Terms of Service\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"tos_accepted\",\n      \"type\": \"string\",\n      \"label\": \"Terms of Service\",\n      \"choices\": [\n        {\n          \"value\": \"accepted\",\n          \"label\": \"I accept the Terms of Service\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"external_auth_session_already_completed\",\n  \"message\": \"Request could not be processed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e823959-3007-47fc-ac48-0d3b6828feb9",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authkit",
+                    "oauth2",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_auth_id\": \"ext_auth_01HXYZ123456789ABCDEFGHIJ\",\n  \"user\": {\n    \"id\": \"user_12345\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"metadata\": {\n      \"department\": \"Engineering\",\n      \"role\": \"Developer\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"tos_accepted\",\n      \"type\": \"string\",\n      \"label\": \"Terms of Service\",\n      \"choices\": [\n        {\n          \"value\": \"accepted\",\n          \"label\": \"I accept the Terms of Service\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"tos_accepted\",\n      \"type\": \"string\",\n      \"label\": \"Terms of Service\",\n      \"choices\": [\n        {\n          \"value\": \"accepted\",\n          \"label\": \"I accept the Terms of Service\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d554d6a-7948-4064-b837-b959d5a3c542",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authkit",
+                    "oauth2",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"external_auth_id\": \"ext_auth_01HXYZ123456789ABCDEFGHIJ\",\n  \"user\": {\n    \"id\": \"user_12345\",\n    \"email\": \"marcelina.davis@example.com\",\n    \"first_name\": \"Marcelina\",\n    \"last_name\": \"Davis\",\n    \"metadata\": {\n      \"department\": \"Engineering\",\n      \"role\": \"Developer\"\n    }\n  },\n  \"user_consent_options\": [\n    {\n      \"claim\": \"tos_accepted\",\n      \"type\": \"string\",\n      \"label\": \"Terms of Service\",\n      \"choices\": [\n        {\n          \"value\": \"accepted\",\n          \"label\": \"I accept the Terms of Service\"\n        }\n      ]\n    },\n    {\n      \"claim\": \"tos_accepted\",\n      \"type\": \"string\",\n      \"label\": \"Terms of Service\",\n      \"choices\": [\n        {\n          \"value\": \"accepted\",\n          \"label\": \"I accept the Terms of Service\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b6ed5467-76f4-4572-af4b-c5e8304b377a",
+    "name": "WorkOS admin-portal workos-connect API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

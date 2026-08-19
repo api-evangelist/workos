@@ -1,0 +1,205 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal sso API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "sso",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/sso/authorize",
+            "params": [
+              {
+                "name": "provider_scopes",
+                "value": "",
+                "type": "query",
+                "description": "Additional scopes to request from the identity provider. Applicable when using OAuth or OpenID Connect connections."
+              },
+              {
+                "name": "provider_query_params",
+                "value": "",
+                "type": "query",
+                "description": "Key/value pairs of query parameters to pass to the OAuth provider. Only applicable when using OAuth connections."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the WorkOS environment client."
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Deprecated. Use `connection` or `organization` instead. Used to initiate SSO for a connection by domain. The domain must be associated with a connection in your WorkOS environment."
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Used to initiate OAuth authentication with various providers."
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "Where to redirect the user after they complete the authentication process. You must use one of the redirect URIs configured via the [Redirects](https://dashboard.workos.com/redirects) page on the dashboard."
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "The only valid option for the response type parameter is `\"code\"`.\n\nThe `\"code\"` parameter value initiates an [authorization code grant type](https://tools.ietf.org/html/rfc6749#section-4.1). This grant type allows you to exchange an authorization code for an access token during the redirect that takes place after a user has authenticated with an identity provider."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "An optional parameter that can be used to encode arbitrary information to help restore application state between redirects. If included, the redirect URI received from WorkOS will contain the exact `state` that was passed."
+              },
+              {
+                "name": "connection",
+                "value": "",
+                "type": "query",
+                "description": "Used to initiate SSO for a connection. The value should be a WorkOS connection ID.\n\nYou can persist the WorkOS connection ID with application user or team identifiers. WorkOS will use the connection indicated by the connection parameter to direct the user to the corresponding IdP for authentication."
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Used to initiate SSO for an organization. The value should be a WorkOS organization ID.\n\nYou can persist the WorkOS organization ID with application user or team identifiers. WorkOS will use the organization ID to determine the appropriate connection and the IdP to direct the user to for authentication."
+              },
+              {
+                "name": "domain_hint",
+                "value": "",
+                "type": "query",
+                "description": "Can be used to pre-fill the domain field when initiating authentication with Microsoft OAuth or with a Google SAML connection type."
+              },
+              {
+                "name": "login_hint",
+                "value": "",
+                "type": "query",
+                "description": "Can be used to pre-fill the username/email address field of the IdP sign-in page for the user, if you know their username ahead of time. Currently supported for OAuth, OpenID Connect, Okta, Entra ID, and custom SAML connections."
+              },
+              {
+                "name": "nonce",
+                "value": "",
+                "type": "query",
+                "description": "A random string generated by the client that is used to mitigate replay attacks."
+              }
+            ]
+          },
+          "docs": "Initiates the single sign-on flow."
+        },
+        {
+          "info": {
+            "name": "Logout Redirect",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/sso/logout",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "The logout token returned from the [Logout Authorize](/reference/sso/logout/authorize) endpoint."
+              }
+            ]
+          },
+          "docs": "Logout allows to sign out a user from your application by triggering the identity provider sign out flow. This `GET` endpoint should be a redirection, since the identity provider user will be identified in the browser session.\n\nBefore redirecting to this endpoint, you need to generate a short-lived logout token using the [Logout Authorize](/reference/sso/logout/authorize) endpoint."
+        },
+        {
+          "info": {
+            "name": "Logout Authorize",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/sso/logout/authorize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You should call this endpoint from your server to generate a logout token which is required for the [Logout Redirect](/reference/sso/logout) endpoint."
+        },
+        {
+          "info": {
+            "name": "Get a User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/sso/profile",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Exchange an access token for a user's [Profile](/reference/sso/profile). Because this profile is returned in the [Get a Profile and Token endpoint](/reference/sso/profile/get-profile-and-token) your application usually does not need to call this endpoint. It is available for any authentication flows that require an additional endpoint to retrieve a user's profile."
+        },
+        {
+          "info": {
+            "name": "Get a Profile and Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/sso/token",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The client ID of the WorkOS environment."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "The client secret of the WorkOS environment."
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "The authorization code received from the authorization callback."
+              },
+              {
+                "name": "grant_type",
+                "value": "",
+                "type": "query",
+                "description": "The grant type for the token request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get an access token along with the user [Profile](/reference/sso/profile) using the code passed to your [Redirect URI](/reference/sso/get-authorization-url/redirect-uri)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

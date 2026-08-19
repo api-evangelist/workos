@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal radar API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "radar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/radar/attempts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assess a request for risk using the Radar engine and receive a verdict."
+        },
+        {
+          "info": {
+            "name": "Update a Radar Attempt",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/radar/attempts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Radar attempt to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You may optionally inform Radar that an authentication attempt or challenge was successful using this endpoint. Some Radar controls depend on tracking recent successful attempts, such as impossible travel."
+        },
+        {
+          "info": {
+            "name": "Add an Entry to a Radar List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/radar/lists/:type/:action",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The type of the Radar list (e.g. ip_address, domain, email)."
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "path",
+                "description": "The list action indicating whether to add the entry to the allow or block list."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an entry to a Radar list."
+        },
+        {
+          "info": {
+            "name": "Remove an Entry from a Radar List",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/radar/lists/:type/:action",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "The type of the Radar list (e.g. ip_address, domain, email)."
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "path",
+                "description": "The list action indicating whether to remove the entry from the allow or block list."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an entry from a Radar list."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

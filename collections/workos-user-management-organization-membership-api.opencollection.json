@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal user-management.organization-membership API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-management.organization-membership",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organization Memberships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/organization_memberships",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the [organization](/reference/organization) which the user belongs to."
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the status of the organization membership. Array including any of `active`, `inactive`, or `pending`."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the [user](/reference/authkit/user)."
+              }
+            ]
+          },
+          "docs": "Get a list of all organization memberships matching the criteria specified. At least one of `user_id` or `organization_id` must be provided. By default only active memberships are returned. Use the `statuses` parameter to filter by other statuses."
+        },
+        {
+          "info": {
+            "name": "Create an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/organization_memberships",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new `active` organization membership for the given organization and user.\n\nCalling this API with an organization and user that match an `inactive` organization membership will activate the membership with the specified role(s)."
+        },
+        {
+          "info": {
+            "name": "Get an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing organization membership."
+        },
+        {
+          "info": {
+            "name": "Update an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the details of an existing organization membership."
+        },
+        {
+          "info": {
+            "name": "Delete an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an existing organization membership. It cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Deactivate an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id/deactivate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ]
+          },
+          "docs": "Deactivates an `active` organization membership. Emits an [organization_membership.updated](/events/organization-membership) event upon successful deactivation.\n\n- Deactivating an `inactive` membership is a no-op and does not emit an event.\n- Deactivating a `pending` membership returns an error. This membership should be [deleted](/reference/authkit/organization-membership/delete) instead.\n\nSee the [membership management documentation](/authkit/users-organizations/organizations/membership-manage"
+        },
+        {
+          "info": {
+            "name": "Reactivate an Organization Membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/user_management/organization_memberships/:id/reactivate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the organization membership."
+              }
+            ]
+          },
+          "docs": "Reactivates an `inactive` organization membership, retaining the pre-existing role(s). Emits an [organization_membership.updated](/events/organization-membership) event upon successful reactivation.\n\n- Reactivating an `active` membership is a no-op and does not emit an event.\n- Reactivating a `pending` membership returns an error. The user needs to [accept the invitation](/authkit/invitations) instead.\n\nSee the [membership management documentation](/authkit/users-organizations/organizations/memb"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

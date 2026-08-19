@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal organization-domains API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "organization-domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Organization Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/organization_domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Organization Domain."
+        },
+        {
+          "info": {
+            "name": "Get an Organization Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/organization_domains/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the organization domain."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing organization domain."
+        },
+        {
+          "info": {
+            "name": "Delete an Organization Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/organization_domains/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the organization domain."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an organization domain. It cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Verify an Organization Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/organization_domains/:id/verify",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the organization domain."
+              }
+            ]
+          },
+          "docs": "Initiates verification process for an Organization Domain."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

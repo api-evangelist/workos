@@ -1,0 +1,652 @@
+{
+  "item": [
+    {
+      "id": "655656f2-e58e-466f-b0bc-e5a67b4a929b",
+      "name": "directory-users",
+      "description": {
+        "content": "Manage directory users.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eaba6da3-4836-45e6-ab32-19d1c960cfc1",
+          "name": "List Directory Users",
+          "request": {
+            "name": "List Directory Users",
+            "description": {
+              "content": "Get a list of all of existing Directory Users matching the criteria specified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory_users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "directory",
+                  "value": "<string>",
+                  "description": "Unique identifier of the WorkOS Directory. This value can be obtained from the WorkOS dashboard or from the WorkOS API."
+                },
+                {
+                  "disabled": false,
+                  "key": "group",
+                  "value": "<string>",
+                  "description": "Unique identifier of the WorkOS Directory Group. This value can be obtained from the WorkOS API."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "815f9ddf-29e4-4e7d-9453-6af2b4dc0bdf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory_users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "directory",
+                      "value": "directory_01ECAZ4NV9QMV47GW873HDCX74"
+                    },
+                    {
+                      "key": "group",
+                      "value": "directory_group_01E64QTDNS0EGJ0FMCVY9BWGZT"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"directory_user_01E1JG7J09H96KYP8HM9B0G5SJ\",\n      \"directory_id\": \"directory_01ECAZ4NV9QMV47GW873HDCX74\",\n      \"organization_id\": \"org_01EZTR6WYX1A0DSE2CYMGXQ24Y\",\n      \"idp_id\": \"2836\",\n      \"email\": \"marcelina.davis@example.com\",\n      \"state\": \"active\",\n      \"raw_attributes\": {\n        \"key_0\": {}\n      },\n      \"custom_attributes\": {\n        \"key_0\": {}\n      },\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"groups\": [\n        {\n          \"object\": \"string\",\n          \"id\": \"directory_group_01E1JJS84MFPPQ3G655FHTKX6Z\",\n          \"idp_id\": \"02grqrue4294w24\",\n          \"directory_id\": \"directory_01ECAZ4NV9QMV47GW873HDCX74\",\n          \"organization_id\": \"org_01EZTR6WYX1A0DSE2CYMGXQ24Y\",\n          \"name\": \"Developers\",\n          \"created_at\": \"2026-01-15T12:00:00.000Z\",\n          \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n          \"raw_attributes\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        {\n          \"object\": \"string\",\n          \"id\": \"directory_group_01E1JJS84MFPPQ3G655FHTKX6Z\",\n          \"idp_id\": \"02grqrue4294w24\",\n          \"directory_id\": \"directory_01ECAZ4NV9QMV47GW873HDCX74\",\n          \"organization_id\": \"org_01EZTR6WYX1A0DSE2CYMGXQ24Y\",\n          \"name\": \"Developers\",\n          \"created_at\": \"2026-01-15T12:00:00.000Z\",\n          \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n          \"raw_attributes\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"first_name\": \"Marcelina\",\n      \"last_name\": \"Davis\",\n      \"name\": \"Marcelina Davis\",\n      \"emails\": [\n        {\n          \"primary\": true,\n          \"type\": \"work\",\n          \"value\": \"marcelina.davis@example.com\"\n        },\n        {\n          \"primary\": true,\n          \"type\": \"work\",\n          \"value\": \"marcelina.davis@example.com\"\n        }\n      ],\n      \"job_title\": \"Software Engineer\",\n      \"username\": \"mdavis\",\n      \"role\": {\n        \"slug\": \"admin\"\n      },\n      \"roles\": [\n        {\n          \"slug\": \"admin\"\n        },\n        {\n          \"slug\": \"admin\"\n        }\n      ]\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"directory_user_01E1JG7J09H96KYP8HM9B0G5SJ\",\n      \"directory_id\": \"directory_01ECAZ4NV9QMV47GW873HDCX74\",\n      \"organization_id\": \"org_01EZTR6WYX1A0DSE2CYMGXQ24Y\",\n      \"idp_id\": \"2836\",\n      \"email\": \"marcelina.davis@example.com\",\n      \"state\": \"active\",\n      \"raw_attributes\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      },\n      \"custom_attributes\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"groups\": [\n        {\n          \"object\": \"string\",\n          \"id\": \"directory_group_01E1JJS84MFPPQ3G655FHTKX6Z\",\n          \"idp_id\": \"02grqrue4294w24\",\n          \"directory_id\": \"directory_01ECAZ4NV9QMV47GW873HDCX74\",\n          \"organization_id\": \"org_01EZTR6WYX1A0DSE2CYMGXQ24Y\",\n          \"name\": \"Developers\",\n          \"created_at\": \"2026-01-15T12:00:00.000Z\",\n          \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n          \"raw_attributes\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        {\n          \"object\": \"string\",\n          \"id\": \"directory_group_01E1JJS84MFPPQ3G655FHTKX6Z\",\n          \"idp_id\": \"02grqrue4294w24\",\n          \"directory_id\": \"directory_01ECAZ4NV9QMV47GW873HDCX74\",\n          \"organization_id\": \"org_01EZTR6WYX1A0DSE2CYMGXQ24Y\",\n          \"name\": \"Developers\",\n          \"created_at\": \"2026-01-15T12:00:00.000Z\",\n          \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n          \"raw_attributes\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"first_name\": \"Marcelina\",\n      \"last_name\": \"Davis\",\n      \"name\": \"Marcelina Davis\",\n      \"emails\": [\n        {\n          \"primary\": true,\n          \"type\": \"work\",\n          \"value\": \"marcelina.davis@example.com\"\n        },\n        {\n          \"primary\": true,\n          \"type\": \"work\",\n          \"value\": \"marcelina.davis@example.com\"\n        }\n      ],\n      \"job_title\": \"Software Engineer\",\n      \"username\": \"mdavis\",\n      \"role\": {\n        \"slug\": \"admin\"\n      },\n      \"roles\": [\n        {\n          \"slug\": \"admin\"\n        },\n        {\n          \"slug\": \"admin\"\n        }\n      ]\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"directory_user_01HXYZ123456789ABCDEFGHIJ\",\n    \"after\": \"directory_user_01HXYZ987654321KJIHGFEDCBA\"\n  },\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a4e7083-4252-4071-99aa-dee95dc9aab1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory_users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "directory",
+                      "value": "directory_01ECAZ4NV9QMV47GW873HDCX74"
+                    },
+                    {
+                      "key": "group",
+                      "value": "directory_group_01E64QTDNS0EGJ0FMCVY9BWGZT"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aead6585-34b7-452e-a0e6-2819b12c75a6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory_users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "directory",
+                      "value": "directory_01ECAZ4NV9QMV47GW873HDCX74"
+                    },
+                    {
+                      "key": "group",
+                      "value": "directory_group_01E64QTDNS0EGJ0FMCVY9BWGZT"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb4fe1da-42aa-44ac-924a-2f901f15c6ee",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory_users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "directory",
+                      "value": "directory_01ECAZ4NV9QMV47GW873HDCX74"
+                    },
+                    {
+                      "key": "group",
+                      "value": "directory_group_01E64QTDNS0EGJ0FMCVY9BWGZT"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0a42cc9-24d1-4d70-9c5e-babab2a8f113",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory_users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "directory",
+                      "value": "directory_01ECAZ4NV9QMV47GW873HDCX74"
+                    },
+                    {
+                      "key": "group",
+                      "value": "directory_group_01E64QTDNS0EGJ0FMCVY9BWGZT"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64fb2f19-bdc7-4a01-b851-ef7e83fa2ea3",
+          "name": "Get a Directory User",
+          "request": {
+            "name": "Get a Directory User",
+            "description": {
+              "content": "Get the details of an existing Directory User.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory_users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the Directory User."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63bc5423-1e18-4d44-aa9b-f8df30a81304",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory_users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the Directory User."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"id\": \"directory_user_01E1JG7J09H96KYP8HM9B0G5SJ\",\n  \"directory_id\": \"directory_01ECAZ4NV9QMV47GW873HDCX74\",\n  \"organization_id\": \"org_01EZTR6WYX1A0DSE2CYMGXQ24Y\",\n  \"idp_id\": \"2836\",\n  \"email\": \"marcelina.davis@example.com\",\n  \"state\": \"active\",\n  \"raw_attributes\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"custom_attributes\": {\n    \"key_0\": {}\n  },\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"groups\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"directory_group_01E1JJS84MFPPQ3G655FHTKX6Z\",\n      \"idp_id\": \"02grqrue4294w24\",\n      \"directory_id\": \"directory_01ECAZ4NV9QMV47GW873HDCX74\",\n      \"organization_id\": \"org_01EZTR6WYX1A0DSE2CYMGXQ24Y\",\n      \"name\": \"Developers\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"raw_attributes\": {\n        \"key_0\": {}\n      }\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"directory_group_01E1JJS84MFPPQ3G655FHTKX6Z\",\n      \"idp_id\": \"02grqrue4294w24\",\n      \"directory_id\": \"directory_01ECAZ4NV9QMV47GW873HDCX74\",\n      \"organization_id\": \"org_01EZTR6WYX1A0DSE2CYMGXQ24Y\",\n      \"name\": \"Developers\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"raw_attributes\": {\n        \"key_0\": {}\n      }\n    }\n  ],\n  \"first_name\": \"Marcelina\",\n  \"last_name\": \"Davis\",\n  \"name\": \"Marcelina Davis\",\n  \"emails\": [\n    {\n      \"primary\": true,\n      \"type\": \"work\",\n      \"value\": \"marcelina.davis@example.com\"\n    },\n    {\n      \"primary\": true,\n      \"type\": \"work\",\n      \"value\": \"marcelina.davis@example.com\"\n    }\n  ],\n  \"job_title\": \"Software Engineer\",\n  \"username\": \"mdavis\",\n  \"role\": {\n    \"slug\": \"admin\"\n  },\n  \"roles\": [\n    {\n      \"slug\": \"admin\"\n    },\n    {\n      \"slug\": \"admin\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8b3f0b2-9e89-467a-ab78-3b5761557c4d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory_users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the Directory User."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6aaac22-8054-4d5c-8b83-663cb3e9f75e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory_users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the Directory User."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f5c9bd7c-95a9-4f4f-844b-69926ccbd14c",
+    "name": "WorkOS admin-portal directory-users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

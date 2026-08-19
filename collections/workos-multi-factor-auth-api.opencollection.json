@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal multi-factor-auth API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "multi-factor-auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enroll Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/auth/factors/enroll",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enrolls an Authentication Factor to be used as an additional factor of authentication. The returned ID should be used to create an authentication Challenge."
+        },
+        {
+          "info": {
+            "name": "Get Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/auth/factors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Factor."
+              }
+            ]
+          },
+          "docs": "Gets an Authentication Factor."
+        },
+        {
+          "info": {
+            "name": "Delete Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/auth/factors/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Factor."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an Authentication Factor. It cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Challenge Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/auth/factors/:id/challenge",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the Authentication Factor to be challenged."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Challenge for an Authentication Factor."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

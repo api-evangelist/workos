@@ -1,0 +1,1428 @@
+{
+  "item": [
+    {
+      "id": "0b5f2cc6-7b69-4093-8440-a5f8e521cfd2",
+      "name": "sso",
+      "description": {
+        "content": "Single Sign-On endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b98d7296-863b-46af-8e7d-a39eaeac37eb",
+          "name": "Initiate SSO",
+          "request": {
+            "name": "Initiate SSO",
+            "description": {
+              "content": "Initiates the single sign-on flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sso",
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "provider_scopes",
+                  "value": "<string>,<string>",
+                  "description": "Additional scopes to request from the identity provider. Applicable when using OAuth or OpenID Connect connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "<string>",
+                  "description": "Key/value pairs of query parameters to pass to the OAuth provider. Only applicable when using OAuth connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "<string>",
+                  "description": "Key/value pairs of query parameters to pass to the OAuth provider. Only applicable when using OAuth connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the WorkOS environment client."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "Deprecated. Use `connection` or `organization` instead. Used to initiate SSO for a connection by domain. The domain must be associated with a connection in your WorkOS environment."
+                },
+                {
+                  "disabled": false,
+                  "key": "provider",
+                  "value": "<string>",
+                  "description": "Used to initiate OAuth authentication with various providers."
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<uri>",
+                  "description": "(Required) Where to redirect the user after they complete the authentication process. You must use one of the redirect URIs configured via the [Redirects](https://dashboard.workos.com/redirects) page on the dashboard."
+                },
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "(Required) The only valid option for the response type parameter is `\"code\"`.\n\nThe `\"code\"` parameter value initiates an [authorization code grant type](https://tools.ietf.org/html/rfc6749#section-4.1). This grant type allows you to exchange an authorization code for an access token during the redirect that takes place after a user has authenticated with an identity provider."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "An optional parameter that can be used to encode arbitrary information to help restore application state between redirects. If included, the redirect URI received from WorkOS will contain the exact `state` that was passed."
+                },
+                {
+                  "disabled": false,
+                  "key": "connection",
+                  "value": "<string>",
+                  "description": "Used to initiate SSO for a connection. The value should be a WorkOS connection ID.\n\nYou can persist the WorkOS connection ID with application user or team identifiers. WorkOS will use the connection indicated by the connection parameter to direct the user to the corresponding IdP for authentication."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization",
+                  "value": "<string>",
+                  "description": "Used to initiate SSO for an organization. The value should be a WorkOS organization ID.\n\nYou can persist the WorkOS organization ID with application user or team identifiers. WorkOS will use the organization ID to determine the appropriate connection and the IdP to direct the user to for authentication."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain_hint",
+                  "value": "<string>",
+                  "description": "Can be used to pre-fill the domain field when initiating authentication with Microsoft OAuth or with a Google SAML connection type."
+                },
+                {
+                  "disabled": false,
+                  "key": "login_hint",
+                  "value": "<string>",
+                  "description": "Can be used to pre-fill the username/email address field of the IdP sign-in page for the user, if you know their username ahead of time. Currently supported for OAuth, OpenID Connect, Okta, Entra ID, and custom SAML connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "nonce",
+                  "value": "<string>",
+                  "description": "A random string generated by the client that is used to mitigate replay attacks."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9abc1c4-887e-449a-ab26-16870201ad9d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "provider_scopes",
+                      "value": "openid,profile,email"
+                    },
+                    {
+                      "key": "hd",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "access_type",
+                      "value": "offline"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "client_01HZBC6N1EB1ZY7KG32X"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "GoogleOAuth"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/callback"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "code"
+                    },
+                    {
+                      "key": "state",
+                      "value": "dj1kUXc0dzlXZ1hjUQ=="
+                    },
+                    {
+                      "key": "connection",
+                      "value": "conn_01E4ZCR3C56J083X43JQXF3JK5"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "org_01EHQMYV6MBK39QC5PZXHY59C3"
+                    },
+                    {
+                      "key": "domain_hint",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "nonce",
+                      "value": "abc123def456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"https://accounts.google.com/o/oauth2/v2/auth?client_id=example&redirect_uri=https%3A%2F%2Fapi.workos.com%2Fsso%2Fcallback&response_type=code&scope=openid%20profile%20email\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50436647-8127-4399-9fa4-fadaf40b12ae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "provider_scopes",
+                      "value": "openid,profile,email"
+                    },
+                    {
+                      "key": "hd",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "access_type",
+                      "value": "offline"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "client_01HZBC6N1EB1ZY7KG32X"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "provider",
+                      "value": "GoogleOAuth"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "https://example.com/callback"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "code"
+                    },
+                    {
+                      "key": "state",
+                      "value": "dj1kUXc0dzlXZ1hjUQ=="
+                    },
+                    {
+                      "key": "connection",
+                      "value": "conn_01E4ZCR3C56J083X43JQXF3JK5"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "org_01EHQMYV6MBK39QC5PZXHY59C3"
+                    },
+                    {
+                      "key": "domain_hint",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "user@example.com"
+                    },
+                    {
+                      "key": "nonce",
+                      "value": "abc123def456"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Location",
+                  "value": "https://ktaxkcxHrNxNYRVl.pszAZMz66nVUC4gixfIgRDxpGpmF59qLZTMdAMJFF.WYERbE1",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b244680e-ff97-4150-bdbb-4737ec711d1f",
+          "name": "Logout Redirect",
+          "request": {
+            "name": "Logout Redirect",
+            "description": {
+              "content": "Logout allows to sign out a user from your application by triggering the identity provider sign out flow. This `GET` endpoint should be a redirection, since the identity provider user will be identified in the browser session.\n\nBefore redirecting to this endpoint, you need to generate a short-lived logout token using the [Logout Authorize](/reference/sso/logout/authorize) endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "sso",
+                "logout"
+              ],
+              "host": [
+                "auth",
+                "workos",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) The logout token returned from the [Logout Authorize](/reference/sso/logout/authorize) endpoint."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1983c6e9-4648-49a0-b931-68a1c66d9629",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "sso",
+                    "logout"
+                  ],
+                  "host": [
+                    "auth",
+                    "workos",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlX2lkIjoicHJvZl8wMUdXUTFHMEgyRk02QVNFRjBIUzEzSENXOS0zMDRrZzAzZyIsImV4cCI6IjE1MTYyMzkwMjIifQ.Wru9Qlnf5DpohtGCKhZU4cVOd3zpiu7QQ-XEX--5A_4"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24c58bd3-a473-4618-b20d-1a456d239408",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "sso",
+                    "logout"
+                  ],
+                  "host": [
+                    "auth",
+                    "workos",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlX2lkIjoicHJvZl8wMUdXUTFHMEgyRk02QVNFRjBIUzEzSENXOS0zMDRrZzAzZyIsImV4cCI6IjE1MTYyMzkwMjIifQ.Wru9Qlnf5DpohtGCKhZU4cVOd3zpiu7QQ-XEX--5A_4"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Location",
+                  "value": "https://ktaxkcxHrNxNYRVl.pszAZMz66nVUC4gixfIgRDxpGpmF59qLZTMdAMJFF.WYERbE1",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0e7cc4a7-8681-46b7-b621-9d0afec3259a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "sso",
+                    "logout"
+                  ],
+                  "host": [
+                    "auth",
+                    "workos",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlX2lkIjoicHJvZl8wMUdXUTFHMEgyRk02QVNFRjBIUzEzSENXOS0zMDRrZzAzZyIsImV4cCI6IjE1MTYyMzkwMjIifQ.Wru9Qlnf5DpohtGCKhZU4cVOd3zpiu7QQ-XEX--5A_4"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "026d6c08-65cc-41dc-b6ee-2ba711963dc9",
+          "name": "Logout Authorize",
+          "request": {
+            "name": "Logout Authorize",
+            "description": {
+              "content": "You should call this endpoint from your server to generate a logout token which is required for the [Logout Redirect](/reference/sso/logout) endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "sso",
+                "logout",
+                "authorize"
+              ],
+              "host": [
+                "auth",
+                "workos",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "65d2cee0-f167-441d-a1c3-f59db4cf4d9d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "sso",
+                    "logout",
+                    "authorize"
+                  ],
+                  "host": [
+                    "auth",
+                    "workos",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"profile_id\": \"prof_01HXYZ123456789ABCDEFGHIJ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logout_url\": \"https://auth.workos.com/sso/logout?token=eyJhbGciOiJSUzI1NiJ9\",\n  \"logout_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlX2lkIjoicHJvZl8wMUdXUTFHMEgyRk02QVNFRjBIUzEzSENXOS0zMDRrZzAzZyIsImV4cCI6IjE1MTYyMzkwMjIifQ.Wru9Qlnf5DpohtGCKhZU4cVOd3zpiu7QQ-XEX--5A_4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58949ec6-faba-4681-a44a-468f2adf3c3f",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "sso",
+                    "logout",
+                    "authorize"
+                  ],
+                  "host": [
+                    "auth",
+                    "workos",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"profile_id\": \"prof_01HXYZ123456789ABCDEFGHIJ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07cc1a12-55d9-4243-a8e2-82d27fbd5185",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "sso",
+                    "logout",
+                    "authorize"
+                  ],
+                  "host": [
+                    "auth",
+                    "workos",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"profile_id\": \"prof_01HXYZ123456789ABCDEFGHIJ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"Single Logout is only supported for GenericOIDC connections.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a800bed1-1243-4307-97d3-95c103fbbc93",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "sso",
+                    "logout",
+                    "authorize"
+                  ],
+                  "host": [
+                    "auth",
+                    "workos",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"profile_id\": \"prof_01HXYZ123456789ABCDEFGHIJ\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc0b3e80-0ad5-4537-8571-6db6705886d3",
+          "name": "Get a User Profile",
+          "request": {
+            "name": "Get a User Profile",
+            "description": {
+              "content": "Exchange an access token for a user's [Profile](/reference/sso/profile). Because this profile is returned in the [Get a Profile and Token endpoint](/reference/sso/profile/get-profile-and-token) your application usually does not need to call this endpoint. It is available for any authentication flows that require an additional endpoint to retrieve a user's profile.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sso",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3d813f76-48ee-4a9f-9fd8-6d833db9780b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"profile\",\n  \"id\": \"prof_01DMC79VCBZ0NY2099737PSVF1\",\n  \"organization_id\": \"org_01EHQMYV6MBK39QC5PZXHY59C3\",\n  \"connection_id\": \"conn_01E4ZCR3C56J083X43JQXF3JK5\",\n  \"connection_type\": \"GoogleOAuth\",\n  \"idp_id\": \"103456789012345678901\",\n  \"email\": \"todd@example.com\",\n  \"first_name\": \"Todd\",\n  \"last_name\": \"Rundgren\",\n  \"name\": \"Todd Rundgren\",\n  \"raw_attributes\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"role\": {\n    \"slug\": \"admin\"\n  },\n  \"roles\": [\n    {\n      \"slug\": \"admin\"\n    },\n    {\n      \"slug\": \"admin\"\n    }\n  ],\n  \"groups\": [\n    \"Engineering\",\n    \"Admins\"\n  ],\n  \"custom_attributes\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08ea8925-7b32-443d-bef7-afa3004e2386",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "480da514-401d-4a49-a73c-680d9ef28f62",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d97c51f5-978f-457d-ad0f-5c4a155eafba",
+          "name": "Get a Profile and Token",
+          "request": {
+            "name": "Get a Profile and Token",
+            "description": {
+              "content": "Get an access token along with the user [Profile](/reference/sso/profile) using the code passed to your [Redirect URI](/reference/sso/get-authorization-url/redirect-uri).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sso",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) The client ID of the WorkOS environment."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) The client secret of the WorkOS environment."
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "(Required) The authorization code received from the authorization callback."
+                },
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) The grant type for the token request."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"code\": \"<string>\",\n  \"grant_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a0fada41-719c-45fe-91eb-afd676c82f7c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "client_01HZBC6N1EB1ZY7KG32X"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "sk_example_123456789"
+                    },
+                    {
+                      "key": "code",
+                      "value": "authorization_code_value"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HZBC6N1EB1ZY7KG32X\",\n  \"client_secret\": \"sk_example_123456789\",\n  \"code\": \"authorization_code_value\",\n  \"grant_type\": \"authorization_code\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token_type\": \"string\",\n  \"access_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6InNzby...\",\n  \"expires_in\": 600,\n  \"profile\": {\n    \"object\": \"profile\",\n    \"id\": \"prof_01DMC79VCBZ0NY2099737PSVF1\",\n    \"organization_id\": \"org_01EHQMYV6MBK39QC5PZXHY59C3\",\n    \"connection_id\": \"conn_01E4ZCR3C56J083X43JQXF3JK5\",\n    \"connection_type\": \"GoogleOAuth\",\n    \"idp_id\": \"103456789012345678901\",\n    \"email\": \"todd@example.com\",\n    \"first_name\": \"Todd\",\n    \"last_name\": \"Rundgren\",\n    \"name\": \"Todd Rundgren\",\n    \"raw_attributes\": {\n      \"key_0\": {}\n    },\n    \"role\": {\n      \"slug\": \"admin\"\n    },\n    \"roles\": [\n      {\n        \"slug\": \"admin\"\n      },\n      {\n        \"slug\": \"admin\"\n      }\n    ],\n    \"groups\": [\n      \"Engineering\",\n      \"Admins\"\n    ],\n    \"custom_attributes\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  },\n  \"oauth_tokens\": {\n    \"provider\": \"GoogleOAuth\",\n    \"refresh_token\": \"1//04g...\",\n    \"access_token\": \"ya29.a0ARrdaM...\",\n    \"expires_at\": 1735141800,\n    \"scopes\": [\n      \"profile\",\n      \"email\",\n      \"openid\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3f972de-1f63-4809-8686-3ef7b70a3234",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "client_01HZBC6N1EB1ZY7KG32X"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "sk_example_123456789"
+                    },
+                    {
+                      "key": "code",
+                      "value": "authorization_code_value"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HZBC6N1EB1ZY7KG32X\",\n  \"client_secret\": \"sk_example_123456789\",\n  \"code\": \"authorization_code_value\",\n  \"grant_type\": \"authorization_code\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "88b7961f-be33-4573-988e-697b0d74eb56",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "client_01HZBC6N1EB1ZY7KG32X"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "sk_example_123456789"
+                    },
+                    {
+                      "key": "code",
+                      "value": "authorization_code_value"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HZBC6N1EB1ZY7KG32X\",\n  \"client_secret\": \"sk_example_123456789\",\n  \"code\": \"authorization_code_value\",\n  \"grant_type\": \"authorization_code\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"Invalid client ID or secret.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0e7319f-5dbf-4c6b-8c72-d09383ad4fba",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "client_01HZBC6N1EB1ZY7KG32X"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "sk_example_123456789"
+                    },
+                    {
+                      "key": "code",
+                      "value": "authorization_code_value"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HZBC6N1EB1ZY7KG32X\",\n  \"client_secret\": \"sk_example_123456789\",\n  \"code\": \"authorization_code_value\",\n  \"grant_type\": \"authorization_code\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "859418b0-d0ed-4e86-80b4-ec8aaa072f61",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sso",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "client_01HZBC6N1EB1ZY7KG32X"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "sk_example_123456789"
+                    },
+                    {
+                      "key": "code",
+                      "value": "authorization_code_value"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"client_01HZBC6N1EB1ZY7KG32X\",\n  \"client_secret\": \"sk_example_123456789\",\n  \"code\": \"authorization_code_value\",\n  \"grant_type\": \"authorization_code\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ff6414fa-743a-4128-891a-6c25f5cbc9d0",
+    "name": "WorkOS admin-portal sso API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

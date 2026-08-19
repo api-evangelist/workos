@@ -1,0 +1,437 @@
+{
+  "item": [
+    {
+      "id": "958a5576-73bc-49a8-b15f-47cf3eb989e5",
+      "name": "user-management.multi-factor-authentication",
+      "description": {
+        "content": "Multi-factor authentication endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9cc791ae-b7f2-4a1e-955f-930564f90ac6",
+          "name": "Enroll an Authentication Factor",
+          "request": {
+            "name": "Enroll an Authentication Factor",
+            "description": {
+              "content": "Enrolls a user in a new [authentication factor](/reference/authkit/mfa/authentication-factor).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "users",
+                ":userlandUserId",
+                "auth_factors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userlandUserId",
+                  "description": "(Required) The ID of the [user](/reference/authkit/user)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"totp_issuer\": \"<string>\",\n  \"totp_user\": \"<string>\",\n  \"totp_secret\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ccf8d9b-39ad-4c29-988a-d1e76175dddb",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":userlandUserId",
+                    "auth_factors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userlandUserId",
+                      "description": "(Required) The ID of the [user](/reference/authkit/user)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"totp\",\n  \"totp_issuer\": \"WorkOS\",\n  \"totp_user\": \"user@example.com\",\n  \"totp_secret\": \"JBSWY3DPEHPK3PXP\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authentication_factor\": {\n    \"object\": \"string\",\n    \"id\": \"auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ\",\n    \"type\": \"totp\",\n    \"created_at\": \"2026-01-15T12:00:00.000Z\",\n    \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n    \"user_id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n    \"sms\": {\n      \"phone_number\": \"+15005550006\"\n    },\n    \"totp\": {\n      \"issuer\": \"WorkOS\",\n      \"user\": \"user@example.com\",\n      \"secret\": \"JBSWY3DPEHPK3PXP\",\n      \"qr_code\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUg...\",\n      \"uri\": \"otpauth://totp/WorkOS:user@example.com?secret=JBSWY3DPEHPK3PXP&issuer=WorkOS\"\n    }\n  },\n  \"authentication_challenge\": {\n    \"object\": \"string\",\n    \"id\": \"auth_challenge_01FVYZ5QM8N98T9ME5BCB2BBMJ\",\n    \"authentication_factor_id\": \"auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ\",\n    \"created_at\": \"2026-01-15T12:00:00.000Z\",\n    \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n    \"expires_at\": \"2026-01-15T12:00:00.000Z\",\n    \"code\": \"123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08c94bf7-ca48-4fad-baf8-527ceaa17e2e",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":userlandUserId",
+                    "auth_factors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userlandUserId",
+                      "description": "(Required) The ID of the [user](/reference/authkit/user)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"totp\",\n  \"totp_issuer\": \"WorkOS\",\n  \"totp_user\": \"user@example.com\",\n  \"totp_secret\": \"JBSWY3DPEHPK3PXP\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8be31ac-ae80-4356-946e-aae01cccac00",
+          "name": "List Authentication Factors",
+          "request": {
+            "name": "List Authentication Factors",
+            "description": {
+              "content": "Lists the [authentication factors](/reference/authkit/mfa/authentication-factor) for a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user_management",
+                "users",
+                ":userlandUserId",
+                "auth_factors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order the results by the creation time."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userlandUserId",
+                  "description": "(Required) The ID of the [user](/reference/authkit/user)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a651148a-7e4c-4f4f-b1fe-7fd43bb427f2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":userlandUserId",
+                    "auth_factors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userlandUserId",
+                      "description": "(Required) The ID of the [user](/reference/authkit/user)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"object\": \"string\",\n      \"id\": \"auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ\",\n      \"type\": \"totp\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"user_id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n      \"sms\": {\n        \"phone_number\": \"+15005550006\"\n      },\n      \"totp\": {\n        \"issuer\": \"WorkOS\",\n        \"user\": \"user@example.com\"\n      }\n    },\n    {\n      \"object\": \"string\",\n      \"id\": \"auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ\",\n      \"type\": \"totp\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"user_id\": \"user_01E4ZCR3C56J083X43JQXF3JK5\",\n      \"sms\": {\n        \"phone_number\": \"+15005550006\"\n      },\n      \"totp\": {\n        \"issuer\": \"WorkOS\",\n        \"user\": \"user@example.com\"\n      }\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"auth_factor_01HXYZ123456789ABCDEFGHIJ\",\n    \"after\": \"auth_factor_01HXYZ987654321KJIHGFEDCBA\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "852b2d79-31a6-4223-a6d8-aee005acb054",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user_management",
+                    "users",
+                    ":userlandUserId",
+                    "auth_factors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userlandUserId",
+                      "description": "(Required) The ID of the [user](/reference/authkit/user)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4123f797-4ca8-4f80-97b1-a08b5e0f4057",
+    "name": "WorkOS admin-portal user-management.multi-factor-authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

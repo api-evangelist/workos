@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal user-management.data-providers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-management.data-providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Connected Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:user_id/connected_accounts/:slug",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "A [User](/reference/authkit/user) identifier."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "An [Organization](/reference/organization) identifier. Optional parameter if the connection is scoped to an organization."
+              }
+            ]
+          },
+          "docs": "Retrieves a user's [connected account](/reference/pipes/connected-account) for a specific provider."
+        },
+        {
+          "info": {
+            "name": "Delete a Connected Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/user_management/users/:user_id/connected_accounts/:slug",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "A [User](/reference/authkit/user) identifier."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "An [Organization](/reference/organization) identifier. Optional parameter if the connection is scoped to an organization."
+              }
+            ]
+          },
+          "docs": "Disconnects WorkOS's account for the user, including removing any stored access and refresh tokens. The user will need to reauthorize if they want to reconnect. This does not revoke access on the provider side."
+        },
+        {
+          "info": {
+            "name": "List Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:user_id/data_providers",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "A [User](/reference/authkit/user) identifier to list providers and connected accounts for."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "An [Organization](/reference/organization) identifier. Optional parameter to filter connections for a specific organization."
+              }
+            ]
+          },
+          "docs": "Retrieves a list of available providers and the user's connection status for each. Returns all providers configured for your environment, along with the user's [connected account](/reference/pipes/connected-account) information where applicable."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

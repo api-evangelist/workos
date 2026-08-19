@@ -1,0 +1,982 @@
+{
+  "item": [
+    {
+      "id": "2b22ca3e-29fc-45b5-b381-38259c99586e",
+      "name": "applications",
+      "description": {
+        "content": "Manage Connect Applications.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "70952075-6044-45df-88b3-a2f20d50ac13",
+          "name": "List Connect Applications",
+          "request": {
+            "name": "List Connect Applications",
+            "description": {
+              "content": "List all Connect Applications in the current environment with optional filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connect",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `before=\"obj_123\"` to fetch a new batch of objects before `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list. For example, if you make a list request and receive 100 objects, ending with `\"obj_123\"`, your subsequent call can include `after=\"obj_123\"` to fetch a new batch of objects after `\"obj_123\"`."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order the results by the creation time. Supported values are `\"asc\"` (ascending), `\"desc\"` (descending), and `\"normal\"` (descending with reversed cursor semantics where `before` fetches older records and `after` fetches newer records). Defaults to descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<string>",
+                  "description": "Filter Connect Applications by organization ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3fd4b3e5-9c18-4be0-9aa9-95b1c1ef19c2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"application_type\": \"string\",\n      \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"description\": \"An application for managing user access\",\n      \"id\": \"conn_app_01HXYZ123456789ABCDEFGHIJ\",\n      \"is_first_party\": true,\n      \"name\": \"My Application\",\n      \"object\": \"connect_application\",\n      \"redirect_uris\": [\n        {\n          \"uri\": \"https://example.com/callback\",\n          \"default\": true\n        },\n        {\n          \"uri\": \"https://example.com/callback\",\n          \"default\": true\n        }\n      ],\n      \"scopes\": [\n        \"openid\",\n        \"profile\",\n        \"email\"\n      ],\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"uses_pkce\": true\n    },\n    {\n      \"application_type\": \"string\",\n      \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"description\": \"An application for managing user access\",\n      \"id\": \"conn_app_01HXYZ123456789ABCDEFGHIJ\",\n      \"is_first_party\": true,\n      \"name\": \"My Application\",\n      \"object\": \"connect_application\",\n      \"redirect_uris\": [\n        {\n          \"uri\": \"https://example.com/callback\",\n          \"default\": true\n        },\n        {\n          \"uri\": \"https://example.com/callback\",\n          \"default\": true\n        }\n      ],\n      \"scopes\": [\n        \"openid\",\n        \"profile\",\n        \"email\"\n      ],\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n      \"uses_pkce\": true\n    }\n  ],\n  \"list_metadata\": {\n    \"before\": \"conn_app_01HXYZ123456789ABCDEFGHIJ\",\n    \"after\": \"conn_app_01HXYZ987654321KJIHGFEDCBA\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8958dfaa-00f4-4e0b-8bd9-6ef31460554b",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "xxx_01HXYZ123456789ABCDEFGHIJ"
+                    },
+                    {
+                      "key": "after",
+                      "value": "xxx_01HXYZ987654321KJIHGFEDCBA"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "organization_id",
+                      "value": "org_01EHZNVPK3SFK441A1RGBFSHRT"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0c143ce-cb60-414b-93a4-7617a8078f98",
+          "name": "Create a Connect Application",
+          "request": {
+            "name": "Create a Connect Application",
+            "description": {
+              "content": "Create a new Connect Application. Supports both OAuth and Machine-to-Machine (M2M) application types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connect",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"application_type\": \"<string>\",\n  \"is_first_party\": \"<boolean>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"redirect_uris\": [\n    {\n      \"uri\": \"<string>\",\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"uri\": \"<string>\",\n      \"default\": \"<boolean,null>\"\n    }\n  ],\n  \"uses_pkce\": \"<boolean,null>\",\n  \"organization_id\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ce12a24-4c9c-4cda-8813-e2d9e8c87798",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Application\",\n  \"application_type\": \"string\",\n  \"is_first_party\": true,\n  \"description\": \"An application for managing user access\",\n  \"scopes\": [\n    \"openid\",\n    \"profile\",\n    \"email\"\n  ],\n  \"redirect_uris\": [\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    }\n  ],\n  \"uses_pkce\": true,\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application_type\": \"string\",\n  \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"description\": \"An application for managing user access\",\n  \"id\": \"conn_app_01HXYZ123456789ABCDEFGHIJ\",\n  \"is_first_party\": true,\n  \"name\": \"My Application\",\n  \"object\": \"connect_application\",\n  \"redirect_uris\": [\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    },\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    }\n  ],\n  \"scopes\": [\n    \"openid\",\n    \"profile\",\n    \"email\"\n  ],\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"uses_pkce\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "288bdd74-0603-45e2-8ce7-0675cd855591",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Application\",\n  \"application_type\": \"string\",\n  \"is_first_party\": true,\n  \"description\": \"An application for managing user access\",\n  \"scopes\": [\n    \"openid\",\n    \"profile\",\n    \"email\"\n  ],\n  \"redirect_uris\": [\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    }\n  ],\n  \"uses_pkce\": true,\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f777db3-d532-4f50-af94-1b6f99cea4ee",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Application\",\n  \"application_type\": \"string\",\n  \"is_first_party\": true,\n  \"description\": \"An application for managing user access\",\n  \"scopes\": [\n    \"openid\",\n    \"profile\",\n    \"email\"\n  ],\n  \"redirect_uris\": [\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    }\n  ],\n  \"uses_pkce\": true,\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24483f47-b1bb-4b4f-ad7e-840edff900a3",
+          "name": "Get a Connect Application",
+          "request": {
+            "name": "Get a Connect Application",
+            "description": {
+              "content": "Retrieve details for a specific Connect Application by ID or client ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connect",
+                "applications",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The application ID or client ID of the Connect Application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "362f729d-52f0-4283-b52d-007c876f4269",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The application ID or client ID of the Connect Application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application_type\": \"string\",\n  \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"description\": \"An application for managing user access\",\n  \"id\": \"conn_app_01HXYZ123456789ABCDEFGHIJ\",\n  \"is_first_party\": true,\n  \"name\": \"My Application\",\n  \"object\": \"connect_application\",\n  \"redirect_uris\": [\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    },\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    }\n  ],\n  \"scopes\": [\n    \"openid\",\n    \"profile\",\n    \"email\"\n  ],\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"uses_pkce\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6b6e00a-4300-4fad-8d2b-942c9c8905e8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The application ID or client ID of the Connect Application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "699fa953-a1b8-428e-9ed3-9b15ef97f2ba",
+          "name": "Update a Connect Application",
+          "request": {
+            "name": "Update a Connect Application",
+            "description": {
+              "content": "Update an existing Connect Application. For OAuth applications, you can update redirect URIs. For all applications, you can update the name, description, and scopes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connect",
+                "applications",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The application ID or client ID of the Connect Application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"redirect_uris\": [\n    {\n      \"uri\": \"<string>\",\n      \"default\": \"<boolean,null>\"\n    },\n    {\n      \"uri\": \"<string>\",\n      \"default\": \"<boolean,null>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b82057d-1f8b-42fd-b254-95b79fc1b9c2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The application ID or client ID of the Connect Application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Application\",\n  \"description\": \"An application for managing user access\",\n  \"scopes\": [\n    \"openid\",\n    \"profile\",\n    \"email\"\n  ],\n  \"redirect_uris\": [\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"application_type\": \"string\",\n  \"client_id\": \"client_01HXYZ123456789ABCDEFGHIJ\",\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"description\": \"An application for managing user access\",\n  \"id\": \"conn_app_01HXYZ123456789ABCDEFGHIJ\",\n  \"is_first_party\": true,\n  \"name\": \"My Application\",\n  \"object\": \"connect_application\",\n  \"redirect_uris\": [\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    },\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    }\n  ],\n  \"scopes\": [\n    \"openid\",\n    \"profile\",\n    \"email\"\n  ],\n  \"updated_at\": \"2026-01-15T12:00:00.000Z\",\n  \"uses_pkce\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe486711-c5df-45c9-9959-1c4ab28daf4e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The application ID or client ID of the Connect Application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Application\",\n  \"description\": \"An application for managing user access\",\n  \"scopes\": [\n    \"openid\",\n    \"profile\",\n    \"email\"\n  ],\n  \"redirect_uris\": [\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25139118-ece5-47cd-9bc4-2d201752eaf2",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The application ID or client ID of the Connect Application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Application\",\n  \"description\": \"An application for managing user access\",\n  \"scopes\": [\n    \"openid\",\n    \"profile\",\n    \"email\"\n  ],\n  \"redirect_uris\": [\n    {\n      \"uri\": \"https://example.com/callback\",\n      \"default\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6f8a94a-1fff-4618-880e-bb59f4470b90",
+          "name": "Delete a Connect Application",
+          "request": {
+            "name": "Delete a Connect Application",
+            "description": {
+              "content": "Delete an existing Connect Application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connect",
+                "applications",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The application ID or client ID of the Connect Application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bab1f8c8-c024-4cd8-b464-8ebe6c35c913",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The application ID or client ID of the Connect Application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "005e1f45-1185-4957-b91a-27407408e9d4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "applications",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The application ID or client ID of the Connect Application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "735242a4-4f9f-40a7-ae06-1958597cddae",
+    "name": "WorkOS admin-portal applications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

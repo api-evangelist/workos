@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal feature-flags API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "feature-flags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Feature Flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/feature-flags",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Get a list of all of your existing feature flags matching the criteria specified."
+        },
+        {
+          "info": {
+            "name": "Get a Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/feature-flags/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "A unique key to reference the Feature Flag."
+              }
+            ]
+          },
+          "docs": "Get the details of an existing feature flag by its slug."
+        },
+        {
+          "info": {
+            "name": "Disable a Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/feature-flags/:slug/disable",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "A unique key to reference the Feature Flag."
+              }
+            ]
+          },
+          "docs": "Disables a feature flag in the current environment."
+        },
+        {
+          "info": {
+            "name": "Enable a Feature Flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/feature-flags/:slug/enable",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "A unique key to reference the Feature Flag."
+              }
+            ]
+          },
+          "docs": "Enables a feature flag in the current environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

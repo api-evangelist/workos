@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal feature-flags.targets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "feature-flags.targets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a Feature Flag Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/feature-flags/:slug/targets/:resourceId",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The resource ID in format \"user_<id>\" or \"org_<id>\"."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug identifier of the feature flag."
+              }
+            ]
+          },
+          "docs": "Enables a feature flag for a specific target in the current environment. Currently, supported targets include users and organizations."
+        },
+        {
+          "info": {
+            "name": "Remove a Feature Flag Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.workos.com/feature-flags/:slug/targets/:resourceId",
+            "params": [
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "path",
+                "description": "The resource ID in format \"user_<id>\" or \"org_<id>\"."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "The unique slug identifier of the feature flag."
+              }
+            ]
+          },
+          "docs": "Removes a target from the feature flag's target list in the current environment. Currently, supported targets include users and organizations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,203 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal user-management.authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-management.authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/authenticate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate a user with a specified [authentication method](/reference/authkit/authentication)."
+        },
+        {
+          "info": {
+            "name": "Get an Authorization URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/authorize",
+            "params": [
+              {
+                "name": "code_challenge_method",
+                "value": "",
+                "type": "query",
+                "description": "The only valid PKCE code challenge method is `\"S256\"`. Required when specifying a `code_challenge`."
+              },
+              {
+                "name": "code_challenge",
+                "value": "",
+                "type": "query",
+                "description": "Code challenge derived from the code verifier used for the PKCE flow."
+              },
+              {
+                "name": "domain_hint",
+                "value": "",
+                "type": "query",
+                "description": "A domain hint for SSO connection lookup."
+              },
+              {
+                "name": "connection_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of an SSO connection to use for authentication."
+              },
+              {
+                "name": "provider_query_params",
+                "value": "",
+                "type": "query",
+                "description": "Key/value pairs of query parameters to pass to the OAuth provider."
+              },
+              {
+                "name": "provider_scopes",
+                "value": "",
+                "type": "query",
+                "description": "Additional OAuth scopes to request from the identity provider."
+              },
+              {
+                "name": "invitation_token",
+                "value": "",
+                "type": "query",
+                "description": "A token representing a user invitation to redeem during authentication."
+              },
+              {
+                "name": "screen_hint",
+                "value": "",
+                "type": "query",
+                "description": "Used to specify which screen to display when the provider is `authkit`."
+              },
+              {
+                "name": "login_hint",
+                "value": "",
+                "type": "query",
+                "description": "A hint to the authorization server about the login identifier the user might use."
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth provider to authenticate with (e.g., GoogleOAuth, MicrosoftOAuth, GitHubOAuth)."
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query",
+                "description": "Controls the authentication flow behavior for the user."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "An opaque value used to maintain state between the request and the callback."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the organization to authenticate the user against."
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "The response type of the application."
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "The callback URI where the authorization code will be sent after authentication."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the WorkOS environment client."
+              }
+            ]
+          },
+          "docs": "Generates an OAuth 2.0 authorization URL to authenticate a user with AuthKit or SSO."
+        },
+        {
+          "info": {
+            "name": "Get Device Authorization URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/authorize/device",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates the CLI Auth flow by requesting a device code and verification URLs. This endpoint implements the OAuth 2.0 Device Authorization Flow ([RFC 8628](https://datatracker.ietf.org/doc/html/rfc8628)) and is designed for command-line applications or other devices with limited input capabilities."
+        },
+        {
+          "info": {
+            "name": "Logout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/sessions/logout",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the session to revoke. This can be extracted from the `sid` claim of the access token."
+              },
+              {
+                "name": "return_to",
+                "value": "",
+                "type": "query",
+                "description": "The URL to redirect the user to after session revocation."
+              }
+            ]
+          },
+          "docs": "Logout a user from the current [session](/reference/authkit/session)."
+        },
+        {
+          "info": {
+            "name": "Revoke Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/sessions/revoke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a [user session](/reference/authkit/session)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

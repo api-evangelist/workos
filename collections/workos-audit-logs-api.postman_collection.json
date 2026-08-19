@@ -1,0 +1,1792 @@
+{
+  "item": [
+    {
+      "id": "01fc9353-cad0-4a13-aa8a-2c25c5f2bc06",
+      "name": "audit-logs",
+      "description": {
+        "content": "Create and query audit log events.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f54329bb-17ba-4046-9aec-39f839329c37",
+          "name": "List Actions",
+          "request": {
+            "name": "List Actions",
+            "description": {
+              "content": "Get a list of all Audit Log actions in the current environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit_logs",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order the results by the creation time."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0356308-0bac-48c1-9eec-cc6bd1db7508",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"list_metadata\": {\n    \"before\": \"ala_01HXYZ123456789ABCDEFGHIJ\",\n    \"after\": \"ala_01HXYZ987654321KJIHGFEDCBA\"\n  },\n  \"data\": [\n    {\n      \"object\": \"audit_log_action\",\n      \"name\": \"user.viewed_invoice\",\n      \"schema\": {\n        \"object\": \"audit_log_schema\",\n        \"version\": 1,\n        \"targets\": [\n          {\n            \"type\": \"invoice\",\n            \"metadata\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"cost\": {\n                  \"type\": \"number\"\n                }\n              }\n            }\n          }\n        ],\n        \"created_at\": \"2026-01-15T12:00:00.000Z\",\n        \"actor\": {\n          \"metadata\": {\n            \"key_0\": {}\n          }\n        },\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\"\n    },\n    {\n      \"object\": \"audit_log_action\",\n      \"name\": \"user.viewed_invoice\",\n      \"schema\": {\n        \"object\": \"audit_log_schema\",\n        \"version\": 1,\n        \"targets\": [\n          {\n            \"type\": \"invoice\",\n            \"metadata\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"cost\": {\n                  \"type\": \"number\"\n                }\n              }\n            }\n          }\n        ],\n        \"created_at\": \"2026-01-15T12:00:00.000Z\",\n        \"actor\": {\n          \"metadata\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"updated_at\": \"2026-01-15T12:00:00.000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01868fdf-826b-4cd4-8d35-e278022a7375",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3fb8cee-dd69-4223-b9b0-125633ce10d5",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c783ea5-c4f8-4f11-9ef2-c83e63596738",
+          "name": "Create Schema",
+          "request": {
+            "name": "Create Schema",
+            "description": {
+              "content": "Creates a new Audit Log schema used to validate the payload of incoming Audit Log Events. If the `action` does not exist, it will also be created.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit_logs",
+                "actions",
+                ":actionName",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The name of the Audit Log action."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targets\": [\n    {\n      \"type\": \"<string>\",\n      \"metadata\": \"<object>\"\n    }\n  ],\n  \"actor\": {\n    \"metadata\": \"<object>\"\n  },\n  \"metadata\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea3fb60c-ec89-4b0a-9eb3-35314f9a7107",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "actions",
+                    ":actionName",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The name of the Audit Log action."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targets\": [\n    {\n      \"type\": \"invoice\",\n      \"metadata\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"cost\": {\n            \"type\": \"number\"\n          }\n        }\n      }\n    }\n  ],\n  \"actor\": {\n    \"metadata\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"role\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  },\n  \"metadata\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"transactionId\": {\n        \"type\": \"string\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"audit_log_schema\",\n  \"version\": 1,\n  \"targets\": [\n    {\n      \"type\": \"invoice\",\n      \"metadata\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    {\n      \"type\": \"invoice\",\n      \"metadata\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  ],\n  \"created_at\": \"2026-01-15T12:00:00.000Z\",\n  \"actor\": {\n    \"metadata\": {\n      \"key_0\": {}\n    }\n  },\n  \"metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39bdaa96-c170-4a27-b3d6-f62b87b2ef74",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "actions",
+                    ":actionName",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The name of the Audit Log action."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targets\": [\n    {\n      \"type\": \"invoice\",\n      \"metadata\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"cost\": {\n            \"type\": \"number\"\n          }\n        }\n      }\n    }\n  ],\n  \"actor\": {\n    \"metadata\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"role\": {\n          \"type\": \"string\"\n        }\n      }\n    }\n  },\n  \"metadata\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"transactionId\": {\n        \"type\": \"string\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28787cf1-f610-4bc4-996d-c1cf91513422",
+          "name": "List Schemas",
+          "request": {
+            "name": "List Schemas",
+            "description": {
+              "content": "Get a list of all schemas for the Audit Logs action identified by `:name`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit_logs",
+                "actions",
+                ":actionName",
+                "schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Upper limit on the number of objects to return, between `1` and `100`."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order the results by the creation time."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The name of the Audit Log action."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8edc97d9-50b3-4bc9-8df8-38d0fe0df796",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "actions",
+                    ":actionName",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The name of the Audit Log action."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"list_metadata\": {\n    \"before\": \"als_01HXYZ123456789ABCDEFGHIJ\",\n    \"after\": \"als_01HXYZ987654321KJIHGFEDCBA\"\n  },\n  \"data\": [\n    {\n      \"object\": \"audit_log_schema\",\n      \"version\": 1,\n      \"targets\": [\n        {\n          \"type\": \"invoice\",\n          \"metadata\": {\n            \"key_0\": {}\n          }\n        },\n        {\n          \"type\": \"invoice\",\n          \"metadata\": {\n            \"key_0\": {}\n          }\n        }\n      ],\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"actor\": {\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      },\n      \"metadata\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    {\n      \"object\": \"audit_log_schema\",\n      \"version\": 1,\n      \"targets\": [\n        {\n          \"type\": \"invoice\",\n          \"metadata\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        {\n          \"type\": \"invoice\",\n          \"metadata\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        }\n      ],\n      \"created_at\": \"2026-01-15T12:00:00.000Z\",\n      \"actor\": {\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      \"metadata\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b882d5af-496c-447d-8fd8-66c014ded5a9",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "actions",
+                    ":actionName",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The name of the Audit Log action."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c1ac5bb-7b5c-4a58-85ef-7ff62124db54",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "actions",
+                    ":actionName",
+                    "schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "after",
+                      "value": "obj_1234567890"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The name of the Audit Log action."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0771a754-2e24-4936-82c4-fa435b7689ac",
+          "name": "Create Event",
+          "request": {
+            "name": "Create Event",
+            "description": {
+              "content": "Create an Audit Log Event.\n\nThis API supports idempotency which guarantees that performing the same operation multiple times will have the same result as if the operation were performed only once. This is handy in situations where you may need to retry a request due to a failure or prevent accidental duplicate requests from creating more than one resource.\n\nTo achieve idempotency, you can add `Idempotency-Key` request header to a Create Event request with a unique string as the value. Each subsequent request matching this unique string will return the same response. We suggest using [v4 UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier) for idempotency keys to avoid collisions.\n\nIdempotency keys expire after 24 hours. The API will generate a new response if you submit a request with an expired key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit_logs",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "A unique string to prevent duplicate requests. Each subsequent request matching this unique string will return the same response. We suggest using v4 UUIDs. Keys expire after 24 hours.",
+                "key": "idempotency-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"organization_id\": \"<string>\",\n  \"event\": {\n    \"action\": \"<string>\",\n    \"occurred_at\": \"<dateTime>\",\n    \"actor\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"metadata\": {}\n    },\n    \"targets\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"metadata\": {}\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"metadata\": {}\n      }\n    ],\n    \"context\": {\n      \"location\": \"<string>\",\n      \"user_agent\": \"<string>\"\n    },\n    \"metadata\": {},\n    \"version\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f801dd88-4890-40e8-b521-82c457781250",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "A unique string to prevent duplicate requests. Each subsequent request matching this unique string will return the same response. We suggest using v4 UUIDs. Keys expire after 24 hours.",
+                    "key": "idempotency-key",
+                    "value": "884793cd-bef4-46cf-8790-e3d4957a09ce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n  \"event\": {\n    \"action\": \"user.signed_in\",\n    \"occurred_at\": \"2026-02-02T16:35:39.317Z\",\n    \"actor\": {\n      \"id\": \"user_TF4C5938\",\n      \"type\": \"user\",\n      \"name\": \"Jon Smith\",\n      \"metadata\": {\n        \"owner\": \"user_01GBTCQ2\"\n      }\n    },\n    \"targets\": [\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      },\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      }\n    ],\n    \"context\": {\n      \"location\": \"123.123.123.123\",\n      \"user_agent\": \"Chrome/104.0.0.0\"\n    },\n    \"metadata\": {\n      \"owner\": \"user_01GBTCQ2\"\n    },\n    \"version\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e23af92-7a65-4e12-a3f5-59c1412ccedd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "A unique string to prevent duplicate requests. Each subsequent request matching this unique string will return the same response. We suggest using v4 UUIDs. Keys expire after 24 hours.",
+                    "key": "idempotency-key",
+                    "value": "884793cd-bef4-46cf-8790-e3d4957a09ce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n  \"event\": {\n    \"action\": \"user.signed_in\",\n    \"occurred_at\": \"2026-02-02T16:35:39.317Z\",\n    \"actor\": {\n      \"id\": \"user_TF4C5938\",\n      \"type\": \"user\",\n      \"name\": \"Jon Smith\",\n      \"metadata\": {\n        \"owner\": \"user_01GBTCQ2\"\n      }\n    },\n    \"targets\": [\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      },\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      }\n    ],\n    \"context\": {\n      \"location\": \"123.123.123.123\",\n      \"user_agent\": \"Chrome/104.0.0.0\"\n    },\n    \"metadata\": {\n      \"owner\": \"user_01GBTCQ2\"\n    },\n    \"version\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid Audit Log event.\",\n  \"code\": \"invalid_audit_log_event\",\n  \"errors\": [\n    {\n      \"instancePath\": \"/targets\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b7fc739-8659-493e-87c4-189ebd5f89e6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "A unique string to prevent duplicate requests. Each subsequent request matching this unique string will return the same response. We suggest using v4 UUIDs. Keys expire after 24 hours.",
+                    "key": "idempotency-key",
+                    "value": "884793cd-bef4-46cf-8790-e3d4957a09ce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n  \"event\": {\n    \"action\": \"user.signed_in\",\n    \"occurred_at\": \"2026-02-02T16:35:39.317Z\",\n    \"actor\": {\n      \"id\": \"user_TF4C5938\",\n      \"type\": \"user\",\n      \"name\": \"Jon Smith\",\n      \"metadata\": {\n        \"owner\": \"user_01GBTCQ2\"\n      }\n    },\n    \"targets\": [\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      },\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      }\n    ],\n    \"context\": {\n      \"location\": \"123.123.123.123\",\n      \"user_agent\": \"Chrome/104.0.0.0\"\n    },\n    \"metadata\": {\n      \"owner\": \"user_01GBTCQ2\"\n    },\n    \"version\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "969cab8f-7167-4519-8963-da4152d51fed",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "A unique string to prevent duplicate requests. Each subsequent request matching this unique string will return the same response. We suggest using v4 UUIDs. Keys expire after 24 hours.",
+                    "key": "idempotency-key",
+                    "value": "884793cd-bef4-46cf-8790-e3d4957a09ce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n  \"event\": {\n    \"action\": \"user.signed_in\",\n    \"occurred_at\": \"2026-02-02T16:35:39.317Z\",\n    \"actor\": {\n      \"id\": \"user_TF4C5938\",\n      \"type\": \"user\",\n      \"name\": \"Jon Smith\",\n      \"metadata\": {\n        \"owner\": \"user_01GBTCQ2\"\n      }\n    },\n    \"targets\": [\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      },\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      }\n    ],\n    \"context\": {\n      \"location\": \"123.123.123.123\",\n      \"user_agent\": \"Chrome/104.0.0.0\"\n    },\n    \"metadata\": {\n      \"owner\": \"user_01GBTCQ2\"\n    },\n    \"version\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"code\": \"required\",\n      \"field\": \"event.action\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "610a017a-93c2-4365-9419-c4e4948e2d84",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "A unique string to prevent duplicate requests. Each subsequent request matching this unique string will return the same response. We suggest using v4 UUIDs. Keys expire after 24 hours.",
+                    "key": "idempotency-key",
+                    "value": "884793cd-bef4-46cf-8790-e3d4957a09ce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"org_01EHWNCE74X7JSDV0X3SZ3KJNY\",\n  \"event\": {\n    \"action\": \"user.signed_in\",\n    \"occurred_at\": \"2026-02-02T16:35:39.317Z\",\n    \"actor\": {\n      \"id\": \"user_TF4C5938\",\n      \"type\": \"user\",\n      \"name\": \"Jon Smith\",\n      \"metadata\": {\n        \"owner\": \"user_01GBTCQ2\"\n      }\n    },\n    \"targets\": [\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      },\n      {\n        \"id\": \"user_TF4C5938\",\n        \"type\": \"user\",\n        \"name\": \"Jon Smith\",\n        \"metadata\": {\n          \"owner\": \"user_01GBTCQ2\"\n        }\n      }\n    ],\n    \"context\": {\n      \"location\": \"123.123.123.123\",\n      \"user_agent\": \"Chrome/104.0.0.0\"\n    },\n    \"metadata\": {\n      \"owner\": \"user_01GBTCQ2\"\n    },\n    \"version\": 1\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Too many requests.\",\n  \"code\": \"rate_limit_exceeded\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "575282a8-15db-4993-8123-a20b46614b5c",
+          "name": "Create Export",
+          "request": {
+            "name": "Create Export",
+            "description": {
+              "content": "Create an Audit Log Export. Exports are scoped to a single organization within a specified date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit_logs",
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"organization_id\": \"<string>\",\n  \"range_start\": \"<string>\",\n  \"range_end\": \"<string>\",\n  \"actions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actor_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actor_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"targets\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5b4d464b-eb10-49b3-9494-eab2b2900044",
+              "name": "The created Audit Log Export object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"range_start\": \"2022-07-02T18:09:06.996Z\",\n  \"range_end\": \"2022-09-02T18:09:06.996Z\",\n  \"actions\": [\n    \"user.signed_in\"\n  ],\n  \"actors\": [\n    \"Jon Smith\"\n  ],\n  \"actor_names\": [\n    \"Jon Smith\"\n  ],\n  \"actor_ids\": [\n    \"user_01GBZK5MP7TD1YCFQHFR22180V\"\n  ],\n  \"targets\": [\n    \"team\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"audit_log_export\",\n  \"id\": \"audit_log_export_01GBZK5MP7TD1YCFQHFR22180V\",\n  \"state\": \"pending\",\n  \"created_at\": \"2022-09-02T17:14:57.094Z\",\n  \"updated_at\": \"2022-09-02T17:14:57.094Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b628683-036b-48fe-a9fe-c5dadd6902ab",
+              "name": "Invalid request parameters or date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"range_start\": \"2022-07-02T18:09:06.996Z\",\n  \"range_end\": \"2022-09-02T18:09:06.996Z\",\n  \"actions\": [\n    \"user.signed_in\"\n  ],\n  \"actors\": [\n    \"Jon Smith\"\n  ],\n  \"actor_names\": [\n    \"Jon Smith\"\n  ],\n  \"actor_ids\": [\n    \"user_01GBZK5MP7TD1YCFQHFR22180V\"\n  ],\n  \"targets\": [\n    \"team\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid date range\",\n  \"code\": \"invalid_audit_log_export_range_date\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4813b43b-dfa3-4267-80b5-c5936d1f521c",
+          "name": "Get Export",
+          "request": {
+            "name": "Get Export",
+            "description": {
+              "content": "Get an Audit Log Export. The URL will expire after 10 minutes. If the export is needed again at a later time, refetching the export will regenerate the URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit_logs",
+                "exports",
+                ":auditLogExportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "auditLogExportId",
+                  "description": "(Required) The unique ID of the Audit Log Export."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba83c82b-3342-4d1d-b307-4a74de2e3f72",
+              "name": "The Audit Log Export object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "exports",
+                    ":auditLogExportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "auditLogExportId",
+                      "description": "(Required) The unique ID of the Audit Log Export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"audit_log_export\",\n  \"id\": \"audit_log_export_01GBZK5MP7TD1YCFQHFR22180V\",\n  \"state\": \"ready\",\n  \"url\": \"https://exports.audit-logs.com/audit-log-exports/export.csv\",\n  \"created_at\": \"2022-09-02T17:14:57.094Z\",\n  \"updated_at\": \"2022-09-02T17:14:57.094Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0aaf281e-e0b5-4565-97e7-8c000635eb50",
+              "name": "Audit Log Export not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs",
+                    "exports",
+                    ":auditLogExportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "auditLogExportId",
+                      "description": "(Required) The unique ID of the Audit Log Export."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Audit Log Export not found: 'audit_log_export_01GBZK5MP7TD1YCFQHFR22180V'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "619aae20-b048-4662-bf30-4ed5bff2ba53",
+          "name": "Get Retention",
+          "request": {
+            "name": "Get Retention",
+            "description": {
+              "content": "Get the configured event retention period for the given Organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":id",
+                "audit_logs_retention"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the Organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "334f88d0-58a0-4d84-83de-2e828988b5be",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id",
+                    "audit_logs_retention"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"retention_period_in_days\": 30\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09c76410-c295-4c69-bdb4-4e2e8c491bde",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id",
+                    "audit_logs_retention"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32f0ce75-ba5f-4beb-8b0c-09bdf629ea29",
+          "name": "Set Retention",
+          "request": {
+            "name": "Set Retention",
+            "description": {
+              "content": "Set the event retention period for the given Organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":id",
+                "audit_logs_retention"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the Organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"retention_period_in_days\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f4b3fb31-ae04-4f6d-98c5-29f8e9cb4d67",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id",
+                    "audit_logs_retention"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"retention_period_in_days\": 30\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"retention_period_in_days\": 30\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "140e830b-6f75-4992-bbc8-5e9c9a4dc2b0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id",
+                    "audit_logs_retention"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"retention_period_in_days\": 30\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f7feae6-13af-443b-8ae1-5b89bd4be97d",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":id",
+                    "audit_logs_retention"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the Organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"retention_period_in_days\": 30\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "286a8e3d-2da0-468f-8e46-25c36d0513f8",
+    "name": "WorkOS admin-portal audit-logs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

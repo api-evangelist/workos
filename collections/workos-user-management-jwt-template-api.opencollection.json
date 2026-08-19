@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal user-management.jwt-template API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-management.jwt-template",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get JWT Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/jwt_template"
+          },
+          "docs": "Get the JWT template for the current environment."
+        },
+        {
+          "info": {
+            "name": "Update JWT Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.workos.com/user_management/jwt_template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the JWT template for the current environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

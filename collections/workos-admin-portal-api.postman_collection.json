@@ -1,0 +1,350 @@
+{
+  "item": [
+    {
+      "id": "62e54cc5-4c84-4b86-852b-2c86f986e74b",
+      "name": "admin-portal",
+      "description": {
+        "content": "Endpoints for the Admin Portal API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "107fdce0-000e-44c8-803e-d1efd04c12f5",
+          "name": "Generate a Portal Link",
+          "request": {
+            "name": "Generate a Portal Link",
+            "description": {
+              "content": "Generate a Portal Link scoped to an Organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "portal",
+                "generate_link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"organization\": \"<string>\",\n  \"return_url\": \"<string>\",\n  \"success_url\": \"<string>\",\n  \"intent\": \"<string>\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"<string>\",\n      \"provider_type\": \"<string>\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"<string>\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"<email>\",\n    \"<email>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e497a0b5-7b7d-44b1-87b5-da8c5e4a5aff",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portal",
+                    "generate_link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"return_url\": \"https://example.com/admin-portal/return\",\n  \"success_url\": \"https://example.com/admin-portal/success\",\n  \"intent\": \"sso\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"chatgpt\",\n      \"provider_type\": \"GoogleSAML\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"example.com\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"it-contact@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"link\": \"https://setup.workos.com?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5891de75-e37a-43e4-a097-60147d43c20a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portal",
+                    "generate_link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"return_url\": \"https://example.com/admin-portal/return\",\n  \"success_url\": \"https://example.com/admin-portal/success\",\n  \"intent\": \"sso\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"chatgpt\",\n      \"provider_type\": \"GoogleSAML\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"example.com\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"it-contact@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a060ad99-0000-4ad2-8cb4-4fd95a3425d0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portal",
+                    "generate_link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"return_url\": \"https://example.com/admin-portal/return\",\n  \"success_url\": \"https://example.com/admin-portal/success\",\n  \"intent\": \"sso\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"chatgpt\",\n      \"provider_type\": \"GoogleSAML\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"example.com\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"it-contact@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7be5d1c8-bac4-4135-af48-7235677b3a77",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portal",
+                    "generate_link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"return_url\": \"https://example.com/admin-portal/return\",\n  \"success_url\": \"https://example.com/admin-portal/success\",\n  \"intent\": \"sso\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"chatgpt\",\n      \"provider_type\": \"GoogleSAML\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"example.com\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"it-contact@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bad7756c-ec01-4fd0-bd53-181956de392a",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "portal",
+                    "generate_link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization\": \"org_01EHZNVPK3SFK441A1RGBFSHRT\",\n  \"return_url\": \"https://example.com/admin-portal/return\",\n  \"success_url\": \"https://example.com/admin-portal/success\",\n  \"intent\": \"sso\",\n  \"intent_options\": {\n    \"sso\": {\n      \"bookmark_slug\": \"chatgpt\",\n      \"provider_type\": \"GoogleSAML\"\n    },\n    \"domain_verification\": {\n      \"domain_name\": \"example.com\"\n    }\n  },\n  \"it_contact_emails\": [\n    \"it-contact@example.com\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Organization not found: 'org_01EHQMYV6MBK39QC5PZXHY59C3'.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.workos.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "60adf33c-b204-49f6-b627-9be4d38b2952",
+    "name": "WorkOS admin-portal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "WorkOS REST API\n\nContact Support:\n Name: WorkOS\n Email: support@workos.com",
+      "type": "text/plain"
+    }
+  }
+}

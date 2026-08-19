@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WorkOS admin-portal user-management.multi-factor-authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user-management.multi-factor-authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Authentication Factors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.workos.com/user_management/users/:userlandUserId/auth_factors",
+            "params": [
+              {
+                "name": "userlandUserId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the [user](/reference/authkit/user)."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An object ID that defines your place in the list. When the ID is not present, you are at the end of the list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Upper limit on the number of objects to return, between `1` and `100`."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order the results by the creation time."
+              }
+            ]
+          },
+          "docs": "Lists the [authentication factors](/reference/authkit/mfa/authentication-factor) for a user."
+        },
+        {
+          "info": {
+            "name": "Enroll an Authentication Factor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.workos.com/user_management/users/:userlandUserId/auth_factors",
+            "params": [
+              {
+                "name": "userlandUserId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the [user](/reference/authkit/user)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enrolls a user in a new [authentication factor](/reference/authkit/mfa/authentication-factor)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
