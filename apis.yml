@@ -46,6 +46,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Admin Portal
+  tags_raw:
   - admin-portal
   properties:
   - type: OpenAPI
@@ -78,6 +80,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - APIKeys
+  tags_raw:
   - api_keys
   properties:
   - type: OpenAPI
@@ -142,6 +146,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Application
+  tags_raw:
   - applications
   properties:
   - type: OpenAPI
@@ -174,6 +180,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Audit Logs
+  tags_raw:
   - audit-logs
   properties:
   - type: OpenAPI
@@ -206,6 +214,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Authorization
+  tags_raw:
   - authorization
   properties:
   - type: OpenAPI
@@ -238,6 +248,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Connections
+  tags_raw:
   - connections
   properties:
   - type: OpenAPI
@@ -270,6 +282,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Directories
+  tags_raw:
   - directories
   properties:
   - type: OpenAPI
@@ -366,6 +380,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Event
+  tags_raw:
   - events
   properties:
   - type: OpenAPI
@@ -398,6 +414,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Feature Flags
+  tags_raw:
   - feature-flags
   properties:
   - type: OpenAPI
@@ -462,6 +480,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Group
+  tags_raw:
   - groups
   properties:
   - type: OpenAPI
@@ -558,6 +578,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Organization Domains
+  tags_raw:
   - organization-domains
   properties:
   - type: OpenAPI
@@ -589,7 +611,8 @@ apis:
   description: Manage organization-scoped API keys.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
-  tags:
+  tags: []
+  tags_raw:
   - organizations.api_keys
   properties:
   - type: OpenAPI
@@ -622,6 +645,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Organization
+  tags_raw:
   - organizations
   properties:
   - type: OpenAPI
@@ -686,6 +711,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Permissions
+  tags_raw:
   - permissions
   properties:
   - type: OpenAPI
@@ -718,6 +745,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Pipes
+  tags_raw:
   - pipes
   properties:
   - type: OpenAPI
@@ -750,6 +779,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Radar
+  tags_raw:
   - radar
   properties:
   - type: OpenAPI
@@ -782,6 +813,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - SSO
+  tags_raw:
   - sso
   properties:
   - type: OpenAPI
@@ -1166,6 +1199,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - User Management - Users
+  tags_raw:
   - user-management.users
   properties:
   - type: OpenAPI
@@ -1262,6 +1297,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Webhook
+  tags_raw:
   - webhooks
   properties:
   - type: OpenAPI
@@ -1294,6 +1331,8 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
+  - Widgets
+  tags_raw:
   - widgets
   properties:
   - type: OpenAPI
