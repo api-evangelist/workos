@@ -6,6 +6,20 @@ description: WorkOS is the "Enterprise Ready" identity platform for B2B SaaS —
   (FGA, formerly Warrant), Radar bot/fraud protection, and an emerging suite of agent-oriented
   surfaces (Pipes, MCP Auth, auth.md).
 type: Index
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -1394,6 +1408,13 @@ apis:
   - type: GraphQL
     url: graphql/workos-graphql.md
 common:
+- type: CapabilityMap
+  url: capabilities/workos-capability-edges.yml
+  name: WorkOS Business Capability Map
+- type: IssueTracker
+  url: https://github.com/workos/openapi-spec/issues
+- type: Releases
+  url: https://github.com/workos/openapi-spec/releases
 - type: License
   name: MIT
   url: https://github.com/workos/openapi-spec/blob/main/LICENSE
