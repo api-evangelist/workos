@@ -60,7 +60,7 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
-  - admin-portal
+  - Admin Portal
   tags_raw:
   - admin-portal
   properties:
@@ -93,7 +93,8 @@ apis:
   description: Manage API keys for environments.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
-  tags: []
+  tags:
+  - APIKeys
   tags_raw:
   - api_keys
   properties:
@@ -193,7 +194,7 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
-  - audit-logs
+  - Audit Logs
   tags_raw:
   - audit-logs
   properties:
@@ -427,7 +428,7 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
-  - feature-flags
+  - Feature Flags
   tags_raw:
   - feature-flags
   properties:
@@ -591,7 +592,7 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
-  - organization-domains
+  - Organization Domains
   tags_raw:
   - organization-domains
   properties:
@@ -758,7 +759,7 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
-  - pipes
+  - Pipes
   tags_raw:
   - pipes
   properties:
@@ -792,7 +793,7 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
-  - radar
+  - Radar
   tags_raw:
   - radar
   properties:
@@ -1212,7 +1213,7 @@ apis:
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
-  - user-management.users
+  - User Management - Users
   tags_raw:
   - user-management.users
   properties:
