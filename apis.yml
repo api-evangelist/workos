@@ -1,10 +1,9 @@
 aid: workos
 name: WorkOS
-description: WorkOS is the "Enterprise Ready" identity platform for B2B SaaS — providing
-  AuthKit user management, enterprise SSO (SAML/OIDC), Directory Sync (SCIM 2.0),
-  Multi-Factor Authentication, Audit Logs, Admin Portal, Fine-Grained Authorization
-  (FGA, formerly Warrant), Radar bot/fraud protection, and an emerging suite of agent-oriented
-  surfaces (Pipes, MCP Auth, auth.md).
+description: WorkOS is the "Enterprise Ready" identity platform for B2B SaaS — providing AuthKit user
+  management, enterprise SSO (SAML/OIDC), Directory Sync (SCIM 2.0), Multi-Factor Authentication, Audit
+  Logs, Admin Portal, Fine-Grained Authorization (FGA, formerly Warrant), Radar bot/fraud protection,
+  and an emerging suite of agent-oriented surfaces (Pipes, MCP Auth, auth.md).
 type: Index
 deliveryModel:
   model: open-core
@@ -52,7 +51,7 @@ tags:
 - MCP
 url: https://raw.githubusercontent.com/api-evangelist/workos/refs/heads/main/apis.yml
 created: '2026-03-25'
-modified: '2026-05-22'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: workos:workos-admin-portal-api
@@ -82,11 +81,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-api-keys-api
@@ -116,11 +113,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-application-client-secrets-api
@@ -148,11 +143,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-applications-api
@@ -182,11 +175,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-audit-logs-api
@@ -216,11 +207,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-authorization-api
@@ -250,11 +239,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-connections-api
@@ -284,11 +271,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-directories-api
@@ -318,11 +303,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-directory-groups-api
@@ -350,11 +333,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-directory-users-api
@@ -382,11 +363,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-events-api
@@ -416,11 +395,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-feature-flags-api
@@ -450,11 +427,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-feature-flags-targets-api
@@ -482,11 +457,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-groups-api
@@ -516,11 +489,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-multi-factor-auth-api
@@ -548,11 +519,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-multi-factor-auth-challenges-api
@@ -580,11 +549,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-organization-domains-api
@@ -614,11 +581,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-organizations-api-keys-api
@@ -647,11 +612,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-organizations-api
@@ -681,11 +644,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-organizations-feature-flags-api
@@ -713,11 +674,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-permissions-api
@@ -747,11 +706,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-pipes-api
@@ -781,11 +738,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-radar-api
@@ -815,11 +770,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-sso-api
@@ -849,11 +802,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-authentication-api
@@ -881,11 +832,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-cors-origins-api
@@ -913,11 +862,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-data-providers-api
@@ -945,11 +892,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-invitations-api
@@ -977,11 +922,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-jwt-template-api
@@ -1009,11 +952,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-magic-auth-api
@@ -1041,11 +982,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-multi-factor-authentication-api
@@ -1073,11 +1012,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-organization-membership-api
@@ -1105,11 +1042,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-organization-membership-groups-api
@@ -1137,11 +1072,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-redirect-uris-api
@@ -1169,11 +1102,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-session-tokens-api
@@ -1201,11 +1132,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-users-api
@@ -1235,11 +1164,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-users-authorized-applications-api
@@ -1267,11 +1194,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-users-feature-flags-api
@@ -1299,11 +1224,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-webhooks-api
@@ -1333,11 +1256,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-widgets-api
@@ -1367,18 +1288,15 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 - aid: workos:workos-workos-connect-api
-  name: WorkOS workos-connect API
-  description: >-
-    A unified interface that simplifies authentication and authorization across customers, partners, and
-    external SaaS tools.
+  name: WorkOS-connect API
+  description: A unified interface that simplifies authentication and authorization across customers,
+    partners, and external SaaS tools.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
   tags:
@@ -1401,11 +1319,9 @@ apis:
   - type: RateLimits
     url: https://workos.com/docs/reference/rate-limits
   - type: Plans
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
+    url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
   - type: GraphQL
     url: graphql/workos-graphql.md
 common:
@@ -1461,15 +1377,13 @@ common:
   - 'Scale Support: $1,000/mo; Enterprise custom'
   - 'REST base URL: https://api.workos.com (staging: api.workos-test.com)'
   - 'Default rate limit: 600 req/min; auth 60 req/min; Directory Sync 10/sec'
-  - 50+ identity provider integrations (Okta, Entra, Google Workspace, JumpCloud,
-    OneLogin, PingFederate, etc.)
-  - 'SCIM 2.0 directory providers: Azure SCIM, Okta SCIM, BambooHR, Workday, HiBob,
-    Rippling, JumpCloud, OneLogin, PingFederate, S/FTP, generic SCIM 2.0'
-  - Bearer token auth (sk_test_*/sk_live_*); supports organization-scoped and user-scoped
-    API keys
+  - 50+ identity provider integrations (Okta, Entra, Google Workspace, JumpCloud, OneLogin, PingFederate,
+    etc.)
+  - 'SCIM 2.0 directory providers: Azure SCIM, Okta SCIM, BambooHR, Workday, HiBob, Rippling, JumpCloud,
+    OneLogin, PingFederate, S/FTP, generic SCIM 2.0'
+  - Bearer token auth (sk_test_*/sk_live_*); supports organization-scoped and user-scoped API keys
   - Sealed sessions, magic auth, passkeys, social, password, enterprise SSO
-  - 'FGA (formerly Warrant): relationship-based authorization, custom roles, edge
-    agent'
+  - 'FGA (formerly Warrant): relationship-based authorization, custom roles, edge agent'
   - Audit Logs stream to Splunk, Datadog, Elastic and other SIEMs
   - MCP Auth + Resource Indicators (RFC 8707) for per-server scoping
   - 'Pipes: human-approved, provider-scoped credentials for AI agents'
