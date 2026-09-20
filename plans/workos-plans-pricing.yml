@@ -1,300 +1,71 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: WorkOS
-providerId: workos
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-22'
-reconciled: true
-tags:
-  - Identity
-  - B2B SaaS
-  - SSO
-  - Directory Sync
-  - Audit Logs
-  - Radar
-  - FGA
-description: WorkOS per-product per-connection pricing. AuthKit free up to 1M MAU; SSO/SCIM tiered per connection; Audit Logs streaming + retention; Radar metered checks.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://workos.com/pricing
 sources:
-  - https://workos.com/pricing
+- https://workos.com/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120317
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+published: true
+note: Product-by-product usage pricing (connections, users, checks, events) plus a negotiated Annual Credits
+  tier.
+plan_count: 8
+currency: USD
 plans:
-  - id: workos-authkit
-    name: AuthKit (User Management)
-    type: usage-based
-    description: Free for first 1M MAUs; $2,500/mo per additional 1M MAU.
-    entries:
-      - label: First 1M MAU free
-        name: mau_free
-        type: quota
-        metric: MAU
-        limit: 1000000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Per additional 1M MAU
-        name: mau_extra
-        type: metered
-        metric: MAU
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1000000
-        price: '2500.00'
-        userMultiplied: false
-    elements:
-      - name: Hosted AuthKit login UI
-      - name: Email/password, social, magic auth, OAuth, passkeys
-      - name: Multi-factor authentication
-      - name: Pricing scales with growth
-
-  - id: workos-sso
-    name: Single Sign-On (SAML/OIDC)
-    type: usage-based
-    description: 'Tiered per active SAML/OIDC connection: $125 (1-15) down to $50 (101-200), custom at 201+.'
-    entries:
-      - label: 1-15 connections
-        name: tier_1
-        type: metered
-        metric: connection
-        limit: 15
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '125.00'
-        userMultiplied: false
-      - label: 16-30 connections (20% off)
-        name: tier_2
-        type: metered
-        metric: connection
-        limit: 30
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '100.00'
-        userMultiplied: false
-      - label: 31-50 connections (36% off)
-        name: tier_3
-        type: metered
-        metric: connection
-        limit: 50
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '80.00'
-        userMultiplied: false
-      - label: 51-100 connections (48% off)
-        name: tier_4
-        type: metered
-        metric: connection
-        limit: 100
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '65.00'
-        userMultiplied: false
-      - label: 101-200 connections (60% off)
-        name: tier_5
-        type: metered
-        metric: connection
-        limit: 200
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '50.00'
-        userMultiplied: false
-      - label: 201+ connections (custom)
-        name: tier_6
-        type: metered
-        metric: connection
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Per active SAML/OIDC connection
-      - name: Self-service SSO Admin Portal
-      - name: 50+ identity provider integrations
-
-  - id: workos-directory-sync
-    name: Directory Sync (SCIM)
-    type: usage-based
-    description: 'Tiered per active SCIM connection mirroring SSO tiers: $125 (1-15) down to $50 (101-200).'
-    entries:
-      - label: 1-15 connections
-        name: tier_1
-        type: metered
-        metric: connection
-        limit: 15
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '125.00'
-        userMultiplied: false
-      - label: 16-30 connections
-        name: tier_2
-        type: metered
-        metric: connection
-        limit: 30
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '100.00'
-        userMultiplied: false
-      - label: 31-50 connections
-        name: tier_3
-        type: metered
-        metric: connection
-        limit: 50
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '80.00'
-        userMultiplied: false
-      - label: 51-100 connections
-        name: tier_4
-        type: metered
-        metric: connection
-        limit: 100
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '65.00'
-        userMultiplied: false
-      - label: 101-200 connections
-        name: tier_5
-        type: metered
-        metric: connection
-        limit: 200
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '50.00'
-        userMultiplied: false
-      - label: 201+ connections (custom)
-        name: tier_6
-        type: metered
-        metric: connection
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: SCIM 2.0 provisioning
-      - name: Just-in-time user creation
-      - name: Group sync
-
-  - id: workos-audit-logs
-    name: Audit Logs
-    type: usage-based
-    description: '$125/mo per SIEM destination plus $99/mo per 1M events retained.'
-    entries:
-      - label: Per SIEM connection
-        name: siem_connection
-        type: metered
-        metric: siem_connection
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '125.00'
-        userMultiplied: false
-      - label: Per 1M events retained
-        name: event_retention
-        type: metered
-        metric: events
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1000000
-        price: '99.00'
-        userMultiplied: false
-    elements:
-      - name: Tamper-evident audit log storage
-      - name: SIEM streaming (Splunk, Datadog, Elastic, etc.)
-
-  - id: workos-radar
-    name: Radar (Bot and Fraud Protection)
-    type: usage-based
-    description: First 1,000 checks free; $100/mo per additional 50K checks.
-    entries:
-      - label: First 1,000 checks free
-        name: radar_free
-        type: quota
-        metric: checks
-        limit: 1000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Per 50K additional checks
-        name: radar_metered
-        type: metered
-        metric: checks
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 50000
-        price: '100.00'
-        userMultiplied: false
-    elements:
-      - name: Bot detection at auth boundary
-      - name: Fraud signals
-      - name: Abuse mitigation
-
-  - id: workos-custom-domain
-    name: Custom Domain
-    type: flat
-    description: $99/mo per custom domain configured for AuthKit and the Admin Portal.
-    entries:
-      - label: Per custom domain
-        name: custom_domain
-        type: metered
-        metric: domain
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '99.00'
-        userMultiplied: false
-    elements:
-      - name: Custom auth.example.com domain
-
-  - id: workos-scale-support
-    name: Scale Support
-    type: flat
-    description: Scale support tier with video support and onboarding ($1,000/mo). Enterprise tier is custom-negotiated.
-    entries:
-      - label: Scale support
-        name: scale
-        type: metered
-        metric: support
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '1000.00'
-        userMultiplied: false
-      - label: Enterprise support
-        name: enterprise
-        type: metered
-        metric: support
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Video support
-      - name: Dedicated account management (Enterprise)
-      - name: 24/7 response SLAs (Enterprise)
+- name: AuthKit / User Management
+  price_text: $0 / month
+  price: 0
+  currency: USD
+  period: month
+  unit: active users
+  included_quota: Up to 1 million users Free
+  overage: Per additional 1M users $2,500 / mo
+- name: Single Sign-On
+  price_text: $125 / ea
+  price: 125
+  currency: USD
+  period: month
+  unit: connection
+  included_quota: Number of connections 1-15
+  overage: 16-30 $100 / ea; 31-50 $80 / ea; 51-100 $65 / ea
+- name: Directory Sync
+  price_text: $125 / ea
+  price: 125
+  currency: USD
+  period: month
+  unit: connection
+  included_quota: Number of connections 1-15
+  overage: 16-30 $100 / ea; 31-50 $80 / ea; 51-100 $65 / ea
+- name: Audit Logs - log streaming
+  price_text: $125 / mo
+  price: 125
+  currency: USD
+  period: month
+  unit: per SIEM connection
+- name: Audit Logs - event retention
+  price_text: $99 / mo
+  price: 99
+  currency: USD
+  period: month
+  unit: per million events stored
+- name: Radar
+  price_text: $100 / mo
+  price: 100
+  currency: USD
+  period: month
+  unit: per 50k checks
+  included_quota: First 1,000 checks Free
+- name: Custom Domain
+  price_text: $99 / mo
+  price: 99
+  currency: USD
+  period: month
+  unit: custom domain
+- name: Annual Credits
+  price_text: Schedule a call
+  period: none
+  included_quota: Everything in Pay as you go, plus pre-pay credit discounts, 99.99% uptime SLA
