@@ -1,0 +1,223 @@
+slug: workos
+provider: WorkOS
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 21
+edges:
+- tag: feature-flags
+  spec_file: workos-feature-flags-api-openapi.yml
+  capability_id: BC-4210.50
+  capability_id_l1: BC-4210
+  capability_name: Feature Flag Management
+  confidence: 0.9
+  evidence: GET /feature-flags FeatureFlagsController_list List Feature Flags; PUT /feature-flags/{slug}/enable
+    Enable a Feature Flag
+  reason: Operations manage the lifecycle and runtime enable/disable state of feature flags, which is
+    exactly Feature Flag Management.
+- tag: multi-factor-auth
+  spec_file: workos-multi-factor-auth-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /auth/factors/enroll AuthenticationFactorsController_create Enroll Factor; POST /auth/factors/{id}/challenge
+    Challenge Factor
+  reason: MFA factor enrollment and challenge is authentication/identity and access management.
+- tag: user-management.multi-factor-authentication
+  spec_file: workos-user-management-multi-factor-authentication-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /user_management/users/{userlandUserId}/auth_factors  Enroll an Authentication Factor
+  reason: Enrolment and listing of MFA authentication factors is unambiguously identity and access management.
+- tag: multi-factor-auth.challenges
+  spec_file: workos-multi-factor-auth-challenges-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: POST /auth/challenges/{id}/verify AuthenticationChallengesController_verify Verify Challenge
+  reason: Verification of an authentication challenge is an authentication step within Identity & Access
+    Management.
+- tag: permissions
+  spec_file: workos-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: POST /authorization/permissions AuthorizationPermissionsController_create Create a Permission
+  reason: CRUD over authorization permissions is access rights administration — Identity & Access Management.
+- tag: feature-flags.targets
+  spec_file: workos-feature-flags-targets-api-openapi.yml
+  capability_id: BC-4210.50
+  capability_id_l1: BC-4210
+  capability_name: Feature Flag Management
+  confidence: 0.85
+  evidence: POST /feature-flags/{slug}/targets/{resourceId} FlagTargetsController_createTarget Add a Feature
+    Flag Target
+  reason: Targeting of feature flags to specific resources/cohorts is runtime control of feature flags.
+- tag: user-management.authentication
+  spec_file: workos-user-management-authentication-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /user_management/authenticate  Authenticate; GET /user_management/sessions/logout  Logout;
+    POST /user_management/sessions/revoke  Revoke Session
+  reason: Authentication, authorization URLs and session revocation are core identity and access management
+    operations.
+- tag: user-management.users
+  spec_file: workos-user-management-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /user_management/users  Create a User; POST /user_management/password_reset  Create a
+    Password Reset Token; GET /user_management/email_verification/{id}  Get an Email Verification Code
+  reason: Operations create, update, delete and verify user accounts and reset credentials — user identity
+    lifecycle and credential management, i.e. Identity & Access Management. Not customer master data (no
+    commercial customer attributes), so BC-420.10 is rejected.
+- tag: sso
+  spec_file: workos-sso-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: GET /sso/authorize  SsoController_authorize  Initiate SSO; POST /sso/token  Get a Profile
+    and Token
+  reason: Operations initiate enterprise single sign-on, exchange tokens and return the authenticated
+    user profile — federation/SSO authentication, i.e. identity and access management. Not a tenant-provisioning
+    or subscription surface.
+- tag: authorization
+  spec_file: workos-authorization-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /authorization/organization_memberships/{organization_membership_id}/check Check Authorization;
+    POST /authorization/organizations/{organizationId}/roles Create a Custom Role; AuthorizationRoleAssignmentsController_assignRole
+    Assign a Role
+  reason: Role definition, role assignment, permission resolution and access checks are access management.
+    Mapped to Identity & Access Management; some chance a reader prefers a product-entitlement reading,
+    hence 0.8.
+- tag: groups
+  spec_file: workos-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /organizations/{organizationId}/groups/{groupId}/organization-memberships GroupMembershipsController_addMember
+    Add a Member to a Group
+  reason: Group and membership management within an identity platform is directory/access group administration
+    — Identity & Access Management. Could also be tenant identity federation, but the operations are generic
+    group/membership CRUD.
+- tag: organizations
+  spec_file: workos-organizations-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.8
+  evidence: POST /organizations OrganizationsController_create Create an Organization; DELETE /organizations/{id}
+    OrganizationsController_deleteOrganization
+  reason: Organizations are the tenant construct in this B2B SaaS identity platform; create/update/delete
+    of organizations is tenant provisioning and lifecycle.
+- tag: organizations.feature-flags
+  spec_file: workos-organizations-feature-flags-api-openapi.yml
+  capability_id: BC-4210.50
+  capability_id_l1: BC-4210
+  capability_name: Feature Flag Management
+  confidence: 0.8
+  evidence: GET /organizations/{organizationId}/feature-flags OrganizationFeatureFlagsController_list
+    List Enabled Feature Flags for an Organization
+  reason: Reading enabled feature flags per organization is feature flag runtime control; arguably tenant
+    configuration but the artefact is explicitly feature flags.
+- tag: webhooks
+  spec_file: workos-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.8
+  evidence: POST /webhook_endpoints  Create a Webhook Endpoint; PATCH /webhook_endpoints/{id}  Update
+    a Webhook Endpoint; schema WebhookEndpointJson
+  reason: CRUD over outbound webhook endpoints is exactly the lifecycle of outbound webhook/event subscriptions
+    in the platform's developer ecosystem; the frame provides an explicit capability for this rather than
+    treating it as pure plumbing.
+- tag: user-management.magic-auth
+  spec_file: workos-user-management-magic-auth-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /user_management/magic_auth  Create a Magic Auth Code
+  reason: Passwordless email code issuance and retrieval is a user authentication mechanism, part of identity
+    and access management.
+- tag: user-management.users.feature-flags
+  spec_file: workos-user-management-users-feature-flags-api-openapi.yml
+  capability_id: BC-4210.50
+  capability_id_l1: BC-4210
+  capability_name: Feature Flag Management
+  confidence: 0.78
+  evidence: 'GET /user_management/users/{userId}/feature-flags  List Enabled Feature Flags for a User;
+    schemas: FlagList, Flag'
+  reason: Runtime resolution of which feature flags are enabled for a given user is feature-flag targeting
+    to a cohort, matching Feature Flag Management. Single read-only operation limits confidence; it could
+    also be read as entitlement resolution.
+- tag: organizations.api_keys
+  spec_file: workos-organizations-api-keys-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.75
+  evidence: POST /organizations/{organizationId}/api_keys OrganizationApiKeysController_create Create
+    an API Key for an Organization
+  reason: Issuance and listing of API keys/credentials for an organization maps to developer identity
+    and credential management.
+- tag: user-management.organization-membership
+  spec_file: workos-user-management-organization-membership-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /user_management/organization_memberships  Create an Organization Membership; PUT /user_management/organization_memberships/{id}/deactivate
+  reason: Creation, update, deactivation and reactivation of a user's membership (with SlimRole) in an
+    organisation is access administration — IAM, not HR employee records.
+- tag: application.client-secrets
+  spec_file: workos-application-client-secrets-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: POST /connect/applications/{id}/client_secrets Create a New Client Secret for a Connect Application
+  reason: Lifecycle of OAuth client secrets for registered applications maps directly to issuance and
+    stewardship of developer credentials and OAuth clients.
+- tag: organization-domains
+  spec_file: workos-organization-domains-api-openapi.yml
+  capability_id: BC-4230.50
+  capability_id_l1: BC-4230
+  capability_name: Tenant Identity Federation
+  confidence: 0.7
+  evidence: POST /organization_domains/{id}/verify OrganizationDomainsController_verify Verify an Organization
+    Domain
+  reason: Domain creation and verification for an organization (tenant) underpins SSO/tenant identity
+    federation in a B2B SaaS identity platform; moderate confidence as it could also be read as generic
+    IAM.
+- tag: user-management.invitations
+  spec_file: workos-user-management-invitations-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /user_management/invitations  Send an Invitation; POST /user_management/invitations/{id}/revoke  Revoke
+    an Invitation
+  reason: Invitation issuance, acceptance and revocation govern onboarding of user accounts into organisations
+    — joiners/leavers within identity and access management, not HR recruiting.
