@@ -1,44 +1,93 @@
-specification: API Commons Rate Limits
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: WorkOS
-providerId: workos
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-22'
-reconciled: true
-tags:
-  - Rate Limiting
-  - Identity
-description: WorkOS API rate limits scoped per organization with separate envelopes for auth, REST, and Directory Sync.
+# Rate limits transcribed from the provider's own documentation — see provenance. Quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://workos.com/docs/reference/rate-limits
 sources:
-  - https://workos.com/docs/reference/rate-limits
-  - https://workos.com/pricing
-headers:
-  retryAfter: Retry-After
-responseCodes:
-  throttled: 429
+- https://workos.com/docs/reference/rate-limits
+provenance:
+  tool: planning/api-economics/harvest_ratelimits.py
+  run: 20260920T133210
+  grounding: every limit_text was found verbatim in the fetched page text
+published: true
+note: Windows of 60 seconds/10 seconds recorded as 'none' since not a single unambiguous unit window.
+limit_count: 15
 limits:
-  - name: REST API (default)
-    scope: org
-    metric: requests_per_minute
-    limit: 600
-    timeFrame: minute
-  - name: Auth endpoints
-    scope: org
-    metric: requests_per_minute
-    limit: 60
-    timeFrame: minute
-  - name: Directory Sync events
-    scope: directory
-    metric: events_per_second
-    limit: 10
-    timeFrame: second
-  - name: Webhook delivery
-    scope: webhook
-    metric: retries
-    limit: 8
-    timeFrame: total
-    description: Exponential backoff retries for failed webhook deliveries.
+- name: All requests
+  limit_text: 6,000 requests per 60 seconds per API key
+  limit: 6000
+  scope: api-key
+  endpoint: '*'
+- name: Get Authorization URL
+  limit_text: 1,000 requests per 60 seconds per connection
+  limit: 1000
+  scope: unclear
+  endpoint: /sso/authorize
+- name: Directory Users
+  limit_text: 4 requests per second per directory
+  limit: 4
+  window: second
+  scope: unclear
+  endpoint: /directory_users
+- name: Delete Organization
+  limit_text: 50 requests per 60 seconds per API key
+  limit: 50
+  scope: api-key
+  endpoint: /organizations/*
+- name: Create Event
+  limit_text: 6,000 requests per 60 seconds per API key
+  limit: 6000
+  scope: api-key
+  endpoint: /audit_logs/events
+- name: AuthKit Reads
+  limit_text: 1,000 requests per 10 seconds
+  limit: 1000
+  scope: unclear
+  endpoint: /user_management/*
+- name: AuthKit Writes
+  limit_text: 500 requests per 10 seconds
+  limit: 500
+  scope: unclear
+  endpoint: /user_management/*
+- name: Authentication
+  limit_text: 10 requests per 60 seconds per email or challenge ID
+  limit: 10
+  scope: user
+  endpoint: /user_management/authenticate
+- name: Magic Auth
+  limit_text: 3 requests per 60 seconds per email
+  limit: 3
+  scope: user
+  endpoint: /user_management/magic_auth/send
+- name: Email verification
+  limit_text: 3 requests per 60 seconds per user
+  limit: 3
+  scope: user
+  endpoint: /user_management/:id/email_verification/send
+- name: Password reset
+  limit_text: 3 requests per 60 seconds per email
+  limit: 3
+  scope: user
+  endpoint: /user_management/password_reset/send
+- name: Hosted AuthKit SSO sign-ins
+  limit_text: 3 requests per 60 seconds per IP address
+  limit: 3
+  scope: ip
+  endpoint: Hosted AuthKit
+- name: Hosted AuthKit Email sign-ins
+  limit_text: 10 requests per 60 seconds per email and IP address
+  limit: 10
+  scope: ip
+  endpoint: Hosted AuthKit
+- name: Magic Auth sign-ins
+  limit_text: 10 requests per 60 seconds per IP address and challenge ID
+  limit: 10
+  scope: ip
+  endpoint: Hosted AuthKit
+- name: Magic Auth code requests
+  limit_text: 3 requests per 60 seconds per IP address and email
+  limit: 3
+  scope: ip
+  endpoint: Hosted AuthKit
+headers:
+- Retry-After
+exceeded_status: 429
