@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal user-management.authentication API
+  title: WorkOS User Management.authentication API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -24,7 +24,7 @@ tags:
 paths:
   /user_management/authenticate:
     post:
-      description: Authenticate a user with a specified [authentication method](/reference/authkit/authentication).
+      description: Authenticate a user with a specified authentication method.
       operationId: UserlandSessionsController_authenticate[0]
       parameters: []
       requestBody:
@@ -1206,7 +1206,7 @@ paths:
       - user-management.authentication
   /user_management/authorize/device:
     post:
-      description: Initiates the CLI Auth flow by requesting a device code and verification URLs. This endpoint implements the OAuth 2.0 Device Authorization Flow ([RFC 8628](https://datatracker.ietf.org/doc/html/rfc8628)) and is designed for command-line applications or other devices with limited input capabilities.
+      description: Initiates the CLI Auth flow by requesting a device code and verification URLs. This endpoint implements the OAuth 2.0 Device Authorization Flow (RFC 8628) and is designed for command-line applications or other devices with limited input capabilities.
       operationId: UserlandSsoController_deviceAuthorization
       parameters: []
       requestBody:
@@ -1271,7 +1271,7 @@ paths:
       - user-management.authentication
   /user_management/sessions/logout:
     get:
-      description: Logout a user from the current [session](/reference/authkit/session).
+      description: Logout a user from the current session.
       operationId: UserlandSessionsController_logout
       parameters:
       - name: session_id
@@ -1322,7 +1322,7 @@ paths:
       - user-management.authentication
   /user_management/sessions/revoke:
     post:
-      description: Revoke a [user session](/reference/authkit/session).
+      description: Revoke a user session.
       operationId: UserlandSessionsController_revokeSession
       parameters: []
       requestBody:
@@ -1352,6 +1352,19 @@ paths:
       - user-management.authentication
 components:
   schemas:
+    UserlandRevokeSessionDto:
+      type: object
+      properties:
+        session_id:
+          type: string
+          description: The ID of the session to revoke. This can be extracted from the `sid` claim of the access token.
+          example: session_01H93ZY4F80QPBEZ1R5B2SHQG8
+        return_to:
+          type: string
+          description: The URL to redirect the user to after session revocation.
+          example: https://example.com
+      required:
+      - session_id
     DeviceAuthorizationResponse:
       type: object
       properties:
@@ -1386,96 +1399,6 @@ components:
       - user_code
       - verification_uri
       - expires_in
-    UserlandUser:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the user object.
-          const: user
-        id:
-          type: string
-          description: The unique ID of the user.
-          example: user_01E4ZCR3C56J083X43JQXF3JK5
-        first_name:
-          type:
-          - string
-          - 'null'
-          description: The first name of the user.
-          example: Marcelina
-        last_name:
-          type:
-          - string
-          - 'null'
-          description: The last name of the user.
-          example: Davis
-        profile_picture_url:
-          type:
-          - string
-          - 'null'
-          description: A URL reference to an image representing the user.
-          example: https://workoscdn.com/images/v1/123abc
-        email:
-          type: string
-          description: The email address of the user.
-          example: marcelina.davis@example.com
-        email_verified:
-          type: boolean
-          description: Whether the user's email has been verified.
-          example: true
-        external_id:
-          type:
-          - string
-          - 'null'
-          description: The external ID of the user.
-          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-            maxLength: 600
-          description: Object containing metadata key/value pairs associated with the user.
-          example:
-            timezone: America/New_York
-          propertyNames:
-            maxLength: 40
-          maxProperties: 50
-        last_sign_in_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-          description: The timestamp when the user last signed in.
-          example: '2025-06-25T19:07:33.155Z'
-        locale:
-          type:
-          - string
-          - 'null'
-          description: The user's preferred locale.
-          example: en-US
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - first_name
-      - last_name
-      - profile_picture_url
-      - email
-      - email_verified
-      - external_id
-      - last_sign_in_at
-      - created_at
-      - updated_at
-      description: The user object.
     UserlandAuthenticateResponse:
       type: object
       properties:
@@ -1581,19 +1504,96 @@ components:
       - user
       - access_token
       - refresh_token
-    UserlandRevokeSessionDto:
+    UserlandUser:
       type: object
       properties:
-        session_id:
+        object:
           type: string
-          description: The ID of the session to revoke. This can be extracted from the `sid` claim of the access token.
-          example: session_01H93ZY4F80QPBEZ1R5B2SHQG8
-        return_to:
+          description: Distinguishes the user object.
+          const: user
+        id:
           type: string
-          description: The URL to redirect the user to after session revocation.
-          example: https://example.com
+          description: The unique ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+          example: Marcelina
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+          example: Davis
+        profile_picture_url:
+          type:
+          - string
+          - 'null'
+          description: A URL reference to an image representing the user.
+          example: https://workoscdn.com/images/v1/123abc
+        email:
+          type: string
+          description: The email address of the user.
+          example: marcelina.davis@example.com
+        email_verified:
+          type: boolean
+          description: Whether the user's email has been verified.
+          example: true
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The external ID of the user.
+          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            maxLength: 600
+          description: Object containing metadata key/value pairs associated with the user.
+          example:
+            timezone: America/New_York
+          propertyNames:
+            maxLength: 40
+          maxProperties: 50
+        last_sign_in_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the user last signed in.
+          example: '2025-06-25T19:07:33.155Z'
+        locale:
+          type:
+          - string
+          - 'null'
+          description: The user's preferred locale.
+          example: en-US
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
       required:
-      - session_id
+      - object
+      - id
+      - first_name
+      - last_name
+      - profile_picture_url
+      - email
+      - email_verified
+      - external_id
+      - last_sign_in_at
+      - created_at
+      - updated_at
+      description: The user object.
   securitySchemes:
     bearer:
       scheme: bearer

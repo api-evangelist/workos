@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal multi-factor-auth.challenges API
+  title: WorkOS Multi Factor Auth.challenges API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -104,6 +104,19 @@ paths:
       - multi-factor-auth.challenges
 components:
   schemas:
+    AuthenticationChallengeVerifyResponse:
+      type: object
+      properties:
+        challenge:
+          $ref: '#/components/schemas/AuthenticationChallenge'
+          description: The authentication challenge object.
+        valid:
+          type: boolean
+          description: Whether the code was valid.
+          example: true
+      required:
+      - challenge
+      - valid
     AuthenticationChallenge:
       type: object
       properties:
@@ -144,19 +157,6 @@ components:
       - authentication_factor_id
       - created_at
       - updated_at
-    AuthenticationChallengeVerifyResponse:
-      type: object
-      properties:
-        challenge:
-          $ref: '#/components/schemas/AuthenticationChallenge'
-          description: The authentication challenge object.
-        valid:
-          type: boolean
-          description: Whether the code was valid.
-          example: true
-      required:
-      - challenge
-      - valid
   securitySchemes:
     bearer:
       scheme: bearer

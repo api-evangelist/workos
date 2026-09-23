@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal sso API
+  title: WorkOS SSO API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: sso
+- name: SSO
   description: Single Sign-On endpoints.
   x-displayName: Single Sign-On
 paths:
@@ -172,13 +172,13 @@ paths:
       security: []
       summary: Initiate SSO
       tags:
-      - sso
+      - SSO
   /sso/logout:
     get:
       description: 'Logout allows to sign out a user from your application by triggering the identity provider sign out flow. This `GET` endpoint should be a redirection, since the identity provider user will be identified in the browser session.
 
 
-        Before redirecting to this endpoint, you need to generate a short-lived logout token using the [Logout Authorize](/reference/sso/logout/authorize) endpoint.'
+        Before redirecting to this endpoint, you need to generate a short-lived logout token using the Logout Authorize endpoint.'
       operationId: SsoController_logout
       parameters:
       - name: token
@@ -216,10 +216,10 @@ paths:
       - url: https://auth.workos.com
       summary: Logout Redirect
       tags:
-      - sso
+      - SSO
   /sso/logout/authorize:
     post:
-      description: You should call this endpoint from your server to generate a logout token which is required for the [Logout Redirect](/reference/sso/logout) endpoint.
+      description: You should call this endpoint from your server to generate a logout token which is required for the Logout Redirect endpoint.
       operationId: SsoController_logoutAuthorize
       parameters: []
       requestBody:
@@ -291,10 +291,10 @@ paths:
       - url: https://auth.workos.com
       summary: Logout Authorize
       tags:
-      - sso
+      - SSO
   /sso/profile:
     get:
-      description: Exchange an access token for a user's [Profile](/reference/sso/profile). Because this profile is returned in the [Get a Profile and Token endpoint](/reference/sso/profile/get-profile-and-token) your application usually does not need to call this endpoint. It is available for any authentication flows that require an additional endpoint to retrieve a user's profile.
+      description: Exchange an access token for a user's Profile. Because this profile is returned in the Get a Profile and Token endpoint your application usually does not need to call this endpoint. It is available for any authentication flows that require an additional endpoint to retrieve a user's profile.
       operationId: SsoController_getProfile
       parameters: []
       responses:
@@ -333,10 +333,10 @@ paths:
       - access_token: []
       summary: Get a User Profile
       tags:
-      - sso
+      - SSO
   /sso/token:
     post:
-      description: Get an access token along with the user [Profile](/reference/sso/profile) using the code passed to your [Redirect URI](/reference/sso/get-authorization-url/redirect-uri).
+      description: Get an access token along with the user Profile using the code passed to your Redirect URI.
       operationId: SsoController_token
       parameters:
       - name: client_id
@@ -466,7 +466,7 @@ paths:
       security: []
       summary: Get a Profile and Token
       tags:
-      - sso
+      - SSO
 components:
   schemas:
     TokenQueryDto:
@@ -494,30 +494,16 @@ components:
       - client_secret
       - code
       - grant_type
-    SsoLogoutAuthorizeResponse:
+    SlimRole:
       type: object
       properties:
-        logout_url:
+        slug:
           type: string
-          description: The URL to redirect the user to in order to log out ([Logout Redirect](/reference/sso/logout) endpoint ready to use).
-          example: https://auth.workos.com/sso/logout?token=eyJhbGciOiJSUzI1NiJ9
-        logout_token:
-          type: string
-          description: The logout token to be used in the [Logout Redirect](/reference/sso/logout) endpoint.
-          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlX2lkIjoicHJvZl8wMUdXUTFHMEgyRk02QVNFRjBIUzEzSENXOS0zMDRrZzAzZyIsImV4cCI6IjE1MTYyMzkwMjIifQ.Wru9Qlnf5DpohtGCKhZU4cVOd3zpiu7QQ-XEX--5A_4
+          description: The slug of the assigned role.
+          example: admin
       required:
-      - logout_url
-      - logout_token
-    SsoAuthorizeUrlResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          description: An OAuth 2.0 authorization URL.
-          example: https://accounts.google.com/o/oauth2/v2/auth?client_id=example&redirect_uri=https%3A%2F%2Fapi.workos.com%2Fsso%2Fcallback&response_type=code&scope=openid%20profile%20email
-      required:
-      - url
+      - slug
+      description: The primary role assigned to the user.
     SsoTokenResponse:
       type: object
       properties:
@@ -576,6 +562,30 @@ components:
       - access_token
       - expires_in
       - profile
+    SsoAuthorizeUrlResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: An OAuth 2.0 authorization URL.
+          example: https://accounts.google.com/o/oauth2/v2/auth?client_id=example&redirect_uri=https%3A%2F%2Fapi.workos.com%2Fsso%2Fcallback&response_type=code&scope=openid%20profile%20email
+      required:
+      - url
+    SsoLogoutAuthorizeResponse:
+      type: object
+      properties:
+        logout_url:
+          type: string
+          description: The URL to redirect the user to in order to log out ([Logout Redirect](/reference/sso/logout) endpoint ready to use).
+          example: https://auth.workos.com/sso/logout?token=eyJhbGciOiJSUzI1NiJ9
+        logout_token:
+          type: string
+          description: The logout token to be used in the [Logout Redirect](/reference/sso/logout) endpoint.
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlX2lkIjoicHJvZl8wMUdXUTFHMEgyRk02QVNFRjBIUzEzSENXOS0zMDRrZzAzZyIsImV4cCI6IjE1MTYyMzkwMjIifQ.Wru9Qlnf5DpohtGCKhZU4cVOd3zpiu7QQ-XEX--5A_4
+      required:
+      - logout_url
+      - logout_token
     Profile:
       type: object
       properties:
@@ -720,16 +730,6 @@ components:
       - last_name
       - name
       - raw_attributes
-    SlimRole:
-      type: object
-      properties:
-        slug:
-          type: string
-          description: The slug of the assigned role.
-          example: admin
-      required:
-      - slug
-      description: The primary role assigned to the user.
   securitySchemes:
     bearer:
       scheme: bearer

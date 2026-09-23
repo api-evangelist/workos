@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal organizations.api_keys API
+  title: WorkOS Organizations.api Keys API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -160,84 +160,6 @@ paths:
       - organizations.api_keys
 components:
   schemas:
-    OrganizationApiKey:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the API Key object.
-          const: api_key
-        id:
-          type: string
-          description: Unique identifier of the API Key.
-          example: api_key_01EHZNVPK3SFK441A1RGBFSHRT
-        owner:
-          type: object
-          properties:
-            type:
-              type: string
-              description: The type of the API Key owner.
-              example: organization
-              const: organization
-            id:
-              type: string
-              description: Unique identifier of the API Key owner.
-              example: org_01EHZNVPK3SFK441A1RGBFSHRT
-          required:
-          - type
-          - id
-          description: The entity that owns the API Key.
-        name:
-          type: string
-          description: A descriptive name for the API Key.
-          example: Production API Key
-        obfuscated_value:
-          type: string
-          description: An obfuscated representation of the API Key value.
-          example: sk_...3456
-        last_used_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Timestamp of when the API Key was last used.
-          example: null
-        permissions:
-          type: array
-          items:
-            type: string
-          description: The permission slugs assigned to the API Key.
-          example:
-          - posts:read
-          - posts:write
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - owner
-      - name
-      - obfuscated_value
-      - last_used_at
-      - permissions
-      - created_at
-      - updated_at
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     OrganizationApiKeyWithValue:
       type: object
       properties:
@@ -313,6 +235,101 @@ components:
       - created_at
       - updated_at
       - value
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    CreateOrganizationApiKeyDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name for the API key.
+          example: Production API Key
+        permissions:
+          description: The permission slugs to assign to the API key.
+          example:
+          - posts:read
+          - posts:write
+          type: array
+          items:
+            type: string
+      required:
+      - name
+    OrganizationApiKey:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the API Key object.
+          const: api_key
+        id:
+          type: string
+          description: Unique identifier of the API Key.
+          example: api_key_01EHZNVPK3SFK441A1RGBFSHRT
+        owner:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The type of the API Key owner.
+              example: organization
+              const: organization
+            id:
+              type: string
+              description: Unique identifier of the API Key owner.
+              example: org_01EHZNVPK3SFK441A1RGBFSHRT
+          required:
+          - type
+          - id
+          description: The entity that owns the API Key.
+        name:
+          type: string
+          description: A descriptive name for the API Key.
+          example: Production API Key
+        obfuscated_value:
+          type: string
+          description: An obfuscated representation of the API Key value.
+          example: sk_...3456
+        last_used_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Timestamp of when the API Key was last used.
+          example: null
+        permissions:
+          type: array
+          items:
+            type: string
+          description: The permission slugs assigned to the API Key.
+          example:
+          - posts:read
+          - posts:write
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - owner
+      - name
+      - obfuscated_value
+      - last_used_at
+      - permissions
+      - created_at
+      - updated_at
     OrganizationApiKeyList:
       type: object
       properties:
@@ -348,23 +365,6 @@ components:
       - object
       - data
       - list_metadata
-    CreateOrganizationApiKeyDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name for the API key.
-          example: Production API Key
-        permissions:
-          description: The permission slugs to assign to the API key.
-          example:
-          - posts:read
-          - posts:write
-          type: array
-          items:
-            type: string
-      required:
-      - name
   securitySchemes:
     bearer:
       scheme: bearer

@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal organizations API
+  title: WorkOS Organizations API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: organizations
+- name: Organizations
   description: Manage organizations.
   x-displayName: Organizations
 paths:
@@ -98,7 +98,7 @@ paths:
                 - message
       summary: List Organizations
       tags:
-      - organizations
+      - Organizations
     post:
       description: Creates a new organization in the current environment.
       operationId: OrganizationsController_create
@@ -200,10 +200,10 @@ paths:
                 - message
       summary: Create an Organization
       tags:
-      - organizations
+      - Organizations
   /organizations/external_id/{external_id}:
     get:
-      description: Get the details of an existing organization by an [external identifier](/authkit/metadata/external-identifiers).
+      description: Get the details of an existing organization by an external identifier.
       operationId: OrganizationsController_getByExternalId
       parameters:
       - name: external_id
@@ -235,7 +235,7 @@ paths:
                 - message
       summary: Get an Organization by External ID
       tags:
-      - organizations
+      - Organizations
   /organizations/{id}:
     get:
       description: Get the details of an existing organization.
@@ -270,7 +270,7 @@ paths:
                 - message
       summary: Get an Organization
       tags:
-      - organizations
+      - Organizations
     put:
       description: Updates an organization in the current environment.
       operationId: OrganizationsController_updateOrganization
@@ -419,7 +419,7 @@ paths:
                 - message
       summary: Update an Organization
       tags:
-      - organizations
+      - Organizations
     delete:
       description: Permanently deletes an organization in the current environment. It cannot be undone.
       operationId: OrganizationsController_deleteOrganization
@@ -451,7 +451,7 @@ paths:
                 - message
       summary: Delete an Organization
       tags:
-      - organizations
+      - Organizations
   /organizations/{id}/audit_log_configuration:
     get:
       description: Get the unified view of audit log trail and stream configuration for an organization.
@@ -486,85 +486,9 @@ paths:
                 - message
       summary: Get Audit Log Configuration
       tags:
-      - organizations
+      - Organizations
 components:
   schemas:
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    AuditLogConfiguration:
-      type: object
-      properties:
-        organization_id:
-          type: string
-          description: Unique identifier of the Organization.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-        retention_period_in_days:
-          type: integer
-          description: The number of days Audit Log events will be retained before being permanently deleted.
-          example: 30
-        state:
-          type: string
-          enum:
-          - active
-          - inactive
-          - disabled
-          description: The current state of the audit log configuration for the organization.
-          example: active
-        log_stream:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Unique identifier of the Audit Log Stream.
-              example: als_01EHZNVPK3SFK441A1RGBFSHRT
-            type:
-              type: string
-              enum:
-              - AzureSentinel
-              - Datadog
-              - GenericHttps
-              - GoogleCloudStorage
-              - S3
-              - Splunk
-              description: The type of the Audit Log Stream destination.
-              example: Datadog
-            state:
-              type: string
-              enum:
-              - active
-              - inactive
-              - error
-              - invalid
-              description: The current state of the Audit Log Stream.
-              example: active
-            last_synced_at:
-              type:
-              - string
-              - 'null'
-              description: ISO-8601 timestamp of when the last event was successfully synced, or null if no events have been synced.
-              example: '2026-01-15T12:00:00.000Z'
-            created_at:
-              format: date-time
-              type: string
-              description: An ISO 8601 timestamp.
-              example: '2026-01-15T12:00:00.000Z'
-          required:
-          - id
-          - type
-          - state
-          - last_synced_at
-          - created_at
-          description: The Audit Log Stream currently configured for the organization, if any.
-      required:
-      - organization_id
-      - retention_period_in_days
-      - state
     OrganizationDomainDataDto:
       type: object
       properties:
@@ -706,6 +630,63 @@ components:
       - external_id
       - created_at
       - updated_at
+    UpdateOrganizationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the organization.
+          example: Foo Corp
+        allow_profiles_outside_organization:
+          type: boolean
+          description: Whether the organization allows profiles from outside the organization to sign in.
+          example: false
+        domains:
+          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
+          example:
+          - foo-corp.com
+          deprecated: true
+          type: array
+          items:
+            type: string
+        domain_data:
+          description: The domains associated with the organization, including verification state.
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationDomainDataDto'
+        stripe_customer_id:
+          type: string
+          description: The Stripe customer ID associated with the organization.
+          example: cus_R9qWAGMQ6nGE7V
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            maxLength: 600
+          maxProperties: 50
+          example:
+            tier: diamond
+          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
+          propertyNames:
+            maxLength: 40
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+          pattern: ^[\x00-\x7F]+$
+          example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
+          description: An external identifier for the Organization.
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     OrganizationDto:
       type: object
       properties:
@@ -788,55 +769,74 @@ components:
       - data
       - list_metadata
       - list_metadata
-    UpdateOrganizationDto:
+    AuditLogConfiguration:
       type: object
       properties:
-        name:
+        organization_id:
           type: string
-          description: The name of the organization.
-          example: Foo Corp
-        allow_profiles_outside_organization:
-          type: boolean
-          description: Whether the organization allows profiles from outside the organization to sign in.
-          example: false
-        domains:
-          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
-          example:
-          - foo-corp.com
-          deprecated: true
-          type: array
-          items:
-            type: string
-        domain_data:
-          description: The domains associated with the organization, including verification state.
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationDomainDataDto'
-        stripe_customer_id:
+          description: Unique identifier of the Organization.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        retention_period_in_days:
+          type: integer
+          description: The number of days Audit Log events will be retained before being permanently deleted.
+          example: 30
+        state:
           type: string
-          description: The Stripe customer ID associated with the organization.
-          example: cus_R9qWAGMQ6nGE7V
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-            maxLength: 600
-          maxProperties: 50
-          example:
-            tier: diamond
-          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
-          propertyNames:
-            maxLength: 40
-        external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 128
-          pattern: ^[\x00-\x7F]+$
-          example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
-          description: An external identifier for the Organization.
+          enum:
+          - active
+          - inactive
+          - disabled
+          description: The current state of the audit log configuration for the organization.
+          example: active
+        log_stream:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the Audit Log Stream.
+              example: als_01EHZNVPK3SFK441A1RGBFSHRT
+            type:
+              type: string
+              enum:
+              - AzureSentinel
+              - Datadog
+              - GenericHttps
+              - GoogleCloudStorage
+              - S3
+              - Splunk
+              description: The type of the Audit Log Stream destination.
+              example: Datadog
+            state:
+              type: string
+              enum:
+              - active
+              - inactive
+              - error
+              - invalid
+              description: The current state of the Audit Log Stream.
+              example: active
+            last_synced_at:
+              type:
+              - string
+              - 'null'
+              description: ISO-8601 timestamp of when the last event was successfully synced, or null if no events have been synced.
+              example: '2026-01-15T12:00:00.000Z'
+            created_at:
+              format: date-time
+              type: string
+              description: An ISO 8601 timestamp.
+              example: '2026-01-15T12:00:00.000Z'
+          required:
+          - id
+          - type
+          - state
+          - last_synced_at
+          - created_at
+          description: The Audit Log Stream currently configured for the organization, if any.
+      required:
+      - organization_id
+      - retention_period_in_days
+      - state
   securitySchemes:
     bearer:
       scheme: bearer

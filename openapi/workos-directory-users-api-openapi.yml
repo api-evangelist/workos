@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal directory-users API
+  title: WorkOS Directory Users API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -177,14 +177,6 @@ paths:
       - directory-users
 components:
   schemas:
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     DirectoryUserWithGroups:
       type: object
       properties:
@@ -323,42 +315,24 @@ components:
       - created_at
       - updated_at
       - groups
-    DirectoryUserList:
+    SlimRole:
       type: object
       properties:
-        object:
+        slug:
           type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DirectoryUserWithGroups'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: directory_user_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: directory_user_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
+          description: The slug of the assigned role.
+          example: admin
       required:
-      - object
-      - data
-      - list_metadata
-      - list_metadata
+      - slug
+      description: The primary role assigned to the user.
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     DirectoryGroup:
       type: object
       properties:
@@ -409,16 +383,42 @@ components:
       - name
       - created_at
       - updated_at
-    SlimRole:
+    DirectoryUserList:
       type: object
       properties:
-        slug:
+        object:
           type: string
-          description: The slug of the assigned role.
-          example: admin
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DirectoryUserWithGroups'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: directory_user_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: directory_user_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
       required:
-      - slug
-      description: The primary role assigned to the user.
+      - object
+      - data
+      - list_metadata
+      - list_metadata
   securitySchemes:
     bearer:
       scheme: bearer

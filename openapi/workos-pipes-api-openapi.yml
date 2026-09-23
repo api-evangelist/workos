@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal pipes API
+  title: WorkOS Pipes API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: pipes
+- name: Pipes
   description: Data integration endpoints.
   x-displayName: Pipes
 paths:
@@ -106,7 +106,7 @@ paths:
                 - message
       summary: Get Authorization URL
       tags:
-      - pipes
+      - Pipes
   /data-integrations/{slug}/token:
     post:
       description: Fetches a valid OAuth access token for a user's connected account. WorkOS automatically handles token refresh, ensuring you always receive a valid, non-expired token.
@@ -173,9 +173,18 @@ paths:
                 - message
       summary: Get an Access Token for a Connected Account
       tags:
-      - pipes
+      - Pipes
 components:
   schemas:
+    DataIntegrationAuthorizeUrlResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The OAuth authorization URL to redirect the user to.
+          example: https://api.workos.com/data-integrations/q2czJKmVAraSBg8xFpT7M9uR/authorize-redirect
+      required:
+      - url
     DataIntegrationAccessTokenResponse:
       oneOf:
       - type: object
@@ -243,15 +252,6 @@ components:
         required:
         - active
         - error
-    DataIntegrationAuthorizeUrlResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          description: The OAuth authorization URL to redirect the user to.
-          example: https://api.workos.com/data-integrations/q2czJKmVAraSBg8xFpT7M9uR/authorize-redirect
-      required:
-      - url
   securitySchemes:
     bearer:
       scheme: bearer

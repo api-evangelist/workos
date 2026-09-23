@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal user-management.magic-auth API
+  title: WorkOS User Management.magic Auth API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -24,7 +24,7 @@ tags:
 paths:
   /user_management/magic_auth:
     post:
-      description: Creates a one-time authentication code that can be sent to the user's email address. The code expires in 10 minutes. To verify the code, [authenticate the user with Magic Auth](/reference/authkit/authentication/magic-auth).
+      description: Creates a one-time authentication code that can be sent to the user's email address. The code expires in 10 minutes. To verify the code, authenticate the user with Magic Auth.
       operationId: UserlandMagicAuthController_sendMagicAuthCodeAndReturn
       parameters: []
       requestBody:
@@ -126,7 +126,7 @@ paths:
       x-sends-email: true
   /user_management/magic_auth/{id}:
     get:
-      description: Get the details of an existing [Magic Auth](/reference/authkit/magic-auth) code that can be used to send an email to a user for authentication.
+      description: Get the details of an existing Magic Auth code that can be used to send an email to a user for authentication.
       operationId: UserlandMagicAuthController_get
       parameters:
       - name: id

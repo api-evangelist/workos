@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal API
+  title: WorkOS Admin Portal API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: admin-portal
+- name: Admin Portal
   description: Endpoints for the Admin Portal API.
   x-displayName: Admin Portal
 paths:
@@ -94,30 +94,9 @@ paths:
                 - message
       summary: Generate a Portal Link
       tags:
-      - admin-portal
+      - Admin Portal
 components:
   schemas:
-    IntentOptions:
-      type: object
-      properties:
-        sso:
-          description: SSO-specific options for the Admin Portal.
-          $ref: '#/components/schemas/SsoIntentOptions'
-        domain_verification:
-          description: Domain verification-specific options for the Admin Portal.
-          $ref: '#/components/schemas/DomainVerificationIntentOptions'
-    SsoIntentOptions:
-      type: object
-      properties:
-        bookmark_slug:
-          type: string
-          description: The bookmark slug to use for SSO.
-          example: chatgpt
-        provider_type:
-          type: string
-          description: The SSO provider type to configure.
-          example: GoogleSAML
-          const: GoogleSAML
     GenerateLinkDto:
       type: object
       properties:
@@ -159,13 +138,6 @@ components:
           type: array
       required:
       - organization
-    DomainVerificationIntentOptions:
-      type: object
-      properties:
-        domain_name:
-          type: string
-          description: The domain name to verify. When provided, the domain verification flow will skip the domain entry form and go directly to the verification step.
-          example: example.com
     PortalLinkResponse:
       type: object
       properties:
@@ -175,6 +147,34 @@ components:
           example: https://setup.workos.com?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
       required:
       - link
+    IntentOptions:
+      type: object
+      properties:
+        sso:
+          description: SSO-specific options for the Admin Portal.
+          $ref: '#/components/schemas/SsoIntentOptions'
+        domain_verification:
+          description: Domain verification-specific options for the Admin Portal.
+          $ref: '#/components/schemas/DomainVerificationIntentOptions'
+    SsoIntentOptions:
+      type: object
+      properties:
+        bookmark_slug:
+          type: string
+          description: The bookmark slug to use for SSO.
+          example: chatgpt
+        provider_type:
+          type: string
+          description: The SSO provider type to configure.
+          example: GoogleSAML
+          const: GoogleSAML
+    DomainVerificationIntentOptions:
+      type: object
+      properties:
+        domain_name:
+          type: string
+          description: The domain name to verify. When provided, the domain verification flow will skip the domain entry form and go directly to the verification step.
+          example: example.com
   securitySchemes:
     bearer:
       scheme: bearer

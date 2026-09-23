@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal authorization API
+  title: WorkOS Authorization API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: authorization
+- name: Authorization
   description: Authorization and access control.
   x-displayName: Authorization
 paths:
@@ -88,7 +88,7 @@ paths:
                 - message
       summary: Check Authorization
       tags:
-      - authorization
+      - Authorization
       x-mutually-exclusive-body-groups:
         resource_target:
           optional: false
@@ -238,7 +238,7 @@ paths:
                 - message
       summary: List Resources for Organization Membership
       tags:
-      - authorization
+      - Authorization
       x-mutually-exclusive-parameter-groups:
         parent_resource:
           optional: false
@@ -345,7 +345,7 @@ paths:
                 - message
       summary: List Effective Permissions for an Organization Membership on a Resource
       tags:
-      - authorization
+      - Authorization
   ? /authorization/organization_memberships/{organization_membership_id}/resources/{resource_type_slug}/{external_id}/permissions
   : get:
       description: Returns all permissions the organization membership effectively has on a resource identified by its external ID, including permissions inherited through roles assigned to ancestor resources.
@@ -448,9 +448,9 @@ paths:
                     example: 'Organization not found: ''org_01EHQMYV6MBK39QC5PZXHY59C3''.'
                 required:
                 - message
-      summary: List Effective Permissions for an Organization Membership on a Resource by External ID
+      summary: List Effective Permissions for an Organization Membership on a Resource by…
       tags:
-      - authorization
+      - Authorization
   /authorization/organization_memberships/{organization_membership_id}/role_assignments:
     get:
       description: List all role assignments for an organization membership. This returns all roles that have been assigned to the user on resources, including organization-level and sub-resource roles.
@@ -549,7 +549,7 @@ paths:
                 - message
       summary: List Role Assignments
       tags:
-      - authorization
+      - Authorization
     post:
       description: Assign a role to an organization membership on a specific resource.
       operationId: AuthorizationRoleAssignmentsController_assignRole
@@ -627,7 +627,7 @@ paths:
                 - message
       summary: Assign a Role
       tags:
-      - authorization
+      - Authorization
       x-mutually-exclusive-body-groups:
         resource_target:
           optional: false
@@ -698,7 +698,7 @@ paths:
                 - message
       summary: Remove a Role Assignment
       tags:
-      - authorization
+      - Authorization
       x-mutually-exclusive-body-groups:
         resource_target:
           optional: false
@@ -758,7 +758,7 @@ paths:
                 - message
       summary: Remove a Role Assignment by ID
       tags:
-      - authorization
+      - Authorization
   /authorization/organizations/{organizationId}/roles:
     post:
       description: Create a new custom role for this organization.
@@ -928,7 +928,7 @@ paths:
                 - message
       summary: Create a Custom Role
       tags:
-      - authorization
+      - Authorization
     get:
       description: Get a list of all roles that apply to an organization. This includes both environment roles and custom roles, returned in priority order.
       operationId: AuthorizationOrganizationRolesController_list
@@ -975,7 +975,7 @@ paths:
                 - message
       summary: List Custom Roles
       tags:
-      - authorization
+      - Authorization
   /authorization/organizations/{organizationId}/roles/{slug}:
     get:
       description: Retrieve a role that applies to an organization by its slug. This can return either an environment role or a custom role.
@@ -1095,7 +1095,7 @@ paths:
                 - message
       summary: Get a Custom Role
       tags:
-      - authorization
+      - Authorization
     patch:
       description: Update an existing custom role. Only the fields provided in the request body will be updated.
       operationId: AuthorizationOrganizationRolesController_update
@@ -1252,7 +1252,7 @@ paths:
                 - message
       summary: Update a Custom Role
       tags:
-      - authorization
+      - Authorization
     delete:
       description: Delete an existing custom role.
       operationId: AuthorizationOrganizationRolesController_delete
@@ -1355,7 +1355,7 @@ paths:
                   - message
       summary: Delete a Custom Role
       tags:
-      - authorization
+      - Authorization
   /authorization/organizations/{organizationId}/roles/{slug}/permissions:
     put:
       description: Replace all permissions on a custom role with the provided list.
@@ -1496,7 +1496,7 @@ paths:
                 - message
       summary: Set Permissions for a Custom Role
       tags:
-      - authorization
+      - Authorization
     post:
       description: Add a single permission to a custom role. If the permission is already assigned to the role, this operation has no effect.
       operationId: AuthorizationOrganizationRolePermissionsController_addPermission
@@ -1652,7 +1652,7 @@ paths:
                 - message
       summary: Add a Permission to a Custom Role
       tags:
-      - authorization
+      - Authorization
   /authorization/organizations/{organizationId}/roles/{slug}/permissions/{permissionSlug}:
     delete:
       description: Remove a single permission from a custom role by its slug.
@@ -1714,7 +1714,7 @@ paths:
                 - message
       summary: Remove a Permission from a Custom Role
       tags:
-      - authorization
+      - Authorization
   /authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}:
     get:
       description: Retrieve the details of an authorization resource by its external ID, organization, and resource type. This is useful when you only have the external ID from your system and need to fetch the full resource details.
@@ -1776,7 +1776,7 @@ paths:
                 - message
       summary: Get a Resource by External ID
       tags:
-      - authorization
+      - Authorization
     patch:
       description: Update an existing authorization resource using its external ID.
       operationId: AuthorizationResourcesByExternalIdController_updateByExternalId
@@ -1953,7 +1953,7 @@ paths:
                 - message
       summary: Update a Resource by External ID
       tags:
-      - authorization
+      - Authorization
       x-mutually-exclusive-body-groups:
         parent_resource:
           optional: true
@@ -2080,7 +2080,7 @@ paths:
                   - message
       summary: Delete an Authorization Resource by External ID
       tags:
-      - authorization
+      - Authorization
   /authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}/organization_memberships:
     get:
       description: Returns all organization memberships that have a specific permission on a resource, using the resource's external ID. This is useful for answering "Who can access this resource?" when you only have the external ID.
@@ -2221,7 +2221,7 @@ paths:
                 - message
       summary: List Memberships for a Resource by External ID
       tags:
-      - authorization
+      - Authorization
   /authorization/organizations/{organization_id}/resources/{resource_type_slug}/{external_id}/role_assignments:
     get:
       description: List all role assignments granted on a resource, identified by its external ID. Each assignment includes the organization membership it was granted to.
@@ -2320,7 +2320,7 @@ paths:
                 - message
       summary: List Role Assignments for a Resource by External ID
       tags:
-      - authorization
+      - Authorization
   /authorization/resources:
     get:
       description: Get a paginated list of authorization resources.
@@ -2433,7 +2433,7 @@ paths:
                 - message
       summary: List Resources
       tags:
-      - authorization
+      - Authorization
       x-mutually-exclusive-parameter-groups:
         parent:
           optional: true
@@ -2628,7 +2628,7 @@ paths:
                 - message
       summary: Create an Authorization Resource
       tags:
-      - authorization
+      - Authorization
       x-mutually-exclusive-body-groups:
         parent_resource:
           optional: true
@@ -2698,7 +2698,7 @@ paths:
                 - message
       summary: Get a Resource
       tags:
-      - authorization
+      - Authorization
     patch:
       description: Update an existing authorization resource.
       operationId: AuthorizationResourcesController_update
@@ -2861,7 +2861,7 @@ paths:
                 - message
       summary: Update a Resource
       tags:
-      - authorization
+      - Authorization
       x-mutually-exclusive-body-groups:
         parent_resource:
           optional: true
@@ -2974,7 +2974,7 @@ paths:
                   - message
       summary: Delete an Authorization Resource
       tags:
-      - authorization
+      - Authorization
   /authorization/resources/{resource_id}/organization_memberships:
     get:
       description: Returns all organization memberships that have a specific permission on a resource instance. This is useful for answering "Who can access this resource?".
@@ -3101,7 +3101,7 @@ paths:
                 - message
       summary: List Organization Memberships for Resource
       tags:
-      - authorization
+      - Authorization
   /authorization/resources/{resource_id}/role_assignments:
     get:
       description: List all role assignments granted on a specific resource instance. Each assignment includes the organization membership it was granted to.
@@ -3186,7 +3186,7 @@ paths:
                 - message
       summary: List Role Assignments for a Resource
       tags:
-      - authorization
+      - Authorization
   /authorization/roles:
     post:
       description: Create a new environment role.
@@ -3349,7 +3349,7 @@ paths:
                 - message
       summary: Create an Environment Role
       tags:
-      - authorization
+      - Authorization
     get:
       description: List all environment roles in priority order.
       operationId: AuthorizationRolesController_list
@@ -3376,7 +3376,7 @@ paths:
                 - message
       summary: List Environment Roles
       tags:
-      - authorization
+      - Authorization
   /authorization/roles/{slug}:
     get:
       description: Get an environment role by its slug.
@@ -3424,7 +3424,7 @@ paths:
                 - message
       summary: Get an Environment Role
       tags:
-      - authorization
+      - Authorization
     patch:
       description: Update an existing environment role.
       operationId: AuthorizationRolesController_update
@@ -3574,7 +3574,7 @@ paths:
                 - message
       summary: Update an Environment Role
       tags:
-      - authorization
+      - Authorization
   /authorization/roles/{slug}/permissions:
     put:
       description: Replace all permissions on an environment role with the provided list.
@@ -3727,7 +3727,7 @@ paths:
                 - message
       summary: Set Permissions for an Environment Role
       tags:
-      - authorization
+      - Authorization
     post:
       description: Add a single permission to an environment role. If the permission is already assigned to the role, this operation has no effect.
       operationId: AuthorizationRolePermissionsController_addPermission
@@ -3876,44 +3876,80 @@ paths:
                 - message
       summary: Add a Permission to an Environment Role
       tags:
-      - authorization
+      - Authorization
 components:
   schemas:
-    UserlandUserOrganizationMembershipBaseWithUserList:
+    UserRoleAssignment:
       type: object
       properties:
         object:
           type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserlandUserOrganizationMembershipBaseWithUser'
-          description: The list of records for the current page.
-        list_metadata:
+          description: Distinguishes the role assignment object.
+          const: role_assignment
+        id:
+          type: string
+          description: Unique identifier of the role assignment.
+          example: role_assignment_01HXYZ123456789ABCDEFGH
+        organization_membership_id:
+          type: string
+          description: The ID of the organization membership the role is assigned to.
+          example: om_01HXYZ123456789ABCDEFGHIJ
+        role:
+          $ref: '#/components/schemas/SlimRole'
+          description: The role included in the assignment.
+        resource:
           type: object
           properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: om_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: om_01HXYZ987654321KJIHGFEDCBA
+            id:
+              type: string
+              description: The unique ID of the Resource.
+              example: authz_resource_01HXYZ123456789ABCDEFGH
+            external_id:
+              type: string
+              description: An identifier you provide to reference the resource in your system.
+              example: proj-456
+            resource_type_slug:
+              type: string
+              description: The slug of the resource type this resource belongs to.
+              example: project
           required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
+          - id
+          - external_id
+          - resource_type_slug
+          description: The resource the role is assigned on.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
       required:
       - object
-      - data
-      - list_metadata
+      - id
+      - organization_membership_id
+      - role
+      - resource
+      - created_at
+      - updated_at
+    UpdateOrganizationRoleDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the role.
+          example: Finance Administrator
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the role's purpose.
+          example: Can manage all financial operations
     AssignRoleDto:
       allOf:
       - type: object
@@ -3974,288 +4010,6 @@ components:
             by_external_id:
             - resource_external_id
             - resource_type_slug
-    UpdateRoleDto:
-      type: object
-      properties:
-        name:
-          type: string
-          maxLength: 48
-          description: A descriptive name for the role.
-          example: Super Administrator
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-          description: An optional description of the role.
-          example: Full administrative access to all resources
-    UserlandUser:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the user object.
-          const: user
-        id:
-          type: string
-          description: The unique ID of the user.
-          example: user_01E4ZCR3C56J083X43JQXF3JK5
-        first_name:
-          type:
-          - string
-          - 'null'
-          description: The first name of the user.
-          example: Marcelina
-        last_name:
-          type:
-          - string
-          - 'null'
-          description: The last name of the user.
-          example: Davis
-        profile_picture_url:
-          type:
-          - string
-          - 'null'
-          description: A URL reference to an image representing the user.
-          example: https://workoscdn.com/images/v1/123abc
-        email:
-          type: string
-          description: The email address of the user.
-          example: marcelina.davis@example.com
-        email_verified:
-          type: boolean
-          description: Whether the user's email has been verified.
-          example: true
-        external_id:
-          type:
-          - string
-          - 'null'
-          description: The external ID of the user.
-          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-            maxLength: 600
-          description: Object containing metadata key/value pairs associated with the user.
-          example:
-            timezone: America/New_York
-          propertyNames:
-            maxLength: 40
-          maxProperties: 50
-        last_sign_in_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-          description: The timestamp when the user last signed in.
-          example: '2025-06-25T19:07:33.155Z'
-        locale:
-          type:
-          - string
-          - 'null'
-          description: The user's preferred locale.
-          example: en-US
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - first_name
-      - last_name
-      - profile_picture_url
-      - email
-      - email_verified
-      - external_id
-      - last_sign_in_at
-      - created_at
-      - updated_at
-      description: The user object.
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    AuthorizationPermission:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the Permission object.
-          const: permission
-        id:
-          type: string
-          description: Unique identifier of the Permission.
-          example: perm_01HXYZ123456789ABCDEFGHIJ
-        slug:
-          type: string
-          description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
-          example: documents:read
-        name:
-          type: string
-          description: A descriptive name for the Permission.
-          example: View Documents
-        description:
-          type:
-          - string
-          - 'null'
-          description: An optional description of the Permission.
-          example: Allows viewing document contents
-        system:
-          type: boolean
-          description: Whether the permission is a system permission. System permissions are managed by WorkOS and cannot be deleted.
-          example: false
-        resource_type_slug:
-          type: string
-          description: The slug of the resource type associated with the permission.
-          example: workspace
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - slug
-      - name
-      - description
-      - system
-      - resource_type_slug
-      - created_at
-      - updated_at
-    RoleList:
-      type: object
-      properties:
-        object:
-          type: string
-          example: list
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
-          description: The list of records for the current page.
-      required:
-      - object
-      - data
-    UserRoleAssignment:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the role assignment object.
-          const: role_assignment
-        id:
-          type: string
-          description: Unique identifier of the role assignment.
-          example: role_assignment_01HXYZ123456789ABCDEFGH
-        organization_membership_id:
-          type: string
-          description: The ID of the organization membership the role is assigned to.
-          example: om_01HXYZ123456789ABCDEFGHIJ
-        role:
-          $ref: '#/components/schemas/SlimRole'
-          description: The role included in the assignment.
-        resource:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The unique ID of the Resource.
-              example: authz_resource_01HXYZ123456789ABCDEFGH
-            external_id:
-              type: string
-              description: An identifier you provide to reference the resource in your system.
-              example: proj-456
-            resource_type_slug:
-              type: string
-              description: The slug of the resource type this resource belongs to.
-              example: project
-          required:
-          - id
-          - external_id
-          - resource_type_slug
-          description: The resource the role is assigned on.
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - organization_membership_id
-      - role
-      - resource
-      - created_at
-      - updated_at
-    SlimRole:
-      type: object
-      properties:
-        slug:
-          type: string
-          description: The slug of the assigned role.
-          example: admin
-      required:
-      - slug
-      description: The primary role assigned to the user.
-    AuthorizationPermissionList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthorizationPermission'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: perm_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: perm_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
     UserRoleAssignmentList:
       type: object
       properties:
@@ -4291,456 +4045,6 @@ components:
       - object
       - data
       - list_metadata
-    RemoveRoleDto:
-      allOf:
-      - type: object
-        properties:
-          role_slug:
-            type: string
-            description: The slug of the role to remove.
-            example: editor
-        required:
-        - role_slug
-      - oneOf:
-        - type: object
-          properties:
-            resource_id:
-              type: string
-              description: The ID of the resource. Mutually exclusive with `resource_external_id` and `resource_type_slug`.
-              example: authz_resource_01HXYZ123456789ABCDEFGH
-          required:
-          - resource_id
-          not:
-            anyOf:
-            - properties:
-                resource_external_id:
-                  x-exclude-from-lint: true
-              required:
-              - resource_external_id
-            - properties:
-                resource_type_slug:
-                  x-exclude-from-lint: true
-              required:
-              - resource_type_slug
-        - type: object
-          properties:
-            resource_external_id:
-              type: string
-              description: The external ID of the resource. Required with `resource_type_slug`. Mutually exclusive with `resource_id`.
-              example: external_01HXYZ123456789ABCDEFGH
-            resource_type_slug:
-              type: string
-              description: The resource type slug. Required with `resource_external_id`. Mutually exclusive with `resource_id`.
-              example: project
-          required:
-          - resource_external_id
-          - resource_type_slug
-          not:
-            anyOf:
-            - properties:
-                resource_id:
-                  x-exclude-from-lint: true
-              required:
-              - resource_id
-      x-mutually-exclusive-body-groups:
-        resource_target:
-          optional: false
-          variants:
-            by_id:
-            - resource_id
-            by_external_id:
-            - resource_external_id
-            - resource_type_slug
-    UpdateOrganizationRoleDto:
-      type: object
-      properties:
-        name:
-          type: string
-          maxLength: 48
-          description: A descriptive name for the role.
-          example: Finance Administrator
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-          description: An optional description of the role's purpose.
-          example: Can manage all financial operations
-    AuthorizationResourceList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthorizationResource'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: authz_resource_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: authz_resource_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
-    AuthorizationCheck:
-      type: object
-      properties:
-        authorized:
-          type: boolean
-          description: Whether the organization membership has the specified permission on the resource.
-          example: true
-      required:
-      - authorized
-    UserlandUserOrganizationMembershipBaseWithUser:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the organization membership object.
-          const: organization_membership
-        id:
-          type: string
-          description: The unique ID of the organization membership.
-          example: om_01HXYZ123456789ABCDEFGHIJ
-        user_id:
-          type: string
-          description: The ID of the user.
-          example: user_01E4ZCR3C56J083X43JQXF3JK5
-        organization_id:
-          type: string
-          description: The ID of the organization which the user belongs to.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - pending
-          description: The status of the organization membership. One of `active`, `inactive`, or `pending`.
-          example: active
-        directory_managed:
-          type: boolean
-          description: Whether this organization membership is managed by a directory sync connection.
-          example: false
-        organization_name:
-          type: string
-          description: The name of the organization which the user belongs to.
-          example: Acme Corp
-        custom_attributes:
-          type: object
-          additionalProperties: {}
-          description: An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked.
-          example:
-            department: Engineering
-            title: Developer Experience Engineer
-            location: Brooklyn
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        user:
-          $ref: '#/components/schemas/UserlandUser'
-          description: The user that belongs to the organization through this membership.
-      required:
-      - object
-      - id
-      - user_id
-      - organization_id
-      - status
-      - directory_managed
-      - created_at
-      - updated_at
-      - user
-    CreateOrganizationRoleDto:
-      type: object
-      properties:
-        slug:
-          type: string
-          maxLength: 48
-          description: A unique identifier for the role within the organization. When provided, must begin with 'org-' and contain only lowercase letters, numbers, hyphens, and underscores. When omitted, a slug is auto-generated from the role name and a random suffix.
-          example: org-billing-admin
-        name:
-          type: string
-          maxLength: 48
-          description: A descriptive name for the role.
-          example: Billing Administrator
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-          description: An optional description of the role's purpose.
-          example: Can manage billing and invoices
-        resource_type_slug:
-          type: string
-          maxLength: 48
-          description: The slug of the resource type the role is scoped to.
-          example: organization
-      required:
-      - name
-    CreateRoleDto:
-      type: object
-      properties:
-        slug:
-          type: string
-          maxLength: 48
-          description: A unique slug for the role.
-          example: editor
-        name:
-          type: string
-          maxLength: 48
-          description: A descriptive name for the role.
-          example: Editor
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-          description: An optional description of the role.
-          example: Can edit resources
-        resource_type_slug:
-          type: string
-          maxLength: 48
-          description: The slug of the resource type the role is scoped to.
-          example: organization
-      required:
-      - slug
-      - name
-    Role:
-      type: object
-      properties:
-        slug:
-          type: string
-          description: A unique slug for the role.
-          example: admin
-        object:
-          type: string
-          description: Distinguishes the role object.
-          example: role
-          const: role
-        id:
-          type: string
-          description: Unique identifier of the role.
-          example: role_01EHQMYV6MBK39QC5PZXHY59C3
-        name:
-          type: string
-          description: A descriptive name for the role.
-          example: Admin
-        description:
-          type:
-          - string
-          - 'null'
-          description: An optional description of the role.
-          example: Can manage all resources
-        type:
-          type: string
-          enum:
-          - EnvironmentRole
-          - OrganizationRole
-          description: Whether the role is scoped to the environment or an organization (custom role).
-          example: EnvironmentRole
-        resource_type_slug:
-          type: string
-          description: The slug of the resource type the role is scoped to.
-          example: organization
-        permissions:
-          type: array
-          items:
-            type: string
-          description: The permission slugs assigned to the role.
-          example:
-          - posts:read
-          - posts:write
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - slug
-      - object
-      - id
-      - name
-      - description
-      - type
-      - resource_type_slug
-      - permissions
-      - created_at
-      - updated_at
-    UpdateAuthorizationResourceDto:
-      allOf:
-      - type: object
-        properties:
-          name:
-            type: string
-            maxLength: 48
-            description: A display name for the resource.
-            example: Updated Name
-          description:
-            type:
-            - string
-            - 'null'
-            maxLength: 150
-            description: An optional description of the resource.
-            example: Updated description
-      - oneOf:
-        - type: object
-          not:
-            anyOf:
-            - properties:
-                parent_resource_id:
-                  x-exclude-from-lint: true
-              required:
-              - parent_resource_id
-            - properties:
-                parent_resource_external_id:
-                  x-exclude-from-lint: true
-              required:
-              - parent_resource_external_id
-            - properties:
-                parent_resource_type_slug:
-                  x-exclude-from-lint: true
-              required:
-              - parent_resource_type_slug
-        - type: object
-          properties:
-            parent_resource_id:
-              type: string
-              description: The ID of the parent resource. Mutually exclusive with `parent_resource_external_id` and `parent_resource_type_slug`.
-              example: authz_resource_01HXYZ123456789ABCDEFGHIJ
-          required:
-          - parent_resource_id
-          not:
-            anyOf:
-            - properties:
-                parent_resource_external_id:
-                  x-exclude-from-lint: true
-              required:
-              - parent_resource_external_id
-            - properties:
-                parent_resource_type_slug:
-                  x-exclude-from-lint: true
-              required:
-              - parent_resource_type_slug
-        - type: object
-          properties:
-            parent_resource_external_id:
-              type: string
-              description: The external ID of the parent resource. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`.
-              example: parent-workspace-01
-            parent_resource_type_slug:
-              type: string
-              description: The resource type slug of the parent resource. Required with `parent_resource_external_id`. Mutually exclusive with `parent_resource_id`.
-              example: workspace
-          required:
-          - parent_resource_external_id
-          - parent_resource_type_slug
-          not:
-            anyOf:
-            - properties:
-                parent_resource_id:
-                  x-exclude-from-lint: true
-              required:
-              - parent_resource_id
-      x-mutually-exclusive-body-groups:
-        parent_resource:
-          optional: true
-          variants:
-            by_id:
-            - parent_resource_id
-            by_external_id:
-            - parent_resource_external_id
-            - parent_resource_type_slug
-    AuthorizationResource:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the Resource object.
-          const: authorization_resource
-        name:
-          type: string
-          description: A human-readable name for the Resource.
-          example: Website Redesign
-        description:
-          type:
-          - string
-          - 'null'
-          description: An optional description of the Resource.
-          example: Company website redesign project
-        organization_id:
-          type: string
-          description: The ID of the organization that owns the resource.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-        parent_resource_id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the parent resource, if this resource is nested.
-          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
-        id:
-          type: string
-          description: The unique ID of the Resource.
-          example: authz_resource_01HXYZ123456789ABCDEFGH
-        external_id:
-          type: string
-          description: An identifier you provide to reference the resource in your system.
-          example: proj-456
-        resource_type_slug:
-          type: string
-          description: The slug of the resource type this resource belongs to.
-          example: project
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - name
-      - description
-      - organization_id
-      - parent_resource_id
-      - id
-      - external_id
-      - resource_type_slug
-      - created_at
-      - updated_at
     CheckAuthorizationDto:
       allOf:
       - type: object
@@ -4801,30 +4105,144 @@ components:
             by_external_id:
             - resource_external_id
             - resource_type_slug
-    AddRolePermissionDto:
+    UpdateRoleDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the role.
+          example: Super Administrator
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the role.
+          example: Full administrative access to all resources
+    RemoveRoleDto:
+      allOf:
+      - type: object
+        properties:
+          role_slug:
+            type: string
+            description: The slug of the role to remove.
+            example: editor
+        required:
+        - role_slug
+      - oneOf:
+        - type: object
+          properties:
+            resource_id:
+              type: string
+              description: The ID of the resource. Mutually exclusive with `resource_external_id` and `resource_type_slug`.
+              example: authz_resource_01HXYZ123456789ABCDEFGH
+          required:
+          - resource_id
+          not:
+            anyOf:
+            - properties:
+                resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - resource_external_id
+            - properties:
+                resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - resource_type_slug
+        - type: object
+          properties:
+            resource_external_id:
+              type: string
+              description: The external ID of the resource. Required with `resource_type_slug`. Mutually exclusive with `resource_id`.
+              example: external_01HXYZ123456789ABCDEFGH
+            resource_type_slug:
+              type: string
+              description: The resource type slug. Required with `resource_external_id`. Mutually exclusive with `resource_id`.
+              example: project
+          required:
+          - resource_external_id
+          - resource_type_slug
+          not:
+            anyOf:
+            - properties:
+                resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - resource_id
+      x-mutually-exclusive-body-groups:
+        resource_target:
+          optional: false
+          variants:
+            by_id:
+            - resource_id
+            by_external_id:
+            - resource_external_id
+            - resource_type_slug
+    AuthorizationResourceList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationResource'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: authz_resource_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    CreateRoleDto:
       type: object
       properties:
         slug:
           type: string
-          description: The slug of the permission to add to the role.
-          example: reports:export
+          maxLength: 48
+          description: A unique slug for the role.
+          example: editor
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the role.
+          example: Editor
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the role.
+          example: Can edit resources
+        resource_type_slug:
+          type: string
+          maxLength: 48
+          description: The slug of the resource type the role is scoped to.
+          example: organization
       required:
       - slug
-    SetRolePermissionsDto:
-      type: object
-      properties:
-        permissions:
-          description: The permission slugs to assign to the role.
-          example:
-          - billing:read
-          - billing:write
-          - invoices:manage
-          - reports:view
-          type: array
-          items:
-            type: string
-      required:
-      - permissions
+      - name
     CreateAuthorizationResourceDto:
       allOf:
       - type: object
@@ -4930,6 +4348,588 @@ components:
             by_external_id:
             - parent_resource_external_id
             - parent_resource_type_slug
+    AddRolePermissionDto:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the permission to add to the role.
+          example: reports:export
+      required:
+      - slug
+    SetRolePermissionsDto:
+      type: object
+      properties:
+        permissions:
+          description: The permission slugs to assign to the role.
+          example:
+          - billing:read
+          - billing:write
+          - invoices:manage
+          - reports:view
+          type: array
+          items:
+            type: string
+      required:
+      - permissions
+    CreateOrganizationRoleDto:
+      type: object
+      properties:
+        slug:
+          type: string
+          maxLength: 48
+          description: A unique identifier for the role within the organization. When provided, must begin with 'org-' and contain only lowercase letters, numbers, hyphens, and underscores. When omitted, a slug is auto-generated from the role name and a random suffix.
+          example: org-billing-admin
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the role.
+          example: Billing Administrator
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the role's purpose.
+          example: Can manage billing and invoices
+        resource_type_slug:
+          type: string
+          maxLength: 48
+          description: The slug of the resource type the role is scoped to.
+          example: organization
+      required:
+      - name
+    Role:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: A unique slug for the role.
+          example: admin
+        object:
+          type: string
+          description: Distinguishes the role object.
+          example: role
+          const: role
+        id:
+          type: string
+          description: Unique identifier of the role.
+          example: role_01EHQMYV6MBK39QC5PZXHY59C3
+        name:
+          type: string
+          description: A descriptive name for the role.
+          example: Admin
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the role.
+          example: Can manage all resources
+        type:
+          type: string
+          enum:
+          - EnvironmentRole
+          - OrganizationRole
+          description: Whether the role is scoped to the environment or an organization (custom role).
+          example: EnvironmentRole
+        resource_type_slug:
+          type: string
+          description: The slug of the resource type the role is scoped to.
+          example: organization
+        permissions:
+          type: array
+          items:
+            type: string
+          description: The permission slugs assigned to the role.
+          example:
+          - posts:read
+          - posts:write
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - slug
+      - object
+      - id
+      - name
+      - description
+      - type
+      - resource_type_slug
+      - permissions
+      - created_at
+      - updated_at
+    UserlandUserOrganizationMembershipBaseWithUserList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserlandUserOrganizationMembershipBaseWithUser'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: om_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: om_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    UserlandUserOrganizationMembershipBaseWithUser:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the organization membership object.
+          const: organization_membership
+        id:
+          type: string
+          description: The unique ID of the organization membership.
+          example: om_01HXYZ123456789ABCDEFGHIJ
+        user_id:
+          type: string
+          description: The ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        organization_id:
+          type: string
+          description: The ID of the organization which the user belongs to.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+          description: The status of the organization membership. One of `active`, `inactive`, or `pending`.
+          example: active
+        directory_managed:
+          type: boolean
+          description: Whether this organization membership is managed by a directory sync connection.
+          example: false
+        organization_name:
+          type: string
+          description: The name of the organization which the user belongs to.
+          example: Acme Corp
+        custom_attributes:
+          type: object
+          additionalProperties: {}
+          description: An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked.
+          example:
+            department: Engineering
+            title: Developer Experience Engineer
+            location: Brooklyn
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        user:
+          $ref: '#/components/schemas/UserlandUser'
+          description: The user that belongs to the organization through this membership.
+      required:
+      - object
+      - id
+      - user_id
+      - organization_id
+      - status
+      - directory_managed
+      - created_at
+      - updated_at
+      - user
+    RoleList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+          description: The list of records for the current page.
+      required:
+      - object
+      - data
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    AuthorizationPermission:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Permission object.
+          const: permission
+        id:
+          type: string
+          description: Unique identifier of the Permission.
+          example: perm_01HXYZ123456789ABCDEFGHIJ
+        slug:
+          type: string
+          description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+          example: documents:read
+        name:
+          type: string
+          description: A descriptive name for the Permission.
+          example: View Documents
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Permission.
+          example: Allows viewing document contents
+        system:
+          type: boolean
+          description: Whether the permission is a system permission. System permissions are managed by WorkOS and cannot be deleted.
+          example: false
+        resource_type_slug:
+          type: string
+          description: The slug of the resource type associated with the permission.
+          example: workspace
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - slug
+      - name
+      - description
+      - system
+      - resource_type_slug
+      - created_at
+      - updated_at
+    UpdateAuthorizationResourceDto:
+      allOf:
+      - type: object
+        properties:
+          name:
+            type: string
+            maxLength: 48
+            description: A display name for the resource.
+            example: Updated Name
+          description:
+            type:
+            - string
+            - 'null'
+            maxLength: 150
+            description: An optional description of the resource.
+            example: Updated description
+      - oneOf:
+        - type: object
+          not:
+            anyOf:
+            - properties:
+                parent_resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_id
+            - properties:
+                parent_resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_external_id
+            - properties:
+                parent_resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_type_slug
+        - type: object
+          properties:
+            parent_resource_id:
+              type: string
+              description: The ID of the parent resource. Mutually exclusive with `parent_resource_external_id` and `parent_resource_type_slug`.
+              example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+          required:
+          - parent_resource_id
+          not:
+            anyOf:
+            - properties:
+                parent_resource_external_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_external_id
+            - properties:
+                parent_resource_type_slug:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_type_slug
+        - type: object
+          properties:
+            parent_resource_external_id:
+              type: string
+              description: The external ID of the parent resource. Required with `parent_resource_type_slug`. Mutually exclusive with `parent_resource_id`.
+              example: parent-workspace-01
+            parent_resource_type_slug:
+              type: string
+              description: The resource type slug of the parent resource. Required with `parent_resource_external_id`. Mutually exclusive with `parent_resource_id`.
+              example: workspace
+          required:
+          - parent_resource_external_id
+          - parent_resource_type_slug
+          not:
+            anyOf:
+            - properties:
+                parent_resource_id:
+                  x-exclude-from-lint: true
+              required:
+              - parent_resource_id
+      x-mutually-exclusive-body-groups:
+        parent_resource:
+          optional: true
+          variants:
+            by_id:
+            - parent_resource_id
+            by_external_id:
+            - parent_resource_external_id
+            - parent_resource_type_slug
+    SlimRole:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the assigned role.
+          example: admin
+      required:
+      - slug
+      description: The primary role assigned to the user.
+    AuthorizationResource:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Resource object.
+          const: authorization_resource
+        name:
+          type: string
+          description: A human-readable name for the Resource.
+          example: Website Redesign
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Resource.
+          example: Company website redesign project
+        organization_id:
+          type: string
+          description: The ID of the organization that owns the resource.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        parent_resource_id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent resource, if this resource is nested.
+          example: authz_resource_01HXYZ123456789ABCDEFGHIJ
+        id:
+          type: string
+          description: The unique ID of the Resource.
+          example: authz_resource_01HXYZ123456789ABCDEFGH
+        external_id:
+          type: string
+          description: An identifier you provide to reference the resource in your system.
+          example: proj-456
+        resource_type_slug:
+          type: string
+          description: The slug of the resource type this resource belongs to.
+          example: project
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - name
+      - description
+      - organization_id
+      - parent_resource_id
+      - id
+      - external_id
+      - resource_type_slug
+      - created_at
+      - updated_at
+    UserlandUser:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the user object.
+          const: user
+        id:
+          type: string
+          description: The unique ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+          example: Marcelina
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+          example: Davis
+        profile_picture_url:
+          type:
+          - string
+          - 'null'
+          description: A URL reference to an image representing the user.
+          example: https://workoscdn.com/images/v1/123abc
+        email:
+          type: string
+          description: The email address of the user.
+          example: marcelina.davis@example.com
+        email_verified:
+          type: boolean
+          description: Whether the user's email has been verified.
+          example: true
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The external ID of the user.
+          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            maxLength: 600
+          description: Object containing metadata key/value pairs associated with the user.
+          example:
+            timezone: America/New_York
+          propertyNames:
+            maxLength: 40
+          maxProperties: 50
+        last_sign_in_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the user last signed in.
+          example: '2025-06-25T19:07:33.155Z'
+        locale:
+          type:
+          - string
+          - 'null'
+          description: The user's preferred locale.
+          example: en-US
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - first_name
+      - last_name
+      - profile_picture_url
+      - email
+      - email_verified
+      - external_id
+      - last_sign_in_at
+      - created_at
+      - updated_at
+      description: The user object.
+    AuthorizationPermissionList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthorizationPermission'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: perm_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: perm_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    AuthorizationCheck:
+      type: object
+      properties:
+        authorized:
+          type: boolean
+          description: Whether the organization membership has the specified permission on the resource.
+          example: true
+      required:
+      - authorized
   securitySchemes:
     bearer:
       scheme: bearer

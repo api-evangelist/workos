@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal multi-factor-auth API
+  title: WorkOS Multi Factor Auth API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: multi-factor-auth
+- name: multi factor auth
   description: Multi-factor authentication factor management.
   x-displayName: Multi-Factor Authentication
 paths:
@@ -82,7 +82,7 @@ paths:
                 - message
       summary: Enroll Factor
       tags:
-      - multi-factor-auth
+      - multi factor auth
   /auth/factors/{id}:
     get:
       description: Gets an Authentication Factor.
@@ -127,7 +127,7 @@ paths:
                 - message
       summary: Get Factor
       tags:
-      - multi-factor-auth
+      - multi factor auth
     delete:
       description: Permanently deletes an Authentication Factor. It cannot be undone.
       operationId: AuthenticationFactorsController_delete
@@ -159,7 +159,7 @@ paths:
                 - message
       summary: Delete Factor
       tags:
-      - multi-factor-auth
+      - multi factor auth
   /auth/factors/{id}/challenge:
     post:
       description: Creates a Challenge for an Authentication Factor.
@@ -213,56 +213,9 @@ paths:
                 - message
       summary: Challenge Factor
       tags:
-      - multi-factor-auth
+      - multi factor auth
 components:
   schemas:
-    ChallengeAuthenticationFactorDto:
-      type: object
-      properties:
-        sms_template:
-          type: string
-          description: A custom template for the SMS message. Use the {{code}} placeholder to include the verification code.
-          example: Your verification code is {{code}}.
-    AuthenticationChallenge:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the authentication challenge object.
-          const: authentication_challenge
-        id:
-          type: string
-          description: The unique ID of the authentication challenge.
-          example: auth_challenge_01FVYZ5QM8N98T9ME5BCB2BBMJ
-        expires_at:
-          format: date-time
-          type: string
-          description: The timestamp when the challenge will expire. Does not apply to TOTP factors.
-          example: '2026-01-15T12:00:00.000Z'
-        code:
-          type: string
-          description: The one-time code for the challenge.
-          example: '123456'
-        authentication_factor_id:
-          type: string
-          description: The unique ID of the authentication factor the challenge belongs to.
-          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - authentication_factor_id
-      - created_at
-      - updated_at
     AuthenticationFactorEnrolled:
       type: object
       properties:
@@ -408,6 +361,53 @@ components:
       - type
       - created_at
       - updated_at
+    AuthenticationChallenge:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the authentication challenge object.
+          const: authentication_challenge
+        id:
+          type: string
+          description: The unique ID of the authentication challenge.
+          example: auth_challenge_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        expires_at:
+          format: date-time
+          type: string
+          description: The timestamp when the challenge will expire. Does not apply to TOTP factors.
+          example: '2026-01-15T12:00:00.000Z'
+        code:
+          type: string
+          description: The one-time code for the challenge.
+          example: '123456'
+        authentication_factor_id:
+          type: string
+          description: The unique ID of the authentication factor the challenge belongs to.
+          example: auth_factor_01FVYZ5QM8N98T9ME5BCB2BBMJ
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - authentication_factor_id
+      - created_at
+      - updated_at
+    ChallengeAuthenticationFactorDto:
+      type: object
+      properties:
+        sms_template:
+          type: string
+          description: A custom template for the SMS message. Use the {{code}} placeholder to include the verification code.
+          example: Your verification code is {{code}}.
   securitySchemes:
     bearer:
       scheme: bearer

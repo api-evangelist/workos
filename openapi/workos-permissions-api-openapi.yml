@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal permissions API
+  title: WorkOS Permissions API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: permissions
+- name: Permissions
   description: Manage permissions.
   x-displayName: Permissions
 paths:
@@ -79,7 +79,7 @@ paths:
                 - message
       summary: List Permissions
       tags:
-      - permissions
+      - Permissions
     post:
       description: Create a new permission in your WorkOS environment. The permission can then be assigned to environment roles and custom roles.
       operationId: AuthorizationPermissionsController_create
@@ -215,7 +215,7 @@ paths:
                 - message
       summary: Create a Permission
       tags:
-      - permissions
+      - Permissions
   /authorization/permissions/{slug}:
     get:
       description: Retrieve a permission by its unique slug.
@@ -250,7 +250,7 @@ paths:
                 - message
       summary: Get a Permission
       tags:
-      - permissions
+      - Permissions
     patch:
       description: Update an existing permission. Only the fields provided in the request body will be updated.
       operationId: AuthorizationPermissionsController_update
@@ -316,7 +316,7 @@ paths:
                 - message
       summary: Update a Permission
       tags:
-      - permissions
+      - Permissions
     delete:
       description: Delete an existing permission. System permissions cannot be deleted.
       operationId: AuthorizationPermissionsController_delete
@@ -359,12 +359,25 @@ paths:
                 - message
       summary: Delete a Permission
       tags:
-      - permissions
+      - Permissions
 components:
   schemas:
-    UpdateAuthorizationPermissionDto:
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    CreateAuthorizationPermissionDto:
       type: object
       properties:
+        slug:
+          type: string
+          maxLength: 48
+          description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+          example: documents:read
         name:
           type: string
           maxLength: 48
@@ -377,6 +390,14 @@ components:
           maxLength: 150
           description: An optional description of the Permission.
           example: Allows viewing document contents
+        resource_type_slug:
+          type: string
+          maxLength: 48
+          description: The slug of the resource type this permission is scoped to.
+          example: document
+      required:
+      - slug
+      - name
     AuthorizationPermissionList:
       type: object
       properties:
@@ -412,14 +433,6 @@ components:
       - object
       - data
       - list_metadata
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     AuthorizationPermission:
       type: object
       properties:
@@ -473,14 +486,9 @@ components:
       - resource_type_slug
       - created_at
       - updated_at
-    CreateAuthorizationPermissionDto:
+    UpdateAuthorizationPermissionDto:
       type: object
       properties:
-        slug:
-          type: string
-          maxLength: 48
-          description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
-          example: documents:read
         name:
           type: string
           maxLength: 48
@@ -493,14 +501,6 @@ components:
           maxLength: 150
           description: An optional description of the Permission.
           example: Allows viewing document contents
-        resource_type_slug:
-          type: string
-          maxLength: 48
-          description: The slug of the resource type this permission is scoped to.
-          example: document
-      required:
-      - slug
-      - name
   securitySchemes:
     bearer:
       scheme: bearer

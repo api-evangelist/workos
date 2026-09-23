@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal radar API
+  title: WorkOS Radar API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: radar
+- name: Radar
   description: Radar fraud detection.
   x-displayName: Radar
 paths:
@@ -109,7 +109,7 @@ paths:
                 - message
       summary: Create an Attempt
       tags:
-      - radar
+      - Radar
   /radar/attempts/{id}:
     put:
       description: You may optionally inform Radar that an authentication attempt or challenge was successful using this endpoint. Some Radar controls depend on tracking recent successful attempts, such as impossible travel.
@@ -170,7 +170,7 @@ paths:
                 - message
       summary: Update a Radar Attempt
       tags:
-      - radar
+      - Radar
   /radar/lists/{type}/{action}:
     post:
       description: Add an entry to a Radar list.
@@ -240,7 +240,7 @@ paths:
                 - message
       summary: Add an Entry to a Radar List
       tags:
-      - radar
+      - Radar
     delete:
       description: Remove an entry from a Radar list.
       operationId: RadarStandaloneController_deleteRadarListEntry
@@ -314,7 +314,7 @@ paths:
                 - message
       summary: Remove an Entry from a Radar List
       tags:
-      - radar
+      - Radar
 components:
   schemas:
     RadarStandaloneResponse:

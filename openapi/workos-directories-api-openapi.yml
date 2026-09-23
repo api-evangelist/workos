@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal directories API
+  title: WorkOS Directories API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: directories
+- name: Directories
   description: Manage directories.
   x-displayName: Directories
 paths:
@@ -114,7 +114,7 @@ paths:
                 - message
       summary: List Directories
       tags:
-      - directories
+      - Directories
   /directories/{id}:
     get:
       description: Get the details of an existing directory.
@@ -162,7 +162,7 @@ paths:
                 - message
       summary: Get a Directory
       tags:
-      - directories
+      - Directories
     delete:
       description: Permanently deletes an existing directory. It cannot be undone.
       operationId: DirectoriesController_deleteDirectory
@@ -197,17 +197,9 @@ paths:
                 - message
       summary: Delete a Directory
       tags:
-      - directories
+      - Directories
 components:
   schemas:
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     Directory:
       type: object
       properties:
@@ -353,6 +345,14 @@ components:
       - data
       - list_metadata
       - list_metadata
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

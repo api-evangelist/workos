@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal user-management.users.feature-flags API
+  title: WorkOS User Management.users.feature Flags API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -177,14 +177,6 @@ components:
       - default_value
       - created_at
       - updated_at
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     FlagList:
       type: object
       properties:
@@ -220,6 +212,14 @@ components:
       - object
       - data
       - list_metadata
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

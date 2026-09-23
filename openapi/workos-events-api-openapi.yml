@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal events API
+  title: WorkOS Events API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: events
+- name: Events
   description: Query events and event streams.
   x-displayName: Events
 paths:
@@ -144,9 +144,66 @@ paths:
                 - message
       summary: List Events
       tags:
-      - events
+      - Events
 components:
   schemas:
+    EventList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventSchema'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: event_01EHZNVPK3SFK441A1RGBFSHRT
+          required:
+          - after
+          description: Pagination cursor for navigating to the next page of results.
+      required:
+      - object
+      - data
+      - list_metadata
+      example:
+        object: list
+        data:
+        - object: event
+          id: event_01EHZNVPK3SFK441A1RGBFSHRT
+          event: dsync.user.created
+          data:
+            id: directory_user_01E1JG7J09H96KYP8HM9B0G5SJ
+            directory_id: directory_01ECAZ4NV9QMV47GW873HDCX74
+            organization_id: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
+            state: active
+            email: veda@foo-corp.com
+            emails:
+            - primary: true
+              type: work
+              value: veda@foo-corp.com
+            idp_id: '2836'
+            object: directory_user
+            username: veda@foo-corp.com
+            last_name: Torp
+            first_name: Veda
+            raw_attributes: {}
+            custom_attributes: {}
+            created_at: '2021-06-25T19:07:33.155Z'
+            updated_at: '2021-06-25T19:07:33.155Z'
+          created_at: '2021-06-25T19:07:33.155Z'
+          context: {}
+        list_metadata:
+          after: event_01EHZNVPK3SFK441A1RGBFSHRT
     EventContextDto:
       type: object
       properties:
@@ -189,174 +246,16 @@ components:
           additionalProperties: {}
           description: Attributes that changed from their previous values.
       description: Additional context about the event.
-    UserlandUser:
+    SlimRole:
       type: object
       properties:
-        object:
+        slug:
           type: string
-          description: Distinguishes the user object.
-          const: user
-        id:
-          type: string
-          description: The unique ID of the user.
-          example: user_01E4ZCR3C56J083X43JQXF3JK5
-        first_name:
-          type:
-          - string
-          - 'null'
-          description: The first name of the user.
-          example: Marcelina
-        last_name:
-          type:
-          - string
-          - 'null'
-          description: The last name of the user.
-          example: Davis
-        profile_picture_url:
-          type:
-          - string
-          - 'null'
-          description: A URL reference to an image representing the user.
-          example: https://workoscdn.com/images/v1/123abc
-        email:
-          type: string
-          description: The email address of the user.
-          example: marcelina.davis@example.com
-        email_verified:
-          type: boolean
-          description: Whether the user's email has been verified.
-          example: true
-        external_id:
-          type:
-          - string
-          - 'null'
-          description: The external ID of the user.
-          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-            maxLength: 600
-          description: Object containing metadata key/value pairs associated with the user.
-          example:
-            timezone: America/New_York
-          propertyNames:
-            maxLength: 40
-          maxProperties: 50
-        last_sign_in_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-          description: The timestamp when the user last signed in.
-          example: '2025-06-25T19:07:33.155Z'
-        locale:
-          type:
-          - string
-          - 'null'
-          description: The user's preferred locale.
-          example: en-US
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
+          description: The slug of the assigned role.
+          example: admin
       required:
-      - object
-      - id
-      - first_name
-      - last_name
-      - profile_picture_url
-      - email
-      - email_verified
-      - external_id
-      - last_sign_in_at
-      - created_at
-      - updated_at
-      description: The user object.
-    Group:
-      type: object
-      properties:
-        object:
-          type: string
-          description: The Group object.
-          example: group
-          const: group
-        id:
-          type: string
-          description: The unique ID of the Group.
-          example: group_01HXYZ123456789ABCDEFGHIJ
-        organization_id:
-          type: string
-          description: The ID of the Organization the Group belongs to.
-          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
-        name:
-          type: string
-          description: The name of the Group.
-          example: Engineering
-        description:
-          type:
-          - string
-          - 'null'
-          description: An optional description of the Group.
-          example: The engineering team
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - organization_id
-      - name
-      - description
-      - created_at
-      - updated_at
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    EventContextActorDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the actor.
-          example: user_01EHWNCE74X7JSDV0X3SZ3KJNY
-        source:
-          type: string
-          enum:
-          - api
-          - dashboard
-          - admin_portal
-          - system
-          description: The source of the actor that performed the action.
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the actor.
-          example: Jane Doe
-      required:
-      - id
-      - source
-      - name
-      description: The actor who performed the action.
+      - slug
+      description: The primary role assigned to the user.
     EventSchema:
       allOf:
       - type: object
@@ -377,7 +276,7 @@ components:
             type: object
             additionalProperties: {}
             description: The event payload.
-            example: &id001
+            example:
               id: directory_user_01E1JG7J09H96KYP8HM9B0G5SJ
               directory_id: directory_01ECAZ4NV9QMV47GW873HDCX74
               organization_id: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
@@ -412,11 +311,29 @@ components:
         - data
         - created_at
         description: An event emitted by WorkOS.
-        example: &id007
+        example:
           object: event
           id: event_01EHZNVPK3SFK441A1RGBFSHRT
           event: dsync.user.created
-          data: *id001
+          data:
+            id: directory_user_01E1JG7J09H96KYP8HM9B0G5SJ
+            directory_id: directory_01ECAZ4NV9QMV47GW873HDCX74
+            organization_id: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
+            state: active
+            email: veda@foo-corp.com
+            emails:
+            - primary: true
+              type: work
+              value: veda@foo-corp.com
+            idp_id: '2836'
+            object: directory_user
+            username: veda@foo-corp.com
+            last_name: Torp
+            first_name: Veda
+            raw_attributes: {}
+            custom_attributes: {}
+            created_at: '2021-06-25T19:07:33.155Z'
+            updated_at: '2021-06-25T19:07:33.155Z'
           created_at: '2021-06-25T19:07:33.155Z'
           context: {}
       - oneOf:
@@ -652,7 +569,7 @@ components:
                   items:
                     type: string
                   description: The permissions granted to the API key.
-                  example: &id002
+                  example:
                   - users:read
                   - users:write
                 created_at:
@@ -764,7 +681,9 @@ components:
                   items:
                     type: string
                   description: The permissions granted to the API key.
-                  example: *id002
+                  example:
+                  - users:read
+                  - users:write
                 created_at:
                   type: string
                   description: The timestamp when the API key was created.
@@ -3718,7 +3637,7 @@ components:
                   items:
                     type: string
                   description: Labels assigned to the Feature Flag for categorizing and filtering.
-                  example: &id003
+                  example:
                   - reports
                 enabled:
                   type: boolean
@@ -3873,7 +3792,8 @@ components:
                   items:
                     type: string
                   description: Labels assigned to the Feature Flag for categorizing and filtering.
-                  example: *id003
+                  example:
+                  - reports
                 enabled:
                   type: boolean
                   description: Specifies whether the Feature Flag is active for the current environment.
@@ -4027,7 +3947,8 @@ components:
                   items:
                     type: string
                   description: Labels assigned to the Feature Flag for categorizing and filtering.
-                  example: *id003
+                  example:
+                  - reports
                 enabled:
                   type: boolean
                   description: Specifies whether the Feature Flag is active for the current environment.
@@ -4299,7 +4220,8 @@ components:
                   items:
                     type: string
                   description: Labels assigned to the Feature Flag for categorizing and filtering.
-                  example: *id003
+                  example:
+                  - reports
                 enabled:
                   type: boolean
                   description: Specifies whether the Feature Flag is active for the current environment.
@@ -5223,7 +5145,7 @@ components:
                     type: string
                     maxLength: 600
                   description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
-                  example: &id004
+                  example:
                     tier: diamond
                   propertyNames:
                     maxLength: 40
@@ -5369,7 +5291,8 @@ components:
                     type: string
                     maxLength: 600
                   description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
-                  example: *id004
+                  example:
+                    tier: diamond
                   propertyNames:
                     maxLength: 40
                   maxProperties: 50
@@ -6190,7 +6113,7 @@ components:
                   items:
                     type: string
                   description: The permissions granted by the role.
-                  example: &id005
+                  example:
                   - users:read
                   - users:write
                 created_at:
@@ -6274,7 +6197,9 @@ components:
                   items:
                     type: string
                   description: The permissions granted by the role.
-                  example: *id005
+                  example:
+                  - users:read
+                  - users:write
                 created_at:
                   format: date-time
                   type: string
@@ -6356,7 +6281,9 @@ components:
                   items:
                     type: string
                   description: The permissions granted by the role.
-                  example: *id005
+                  example:
+                  - users:read
+                  - users:write
                 created_at:
                   format: date-time
                   type: string
@@ -6489,7 +6416,8 @@ components:
                     type: string
                     maxLength: 600
                   description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
-                  example: *id004
+                  example:
+                    tier: diamond
                   propertyNames:
                     maxLength: 40
                   maxProperties: 50
@@ -6920,7 +6848,7 @@ components:
                   items:
                     type: string
                   description: The permissions granted by the role.
-                  example: &id006
+                  example:
                   - users:read
                   - users:write
                 created_at:
@@ -6986,7 +6914,9 @@ components:
                   items:
                     type: string
                   description: The permissions granted by the role.
-                  example: *id006
+                  example:
+                  - users:read
+                  - users:write
                 created_at:
                   format: date-time
                   type: string
@@ -7050,7 +6980,9 @@ components:
                   items:
                     type: string
                   description: The permissions granted by the role.
-                  example: *id006
+                  example:
+                  - users:read
+                  - users:write
                 created_at:
                   format: date-time
                   type: string
@@ -8107,115 +8039,48 @@ components:
           - data
           - created_at
           - object
-      example: *id007
-      description: An event emitted by WorkOS.
-    EventList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventSchema'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: event_01EHZNVPK3SFK441A1RGBFSHRT
-          required:
-          - after
-          description: Pagination cursor for navigating to the next page of results.
-      required:
-      - object
-      - data
-      - list_metadata
       example:
-        object: list
+        object: event
+        id: event_01EHZNVPK3SFK441A1RGBFSHRT
+        event: dsync.user.created
         data:
-        - object: event
-          id: event_01EHZNVPK3SFK441A1RGBFSHRT
-          event: dsync.user.created
-          data:
-            id: directory_user_01E1JG7J09H96KYP8HM9B0G5SJ
-            directory_id: directory_01ECAZ4NV9QMV47GW873HDCX74
-            organization_id: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
-            state: active
-            email: veda@foo-corp.com
-            emails:
-            - primary: true
-              type: work
-              value: veda@foo-corp.com
-            idp_id: '2836'
-            object: directory_user
-            username: veda@foo-corp.com
-            last_name: Torp
-            first_name: Veda
-            raw_attributes: {}
-            custom_attributes: {}
-            created_at: '2021-06-25T19:07:33.155Z'
-            updated_at: '2021-06-25T19:07:33.155Z'
+          id: directory_user_01E1JG7J09H96KYP8HM9B0G5SJ
+          directory_id: directory_01ECAZ4NV9QMV47GW873HDCX74
+          organization_id: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
+          state: active
+          email: veda@foo-corp.com
+          emails:
+          - primary: true
+            type: work
+            value: veda@foo-corp.com
+          idp_id: '2836'
+          object: directory_user
+          username: veda@foo-corp.com
+          last_name: Torp
+          first_name: Veda
+          raw_attributes: {}
+          custom_attributes: {}
           created_at: '2021-06-25T19:07:33.155Z'
-          context: {}
-        list_metadata:
-          after: event_01EHZNVPK3SFK441A1RGBFSHRT
-    DirectoryGroup:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the Directory Group object.
-          const: directory_group
-        id:
-          type: string
-          description: Unique identifier for the Directory Group.
-          example: directory_group_01E1JJS84MFPPQ3G655FHTKX6Z
-        idp_id:
-          type: string
-          description: Unique identifier for the group, assigned by the Directory Provider. Different Directory Providers use different ID formats.
-          example: 02grqrue4294w24
-        directory_id:
-          type: string
-          description: The identifier of the Directory the Directory Group belongs to.
-          example: directory_01ECAZ4NV9QMV47GW873HDCX74
-        organization_id:
-          type: string
-          description: The identifier for the Organization in which the Directory resides.
-          example: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
-        name:
-          type: string
-          description: The name of the Directory Group.
-          example: Developers
-        raw_attributes:
-          type: object
-          additionalProperties: {}
-          description: The raw attributes received from the directory provider.
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - idp_id
-      - directory_id
-      - organization_id
-      - name
-      - created_at
-      - updated_at
+          updated_at: '2021-06-25T19:07:33.155Z'
+        created_at: '2021-06-25T19:07:33.155Z'
+        context: {}
+      description: An event emitted by WorkOS.
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    VaultByokKeyProvider:
+      type: string
+      enum:
+      - AWS_KMS
+      - GCP_KMS
+      - AZURE_KEY_VAULT
+      example: AWS_KMS
+      description: The external key provider used for BYOK.
     DirectoryUser:
       type: object
       properties:
@@ -8347,6 +8212,190 @@ components:
       - custom_attributes
       - created_at
       - updated_at
+    UserlandUser:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the user object.
+          const: user
+        id:
+          type: string
+          description: The unique ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+          example: Marcelina
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+          example: Davis
+        profile_picture_url:
+          type:
+          - string
+          - 'null'
+          description: A URL reference to an image representing the user.
+          example: https://workoscdn.com/images/v1/123abc
+        email:
+          type: string
+          description: The email address of the user.
+          example: marcelina.davis@example.com
+        email_verified:
+          type: boolean
+          description: Whether the user's email has been verified.
+          example: true
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The external ID of the user.
+          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            maxLength: 600
+          description: Object containing metadata key/value pairs associated with the user.
+          example:
+            timezone: America/New_York
+          propertyNames:
+            maxLength: 40
+          maxProperties: 50
+        last_sign_in_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the user last signed in.
+          example: '2025-06-25T19:07:33.155Z'
+        locale:
+          type:
+          - string
+          - 'null'
+          description: The user's preferred locale.
+          example: en-US
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - first_name
+      - last_name
+      - profile_picture_url
+      - email
+      - email_verified
+      - external_id
+      - last_sign_in_at
+      - created_at
+      - updated_at
+      description: The user object.
+    Group:
+      type: object
+      properties:
+        object:
+          type: string
+          description: The Group object.
+          example: group
+          const: group
+        id:
+          type: string
+          description: The unique ID of the Group.
+          example: group_01HXYZ123456789ABCDEFGHIJ
+        organization_id:
+          type: string
+          description: The ID of the Organization the Group belongs to.
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+        name:
+          type: string
+          description: The name of the Group.
+          example: Engineering
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Group.
+          example: The engineering team
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - organization_id
+      - name
+      - description
+      - created_at
+      - updated_at
+    DirectoryGroup:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Directory Group object.
+          const: directory_group
+        id:
+          type: string
+          description: Unique identifier for the Directory Group.
+          example: directory_group_01E1JJS84MFPPQ3G655FHTKX6Z
+        idp_id:
+          type: string
+          description: Unique identifier for the group, assigned by the Directory Provider. Different Directory Providers use different ID formats.
+          example: 02grqrue4294w24
+        directory_id:
+          type: string
+          description: The identifier of the Directory the Directory Group belongs to.
+          example: directory_01ECAZ4NV9QMV47GW873HDCX74
+        organization_id:
+          type: string
+          description: The identifier for the Organization in which the Directory resides.
+          example: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
+        name:
+          type: string
+          description: The name of the Directory Group.
+          example: Developers
+        raw_attributes:
+          type: object
+          additionalProperties: {}
+          description: The raw attributes received from the directory provider.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - idp_id
+      - directory_id
+      - organization_id
+      - name
+      - created_at
+      - updated_at
     WaitlistUser:
       type: object
       properties:
@@ -8395,24 +8444,32 @@ components:
       - approved_at
       - created_at
       - updated_at
-    VaultByokKeyProvider:
-      type: string
-      enum:
-      - AWS_KMS
-      - GCP_KMS
-      - AZURE_KEY_VAULT
-      example: AWS_KMS
-      description: The external key provider used for BYOK.
-    SlimRole:
+    EventContextActorDto:
       type: object
       properties:
-        slug:
+        id:
           type: string
-          description: The slug of the assigned role.
-          example: admin
+          description: Unique identifier of the actor.
+          example: user_01EHWNCE74X7JSDV0X3SZ3KJNY
+        source:
+          type: string
+          enum:
+          - api
+          - dashboard
+          - admin_portal
+          - system
+          description: The source of the actor that performed the action.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the actor.
+          example: Jane Doe
       required:
-      - slug
-      description: The primary role assigned to the user.
+      - id
+      - source
+      - name
+      description: The actor who performed the action.
   securitySchemes:
     bearer:
       scheme: bearer

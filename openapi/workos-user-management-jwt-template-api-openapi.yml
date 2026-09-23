@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal user-management.jwt-template API
+  title: WorkOS User Management.jwt Template API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -91,15 +91,6 @@ paths:
       - user-management.jwt-template
 components:
   schemas:
-    UpdateJwtTemplateDto:
-      type: object
-      properties:
-        content:
-          type: string
-          description: The JWT template content as a Liquid template string.
-          example: '{"urn:myapp:full_name": "{{user.first_name}} {{user.last_name}}", "urn:myapp:email": "{{user.email}}"}'
-      required:
-      - content
     JwtTemplate:
       type: object
       properties:
@@ -124,6 +115,15 @@ components:
       - content
       - created_at
       - updated_at
+    UpdateJwtTemplateDto:
+      type: object
+      properties:
+        content:
+          type: string
+          description: The JWT template content as a Liquid template string.
+          example: '{"urn:myapp:full_name": "{{user.first_name}} {{user.last_name}}", "urn:myapp:email": "{{user.email}}"}'
+      required:
+      - content
   securitySchemes:
     bearer:
       scheme: bearer

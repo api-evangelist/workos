@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal applications API
+  title: WorkOS Applications API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: applications
+- name: Applications
   description: Manage Connect Applications.
   x-displayName: Applications
 paths:
@@ -86,7 +86,7 @@ paths:
                 - message
       summary: List Connect Applications
       tags:
-      - applications
+      - Applications
     post:
       description: Create a new Connect Application. Supports both OAuth and Machine-to-Machine (M2M) application types.
       operationId: ApplicationsController_create
@@ -134,7 +134,7 @@ paths:
                 - message
       summary: Create a Connect Application
       tags:
-      - applications
+      - Applications
   /connect/applications/{id}:
     get:
       description: Retrieve details for a specific Connect Application by ID or client ID.
@@ -169,7 +169,7 @@ paths:
                 - message
       summary: Get a Connect Application
       tags:
-      - applications
+      - Applications
     put:
       description: Update an existing Connect Application. For OAuth applications, you can update redirect URIs. For all applications, you can update the name, description, and scopes.
       operationId: ApplicationsController_update
@@ -222,7 +222,7 @@ paths:
                 - message
       summary: Update a Connect Application
       tags:
-      - applications
+      - Applications
     delete:
       description: Delete an existing Connect Application.
       operationId: ApplicationsController_delete
@@ -252,7 +252,7 @@ paths:
                 - message
       summary: Delete a Connect Application
       tags:
-      - applications
+      - Applications
 components:
   schemas:
     UpdateOAuthApplicationDto:
@@ -289,6 +289,108 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/RedirectUriDto'
+    CreateM2MApplicationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+          example: My Application
+        application_type:
+          type: string
+          description: The type of application to create.
+          const: m2m
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description for the application.
+          example: An application for managing user access
+        scopes:
+          description: The OAuth scopes granted to the application.
+          example:
+          - openid
+          - profile
+          - email
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        organization_id:
+          type: string
+          description: The organization ID this application belongs to.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      required:
+      - name
+      - application_type
+      - organization_id
+    CreateOAuthApplicationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+          example: My Application
+        application_type:
+          type: string
+          description: The type of application to create.
+          const: oauth
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description for the application.
+          example: An application for managing user access
+        scopes:
+          description: The OAuth scopes granted to the application.
+          example:
+          - openid
+          - profile
+          - email
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        redirect_uris:
+          description: Redirect URIs for the application.
+          example:
+          - uri: https://example.com/callback
+            default: true
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RedirectUriDto'
+        uses_pkce:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the application uses PKCE (Proof Key for Code Exchange).
+          example: true
+        is_first_party:
+          type: boolean
+          description: Whether this is a first-party application. Third-party applications require an organization_id.
+          example: true
+        organization_id:
+          type:
+          - string
+          - 'null'
+          description: The organization ID this application belongs to. Required when is_first_party is false.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      required:
+      - name
+      - application_type
+      - is_first_party
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     ConnectApplication:
       allOf:
       - type: object
@@ -437,87 +539,6 @@ components:
           required:
           - application_type
           - organization_id
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    CreateOAuthApplicationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the application.
-          example: My Application
-        application_type:
-          type: string
-          description: The type of application to create.
-          const: oauth
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description for the application.
-          example: An application for managing user access
-        scopes:
-          description: The OAuth scopes granted to the application.
-          example:
-          - openid
-          - profile
-          - email
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        redirect_uris:
-          description: Redirect URIs for the application.
-          example:
-          - uri: https://example.com/callback
-            default: true
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RedirectUriDto'
-        uses_pkce:
-          type:
-          - boolean
-          - 'null'
-          description: Whether the application uses PKCE (Proof Key for Code Exchange).
-          example: true
-        is_first_party:
-          type: boolean
-          description: Whether this is a first-party application. Third-party applications require an organization_id.
-          example: true
-        organization_id:
-          type:
-          - string
-          - 'null'
-          description: The organization ID this application belongs to. Required when is_first_party is false.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-      required:
-      - name
-      - application_type
-      - is_first_party
-    RedirectUriDto:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The redirect URI.
-          example: https://example.com/callback
-        default:
-          type:
-          - boolean
-          - 'null'
-          description: Whether this is the default redirect URI.
-          example: true
-      required:
-      - uri
     ConnectApplicationList:
       type: object
       properties:
@@ -553,42 +574,21 @@ components:
       - object
       - data
       - list_metadata
-    CreateM2MApplicationDto:
+    RedirectUriDto:
       type: object
       properties:
-        name:
+        uri:
           type: string
-          description: The name of the application.
-          example: My Application
-        application_type:
-          type: string
-          description: The type of application to create.
-          const: m2m
-        description:
+          description: The redirect URI.
+          example: https://example.com/callback
+        default:
           type:
-          - string
+          - boolean
           - 'null'
-          description: A description for the application.
-          example: An application for managing user access
-        scopes:
-          description: The OAuth scopes granted to the application.
-          example:
-          - openid
-          - profile
-          - email
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        organization_id:
-          type: string
-          description: The organization ID this application belongs to.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+          description: Whether this is the default redirect URI.
+          example: true
       required:
-      - name
-      - application_type
-      - organization_id
+      - uri
   securitySchemes:
     bearer:
       scheme: bearer

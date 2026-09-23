@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal organization-domains API
+  title: WorkOS Organization Domains API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: organization-domains
+- name: Organization Domains
   description: Manage organization domains.
   x-displayName: Organization Domains
 paths:
@@ -120,7 +120,7 @@ paths:
                 - message
       summary: Create an Organization Domain
       tags:
-      - organization-domains
+      - Organization Domains
   /organization_domains/{id}:
     get:
       description: Get the details of an existing organization domain.
@@ -155,7 +155,7 @@ paths:
                 - message
       summary: Get an Organization Domain
       tags:
-      - organization-domains
+      - Organization Domains
     delete:
       description: Permanently deletes an organization domain. It cannot be undone.
       operationId: OrganizationDomainsController_delete
@@ -185,7 +185,7 @@ paths:
                 - message
       summary: Delete an Organization Domain
       tags:
-      - organization-domains
+      - Organization Domains
   /organization_domains/{id}/verify:
     post:
       description: Initiates verification process for an Organization Domain.
@@ -225,9 +225,23 @@ paths:
                 - message
       summary: Verify an Organization Domain
       tags:
-      - organization-domains
+      - Organization Domains
 components:
   schemas:
+    CreateOrganizationDomainDto:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The domain to add to the organization.
+          example: foo-corp.com
+        organization_id:
+          type: string
+          description: The ID of the organization to add the domain to.
+          example: org_01EHQMYV6MBK39QC5PZXHY59C3
+      required:
+      - domain
+      - organization_id
     OrganizationDomainStandAlone:
       type: object
       properties:
@@ -289,20 +303,6 @@ components:
       - domain
       - created_at
       - updated_at
-    CreateOrganizationDomainDto:
-      type: object
-      properties:
-        domain:
-          type: string
-          description: The domain to add to the organization.
-          example: foo-corp.com
-        organization_id:
-          type: string
-          description: The ID of the organization to add the domain to.
-          example: org_01EHQMYV6MBK39QC5PZXHY59C3
-      required:
-      - domain
-      - organization_id
   securitySchemes:
     bearer:
       scheme: bearer

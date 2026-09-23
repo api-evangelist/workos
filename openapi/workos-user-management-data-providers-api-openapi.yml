@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal user-management.data-providers API
+  title: WorkOS User Management.data Providers API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -24,7 +24,7 @@ tags:
 paths:
   /user_management/users/{user_id}/connected_accounts/{slug}:
     get:
-      description: Retrieves a user's [connected account](/reference/pipes/connected-account) for a specific provider.
+      description: Retrieves a user's connected account for a specific provider.
       operationId: DataIntegrationsUserManagementController_getUserDataInstallation
       parameters:
       - name: user_id
@@ -121,7 +121,7 @@ paths:
       - user-management.data-providers
   /user_management/users/{user_id}/data_providers:
     get:
-      description: Retrieves a list of available providers and the user's connection status for each. Returns all providers configured for your environment, along with the user's [connected account](/reference/pipes/connected-account) information where applicable.
+      description: Retrieves a list of available providers and the user's connection status for each. Returns all providers configured for your environment, along with the user's connected account information where applicable.
       operationId: DataIntegrationsUserManagementController_getUserDataIntegrations
       parameters:
       - name: user_id
@@ -165,6 +165,68 @@ paths:
       - user-management.data-providers
 components:
   schemas:
+    ConnectedAccount:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the connected account object.
+          const: connected_account
+        id:
+          type: string
+          description: The unique identifier of the connected account.
+          example: data_installation_01EHZNVPK3SFK441A1RGBFSHRT
+        user_id:
+          type:
+          - string
+          - 'null'
+          description: The [User](/reference/authkit/user) identifier associated with this connection.
+          example: user_01EHZNVPK3SFK441A1RGBFSHRT
+        organization_id:
+          type:
+          - string
+          - 'null'
+          description: The [Organization](/reference/organization) identifier associated with this connection, or `null` if not scoped to an organization.
+          example: null
+        scopes:
+          type: array
+          items:
+            type: string
+          description: The OAuth scopes granted for this connection.
+          example:
+          - repo
+          - user:email
+        state:
+          type: string
+          enum:
+          - connected
+          - needs_reauthorization
+          - disconnected
+          description: 'The state of the connected account:
+
+            - `connected`: The connection is active and tokens are valid.
+
+            - `needs_reauthorization`: The user needs to reauthorize the connection, typically because required scopes have changed.
+
+            - `disconnected`: The connection has been disconnected.'
+          example: connected
+        created_at:
+          type: string
+          description: The timestamp when the connection was created.
+          example: '2024-01-16T14:20:00.000Z'
+        updated_at:
+          type: string
+          description: The timestamp when the connection was last updated.
+          example: '2024-01-16T14:20:00.000Z'
+      required:
+      - object
+      - id
+      - user_id
+      - organization_id
+      - scopes
+      - state
+      - created_at
+      - updated_at
     DataIntegrationsListResponse:
       type: object
       properties:
@@ -357,68 +419,6 @@ components:
       required:
       - object
       - data
-    ConnectedAccount:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the connected account object.
-          const: connected_account
-        id:
-          type: string
-          description: The unique identifier of the connected account.
-          example: data_installation_01EHZNVPK3SFK441A1RGBFSHRT
-        user_id:
-          type:
-          - string
-          - 'null'
-          description: The [User](/reference/authkit/user) identifier associated with this connection.
-          example: user_01EHZNVPK3SFK441A1RGBFSHRT
-        organization_id:
-          type:
-          - string
-          - 'null'
-          description: The [Organization](/reference/organization) identifier associated with this connection, or `null` if not scoped to an organization.
-          example: null
-        scopes:
-          type: array
-          items:
-            type: string
-          description: The OAuth scopes granted for this connection.
-          example:
-          - repo
-          - user:email
-        state:
-          type: string
-          enum:
-          - connected
-          - needs_reauthorization
-          - disconnected
-          description: 'The state of the connected account:
-
-            - `connected`: The connection is active and tokens are valid.
-
-            - `needs_reauthorization`: The user needs to reauthorize the connection, typically because required scopes have changed.
-
-            - `disconnected`: The connection has been disconnected.'
-          example: connected
-        created_at:
-          type: string
-          description: The timestamp when the connection was created.
-          example: '2024-01-16T14:20:00.000Z'
-        updated_at:
-          type: string
-          description: The timestamp when the connection was last updated.
-          example: '2024-01-16T14:20:00.000Z'
-      required:
-      - object
-      - id
-      - user_id
-      - organization_id
-      - scopes
-      - state
-      - created_at
-      - updated_at
   securitySchemes:
     bearer:
       scheme: bearer

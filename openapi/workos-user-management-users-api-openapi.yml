@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal user-management.users API
+  title: WorkOS User Management.users API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: user-management.users
+- name: User Management - Users
   description: Manage users.
   x-displayName: Users
 paths:
@@ -56,7 +56,7 @@ paths:
                 - message
       summary: Get an Email Verification Code
       tags:
-      - user-management.users
+      - User Management - Users
   /user_management/password_reset:
     post:
       description: Creates a one-time token that can be used to reset a user's password.
@@ -162,7 +162,7 @@ paths:
                 - message
       summary: Create a Password Reset Token
       tags:
-      - user-management.users
+      - User Management - Users
       x-sends-email: true
   /user_management/password_reset/confirm:
     post:
@@ -272,7 +272,7 @@ paths:
                 - message
       summary: Reset the Password
       tags:
-      - user-management.users
+      - User Management - Users
   /user_management/password_reset/{id}:
     get:
       description: Get the details of an existing password reset token that can be used to reset a user's password.
@@ -307,7 +307,7 @@ paths:
                 - message
       summary: Get a Password Reset Token
       tags:
-      - user-management.users
+      - User Management - Users
   /user_management/users:
     get:
       description: Get a list of all of your existing users matching the criteria specified.
@@ -387,7 +387,7 @@ paths:
                 - message
       summary: List Users
       tags:
-      - user-management.users
+      - User Management - Users
     post:
       description: Create a new user in the current environment.
       operationId: UserlandUsersController_create[0]
@@ -565,7 +565,7 @@ paths:
                 - message
       summary: Create a User
       tags:
-      - user-management.users
+      - User Management - Users
       x-mutually-exclusive-body-groups:
         password:
           optional: true
@@ -577,7 +577,7 @@ paths:
             - password_hash_type
   /user_management/users/external_id/{external_id}:
     get:
-      description: Get the details of an existing user by an [external identifier](/authkit/metadata/external-identifiers).
+      description: Get the details of an existing user by an external identifier.
       operationId: UserlandUsersController_getByExternalId
       parameters:
       - name: external_id
@@ -609,7 +609,7 @@ paths:
                 - message
       summary: Get a User by External ID
       tags:
-      - user-management.users
+      - User Management - Users
   /user_management/users/{id}:
     put:
       description: Updates properties of a user. The omitted properties will be left unchanged.
@@ -834,7 +834,7 @@ paths:
                 - message
       summary: Update a User
       tags:
-      - user-management.users
+      - User Management - Users
       x-mutually-exclusive-body-groups:
         password:
           optional: true
@@ -877,7 +877,7 @@ paths:
                 - message
       summary: Get a User
       tags:
-      - user-management.users
+      - User Management - Users
     delete:
       description: Permanently deletes a user in the current environment. It cannot be undone.
       operationId: UserlandUsersController_delete[0]
@@ -907,7 +907,7 @@ paths:
                 - message
       summary: Delete a User
       tags:
-      - user-management.users
+      - User Management - Users
   /user_management/users/{id}/email_change/confirm:
     post:
       description: Confirms an email change using the one-time code received by the user.
@@ -1196,7 +1196,7 @@ paths:
                 - message
       summary: Confirm Email Change
       tags:
-      - user-management.users
+      - User Management - Users
   /user_management/users/{id}/email_change/send:
     post:
       description: Sends an email that contains a one-time code used to change a user's email address.
@@ -1338,7 +1338,7 @@ paths:
                 - message
       summary: Send Email Change Code
       tags:
-      - user-management.users
+      - User Management - Users
       x-sends-email: true
   /user_management/users/{id}/email_verification/confirm:
     post:
@@ -1461,7 +1461,7 @@ paths:
                 - message
       summary: Verify Email
       tags:
-      - user-management.users
+      - User Management - Users
   /user_management/users/{id}/email_verification/send:
     post:
       description: Sends an email that contains a one-time code used to verify a user’s email address.
@@ -1534,10 +1534,10 @@ paths:
                 - message
       summary: Send Verification Email
       tags:
-      - user-management.users
+      - User Management - Users
   /user_management/users/{id}/identities:
     get:
-      description: Get a list of identities associated with the user. A user can have multiple associated identities after going through [identity linking](/authkit/identity-linking). Currently only OAuth identities are supported. More provider types may be added in the future.
+      description: Get a list of identities associated with the user. A user can have multiple associated identities after going through identity linking. Currently only OAuth identities are supported. More provider types may be added in the future.
       operationId: UserlandUserIdentitiesController_get
       parameters:
       - name: id
@@ -1603,7 +1603,7 @@ paths:
                 - message
       summary: Get User Identities
       tags:
-      - user-management.users
+      - User Management - Users
   /user_management/users/{id}/sessions:
     get:
       description: Get a list of all active sessions for a specific user.
@@ -1822,268 +1822,53 @@ paths:
                 - message
       summary: List Sessions
       tags:
-      - user-management.users
+      - User Management - Users
 components:
   schemas:
-    UserlandUser:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the user object.
-          const: user
-        id:
-          type: string
-          description: The unique ID of the user.
-          example: user_01E4ZCR3C56J083X43JQXF3JK5
-        first_name:
-          type:
-          - string
-          - 'null'
-          description: The first name of the user.
-          example: Marcelina
-        last_name:
-          type:
-          - string
-          - 'null'
-          description: The last name of the user.
-          example: Davis
-        profile_picture_url:
-          type:
-          - string
-          - 'null'
-          description: A URL reference to an image representing the user.
-          example: https://workoscdn.com/images/v1/123abc
-        email:
-          type: string
-          description: The email address of the user.
-          example: marcelina.davis@example.com
-        email_verified:
-          type: boolean
-          description: Whether the user's email has been verified.
-          example: true
-        external_id:
-          type:
-          - string
-          - 'null'
-          description: The external ID of the user.
-          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-            maxLength: 600
-          description: Object containing metadata key/value pairs associated with the user.
-          example:
-            timezone: America/New_York
-          propertyNames:
-            maxLength: 40
-          maxProperties: 50
-        last_sign_in_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-          description: The timestamp when the user last signed in.
-          example: '2025-06-25T19:07:33.155Z'
-        locale:
-          type:
-          - string
-          - 'null'
-          description: The user's preferred locale.
-          example: en-US
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - first_name
-      - last_name
-      - profile_picture_url
-      - email
-      - email_verified
-      - external_id
-      - last_sign_in_at
-      - created_at
-      - updated_at
-      description: The user object.
-    SendVerificationEmailResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/UserlandUser'
-          description: The user to whom the verification email was sent.
-      required:
-      - user
-    ConfirmEmailChangeDto:
+    VerifyEmailAddressDto:
       type: object
       properties:
         code:
           type: string
-          description: The one-time code used to confirm the email change.
+          description: The one-time email verification code.
           example: '123456'
       required:
       - code
-    UpdateUserlandUserDto:
-      allOf:
-      - type: object
-        properties:
-          email:
-            type: string
-            format: email
-            description: The email address of the user.
-            example: marcelina.davis@example.com
-          first_name:
-            type: string
-            description: The first name of the user.
-            example: Marcelina
-          last_name:
-            type: string
-            description: The last name of the user.
-            example: Davis
-          email_verified:
-            type: boolean
-            description: Whether the user's email has been verified.
-            example: true
-          metadata:
-            type:
-            - object
-            - 'null'
-            additionalProperties:
-              type: string
-              maxLength: 600
-            maxProperties: 50
-            example:
-              timezone: America/New_York
-            description: Object containing metadata key/value pairs associated with the user.
-            propertyNames:
-              maxLength: 40
-          external_id:
-            type:
-            - string
-            - 'null'
-            maxLength: 128
-            pattern: ^[\x00-\x7F]+$
-            description: The external ID of the user.
-            example: f1ffa2b2-c20b-4d39-be5c-212726e11222
-          locale:
-            type:
-            - string
-            - 'null'
-            description: The user's preferred locale.
-            example: en-US
-      - oneOf:
-        - type: object
-          not:
-            anyOf:
-            - properties:
-                password:
-                  x-exclude-from-lint: true
-              required:
-              - password
-            - properties:
-                password_hash:
-                  x-exclude-from-lint: true
-              required:
-              - password_hash
-            - properties:
-                password_hash_type:
-                  x-exclude-from-lint: true
-              required:
-              - password_hash_type
-        - type: object
-          properties:
-            password:
-              type: string
-              description: The password to set for the user. Mutually exclusive with `password_hash` and `password_hash_type`.
-              example: strong_password_123!
-          required:
-          - password
-          not:
-            anyOf:
-            - properties:
-                password_hash:
-                  x-exclude-from-lint: true
-              required:
-              - password_hash
-            - properties:
-                password_hash_type:
-                  x-exclude-from-lint: true
-              required:
-              - password_hash_type
-        - type: object
-          properties:
-            password_hash:
-              type: string
-              description: The hashed password to set for the user. Required with `password_hash_type`. Mutually exclusive with `password`.
-              example: $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
-            password_hash_type:
-              type: string
-              enum:
-              - bcrypt
-              - firebase-scrypt
-              - ssha
-              - scrypt
-              - pbkdf2
-              - argon2
-              description: The algorithm originally used to hash the password, used when providing a `password_hash`. Required with `password_hash`. Mutually exclusive with `password`.
-              example: bcrypt
-          required:
-          - password_hash
-          - password_hash_type
-          not:
-            anyOf:
-            - properties:
-                password:
-                  x-exclude-from-lint: true
-              required:
-              - password
-      x-mutually-exclusive-body-groups:
-        password:
-          optional: true
-          variants:
-            plaintext:
-            - password
-            hashed:
-            - password_hash
-            - password_hash_type
-    EmailChange:
+    UserlandUserList:
       type: object
       properties:
         object:
           type: string
-          description: Distinguishes the email change object.
-          const: email_change
-        user:
-          $ref: '#/components/schemas/UserlandUser'
-        new_email:
-          type: string
-          description: The new email address the user is changing to.
-          example: new.email@example.com
-        expires_at:
-          format: date-time
-          type: string
-          description: The timestamp when the email change code expires.
-          example: '2026-01-15T12:00:00.000Z'
-        created_at:
-          format: date-time
-          type: string
-          description: The timestamp when the email change challenge was created.
-          example: '2026-01-15T12:00:00.000Z'
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserlandUser'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: user_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: user_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
       required:
       - object
-      - user
-      - new_email
-      - expires_at
-      - created_at
+      - data
+      - list_metadata
     EmailVerification:
       type: object
       properties:
@@ -2130,153 +1915,6 @@ components:
       - expires_at
       - created_at
       - updated_at
-      - code
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    PasswordReset:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the password reset object.
-          const: password_reset
-        id:
-          type: string
-          description: The unique ID of the password reset object.
-          example: password_reset_01E4ZCR3C56J083X43JQXF3JK5
-        user_id:
-          type: string
-          description: The unique ID of the user.
-          example: user_01E4ZCR3C56J083X43JQXF3JK5
-        email:
-          type: string
-          description: The email address of the user.
-          example: marcelina.davis@example.com
-        expires_at:
-          format: date-time
-          type: string
-          description: The timestamp when the password reset token expires.
-          example: '2026-01-15T12:00:00.000Z'
-        created_at:
-          format: date-time
-          type: string
-          description: The timestamp when the password reset token was created.
-          example: '2026-01-15T12:00:00.000Z'
-        password_reset_token:
-          type: string
-          description: The token used to reset the password.
-          example: Z1uX3RbwcIl5fIGJJJCXXisdI
-        password_reset_url:
-          type: string
-          description: The URL where the user can reset their password.
-          example: https://your-app.com/reset-password?token=Z1uX3RbwcIl5fIGJJJCXXisdI
-      required:
-      - object
-      - id
-      - user_id
-      - email
-      - expires_at
-      - created_at
-      - password_reset_token
-      - password_reset_url
-    CreatePasswordResetDto:
-      type: object
-      properties:
-        token:
-          type: string
-          description: The password reset token.
-          example: Z1Y2X3W4V5U6T7S8R9Q0P1O2N3
-        new_password:
-          type: string
-          description: The new password to set for the user.
-          example: strong_password_123!
-      required:
-      - token
-      - new_password
-    UserlandUserList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserlandUser'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: user_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: user_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
-    ResetPasswordResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/UserlandUser'
-          description: The user whose password was reset.
-      required:
-      - user
-    VerifyEmailResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/UserlandUser'
-          description: The user whose email was verified.
-      required:
-      - user
-    SendEmailChangeDto:
-      type: object
-      properties:
-        new_email:
-          type: string
-          description: The new email address to change to.
-          example: new.email@example.com
-      required:
-      - new_email
-    CreatePasswordResetTokenDto:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-          description: The email address of the user requesting a password reset.
-          example: marcelina.davis@example.com
-      required:
-      - email
-    VerifyEmailAddressDto:
-      type: object
-      properties:
-        code:
-          type: string
-          description: The one-time email verification code.
-          example: '123456'
-      required:
       - code
     CreateUserlandUserDto:
       allOf:
@@ -2405,6 +2043,368 @@ components:
             hashed:
             - password_hash
             - password_hash_type
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    SendEmailChangeDto:
+      type: object
+      properties:
+        new_email:
+          type: string
+          description: The new email address to change to.
+          example: new.email@example.com
+      required:
+      - new_email
+    ConfirmEmailChangeDto:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The one-time code used to confirm the email change.
+          example: '123456'
+      required:
+      - code
+    UserlandUser:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the user object.
+          const: user
+        id:
+          type: string
+          description: The unique ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+          example: Marcelina
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+          example: Davis
+        profile_picture_url:
+          type:
+          - string
+          - 'null'
+          description: A URL reference to an image representing the user.
+          example: https://workoscdn.com/images/v1/123abc
+        email:
+          type: string
+          description: The email address of the user.
+          example: marcelina.davis@example.com
+        email_verified:
+          type: boolean
+          description: Whether the user's email has been verified.
+          example: true
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The external ID of the user.
+          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            maxLength: 600
+          description: Object containing metadata key/value pairs associated with the user.
+          example:
+            timezone: America/New_York
+          propertyNames:
+            maxLength: 40
+          maxProperties: 50
+        last_sign_in_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the user last signed in.
+          example: '2025-06-25T19:07:33.155Z'
+        locale:
+          type:
+          - string
+          - 'null'
+          description: The user's preferred locale.
+          example: en-US
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - first_name
+      - last_name
+      - profile_picture_url
+      - email
+      - email_verified
+      - external_id
+      - last_sign_in_at
+      - created_at
+      - updated_at
+      description: The user object.
+    EmailChange:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the email change object.
+          const: email_change
+        user:
+          $ref: '#/components/schemas/UserlandUser'
+        new_email:
+          type: string
+          description: The new email address the user is changing to.
+          example: new.email@example.com
+        expires_at:
+          format: date-time
+          type: string
+          description: The timestamp when the email change code expires.
+          example: '2026-01-15T12:00:00.000Z'
+        created_at:
+          format: date-time
+          type: string
+          description: The timestamp when the email change challenge was created.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - user
+      - new_email
+      - expires_at
+      - created_at
+    ResetPasswordResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserlandUser'
+          description: The user whose password was reset.
+      required:
+      - user
+    SendVerificationEmailResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserlandUser'
+          description: The user to whom the verification email was sent.
+      required:
+      - user
+    UpdateUserlandUserDto:
+      allOf:
+      - type: object
+        properties:
+          email:
+            type: string
+            format: email
+            description: The email address of the user.
+            example: marcelina.davis@example.com
+          first_name:
+            type: string
+            description: The first name of the user.
+            example: Marcelina
+          last_name:
+            type: string
+            description: The last name of the user.
+            example: Davis
+          email_verified:
+            type: boolean
+            description: Whether the user's email has been verified.
+            example: true
+          metadata:
+            type:
+            - object
+            - 'null'
+            additionalProperties:
+              type: string
+              maxLength: 600
+            maxProperties: 50
+            example:
+              timezone: America/New_York
+            description: Object containing metadata key/value pairs associated with the user.
+            propertyNames:
+              maxLength: 40
+          external_id:
+            type:
+            - string
+            - 'null'
+            maxLength: 128
+            pattern: ^[\x00-\x7F]+$
+            description: The external ID of the user.
+            example: f1ffa2b2-c20b-4d39-be5c-212726e11222
+          locale:
+            type:
+            - string
+            - 'null'
+            description: The user's preferred locale.
+            example: en-US
+      - oneOf:
+        - type: object
+          not:
+            anyOf:
+            - properties:
+                password:
+                  x-exclude-from-lint: true
+              required:
+              - password
+            - properties:
+                password_hash:
+                  x-exclude-from-lint: true
+              required:
+              - password_hash
+            - properties:
+                password_hash_type:
+                  x-exclude-from-lint: true
+              required:
+              - password_hash_type
+        - type: object
+          properties:
+            password:
+              type: string
+              description: The password to set for the user. Mutually exclusive with `password_hash` and `password_hash_type`.
+              example: strong_password_123!
+          required:
+          - password
+          not:
+            anyOf:
+            - properties:
+                password_hash:
+                  x-exclude-from-lint: true
+              required:
+              - password_hash
+            - properties:
+                password_hash_type:
+                  x-exclude-from-lint: true
+              required:
+              - password_hash_type
+        - type: object
+          properties:
+            password_hash:
+              type: string
+              description: The hashed password to set for the user. Required with `password_hash_type`. Mutually exclusive with `password`.
+              example: $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
+            password_hash_type:
+              type: string
+              enum:
+              - bcrypt
+              - firebase-scrypt
+              - ssha
+              - scrypt
+              - pbkdf2
+              - argon2
+              description: The algorithm originally used to hash the password, used when providing a `password_hash`. Required with `password_hash`. Mutually exclusive with `password`.
+              example: bcrypt
+          required:
+          - password_hash
+          - password_hash_type
+          not:
+            anyOf:
+            - properties:
+                password:
+                  x-exclude-from-lint: true
+              required:
+              - password
+      x-mutually-exclusive-body-groups:
+        password:
+          optional: true
+          variants:
+            plaintext:
+            - password
+            hashed:
+            - password_hash
+            - password_hash_type
+    PasswordReset:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the password reset object.
+          const: password_reset
+        id:
+          type: string
+          description: The unique ID of the password reset object.
+          example: password_reset_01E4ZCR3C56J083X43JQXF3JK5
+        user_id:
+          type: string
+          description: The unique ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        email:
+          type: string
+          description: The email address of the user.
+          example: marcelina.davis@example.com
+        expires_at:
+          format: date-time
+          type: string
+          description: The timestamp when the password reset token expires.
+          example: '2026-01-15T12:00:00.000Z'
+        created_at:
+          format: date-time
+          type: string
+          description: The timestamp when the password reset token was created.
+          example: '2026-01-15T12:00:00.000Z'
+        password_reset_token:
+          type: string
+          description: The token used to reset the password.
+          example: Z1uX3RbwcIl5fIGJJJCXXisdI
+        password_reset_url:
+          type: string
+          description: The URL where the user can reset their password.
+          example: https://your-app.com/reset-password?token=Z1uX3RbwcIl5fIGJJJCXXisdI
+      required:
+      - object
+      - id
+      - user_id
+      - email
+      - expires_at
+      - created_at
+      - password_reset_token
+      - password_reset_url
+    VerifyEmailResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/UserlandUser'
+          description: The user whose email was verified.
+      required:
+      - user
+    CreatePasswordResetTokenDto:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: The email address of the user requesting a password reset.
+          example: marcelina.davis@example.com
+      required:
+      - email
+    CreatePasswordResetDto:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The password reset token.
+          example: Z1Y2X3W4V5U6T7S8R9Q0P1O2N3
+        new_password:
+          type: string
+          description: The new password to set for the user.
+          example: strong_password_123!
+      required:
+      - token
+      - new_password
   securitySchemes:
     bearer:
       scheme: bearer

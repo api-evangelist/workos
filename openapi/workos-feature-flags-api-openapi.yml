@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal feature-flags API
+  title: WorkOS Feature Flags API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: feature-flags
+- name: Feature Flags
   description: Manage feature flags.
   x-displayName: Feature Flags
 paths:
@@ -111,7 +111,7 @@ paths:
                 - message
       summary: List Feature Flags
       tags:
-      - feature-flags
+      - Feature Flags
   /feature-flags/{slug}:
     get:
       description: Get the details of an existing feature flag by its slug.
@@ -146,7 +146,7 @@ paths:
                 - message
       summary: Get a Feature Flag
       tags:
-      - feature-flags
+      - Feature Flags
   /feature-flags/{slug}/disable:
     put:
       description: Disables a feature flag in the current environment.
@@ -268,7 +268,7 @@ paths:
                 - message
       summary: Disable a Feature Flag
       tags:
-      - feature-flags
+      - Feature Flags
   /feature-flags/{slug}/enable:
     put:
       description: Enables a feature flag in the current environment.
@@ -390,7 +390,7 @@ paths:
                 - message
       summary: Enable a Feature Flag
       tags:
-      - feature-flags
+      - Feature Flags
 components:
   schemas:
     Flag:
@@ -481,14 +481,6 @@ components:
       - default_value
       - created_at
       - updated_at
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     FlagList:
       type: object
       properties:
@@ -524,6 +516,14 @@ components:
       - object
       - data
       - list_metadata
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

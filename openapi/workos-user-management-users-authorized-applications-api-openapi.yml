@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal user-management.users.authorized-applications API
+  title: WorkOS User Management.users.authorized Applications API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -288,14 +288,6 @@ components:
           required:
           - application_type
           - organization_id
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     AuthorizedConnectApplicationList:
       type: object
       properties:
@@ -360,6 +352,14 @@ components:
       - object
       - data
       - list_metadata
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

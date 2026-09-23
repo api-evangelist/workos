@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal connections API
+  title: WorkOS Connections API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: connections
+- name: Connections
   description: Manage SSO connections.
   x-displayName: Connections
 paths:
@@ -169,7 +169,7 @@ paths:
                 - message
       summary: List Connections
       tags:
-      - connections
+      - Connections
   /connections/{id}:
     get:
       description: Get the details of an existing connection.
@@ -217,7 +217,7 @@ paths:
                 - message
       summary: Get a Connection
       tags:
-      - connections
+      - Connections
     delete:
       description: Permanently deletes an existing connection. It cannot be undone.
       operationId: ConnectionsController_delete
@@ -262,53 +262,9 @@ paths:
                 - message
       summary: Delete a Connection
       tags:
-      - connections
+      - Connections
 components:
   schemas:
-    ConnectionList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Connection'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: conn_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: conn_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
-      - list_metadata
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     Connection:
       type: object
       properties:
@@ -457,6 +413,50 @@ components:
       - domains
       - created_at
       - updated_at
+    ConnectionList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Connection'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: conn_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: conn_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+      - list_metadata
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

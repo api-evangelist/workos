@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal api_keys API
+  title: WorkOS API Keys API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: api_keys
+- name: API Keys
   description: Manage API keys for environments.
   x-displayName: API Keys
 paths:
@@ -57,7 +57,7 @@ paths:
                 - message
       summary: Validate API Key
       tags:
-      - api_keys
+      - API Keys
   /api_keys/{id}:
     delete:
       description: Permanently deletes an API key. This action cannot be undone. Once deleted, any requests using this API key will fail authentication.
@@ -88,7 +88,7 @@ paths:
                 - message
       summary: Delete an API Key
       tags:
-      - api_keys
+      - API Keys
   /user_management/users/{userId}/api_keys:
     get:
       description: Get a list of API keys owned by a specific user.
@@ -160,7 +160,7 @@ paths:
                 - message
       summary: List API Keys for a User
       tags:
-      - api_keys
+      - API Keys
       x-feature-flag: user-api-keys
     post:
       description: Create a new API key owned by a user. The user must have an active membership in the specified organization.
@@ -245,10 +245,18 @@ paths:
                 - message
       summary: Create an API Key for a User
       tags:
-      - api_keys
+      - API Keys
       x-feature-flag: user-api-keys
 components:
   schemas:
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     UserApiKey:
       type: object
       properties:
@@ -324,58 +332,86 @@ components:
       - permissions
       - created_at
       - updated_at
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    UserApiKeyList:
+    UserApiKeyWithValue:
       type: object
       properties:
         object:
           type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserApiKey'
-          description: The list of records for the current page.
-        list_metadata:
+          description: Distinguishes the API Key object.
+          const: api_key
+        id:
+          type: string
+          description: Unique identifier of the API Key.
+          example: api_key_01EHZNVPK3SFK441A1RGBFSHRT
+        owner:
           type: object
           properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: api_key_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: api_key_01HXYZ987654321KJIHGFEDCBA
+            type:
+              type: string
+              description: The type of the API Key owner.
+              example: user
+              const: user
+            id:
+              type: string
+              description: Unique identifier of the API Key owner.
+              example: user_01EHZNVPK3SFK441A1RGBFSHRT
+            organization_id:
+              type: string
+              description: Unique identifier of the organization the API Key can access.
+              example: org_01EHZNVPK3SFK441A1RGBFSHRT
           required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
+          - type
+          - id
+          - organization_id
+          description: The entity that owns the API Key.
+        name:
+          type: string
+          description: A descriptive name for the API Key.
+          example: Production API Key
+        obfuscated_value:
+          type: string
+          description: An obfuscated representation of the API Key value.
+          example: sk_...3456
+        last_used_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Timestamp of when the API Key was last used.
+          example: null
+        permissions:
+          type: array
+          items:
+            type: string
+          description: The permission slugs assigned to the API Key.
+          example:
+          - posts:read
+          - posts:write
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        value:
+          type: string
+          description: The full API Key value. Only returned once at creation time.
+          example: sk_abcdefghijklmnop123456
       required:
       - object
-      - data
-      - list_metadata
-    ApiKeyValidationResponse:
-      type: object
-      properties:
-        api_key:
-          oneOf:
-          - $ref: '#/components/schemas/ApiKey'
-          - type: 'null'
-      required:
-      - api_key
+      - id
+      - owner
+      - name
+      - obfuscated_value
+      - last_used_at
+      - permissions
+      - created_at
+      - updated_at
+      - value
     ApiKey:
       type: object
       properties:
@@ -471,6 +507,50 @@ components:
       - permissions
       - created_at
       - updated_at
+    ApiKeyValidationResponse:
+      type: object
+      properties:
+        api_key:
+          oneOf:
+          - $ref: '#/components/schemas/ApiKey'
+          - type: 'null'
+      required:
+      - api_key
+    UserApiKeyList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserApiKey'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: api_key_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: api_key_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
     CreateUserApiKeyDto:
       type: object
       properties:
@@ -501,86 +581,6 @@ components:
           description: The value for an API key.
           example: sk_example_1234567890abcdef
       required:
-      - value
-    UserApiKeyWithValue:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the API Key object.
-          const: api_key
-        id:
-          type: string
-          description: Unique identifier of the API Key.
-          example: api_key_01EHZNVPK3SFK441A1RGBFSHRT
-        owner:
-          type: object
-          properties:
-            type:
-              type: string
-              description: The type of the API Key owner.
-              example: user
-              const: user
-            id:
-              type: string
-              description: Unique identifier of the API Key owner.
-              example: user_01EHZNVPK3SFK441A1RGBFSHRT
-            organization_id:
-              type: string
-              description: Unique identifier of the organization the API Key can access.
-              example: org_01EHZNVPK3SFK441A1RGBFSHRT
-          required:
-          - type
-          - id
-          - organization_id
-          description: The entity that owns the API Key.
-        name:
-          type: string
-          description: A descriptive name for the API Key.
-          example: Production API Key
-        obfuscated_value:
-          type: string
-          description: An obfuscated representation of the API Key value.
-          example: sk_...3456
-        last_used_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Timestamp of when the API Key was last used.
-          example: null
-        permissions:
-          type: array
-          items:
-            type: string
-          description: The permission slugs assigned to the API Key.
-          example:
-          - posts:read
-          - posts:write
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        value:
-          type: string
-          description: The full API Key value. Only returned once at creation time.
-          example: sk_abcdefghijklmnop123456
-      required:
-      - object
-      - id
-      - owner
-      - name
-      - obfuscated_value
-      - last_used_at
-      - permissions
-      - created_at
-      - updated_at
       - value
   securitySchemes:
     bearer:

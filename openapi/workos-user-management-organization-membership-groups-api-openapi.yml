@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal user-management.organization-membership.groups API
+  title: WorkOS User Management.organization Membership.groups API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -125,14 +125,6 @@ components:
       - object
       - data
       - list_metadata
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     Group:
       type: object
       properties:
@@ -177,6 +169,14 @@ components:
       - description
       - created_at
       - updated_at
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

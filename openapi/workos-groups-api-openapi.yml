@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal groups API
+  title: WorkOS Groups API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -18,7 +18,7 @@ servers:
 security:
 - bearer: []
 tags:
-- name: groups
+- name: Groups
   description: Organize and manage user groups within organizations.
   x-displayName: Groups
 paths:
@@ -107,7 +107,7 @@ paths:
                 - message
       summary: Create a Group
       tags:
-      - groups
+      - Groups
       x-feature-flag: user-groups-enabled
     get:
       description: Get a paginated list of groups within an organization.
@@ -185,7 +185,7 @@ paths:
                 - message
       summary: List Groups
       tags:
-      - groups
+      - Groups
       x-feature-flag: user-groups-enabled
   /organizations/{organizationId}/groups/{groupId}:
     get:
@@ -241,7 +241,7 @@ paths:
                 - message
       summary: Get a Group
       tags:
-      - groups
+      - Groups
       x-feature-flag: user-groups-enabled
     patch:
       description: Update an existing group. Only the fields provided in the request body will be updated.
@@ -334,7 +334,7 @@ paths:
                 - message
       summary: Update a Group
       tags:
-      - groups
+      - Groups
       x-feature-flag: user-groups-enabled
     delete:
       description: Delete a group from an organization.
@@ -385,7 +385,7 @@ paths:
                 - message
       summary: Delete a Group
       tags:
-      - groups
+      - Groups
       x-feature-flag: user-groups-enabled
   /organizations/{organizationId}/groups/{groupId}/organization-memberships:
     post:
@@ -479,7 +479,7 @@ paths:
                 - message
       summary: Add a Member to a Group
       tags:
-      - groups
+      - Groups
       x-feature-flag: user-groups-enabled
     get:
       description: Get a list of organization memberships in a group.
@@ -564,7 +564,7 @@ paths:
                 - message
       summary: List Group Members
       tags:
-      - groups
+      - Groups
       x-feature-flag: user-groups-enabled
   /organizations/{organizationId}/groups/{groupId}/organization-memberships/{omId}:
     delete:
@@ -623,19 +623,68 @@ paths:
                 - message
       summary: Remove a Member from a Group
       tags:
-      - groups
+      - Groups
       x-feature-flag: user-groups-enabled
 components:
   schemas:
-    CreateGroupMembershipDto:
+    UpdateGroupDto:
       type: object
       properties:
-        organization_membership_id:
+        name:
           type: string
-          description: The ID of the Organization Membership to add to the group.
-          example: om_01HXYZ123456789ABCDEFGHIJ
+          maxLength: 256
+          description: The name of the Group.
+          example: Engineering
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the Group.
+          example: The engineering team
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    GroupList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: group_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: group_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
       required:
-      - organization_membership_id
+      - object
+      - data
+      - list_metadata
     UserlandUserOrganizationMembershipBaseList:
       type: object
       properties:
@@ -731,29 +780,15 @@ components:
       - object
       - data
       - list_metadata
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    UpdateGroupDto:
+    CreateGroupMembershipDto:
       type: object
       properties:
-        name:
+        organization_membership_id:
           type: string
-          maxLength: 256
-          description: The name of the Group.
-          example: Engineering
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-          description: An optional description of the Group.
-          example: The engineering team
+          description: The ID of the Organization Membership to add to the group.
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      required:
+      - organization_membership_id
     Group:
       type: object
       properties:
@@ -798,41 +833,6 @@ components:
       - description
       - created_at
       - updated_at
-    GroupList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: group_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: group_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
     CreateGroupDto:
       type: object
       properties:

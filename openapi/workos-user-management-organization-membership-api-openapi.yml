@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: WorkOS admin-portal user-management.organization-membership API
+  title: WorkOS User Management.organization Membership API
   description: WorkOS REST API
   version: '1.0'
   contact:
@@ -570,15 +570,15 @@ paths:
             - role_slugs
   /user_management/organization_memberships/{id}/deactivate:
     put:
-      description: 'Deactivates an `active` organization membership. Emits an [organization_membership.updated](/events/organization-membership) event upon successful deactivation.
+      description: 'Deactivates an `active` organization membership. Emits an organization_membership.updated event upon successful deactivation.
 
 
         - Deactivating an `inactive` membership is a no-op and does not emit an event.
 
-        - Deactivating a `pending` membership returns an error. This membership should be [deleted](/reference/authkit/organization-membership/delete) instead.
+        - Deactivating a `pending` membership returns an error. This membership should be deleted instead.
 
 
-        See the [membership management documentation](/authkit/users-organizations/organizations/membership-management) for additional details.'
+        See the membership management documentation for additional details.'
       operationId: UserlandUserOrganizationMembershipsController_deactivate
       parameters:
       - name: id
@@ -720,15 +720,15 @@ paths:
       - user-management.organization-membership
   /user_management/organization_memberships/{id}/reactivate:
     put:
-      description: 'Reactivates an `inactive` organization membership, retaining the pre-existing role(s). Emits an [organization_membership.updated](/events/organization-membership) event upon successful reactivation.
+      description: 'Reactivates an `inactive` organization membership, retaining the pre-existing role(s). Emits an organization_membership.updated event upon successful reactivation.
 
 
         - Reactivating an `active` membership is a no-op and does not emit an event.
 
-        - Reactivating a `pending` membership returns an error. The user needs to [accept the invitation](/authkit/invitations) instead.
+        - Reactivating a `pending` membership returns an error. The user needs to accept the invitation instead.
 
 
-        See the [membership management documentation](/authkit/users-organizations/organizations/membership-management) for additional details.'
+        See the membership management documentation for additional details.'
       operationId: UserlandUserOrganizationMembershipsController_reactivate
       parameters:
       - name: id
@@ -801,6 +801,150 @@ paths:
       - user-management.organization-membership
 components:
   schemas:
+    UpdateUserlandUserOrganizationMembershipDto:
+      x-mutually-exclusive-body-groups:
+        role:
+          optional: true
+          variants:
+            single:
+            - role_slug
+            multiple:
+            - role_slugs
+      oneOf:
+      - type: object
+        not:
+          anyOf:
+          - properties:
+              role_slug:
+                x-exclude-from-lint: true
+            required:
+            - role_slug
+          - properties:
+              role_slugs:
+                x-exclude-from-lint: true
+            required:
+            - role_slugs
+      - type: object
+        properties:
+          role_slug:
+            type: string
+            description: A single role identifier. Defaults to `member` or the explicit default role. Mutually exclusive with `role_slugs`.
+            example: admin
+        required:
+        - role_slug
+        not:
+          anyOf:
+          - properties:
+              role_slugs:
+                x-exclude-from-lint: true
+            required:
+            - role_slugs
+      - type: object
+        properties:
+          role_slugs:
+            description: An array of role identifiers. Limited to one role when Multiple Roles is disabled. Mutually exclusive with `role_slug`.
+            example:
+            - admin
+            type: array
+            items:
+              type: string
+        required:
+        - role_slugs
+        not:
+          anyOf:
+          - properties:
+              role_slug:
+                x-exclude-from-lint: true
+            required:
+            - role_slug
+    UserlandUserOrganizationMembership:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the organization membership object.
+          const: organization_membership
+        id:
+          type: string
+          description: The unique ID of the organization membership.
+          example: om_01HXYZ123456789ABCDEFGHIJ
+        user_id:
+          type: string
+          description: The ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        organization_id:
+          type: string
+          description: The ID of the organization which the user belongs to.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+          description: The status of the organization membership. One of `active`, `inactive`, or `pending`.
+          example: active
+        directory_managed:
+          type: boolean
+          description: Whether this organization membership is managed by a directory sync connection.
+          example: false
+        organization_name:
+          type: string
+          description: The name of the organization which the user belongs to.
+          example: Acme Corp
+        custom_attributes:
+          type: object
+          additionalProperties: {}
+          description: An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked.
+          example:
+            department: Engineering
+            title: Developer Experience Engineer
+            location: Brooklyn
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        role:
+          $ref: '#/components/schemas/SlimRole'
+          description: The primary role assigned to the user within the organization.
+        user:
+          $ref: '#/components/schemas/UserlandUser'
+          description: The user that belongs to the organization through this membership.
+      required:
+      - object
+      - id
+      - user_id
+      - organization_id
+      - status
+      - directory_managed
+      - created_at
+      - updated_at
+      - role
+      - user
+    SlimRole:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the assigned role.
+          example: admin
+      required:
+      - slug
+      description: The primary role assigned to the user.
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     UserlandUser:
       type: object
       properties:
@@ -891,14 +1035,6 @@ components:
       - created_at
       - updated_at
       description: The user object.
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     CreateUserlandUserOrganizationMembershipDto:
       allOf:
       - type: object
@@ -969,142 +1105,6 @@ components:
             - role_slug
             multiple:
             - role_slugs
-    UserlandUserOrganizationMembership:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the organization membership object.
-          const: organization_membership
-        id:
-          type: string
-          description: The unique ID of the organization membership.
-          example: om_01HXYZ123456789ABCDEFGHIJ
-        user_id:
-          type: string
-          description: The ID of the user.
-          example: user_01E4ZCR3C56J083X43JQXF3JK5
-        organization_id:
-          type: string
-          description: The ID of the organization which the user belongs to.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          - pending
-          description: The status of the organization membership. One of `active`, `inactive`, or `pending`.
-          example: active
-        directory_managed:
-          type: boolean
-          description: Whether this organization membership is managed by a directory sync connection.
-          example: false
-        organization_name:
-          type: string
-          description: The name of the organization which the user belongs to.
-          example: Acme Corp
-        custom_attributes:
-          type: object
-          additionalProperties: {}
-          description: An object containing IdP-sourced attributes from the linked [Directory User](/reference/directory-sync/directory-user) or [SSO Profile](/reference/sso/profile). Directory User attributes take precedence when both are linked.
-          example:
-            department: Engineering
-            title: Developer Experience Engineer
-            location: Brooklyn
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        role:
-          $ref: '#/components/schemas/SlimRole'
-          description: The primary role assigned to the user within the organization.
-        user:
-          $ref: '#/components/schemas/UserlandUser'
-          description: The user that belongs to the organization through this membership.
-      required:
-      - object
-      - id
-      - user_id
-      - organization_id
-      - status
-      - directory_managed
-      - created_at
-      - updated_at
-      - role
-      - user
-    UpdateUserlandUserOrganizationMembershipDto:
-      x-mutually-exclusive-body-groups:
-        role:
-          optional: true
-          variants:
-            single:
-            - role_slug
-            multiple:
-            - role_slugs
-      oneOf:
-      - type: object
-        not:
-          anyOf:
-          - properties:
-              role_slug:
-                x-exclude-from-lint: true
-            required:
-            - role_slug
-          - properties:
-              role_slugs:
-                x-exclude-from-lint: true
-            required:
-            - role_slugs
-      - type: object
-        properties:
-          role_slug:
-            type: string
-            description: A single role identifier. Defaults to `member` or the explicit default role. Mutually exclusive with `role_slugs`.
-            example: admin
-        required:
-        - role_slug
-        not:
-          anyOf:
-          - properties:
-              role_slugs:
-                x-exclude-from-lint: true
-            required:
-            - role_slugs
-      - type: object
-        properties:
-          role_slugs:
-            description: An array of role identifiers. Limited to one role when Multiple Roles is disabled. Mutually exclusive with `role_slug`.
-            example:
-            - admin
-            type: array
-            items:
-              type: string
-        required:
-        - role_slugs
-        not:
-          anyOf:
-          - properties:
-              role_slug:
-                x-exclude-from-lint: true
-            required:
-            - role_slug
-    SlimRole:
-      type: object
-      properties:
-        slug:
-          type: string
-          description: The slug of the assigned role.
-          example: admin
-      required:
-      - slug
-      description: The primary role assigned to the user.
   securitySchemes:
     bearer:
       scheme: bearer
