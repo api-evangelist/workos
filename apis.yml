@@ -56,7 +56,7 @@ modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: workos:workos-admin-portal-api
-  name: WorkOS admin-portal API
+  name: WorkOS Admin Portal API
   description: Endpoints for the Admin Portal API.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -85,10 +85,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-api-keys-api
-  name: WorkOS api_keys API
+  name: WorkOS API Keys API
   description: Manage API keys for environments.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -117,10 +115,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-application-client-secrets-api
-  name: WorkOS application.client-secrets API
+  name: WorkOS Application.client Secrets API
   description: Manage client secrets for Connect Applications.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -147,10 +143,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-applications-api
-  name: WorkOS applications API
+  name: WorkOS Applications API
   description: Manage Connect Applications.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -179,10 +173,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-audit-logs-api
-  name: WorkOS audit-logs API
+  name: WorkOS Audit Logs API
   description: Create and query audit log events.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -211,10 +203,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-authorization-api
-  name: WorkOS authorization API
+  name: WorkOS Authorization API
   description: Authorization and access control.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -243,10 +233,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-connections-api
-  name: WorkOS connections API
+  name: WorkOS Connections API
   description: Manage SSO connections.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -275,10 +263,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-directories-api
-  name: WorkOS directories API
+  name: WorkOS Directories API
   description: Manage directories.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -307,10 +293,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-directory-groups-api
-  name: WorkOS directory-groups API
+  name: WorkOS Directory Groups API
   description: Manage directory groups.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -337,10 +321,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-directory-users-api
-  name: WorkOS directory-users API
+  name: WorkOS Directory Users API
   description: Manage directory users.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -367,10 +349,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-events-api
-  name: WorkOS events API
+  name: WorkOS Events API
   description: Query events and event streams.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -399,10 +379,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-feature-flags-api
-  name: WorkOS feature-flags API
+  name: WorkOS Feature Flags API
   description: Manage feature flags.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -431,10 +409,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-feature-flags-targets-api
-  name: WorkOS feature-flags.targets API
+  name: WorkOS Feature Flags.targets API
   description: Manage feature flag targets.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -461,10 +437,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-groups-api
-  name: WorkOS groups API
+  name: WorkOS Groups API
   description: Organize and manage user groups within organizations.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -493,10 +467,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-multi-factor-auth-api
-  name: WorkOS multi-factor-auth API
+  name: WorkOS Multi Factor Auth API
   description: Multi-factor authentication factor management.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -523,10 +495,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-multi-factor-auth-challenges-api
-  name: WorkOS multi-factor-auth.challenges API
+  name: WorkOS Multi Factor Auth.challenges API
   description: Multi-factor authentication challenge verification.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -553,10 +523,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-organization-domains-api
-  name: WorkOS organization-domains API
+  name: WorkOS Organization Domains API
   description: Manage organization domains.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -585,10 +553,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-organizations-api-keys-api
-  name: WorkOS organizations.api_keys API
+  name: WorkOS Organizations.api Keys API
   description: Manage organization-scoped API keys.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -616,10 +582,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-organizations-api
-  name: WorkOS organizations API
+  name: WorkOS Organizations API
   description: Manage organizations.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -648,10 +612,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-organizations-feature-flags-api
-  name: WorkOS organizations.feature-flags API
+  name: WorkOS Organizations.feature Flags API
   description: Manage organization-scoped feature flags.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -678,10 +640,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-permissions-api
-  name: WorkOS permissions API
+  name: WorkOS Permissions API
   description: Manage permissions.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -710,10 +670,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-pipes-api
-  name: WorkOS pipes API
+  name: WorkOS Pipes API
   description: Data integration endpoints.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -742,10 +700,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-radar-api
-  name: WorkOS radar API
+  name: WorkOS Radar API
   description: Radar fraud detection.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -774,10 +730,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-sso-api
-  name: WorkOS sso API
+  name: WorkOS SSO API
   description: Single Sign-On endpoints.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -806,10 +760,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-authentication-api
-  name: WorkOS user-management.authentication API
+  name: WorkOS User Management.authentication API
   description: User authentication endpoints.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -836,10 +788,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-cors-origins-api
-  name: WorkOS user-management.cors-origins API
+  name: WorkOS User Management.cors Origins API
   description: Manage CORS origins for user management.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -866,10 +816,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-data-providers-api
-  name: WorkOS user-management.data-providers API
+  name: WorkOS User Management.data Providers API
   description: Manage data providers.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -896,10 +844,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-invitations-api
-  name: WorkOS user-management.invitations API
+  name: WorkOS User Management.invitations API
   description: Manage user invitations.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -926,10 +872,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-jwt-template-api
-  name: WorkOS user-management.jwt-template API
+  name: WorkOS User Management.jwt Template API
   description: Manage JWT templates.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -956,10 +900,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-magic-auth-api
-  name: WorkOS user-management.magic-auth API
+  name: WorkOS User Management.magic Auth API
   description: Magic auth endpoints.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -986,10 +928,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-multi-factor-authentication-api
-  name: WorkOS user-management.multi-factor-authentication API
+  name: WorkOS User Management.multi Factor Authentication API
   description: Multi-factor authentication endpoints.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1016,10 +956,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-organization-membership-api
-  name: WorkOS user-management.organization-membership API
+  name: WorkOS User Management.organization Membership API
   description: Manage user organization memberships.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1046,10 +984,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-organization-membership-groups-api
-  name: WorkOS user-management.organization-membership.groups API
+  name: WorkOS User Management.organization Membership.groups API
   description: Manage groups for a user organization membership.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1076,10 +1012,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-redirect-uris-api
-  name: WorkOS user-management.redirect-uris API
+  name: WorkOS User Management.redirect Uris API
   description: Manage redirect URIs.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1106,10 +1040,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-session-tokens-api
-  name: WorkOS user-management.session-tokens API
+  name: WorkOS User Management.session Tokens API
   description: Session token verification keys.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1136,10 +1068,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-users-api
-  name: WorkOS user-management.users API
+  name: WorkOS User Management.users API
   description: Manage users.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1168,10 +1098,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-users-authorized-applications-api
-  name: WorkOS user-management.users.authorized-applications API
+  name: WorkOS User Management.users.authorized Applications API
   description: Manage authorized applications for users.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1198,10 +1126,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-user-management-users-feature-flags-api
-  name: WorkOS user-management.users.feature-flags API
+  name: WorkOS User Management.users.feature Flags API
   description: Manage user-scoped feature flags.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1228,10 +1154,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-webhooks-api
-  name: WorkOS webhooks API
+  name: WorkOS Webhooks API
   description: Manage webhooks.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1260,10 +1184,8 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-widgets-api
-  name: WorkOS widgets API
+  name: WorkOS Widgets API
   description: Widget endpoints.
   humanURL: https://workos.com
   baseURL: https://api.workos.com
@@ -1292,8 +1214,6 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 - aid: workos:workos-workos-connect-api
   name: WorkOS-connect API
   description: A unified interface that simplifies authentication and authorization across customers,
@@ -1323,8 +1243,6 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/plans/workos-plans-pricing.yml
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
-  - type: GraphQL
-    url: graphql/workos-graphql.md
 common:
 - type: CapabilityMap
   url: capabilities/workos-capability-edges.yml
