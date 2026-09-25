@@ -1,0 +1,182 @@
+# Vendor facets — WorkOS (AuthKit). AuthKit is a hosted auth UI and an OAuth authorization server for MCP.
+# On a custom domain ($99/month) it serves root discovery with issuer, authorization_code, a registration
+# endpoint and CIMD support — fetched live from WorkOS's own signin.workos.com, which also backs its own MCP
+# server (mcp.workos.com serves protected-resource metadata naming it). The provider's MCP server must serve
+# its own RFC 9728 document; WorkOS documents it but ships no helper on the fetched pages.
+vendor: workos
+name: WorkOS
+website: https://workos.com
+areas:
+- identity
+registry_keys: []
+rubric_schema_version: 0.22.0
+generated: '2026-09-25'
+features_refreshed: '2026-09-25'
+basis: capability
+summary: >-
+  AuthKit on a paid custom domain reads as served auth (0.9), served delegated identity and — with the
+  legacy DCR switched on — dynamic client registration, because its root discovery documents carry all
+  three. On the default authkit.app domain it earns none of them, since that host is not the provider's.
+  WorkOS is not detectable from the registry today, so this profile stays capability-only. The MCP server's
+  protected-resource metadata and every OpenAPI check remain the provider's work.
+features:
+- id: custom-domain
+  name: Custom domains
+  description: >-
+    Custom domains for AuthKit, Admin Portal, email and the Authentication API; a paid add-on at $99/month.
+  source: https://workos.com/pricing
+  tier: paid
+- id: authkit-hosted-ui
+  name: AuthKit hosted UI
+  description: >-
+    Hosted sign-up, sign-in, password reset, verification, SSO routing and MFA enrollment pages with customizable
+    domain and branding; free to 1M MAU.
+  source: https://workos.com/docs/authkit/hosted-ui
+  tier: all
+- id: authkit-mcp
+  name: AuthKit as MCP authorization server
+  description: >-
+    Serves /.well-known/oauth-authorization-server on the AuthKit domain; CIMD preferred, DCR kept for
+    older clients; resource indicators; the MCP server must implement /.well-known/oauth-protected-resource.
+  source: https://workos.com/docs/authkit/mcp
+  tier: all
+- id: root-discovery-document
+  name: Root discovery documents on the AuthKit domain
+  description: >-
+    Root oauth-authorization-server with issuer, authorization_code, device_code, registration_endpoint
+    and client_id_metadata_document_supported.
+  source: https://signin.workos.com/.well-known/oauth-authorization-server
+  tier: all
+maps:
+- feature: root-discovery-document
+  check: auth_clarity
+  layer: agent_readiness
+  grade: served
+  provider_must: >-
+    Buy the custom domain, point AuthKit at a subdomain it owns, and get that host onto its record; an
+    authkit.app subdomain is not a provider-owned host.
+  points: 10
+  baseline_pass_rate: 0.474
+- feature: root-discovery-document
+  check: delegated_identity
+  layer: agent_readiness
+  grade: served
+  provider_must: Same custom-domain host on record; authorization_code is in grant_types_supported.
+  points: 6
+  baseline_pass_rate: 0.209
+- feature: authkit-mcp
+  check: dynamic_client_registration
+  layer: agent_readiness
+  provider_must: Same host on record, and enable DCR in the dashboard (WorkOS treats it as legacy behind
+    CIMD).
+  points: 6
+  baseline_pass_rate: 0.134
+- feature: authkit-hosted-ui
+  check: sign_up_present
+  layer: composite
+  provider_must: Declare the AuthKit sign-up URL as a SignUp or Login pointer in apis.yml.
+  catalog_pass_rate: 0.19
+  facet: access_clarity
+  points: 5
+  baseline_pass_rate: 0.463
+- feature: authkit-mcp
+  check: oauth_scopes_enumerated
+  layer: composite
+  conditional: true
+  condition: Only if the provider's own OpenAPI declares oauth2 and enumerates its scopes.
+  catalog_pass_rate: 0.866
+  facet: contract_quality
+  points: 4
+  baseline_pass_rate: 0.902
+  saturated: true
+  saturated_note: >-
+    90% of providers with a contract, docs and a reference already earn this; the vendor cannot move it
+    for most of its buyers.
+earns_nothing:
+- feature: root-discovery-document
+  check: well_known_published
+  why: Authorization-server and OIDC metadata are not among the documents that check reads.
+out_of_reach:
+  checks:
+  - protected_resource_metadata
+  - security_schemes_defined
+  - oauth_flows_current
+  - consent_identity
+  - reg_fapi_profile
+  note: >-
+    WorkOS documents the MCP server's RFC 9728 document but the fetched pages show no library serving
+    it; the OpenAPI checks are the provider's contract.
+unscored_practice:
+- feature: authkit-mcp
+  why: >-
+    CIMD support — declared in the served metadata and WorkOS's preferred MCP registration path — is read
+    by no dimension.
+surface:
+  contract_quality:
+    reachable: 4.0
+    total: 211
+  access_clarity:
+    reachable: 5.0
+    total: 38
+  agent_readiness:
+    reachable: 21.0
+    total: 139
+hard_rule: >-
+  A model, not a score. Adopting this vendor changes a provider's Kin Score only when the provider publishes
+  the resulting artifacts on its own surface; nothing here writes a score, and no sponsorship or partnership
+  can.
+method: searched
+source:
+- https://signin.workos.com/.well-known/oauth-authorization-server
+- https://workos.com/docs/authkit/hosted-ui
+- https://workos.com/docs/authkit/mcp
+- https://workos.com/pricing
+measured:
+  cohort:
+    method: vendors-catalog.json detections (CNAME / header / URL shape / markup), never a name match
+    detected: 0
+    in_baseline: 0
+  control:
+    basis: providers earning contract_present + documentation_present + api_reference_present, minus the
+      cohort
+    n: 5216
+  metric: >-
+    cohort_pct / control_pct = mean share of the check's points earned (derived and platform credit weighted),
+    x100
+  measured_on: '2026-09-25'
+  status: 'not measurable: 0 detected customers clear the baseline (need 20)'
+simulation:
+  simulated_on: '2026-09-25'
+  rubric: 0.23.0
+  population: providers publishing a contract (contract_present earned), replayable exactly
+  providers: 8977
+  providers_unreplayable: 987
+  providers_moved: 8574
+  conditional_rows: excluded (they depend on what the API already does)
+  composite_lift:
+    median: 2.4
+    p75: 2.6
+    p90: 2.7
+    max: 2.7
+    mean_among_movers: 2.3
+  agent_readiness_lift:
+    median: 12.6
+    p75: 12.6
+    p90: 14.6
+    max: 17.6
+    mean_among_movers: 12.3
+  facet_lift_median_among_movers:
+    access_clarity: 13.1
+  composite_band_moves:
+    thin -> developing: 679
+    developing -> strong: 189
+    emerging -> thin: 167
+    strong -> exemplar: 48
+    minimal -> emerging: 1
+  agent_readiness_band_moves:
+    agent-aware -> agent-ready: 4886
+    agent-ready -> agent-native: 314
+    agent-aware -> agent-native: 43
+  method: >-
+    each provider's own kin/checks file, the vendor's maps at their stated credit, the scorer's composite
+    formula; from -> to, nothing written

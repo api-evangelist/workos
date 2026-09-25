@@ -1244,6 +1244,8 @@ apis:
   - type: Capabilities
     url: https://raw.githubusercontent.com/api-evangelist/workos/main/capabilities/shared/workos.yaml
 common:
+- type: VendorFacets
+  url: vendor-facets/workos-vendor-facets.yml
 - type: CapabilityMap
   url: capabilities/workos-capability-edges.yml
   name: WorkOS Business Capability Map
