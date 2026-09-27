@@ -255,134 +255,21 @@ paths:
       - Applications
 components:
   schemas:
-    UpdateOAuthApplicationDto:
+    RedirectUriDto:
       type: object
       properties:
-        name:
+        uri:
           type: string
-          description: The name of the application.
-          example: My Application
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description for the application.
-          example: An application for managing user access
-        scopes:
-          description: The OAuth scopes granted to the application.
-          example:
-          - openid
-          - profile
-          - email
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        redirect_uris:
-          description: Updated redirect URIs for the application. OAuth applications only.
-          example:
-          - uri: https://example.com/callback
-            default: true
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RedirectUriDto'
-    CreateM2MApplicationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the application.
-          example: My Application
-        application_type:
-          type: string
-          description: The type of application to create.
-          const: m2m
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description for the application.
-          example: An application for managing user access
-        scopes:
-          description: The OAuth scopes granted to the application.
-          example:
-          - openid
-          - profile
-          - email
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        organization_id:
-          type: string
-          description: The organization ID this application belongs to.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-      required:
-      - name
-      - application_type
-      - organization_id
-    CreateOAuthApplicationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the application.
-          example: My Application
-        application_type:
-          type: string
-          description: The type of application to create.
-          const: oauth
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description for the application.
-          example: An application for managing user access
-        scopes:
-          description: The OAuth scopes granted to the application.
-          example:
-          - openid
-          - profile
-          - email
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        redirect_uris:
-          description: Redirect URIs for the application.
-          example:
-          - uri: https://example.com/callback
-            default: true
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RedirectUriDto'
-        uses_pkce:
+          description: The redirect URI.
+          example: https://example.com/callback
+        default:
           type:
           - boolean
           - 'null'
-          description: Whether the application uses PKCE (Proof Key for Code Exchange).
+          description: Whether this is the default redirect URI.
           example: true
-        is_first_party:
-          type: boolean
-          description: Whether this is a first-party application. Third-party applications require an organization_id.
-          example: true
-        organization_id:
-          type:
-          - string
-          - 'null'
-          description: The organization ID this application belongs to. Required when is_first_party is false.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
       required:
-      - name
-      - application_type
-      - is_first_party
+      - uri
     PaginationOrder:
       type: string
       enum:
@@ -539,6 +426,42 @@ components:
           required:
           - application_type
           - organization_id
+    CreateM2MApplicationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+          example: My Application
+        application_type:
+          type: string
+          description: The type of application to create.
+          const: m2m
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description for the application.
+          example: An application for managing user access
+        scopes:
+          description: The OAuth scopes granted to the application.
+          example:
+          - openid
+          - profile
+          - email
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        organization_id:
+          type: string
+          description: The organization ID this application belongs to.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      required:
+      - name
+      - application_type
+      - organization_id
     ConnectApplicationList:
       type: object
       properties:
@@ -574,21 +497,98 @@ components:
       - object
       - data
       - list_metadata
-    RedirectUriDto:
+    CreateOAuthApplicationDto:
       type: object
       properties:
-        uri:
+        name:
           type: string
-          description: The redirect URI.
-          example: https://example.com/callback
-        default:
+          description: The name of the application.
+          example: My Application
+        application_type:
+          type: string
+          description: The type of application to create.
+          const: oauth
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description for the application.
+          example: An application for managing user access
+        scopes:
+          description: The OAuth scopes granted to the application.
+          example:
+          - openid
+          - profile
+          - email
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        redirect_uris:
+          description: Redirect URIs for the application.
+          example:
+          - uri: https://example.com/callback
+            default: true
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RedirectUriDto'
+        uses_pkce:
           type:
           - boolean
           - 'null'
-          description: Whether this is the default redirect URI.
+          description: Whether the application uses PKCE (Proof Key for Code Exchange).
           example: true
+        is_first_party:
+          type: boolean
+          description: Whether this is a first-party application. Third-party applications require an organization_id.
+          example: true
+        organization_id:
+          type:
+          - string
+          - 'null'
+          description: The organization ID this application belongs to. Required when is_first_party is false.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
       required:
-      - uri
+      - name
+      - application_type
+      - is_first_party
+    UpdateOAuthApplicationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+          example: My Application
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description for the application.
+          example: An application for managing user access
+        scopes:
+          description: The OAuth scopes granted to the application.
+          example:
+          - openid
+          - profile
+          - email
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        redirect_uris:
+          description: Updated redirect URIs for the application. OAuth applications only.
+          example:
+          - uri: https://example.com/callback
+            default: true
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RedirectUriDto'
   securitySchemes:
     bearer:
       scheme: bearer

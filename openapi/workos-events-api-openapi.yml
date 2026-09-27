@@ -147,105 +147,50 @@ paths:
       - Events
 components:
   schemas:
-    EventList:
+    Group:
       type: object
       properties:
         object:
           type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventSchema'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: event_01EHZNVPK3SFK441A1RGBFSHRT
-          required:
-          - after
-          description: Pagination cursor for navigating to the next page of results.
+          description: The Group object.
+          example: group
+          const: group
+        id:
+          type: string
+          description: The unique ID of the Group.
+          example: group_01HXYZ123456789ABCDEFGHIJ
+        organization_id:
+          type: string
+          description: The ID of the Organization the Group belongs to.
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+        name:
+          type: string
+          description: The name of the Group.
+          example: Engineering
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional description of the Group.
+          example: The engineering team
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
       required:
       - object
-      - data
-      - list_metadata
-      example:
-        object: list
-        data:
-        - object: event
-          id: event_01EHZNVPK3SFK441A1RGBFSHRT
-          event: dsync.user.created
-          data:
-            id: directory_user_01E1JG7J09H96KYP8HM9B0G5SJ
-            directory_id: directory_01ECAZ4NV9QMV47GW873HDCX74
-            organization_id: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
-            state: active
-            email: veda@foo-corp.com
-            emails:
-            - primary: true
-              type: work
-              value: veda@foo-corp.com
-            idp_id: '2836'
-            object: directory_user
-            username: veda@foo-corp.com
-            last_name: Torp
-            first_name: Veda
-            raw_attributes: {}
-            custom_attributes: {}
-            created_at: '2021-06-25T19:07:33.155Z'
-            updated_at: '2021-06-25T19:07:33.155Z'
-          created_at: '2021-06-25T19:07:33.155Z'
-          context: {}
-        list_metadata:
-          after: event_01EHZNVPK3SFK441A1RGBFSHRT
-    EventContextDto:
-      type: object
-      properties:
-        google_analytics_client_id:
-          type: string
-          description: The Google Analytics client ID.
-          example: GA1.2.1234567890.1234567890
-        google_analytics_sessions:
-          type: array
-          items:
-            type: object
-            properties:
-              containerId:
-                type: string
-                description: The Google Analytics container ID.
-                example: GTM-ABCDEF
-              sessionId:
-                type: string
-                description: The Google Analytics session ID.
-                example: '1234567890'
-              sessionNumber:
-                type: string
-                description: The Google Analytics session number.
-                example: '1'
-            required:
-            - containerId
-          description: The Google Analytics sessions associated with the event.
-        ajs_anonymous_id:
-          type: string
-          description: The anonymous ID from analytics.
-          example: ajs_anon_01EHWNCE74X7JSDV0X3SZ3KJNY
-        client_id:
-          type: string
-          description: The client ID associated with the event.
-          example: client_01EHWNCE74X7JSDV0X3SZ3KJNY
-        actor:
-          $ref: '#/components/schemas/EventContextActorDto'
-        previous_attributes:
-          type: object
-          additionalProperties: {}
-          description: Attributes that changed from their previous values.
-      description: Additional context about the event.
+      - id
+      - organization_id
+      - name
+      - description
+      - created_at
+      - updated_at
     SlimRole:
       type: object
       properties:
@@ -256,6 +201,14 @@ components:
       required:
       - slug
       description: The primary role assigned to the user.
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     EventSchema:
       allOf:
       - type: object
@@ -8065,22 +8018,6 @@ components:
         created_at: '2021-06-25T19:07:33.155Z'
         context: {}
       description: An event emitted by WorkOS.
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    VaultByokKeyProvider:
-      type: string
-      enum:
-      - AWS_KMS
-      - GCP_KMS
-      - AZURE_KEY_VAULT
-      example: AWS_KMS
-      description: The external key provider used for BYOK.
     DirectoryUser:
       type: object
       properties:
@@ -8212,6 +8149,104 @@ components:
       - custom_attributes
       - created_at
       - updated_at
+    WaitlistUser:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Waitlist User object.
+          const: waitlist_user
+        id:
+          type: string
+          description: The unique ID of the Waitlist User.
+          example: wl_user_01E4ZCR3C56J083X43JQXF3JK5
+        email:
+          type: string
+          description: The email address of the Waitlist User.
+          example: marcelina.davis@example.com
+        state:
+          type: string
+          enum:
+          - pending
+          - approved
+          - denied
+          description: The state of the Waitlist User.
+          example: pending
+        approved_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the Waitlist User was approved, or null if not yet approved.
+          example: null
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - email
+      - state
+      - approved_at
+      - created_at
+      - updated_at
+    DirectoryGroup:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Directory Group object.
+          const: directory_group
+        id:
+          type: string
+          description: Unique identifier for the Directory Group.
+          example: directory_group_01E1JJS84MFPPQ3G655FHTKX6Z
+        idp_id:
+          type: string
+          description: Unique identifier for the group, assigned by the Directory Provider. Different Directory Providers use different ID formats.
+          example: 02grqrue4294w24
+        directory_id:
+          type: string
+          description: The identifier of the Directory the Directory Group belongs to.
+          example: directory_01ECAZ4NV9QMV47GW873HDCX74
+        organization_id:
+          type: string
+          description: The identifier for the Organization in which the Directory resides.
+          example: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
+        name:
+          type: string
+          description: The name of the Directory Group.
+          example: Developers
+        raw_attributes:
+          type: object
+          additionalProperties: {}
+          description: The raw attributes received from the directory provider.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - idp_id
+      - directory_id
+      - organization_id
+      - name
+      - created_at
+      - updated_at
     UserlandUser:
       type: object
       properties:
@@ -8302,148 +8337,113 @@ components:
       - created_at
       - updated_at
       description: The user object.
-    Group:
+    VaultByokKeyProvider:
+      type: string
+      enum:
+      - AWS_KMS
+      - GCP_KMS
+      - AZURE_KEY_VAULT
+      example: AWS_KMS
+      description: The external key provider used for BYOK.
+    EventList:
       type: object
       properties:
         object:
           type: string
-          description: The Group object.
-          example: group
-          const: group
-        id:
-          type: string
-          description: The unique ID of the Group.
-          example: group_01HXYZ123456789ABCDEFGHIJ
-        organization_id:
-          type: string
-          description: The ID of the Organization the Group belongs to.
-          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
-        name:
-          type: string
-          description: The name of the Group.
-          example: Engineering
-        description:
-          type:
-          - string
-          - 'null'
-          description: An optional description of the Group.
-          example: The engineering team
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventSchema'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: event_01EHZNVPK3SFK441A1RGBFSHRT
+          required:
+          - after
+          description: Pagination cursor for navigating to the next page of results.
       required:
       - object
-      - id
-      - organization_id
-      - name
-      - description
-      - created_at
-      - updated_at
-    DirectoryGroup:
+      - data
+      - list_metadata
+      example:
+        object: list
+        data:
+        - object: event
+          id: event_01EHZNVPK3SFK441A1RGBFSHRT
+          event: dsync.user.created
+          data:
+            id: directory_user_01E1JG7J09H96KYP8HM9B0G5SJ
+            directory_id: directory_01ECAZ4NV9QMV47GW873HDCX74
+            organization_id: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
+            state: active
+            email: veda@foo-corp.com
+            emails:
+            - primary: true
+              type: work
+              value: veda@foo-corp.com
+            idp_id: '2836'
+            object: directory_user
+            username: veda@foo-corp.com
+            last_name: Torp
+            first_name: Veda
+            raw_attributes: {}
+            custom_attributes: {}
+            created_at: '2021-06-25T19:07:33.155Z'
+            updated_at: '2021-06-25T19:07:33.155Z'
+          created_at: '2021-06-25T19:07:33.155Z'
+          context: {}
+        list_metadata:
+          after: event_01EHZNVPK3SFK441A1RGBFSHRT
+    EventContextDto:
       type: object
       properties:
-        object:
+        google_analytics_client_id:
           type: string
-          description: Distinguishes the Directory Group object.
-          const: directory_group
-        id:
+          description: The Google Analytics client ID.
+          example: GA1.2.1234567890.1234567890
+        google_analytics_sessions:
+          type: array
+          items:
+            type: object
+            properties:
+              containerId:
+                type: string
+                description: The Google Analytics container ID.
+                example: GTM-ABCDEF
+              sessionId:
+                type: string
+                description: The Google Analytics session ID.
+                example: '1234567890'
+              sessionNumber:
+                type: string
+                description: The Google Analytics session number.
+                example: '1'
+            required:
+            - containerId
+          description: The Google Analytics sessions associated with the event.
+        ajs_anonymous_id:
           type: string
-          description: Unique identifier for the Directory Group.
-          example: directory_group_01E1JJS84MFPPQ3G655FHTKX6Z
-        idp_id:
+          description: The anonymous ID from analytics.
+          example: ajs_anon_01EHWNCE74X7JSDV0X3SZ3KJNY
+        client_id:
           type: string
-          description: Unique identifier for the group, assigned by the Directory Provider. Different Directory Providers use different ID formats.
-          example: 02grqrue4294w24
-        directory_id:
-          type: string
-          description: The identifier of the Directory the Directory Group belongs to.
-          example: directory_01ECAZ4NV9QMV47GW873HDCX74
-        organization_id:
-          type: string
-          description: The identifier for the Organization in which the Directory resides.
-          example: org_01EZTR6WYX1A0DSE2CYMGXQ24Y
-        name:
-          type: string
-          description: The name of the Directory Group.
-          example: Developers
-        raw_attributes:
+          description: The client ID associated with the event.
+          example: client_01EHWNCE74X7JSDV0X3SZ3KJNY
+        actor:
+          $ref: '#/components/schemas/EventContextActorDto'
+        previous_attributes:
           type: object
           additionalProperties: {}
-          description: The raw attributes received from the directory provider.
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - idp_id
-      - directory_id
-      - organization_id
-      - name
-      - created_at
-      - updated_at
-    WaitlistUser:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the Waitlist User object.
-          const: waitlist_user
-        id:
-          type: string
-          description: The unique ID of the Waitlist User.
-          example: wl_user_01E4ZCR3C56J083X43JQXF3JK5
-        email:
-          type: string
-          description: The email address of the Waitlist User.
-          example: marcelina.davis@example.com
-        state:
-          type: string
-          enum:
-          - pending
-          - approved
-          - denied
-          description: The state of the Waitlist User.
-          example: pending
-        approved_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-          description: The timestamp when the Waitlist User was approved, or null if not yet approved.
-          example: null
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - email
-      - state
-      - approved_at
-      - created_at
-      - updated_at
+          description: Attributes that changed from their previous values.
+      description: Additional context about the event.
     EventContextActorDto:
       type: object
       properties:

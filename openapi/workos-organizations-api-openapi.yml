@@ -506,6 +506,14 @@ components:
       required:
       - domain
       - state
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     Organization:
       type: object
       properties:
@@ -630,109 +638,6 @@ components:
       - external_id
       - created_at
       - updated_at
-    UpdateOrganizationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the organization.
-          example: Foo Corp
-        allow_profiles_outside_organization:
-          type: boolean
-          description: Whether the organization allows profiles from outside the organization to sign in.
-          example: false
-        domains:
-          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
-          example:
-          - foo-corp.com
-          deprecated: true
-          type: array
-          items:
-            type: string
-        domain_data:
-          description: The domains associated with the organization, including verification state.
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationDomainDataDto'
-        stripe_customer_id:
-          type: string
-          description: The Stripe customer ID associated with the organization.
-          example: cus_R9qWAGMQ6nGE7V
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-            maxLength: 600
-          maxProperties: 50
-          example:
-            tier: diamond
-          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
-          propertyNames:
-            maxLength: 40
-        external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 128
-          pattern: ^[\x00-\x7F]+$
-          example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
-          description: An external identifier for the Organization.
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    OrganizationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the organization.
-          example: Foo Corp
-        allow_profiles_outside_organization:
-          type: boolean
-          description: Whether the organization allows profiles from outside the organization to sign in.
-          example: false
-        domains:
-          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
-          example:
-          - example.com
-          type: array
-          items:
-            type: string
-        domain_data:
-          description: The domains associated with the organization, including verification state.
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationDomainDataDto'
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-            maxLength: 600
-          maxProperties: 50
-          example:
-            tier: diamond
-          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
-          propertyNames:
-            maxLength: 40
-        external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 128
-          pattern: ^[\x00-\x7F]+$
-          example: ext_12345
-          description: An external identifier for the Organization.
-      required:
-      - name
     OrganizationList:
       type: object
       properties:
@@ -837,6 +742,101 @@ components:
       - organization_id
       - retention_period_in_days
       - state
+    OrganizationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the organization.
+          example: Foo Corp
+        allow_profiles_outside_organization:
+          type: boolean
+          description: Whether the organization allows profiles from outside the organization to sign in.
+          example: false
+        domains:
+          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
+          example:
+          - example.com
+          type: array
+          items:
+            type: string
+        domain_data:
+          description: The domains associated with the organization, including verification state.
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationDomainDataDto'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            maxLength: 600
+          maxProperties: 50
+          example:
+            tier: diamond
+          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
+          propertyNames:
+            maxLength: 40
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+          pattern: ^[\x00-\x7F]+$
+          example: ext_12345
+          description: An external identifier for the Organization.
+      required:
+      - name
+    UpdateOrganizationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the organization.
+          example: Foo Corp
+        allow_profiles_outside_organization:
+          type: boolean
+          description: Whether the organization allows profiles from outside the organization to sign in.
+          example: false
+        domains:
+          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
+          example:
+          - foo-corp.com
+          deprecated: true
+          type: array
+          items:
+            type: string
+        domain_data:
+          description: The domains associated with the organization, including verification state.
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationDomainDataDto'
+        stripe_customer_id:
+          type: string
+          description: The Stripe customer ID associated with the organization.
+          example: cus_R9qWAGMQ6nGE7V
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            maxLength: 600
+          maxProperties: 50
+          example:
+            tier: diamond
+          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
+          propertyNames:
+            maxLength: 40
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+          pattern: ^[\x00-\x7F]+$
+          example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
+          description: An external identifier for the Organization.
   securitySchemes:
     bearer:
       scheme: bearer

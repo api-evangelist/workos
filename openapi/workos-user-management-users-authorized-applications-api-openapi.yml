@@ -140,6 +140,14 @@ paths:
       - user-management.users.authorized-applications
 components:
   schemas:
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     ConnectApplication:
       allOf:
       - type: object
@@ -352,14 +360,6 @@ components:
       - object
       - data
       - list_metadata
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

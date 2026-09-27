@@ -317,6 +317,15 @@ paths:
       - Radar
 components:
   schemas:
+    RadarListEntryAlreadyPresentResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message indicating the entry already exists.
+          example: Entry already present in list
+      required:
+      - message
     RadarStandaloneResponse:
       type: object
       properties:
@@ -367,15 +376,6 @@ components:
       - verdict
       - reason
       - attempt_id
-    RadarListEntryAlreadyPresentResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: A message indicating the entry already exists.
-          example: Entry already present in list
-      required:
-      - message
   securitySchemes:
     bearer:
       scheme: bearer

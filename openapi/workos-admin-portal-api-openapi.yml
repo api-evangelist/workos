@@ -138,24 +138,6 @@ components:
           type: array
       required:
       - organization
-    PortalLinkResponse:
-      type: object
-      properties:
-        link:
-          type: string
-          description: An ephemeral link to initiate the Admin Portal.
-          example: https://setup.workos.com?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-      required:
-      - link
-    IntentOptions:
-      type: object
-      properties:
-        sso:
-          description: SSO-specific options for the Admin Portal.
-          $ref: '#/components/schemas/SsoIntentOptions'
-        domain_verification:
-          description: Domain verification-specific options for the Admin Portal.
-          $ref: '#/components/schemas/DomainVerificationIntentOptions'
     SsoIntentOptions:
       type: object
       properties:
@@ -175,6 +157,24 @@ components:
           type: string
           description: The domain name to verify. When provided, the domain verification flow will skip the domain entry form and go directly to the verification step.
           example: example.com
+    IntentOptions:
+      type: object
+      properties:
+        sso:
+          description: SSO-specific options for the Admin Portal.
+          $ref: '#/components/schemas/SsoIntentOptions'
+        domain_verification:
+          description: Domain verification-specific options for the Admin Portal.
+          $ref: '#/components/schemas/DomainVerificationIntentOptions'
+    PortalLinkResponse:
+      type: object
+      properties:
+        link:
+          type: string
+          description: An ephemeral link to initiate the Admin Portal.
+          example: https://setup.workos.com?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+      required:
+      - link
   securitySchemes:
     bearer:
       scheme: bearer

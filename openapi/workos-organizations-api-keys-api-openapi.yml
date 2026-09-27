@@ -160,6 +160,23 @@ paths:
       - organizations.api_keys
 components:
   schemas:
+    CreateOrganizationApiKeyDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name for the API key.
+          example: Production API Key
+        permissions:
+          description: The permission slugs to assign to the API key.
+          example:
+          - posts:read
+          - posts:write
+          type: array
+          items:
+            type: string
+      required:
+      - name
     OrganizationApiKeyWithValue:
       type: object
       properties:
@@ -235,6 +252,41 @@ components:
       - created_at
       - updated_at
       - value
+    OrganizationApiKeyList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationApiKey'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: api_key_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: api_key_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
     PaginationOrder:
       type: string
       enum:
@@ -243,23 +295,6 @@ components:
       - asc
       example: desc
       default: desc
-    CreateOrganizationApiKeyDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name for the API key.
-          example: Production API Key
-        permissions:
-          description: The permission slugs to assign to the API key.
-          example:
-          - posts:read
-          - posts:write
-          type: array
-          items:
-            type: string
-      required:
-      - name
     OrganizationApiKey:
       type: object
       properties:
@@ -330,41 +365,6 @@ components:
       - permissions
       - created_at
       - updated_at
-    OrganizationApiKeyList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationApiKey'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: api_key_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: api_key_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
   securitySchemes:
     bearer:
       scheme: bearer
