@@ -489,6 +489,120 @@ paths:
       - Organizations
 components:
   schemas:
+    OrganizationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the organization.
+          example: Foo Corp
+        allow_profiles_outside_organization:
+          type: boolean
+          description: Whether the organization allows profiles from outside the organization to sign in.
+          example: false
+        domains:
+          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
+          example:
+          - example.com
+          type: array
+          items:
+            type: string
+        domain_data:
+          description: The domains associated with the organization, including verification state.
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationDomainDataDto'
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            maxLength: 600
+          maxProperties: 50
+          example:
+            tier: diamond
+          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
+          propertyNames:
+            maxLength: 40
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+          pattern: ^[\x00-\x7F]+$
+          example: ext_12345
+          description: An external identifier for the Organization.
+      required:
+      - name
+    AuditLogConfiguration:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: Unique identifier of the Organization.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        retention_period_in_days:
+          type: integer
+          description: The number of days Audit Log events will be retained before being permanently deleted.
+          example: 30
+        state:
+          type: string
+          enum:
+          - active
+          - inactive
+          - disabled
+          description: The current state of the audit log configuration for the organization.
+          example: active
+        log_stream:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier of the Audit Log Stream.
+              example: als_01EHZNVPK3SFK441A1RGBFSHRT
+            type:
+              type: string
+              enum:
+              - AzureSentinel
+              - Datadog
+              - GenericHttps
+              - GoogleCloudStorage
+              - S3
+              - Splunk
+              description: The type of the Audit Log Stream destination.
+              example: Datadog
+            state:
+              type: string
+              enum:
+              - active
+              - inactive
+              - error
+              - invalid
+              description: The current state of the Audit Log Stream.
+              example: active
+            last_synced_at:
+              type:
+              - string
+              - 'null'
+              description: ISO-8601 timestamp of when the last event was successfully synced, or null if no events have been synced.
+              example: '2026-01-15T12:00:00.000Z'
+            created_at:
+              format: date-time
+              type: string
+              description: An ISO 8601 timestamp.
+              example: '2026-01-15T12:00:00.000Z'
+          required:
+          - id
+          - type
+          - state
+          - last_synced_at
+          - created_at
+          description: The Audit Log Stream currently configured for the organization, if any.
+      required:
+      - organization_id
+      - retention_period_in_days
+      - state
     OrganizationDomainDataDto:
       type: object
       properties:
@@ -506,14 +620,6 @@ components:
       required:
       - domain
       - state
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     Organization:
       type: object
       properties:
@@ -674,120 +780,6 @@ components:
       - data
       - list_metadata
       - list_metadata
-    AuditLogConfiguration:
-      type: object
-      properties:
-        organization_id:
-          type: string
-          description: Unique identifier of the Organization.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-        retention_period_in_days:
-          type: integer
-          description: The number of days Audit Log events will be retained before being permanently deleted.
-          example: 30
-        state:
-          type: string
-          enum:
-          - active
-          - inactive
-          - disabled
-          description: The current state of the audit log configuration for the organization.
-          example: active
-        log_stream:
-          type: object
-          properties:
-            id:
-              type: string
-              description: Unique identifier of the Audit Log Stream.
-              example: als_01EHZNVPK3SFK441A1RGBFSHRT
-            type:
-              type: string
-              enum:
-              - AzureSentinel
-              - Datadog
-              - GenericHttps
-              - GoogleCloudStorage
-              - S3
-              - Splunk
-              description: The type of the Audit Log Stream destination.
-              example: Datadog
-            state:
-              type: string
-              enum:
-              - active
-              - inactive
-              - error
-              - invalid
-              description: The current state of the Audit Log Stream.
-              example: active
-            last_synced_at:
-              type:
-              - string
-              - 'null'
-              description: ISO-8601 timestamp of when the last event was successfully synced, or null if no events have been synced.
-              example: '2026-01-15T12:00:00.000Z'
-            created_at:
-              format: date-time
-              type: string
-              description: An ISO 8601 timestamp.
-              example: '2026-01-15T12:00:00.000Z'
-          required:
-          - id
-          - type
-          - state
-          - last_synced_at
-          - created_at
-          description: The Audit Log Stream currently configured for the organization, if any.
-      required:
-      - organization_id
-      - retention_period_in_days
-      - state
-    OrganizationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the organization.
-          example: Foo Corp
-        allow_profiles_outside_organization:
-          type: boolean
-          description: Whether the organization allows profiles from outside the organization to sign in.
-          example: false
-        domains:
-          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
-          example:
-          - example.com
-          type: array
-          items:
-            type: string
-        domain_data:
-          description: The domains associated with the organization, including verification state.
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationDomainDataDto'
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-            maxLength: 600
-          maxProperties: 50
-          example:
-            tier: diamond
-          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
-          propertyNames:
-            maxLength: 40
-        external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 128
-          pattern: ^[\x00-\x7F]+$
-          example: ext_12345
-          description: An external identifier for the Organization.
-      required:
-      - name
     UpdateOrganizationDto:
       type: object
       properties:
@@ -837,6 +829,14 @@ components:
           pattern: ^[\x00-\x7F]+$
           example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
           description: An external identifier for the Organization.
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

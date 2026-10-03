@@ -228,20 +228,6 @@ paths:
       - Organization Domains
 components:
   schemas:
-    CreateOrganizationDomainDto:
-      type: object
-      properties:
-        domain:
-          type: string
-          description: The domain to add to the organization.
-          example: foo-corp.com
-        organization_id:
-          type: string
-          description: The ID of the organization to add the domain to.
-          example: org_01EHQMYV6MBK39QC5PZXHY59C3
-      required:
-      - domain
-      - organization_id
     OrganizationDomainStandAlone:
       type: object
       properties:
@@ -303,6 +289,20 @@ components:
       - domain
       - created_at
       - updated_at
+    CreateOrganizationDomainDto:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The domain to add to the organization.
+          example: foo-corp.com
+        organization_id:
+          type: string
+          description: The ID of the organization to add the domain to.
+          example: org_01EHQMYV6MBK39QC5PZXHY59C3
+      required:
+      - domain
+      - organization_id
   securitySchemes:
     bearer:
       scheme: bearer

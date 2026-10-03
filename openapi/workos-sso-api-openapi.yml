@@ -469,26 +469,64 @@ paths:
       - SSO
 components:
   schemas:
-    SlimRole:
+    SsoTokenResponse:
       type: object
       properties:
-        slug:
+        token_type:
           type: string
-          description: The slug of the assigned role.
-          example: admin
-      required:
-      - slug
-      description: The primary role assigned to the user.
-    SsoAuthorizeUrlResponse:
-      type: object
-      properties:
-        url:
+          description: The type of token issued.
+          const: Bearer
+        access_token:
           type: string
-          format: uri
-          description: An OAuth 2.0 authorization URL.
-          example: https://accounts.google.com/o/oauth2/v2/auth?client_id=example&redirect_uri=https%3A%2F%2Fapi.workos.com%2Fsso%2Fcallback&response_type=code&scope=openid%20profile%20email
+          description: An access token that can be exchanged for a user profile. Access tokens are short-lived — see the `expires_in` field for the exact lifetime.
+          example: eyJhbGciOiJSUzI1NiIsImtpZCI6InNzby...
+        expires_in:
+          type: integer
+          description: The lifetime of the access token in seconds.
+          example: 600
+        profile:
+          $ref: '#/components/schemas/Profile'
+          description: The user profile returned by the identity provider.
+        oauth_tokens:
+          type: object
+          properties:
+            provider:
+              type: string
+              description: The OAuth provider used for authentication.
+              example: GoogleOAuth
+            refresh_token:
+              type: string
+              description: The refresh token from the OAuth provider.
+              example: 1//04g...
+            access_token:
+              type: string
+              description: The access token from the OAuth provider.
+              example: ya29.a0ARrdaM...
+            expires_at:
+              type: integer
+              description: The timestamp at which the access token expires.
+              example: 1735141800
+            scopes:
+              type: array
+              items:
+                type: string
+              description: A list of OAuth scopes for which the access token is authorized.
+              example:
+              - profile
+              - email
+              - openid
+          required:
+          - provider
+          - refresh_token
+          - access_token
+          - expires_at
+          - scopes
+          description: OAuth tokens issued by the identity provider, if available.
       required:
-      - url
+      - token_type
+      - access_token
+      - expires_in
+      - profile
     Profile:
       type: object
       properties:
@@ -633,64 +671,16 @@ components:
       - last_name
       - name
       - raw_attributes
-    SsoTokenResponse:
+    SlimRole:
       type: object
       properties:
-        token_type:
+        slug:
           type: string
-          description: The type of token issued.
-          const: Bearer
-        access_token:
-          type: string
-          description: An access token that can be exchanged for a user profile. Access tokens are short-lived — see the `expires_in` field for the exact lifetime.
-          example: eyJhbGciOiJSUzI1NiIsImtpZCI6InNzby...
-        expires_in:
-          type: integer
-          description: The lifetime of the access token in seconds.
-          example: 600
-        profile:
-          $ref: '#/components/schemas/Profile'
-          description: The user profile returned by the identity provider.
-        oauth_tokens:
-          type: object
-          properties:
-            provider:
-              type: string
-              description: The OAuth provider used for authentication.
-              example: GoogleOAuth
-            refresh_token:
-              type: string
-              description: The refresh token from the OAuth provider.
-              example: 1//04g...
-            access_token:
-              type: string
-              description: The access token from the OAuth provider.
-              example: ya29.a0ARrdaM...
-            expires_at:
-              type: integer
-              description: The timestamp at which the access token expires.
-              example: 1735141800
-            scopes:
-              type: array
-              items:
-                type: string
-              description: A list of OAuth scopes for which the access token is authorized.
-              example:
-              - profile
-              - email
-              - openid
-          required:
-          - provider
-          - refresh_token
-          - access_token
-          - expires_at
-          - scopes
-          description: OAuth tokens issued by the identity provider, if available.
+          description: The slug of the assigned role.
+          example: admin
       required:
-      - token_type
-      - access_token
-      - expires_in
-      - profile
+      - slug
+      description: The primary role assigned to the user.
     SsoLogoutAuthorizeResponse:
       type: object
       properties:
@@ -705,6 +695,16 @@ components:
       required:
       - logout_url
       - logout_token
+    SsoAuthorizeUrlResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: An OAuth 2.0 authorization URL.
+          example: https://accounts.google.com/o/oauth2/v2/auth?client_id=example&redirect_uri=https%3A%2F%2Fapi.workos.com%2Fsso%2Fcallback&response_type=code&scope=openid%20profile%20email
+      required:
+      - url
     TokenQueryDto:
       type: object
       properties:
