@@ -1352,40 +1352,109 @@ paths:
       - user-management.authentication
 components:
   schemas:
-    DeviceAuthorizationResponse:
+    UserlandRevokeSessionDto:
       type: object
       properties:
-        device_code:
+        session_id:
           type: string
-          description: The device verification code.
-          example: CVE2wOfIFK4vhmiDBntpX9s8KT2f0qngpWYL0LGy9HxYgBRXUKIUkZB9BgIFho5h
-        user_code:
+          description: The ID of the session to revoke. This can be extracted from the `sid` claim of the access token.
+          example: session_01H93ZY4F80QPBEZ1R5B2SHQG8
+        return_to:
           type: string
-          description: The end-user verification code.
-          example: BCDF-GHJK
-        verification_uri:
-          type: string
-          format: uri
-          description: The end-user verification URI.
-          example: https://authkit_domain/device
-        verification_uri_complete:
-          type: string
-          format: uri
-          description: Verification URI that includes the user code.
-          example: https://authkit_domain/device?user_code=BCDF-GHJK
-        expires_in:
-          type: number
-          description: Lifetime in seconds of the codes.
-          example: 300
-        interval:
-          type: number
-          description: Minimum polling interval in seconds.
-          example: 5
+          description: The URL to redirect the user to after session revocation.
+          example: https://example.com
       required:
-      - device_code
-      - user_code
-      - verification_uri
-      - expires_in
+      - session_id
+    UserlandUser:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the user object.
+          const: user
+        id:
+          type: string
+          description: The unique ID of the user.
+          example: user_01E4ZCR3C56J083X43JQXF3JK5
+        first_name:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+          example: Marcelina
+        last_name:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+          example: Davis
+        profile_picture_url:
+          type:
+          - string
+          - 'null'
+          description: A URL reference to an image representing the user.
+          example: https://workoscdn.com/images/v1/123abc
+        email:
+          type: string
+          description: The email address of the user.
+          example: marcelina.davis@example.com
+        email_verified:
+          type: boolean
+          description: Whether the user's email has been verified.
+          example: true
+        external_id:
+          type:
+          - string
+          - 'null'
+          description: The external ID of the user.
+          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+            maxLength: 600
+          description: Object containing metadata key/value pairs associated with the user.
+          example:
+            timezone: America/New_York
+          propertyNames:
+            maxLength: 40
+          maxProperties: 50
+        last_sign_in_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the user last signed in.
+          example: '2025-06-25T19:07:33.155Z'
+        locale:
+          type:
+          - string
+          - 'null'
+          description: The user's preferred locale.
+          example: en-US
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - first_name
+      - last_name
+      - profile_picture_url
+      - email
+      - email_verified
+      - external_id
+      - last_sign_in_at
+      - created_at
+      - updated_at
+      description: The user object.
     UserlandAuthenticateResponse:
       type: object
       properties:
@@ -1491,109 +1560,40 @@ components:
       - user
       - access_token
       - refresh_token
-    UserlandRevokeSessionDto:
+    DeviceAuthorizationResponse:
       type: object
       properties:
-        session_id:
+        device_code:
           type: string
-          description: The ID of the session to revoke. This can be extracted from the `sid` claim of the access token.
-          example: session_01H93ZY4F80QPBEZ1R5B2SHQG8
-        return_to:
+          description: The device verification code.
+          example: CVE2wOfIFK4vhmiDBntpX9s8KT2f0qngpWYL0LGy9HxYgBRXUKIUkZB9BgIFho5h
+        user_code:
           type: string
-          description: The URL to redirect the user to after session revocation.
-          example: https://example.com
+          description: The end-user verification code.
+          example: BCDF-GHJK
+        verification_uri:
+          type: string
+          format: uri
+          description: The end-user verification URI.
+          example: https://authkit_domain/device
+        verification_uri_complete:
+          type: string
+          format: uri
+          description: Verification URI that includes the user code.
+          example: https://authkit_domain/device?user_code=BCDF-GHJK
+        expires_in:
+          type: number
+          description: Lifetime in seconds of the codes.
+          example: 300
+        interval:
+          type: number
+          description: Minimum polling interval in seconds.
+          example: 5
       required:
-      - session_id
-    UserlandUser:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the user object.
-          const: user
-        id:
-          type: string
-          description: The unique ID of the user.
-          example: user_01E4ZCR3C56J083X43JQXF3JK5
-        first_name:
-          type:
-          - string
-          - 'null'
-          description: The first name of the user.
-          example: Marcelina
-        last_name:
-          type:
-          - string
-          - 'null'
-          description: The last name of the user.
-          example: Davis
-        profile_picture_url:
-          type:
-          - string
-          - 'null'
-          description: A URL reference to an image representing the user.
-          example: https://workoscdn.com/images/v1/123abc
-        email:
-          type: string
-          description: The email address of the user.
-          example: marcelina.davis@example.com
-        email_verified:
-          type: boolean
-          description: Whether the user's email has been verified.
-          example: true
-        external_id:
-          type:
-          - string
-          - 'null'
-          description: The external ID of the user.
-          example: f1ffa2b2-c20b-4d39-be5c-212726e11222
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-            maxLength: 600
-          description: Object containing metadata key/value pairs associated with the user.
-          example:
-            timezone: America/New_York
-          propertyNames:
-            maxLength: 40
-          maxProperties: 50
-        last_sign_in_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-          description: The timestamp when the user last signed in.
-          example: '2025-06-25T19:07:33.155Z'
-        locale:
-          type:
-          - string
-          - 'null'
-          description: The user's preferred locale.
-          example: en-US
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - first_name
-      - last_name
-      - profile_picture_url
-      - email
-      - email_verified
-      - external_id
-      - last_sign_in_at
-      - created_at
-      - updated_at
-      description: The user object.
+      - device_code
+      - user_code
+      - verification_uri
+      - expires_in
   securitySchemes:
     bearer:
       scheme: bearer

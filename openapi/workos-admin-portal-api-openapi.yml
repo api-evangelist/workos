@@ -97,27 +97,13 @@ paths:
       - Admin Portal
 components:
   schemas:
-    IntentOptions:
+    DomainVerificationIntentOptions:
       type: object
       properties:
-        sso:
-          description: SSO-specific options for the Admin Portal.
-          $ref: '#/components/schemas/SsoIntentOptions'
-        domain_verification:
-          description: Domain verification-specific options for the Admin Portal.
-          $ref: '#/components/schemas/DomainVerificationIntentOptions'
-    SsoIntentOptions:
-      type: object
-      properties:
-        bookmark_slug:
+        domain_name:
           type: string
-          description: The bookmark slug to use for SSO.
-          example: chatgpt
-        provider_type:
-          type: string
-          description: The SSO provider type to configure.
-          example: GoogleSAML
-          const: GoogleSAML
+          description: The domain name to verify. When provided, the domain verification flow will skip the domain entry form and go directly to the verification step.
+          example: example.com
     GenerateLinkDto:
       type: object
       properties:
@@ -168,13 +154,27 @@ components:
           example: https://setup.workos.com?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
       required:
       - link
-    DomainVerificationIntentOptions:
+    SsoIntentOptions:
       type: object
       properties:
-        domain_name:
+        bookmark_slug:
           type: string
-          description: The domain name to verify. When provided, the domain verification flow will skip the domain entry form and go directly to the verification step.
-          example: example.com
+          description: The bookmark slug to use for SSO.
+          example: chatgpt
+        provider_type:
+          type: string
+          description: The SSO provider type to configure.
+          example: GoogleSAML
+          const: GoogleSAML
+    IntentOptions:
+      type: object
+      properties:
+        sso:
+          description: SSO-specific options for the Admin Portal.
+          $ref: '#/components/schemas/SsoIntentOptions'
+        domain_verification:
+          description: Domain verification-specific options for the Admin Portal.
+          $ref: '#/components/schemas/DomainVerificationIntentOptions'
   securitySchemes:
     bearer:
       scheme: bearer

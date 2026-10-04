@@ -177,16 +177,6 @@ paths:
       - directory-users
 components:
   schemas:
-    SlimRole:
-      type: object
-      properties:
-        slug:
-          type: string
-          description: The slug of the assigned role.
-          example: admin
-      required:
-      - slug
-      description: The primary role assigned to the user.
     DirectoryGroup:
       type: object
       properties:
@@ -237,6 +227,16 @@ components:
       - name
       - created_at
       - updated_at
+    SlimRole:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the assigned role.
+          example: admin
+      required:
+      - slug
+      description: The primary role assigned to the user.
     DirectoryUserWithGroups:
       type: object
       properties:

@@ -362,14 +362,9 @@ paths:
       - Permissions
 components:
   schemas:
-    CreateAuthorizationPermissionDto:
+    UpdateAuthorizationPermissionDto:
       type: object
       properties:
-        slug:
-          type: string
-          maxLength: 48
-          description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
-          example: documents:read
         name:
           type: string
           maxLength: 48
@@ -382,14 +377,6 @@ components:
           maxLength: 150
           description: An optional description of the Permission.
           example: Allows viewing document contents
-        resource_type_slug:
-          type: string
-          maxLength: 48
-          description: The slug of the resource type this permission is scoped to.
-          example: document
-      required:
-      - slug
-      - name
     AuthorizationPermissionList:
       type: object
       properties:
@@ -425,9 +412,14 @@ components:
       - object
       - data
       - list_metadata
-    UpdateAuthorizationPermissionDto:
+    CreateAuthorizationPermissionDto:
       type: object
       properties:
+        slug:
+          type: string
+          maxLength: 48
+          description: A unique key to reference the permission. Must be lowercase and contain only letters, numbers, hyphens, underscores, colons, periods, and asterisks.
+          example: documents:read
         name:
           type: string
           maxLength: 48
@@ -440,6 +432,14 @@ components:
           maxLength: 150
           description: An optional description of the Permission.
           example: Allows viewing document contents
+        resource_type_slug:
+          type: string
+          maxLength: 48
+          description: The slug of the resource type this permission is scoped to.
+          example: document
+      required:
+      - slug
+      - name
     AuthorizationPermission:
       type: object
       properties:

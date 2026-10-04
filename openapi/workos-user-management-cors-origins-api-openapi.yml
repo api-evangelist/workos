@@ -83,15 +83,6 @@ paths:
       - user-management.cors-origins
 components:
   schemas:
-    CreateCorsOriginDto:
-      type: object
-      properties:
-        origin:
-          type: string
-          description: The origin URL to allow for CORS requests.
-          example: https://example.com
-      required:
-      - origin
     CorsOriginResponse:
       type: object
       properties:
@@ -123,6 +114,15 @@ components:
       - origin
       - created_at
       - updated_at
+    CreateCorsOriginDto:
+      type: object
+      properties:
+        origin:
+          type: string
+          description: The origin URL to allow for CORS requests.
+          example: https://example.com
+      required:
+      - origin
   securitySchemes:
     bearer:
       scheme: bearer

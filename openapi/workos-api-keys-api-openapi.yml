@@ -249,104 +249,6 @@ paths:
       x-feature-flag: user-api-keys
 components:
   schemas:
-    UserApiKeyWithValue:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the API Key object.
-          const: api_key
-        id:
-          type: string
-          description: Unique identifier of the API Key.
-          example: api_key_01EHZNVPK3SFK441A1RGBFSHRT
-        owner:
-          type: object
-          properties:
-            type:
-              type: string
-              description: The type of the API Key owner.
-              example: user
-              const: user
-            id:
-              type: string
-              description: Unique identifier of the API Key owner.
-              example: user_01EHZNVPK3SFK441A1RGBFSHRT
-            organization_id:
-              type: string
-              description: Unique identifier of the organization the API Key can access.
-              example: org_01EHZNVPK3SFK441A1RGBFSHRT
-          required:
-          - type
-          - id
-          - organization_id
-          description: The entity that owns the API Key.
-        name:
-          type: string
-          description: A descriptive name for the API Key.
-          example: Production API Key
-        obfuscated_value:
-          type: string
-          description: An obfuscated representation of the API Key value.
-          example: sk_...3456
-        last_used_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Timestamp of when the API Key was last used.
-          example: null
-        permissions:
-          type: array
-          items:
-            type: string
-          description: The permission slugs assigned to the API Key.
-          example:
-          - posts:read
-          - posts:write
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        value:
-          type: string
-          description: The full API Key value. Only returned once at creation time.
-          example: sk_abcdefghijklmnop123456
-      required:
-      - object
-      - id
-      - owner
-      - name
-      - obfuscated_value
-      - last_used_at
-      - permissions
-      - created_at
-      - updated_at
-      - value
-    ValidateApiKeyDto:
-      type: object
-      properties:
-        value:
-          type: string
-          description: The value for an API key.
-          example: sk_example_1234567890abcdef
-      required:
-      - value
-    ApiKeyValidationResponse:
-      type: object
-      properties:
-        api_key:
-          oneOf:
-          - $ref: '#/components/schemas/ApiKey'
-          - type: 'null'
-      required:
-      - api_key
     UserApiKeyList:
       type: object
       properties:
@@ -382,6 +284,28 @@ components:
       - object
       - data
       - list_metadata
+    CreateUserApiKeyDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: A descriptive name for the API key.
+          example: Production API Key
+        organization_id:
+          type: string
+          description: The ID of the organization the user API key is associated with. The user must have an active membership in this organization.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        permissions:
+          description: The permission slugs to assign to the API key. Each permission must be enabled for user API keys.
+          example:
+          - posts:read
+          - posts:write
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - organization_id
     ApiKey:
       type: object
       properties:
@@ -477,14 +401,104 @@ components:
       - permissions
       - created_at
       - updated_at
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
+    UserApiKeyWithValue:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the API Key object.
+          const: api_key
+        id:
+          type: string
+          description: Unique identifier of the API Key.
+          example: api_key_01EHZNVPK3SFK441A1RGBFSHRT
+        owner:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The type of the API Key owner.
+              example: user
+              const: user
+            id:
+              type: string
+              description: Unique identifier of the API Key owner.
+              example: user_01EHZNVPK3SFK441A1RGBFSHRT
+            organization_id:
+              type: string
+              description: Unique identifier of the organization the API Key can access.
+              example: org_01EHZNVPK3SFK441A1RGBFSHRT
+          required:
+          - type
+          - id
+          - organization_id
+          description: The entity that owns the API Key.
+        name:
+          type: string
+          description: A descriptive name for the API Key.
+          example: Production API Key
+        obfuscated_value:
+          type: string
+          description: An obfuscated representation of the API Key value.
+          example: sk_...3456
+        last_used_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Timestamp of when the API Key was last used.
+          example: null
+        permissions:
+          type: array
+          items:
+            type: string
+          description: The permission slugs assigned to the API Key.
+          example:
+          - posts:read
+          - posts:write
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        value:
+          type: string
+          description: The full API Key value. Only returned once at creation time.
+          example: sk_abcdefghijklmnop123456
+      required:
+      - object
+      - id
+      - owner
+      - name
+      - obfuscated_value
+      - last_used_at
+      - permissions
+      - created_at
+      - updated_at
+      - value
+    ApiKeyValidationResponse:
+      type: object
+      properties:
+        api_key:
+          oneOf:
+          - $ref: '#/components/schemas/ApiKey'
+          - type: 'null'
+      required:
+      - api_key
+    ValidateApiKeyDto:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The value for an API key.
+          example: sk_example_1234567890abcdef
+      required:
+      - value
     UserApiKey:
       type: object
       properties:
@@ -560,28 +574,14 @@ components:
       - permissions
       - created_at
       - updated_at
-    CreateUserApiKeyDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: A descriptive name for the API key.
-          example: Production API Key
-        organization_id:
-          type: string
-          description: The ID of the organization the user API key is associated with. The user must have an active membership in this organization.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-        permissions:
-          description: The permission slugs to assign to the API key. Each permission must be enabled for user API keys.
-          example:
-          - posts:read
-          - posts:write
-          type: array
-          items:
-            type: string
-      required:
-      - name
-      - organization_id
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

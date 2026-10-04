@@ -255,6 +255,111 @@ paths:
       - Applications
 components:
   schemas:
+    UpdateOAuthApplicationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+          example: My Application
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description for the application.
+          example: An application for managing user access
+        scopes:
+          description: The OAuth scopes granted to the application.
+          example:
+          - openid
+          - profile
+          - email
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        redirect_uris:
+          description: Updated redirect URIs for the application. OAuth applications only.
+          example:
+          - uri: https://example.com/callback
+            default: true
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/RedirectUriDto'
+    ConnectApplicationList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectApplication'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: conn_app_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: conn_app_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    CreateM2MApplicationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+          example: My Application
+        application_type:
+          type: string
+          description: The type of application to create.
+          const: m2m
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description for the application.
+          example: An application for managing user access
+        scopes:
+          description: The OAuth scopes granted to the application.
+          example:
+          - openid
+          - profile
+          - email
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        organization_id:
+          type: string
+          description: The organization ID this application belongs to.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      required:
+      - name
+      - application_type
+      - organization_id
     ConnectApplication:
       allOf:
       - type: object
@@ -403,6 +508,29 @@ components:
           required:
           - application_type
           - organization_id
+    RedirectUriDto:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The redirect URI.
+          example: https://example.com/callback
+        default:
+          type:
+          - boolean
+          - 'null'
+          description: Whether this is the default redirect URI.
+          example: true
+      required:
+      - uri
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     CreateOAuthApplicationDto:
       type: object
       properties:
@@ -461,134 +589,6 @@ components:
       - name
       - application_type
       - is_first_party
-    RedirectUriDto:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The redirect URI.
-          example: https://example.com/callback
-        default:
-          type:
-          - boolean
-          - 'null'
-          description: Whether this is the default redirect URI.
-          example: true
-      required:
-      - uri
-    ConnectApplicationList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConnectApplication'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: conn_app_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: conn_app_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    UpdateOAuthApplicationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the application.
-          example: My Application
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description for the application.
-          example: An application for managing user access
-        scopes:
-          description: The OAuth scopes granted to the application.
-          example:
-          - openid
-          - profile
-          - email
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        redirect_uris:
-          description: Updated redirect URIs for the application. OAuth applications only.
-          example:
-          - uri: https://example.com/callback
-            default: true
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/RedirectUriDto'
-    CreateM2MApplicationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the application.
-          example: My Application
-        application_type:
-          type: string
-          description: The type of application to create.
-          const: m2m
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description for the application.
-          example: An application for managing user access
-        scopes:
-          description: The OAuth scopes granted to the application.
-          example:
-          - openid
-          - profile
-          - email
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        organization_id:
-          type: string
-          description: The organization ID this application belongs to.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-      required:
-      - name
-      - application_type
-      - organization_id
   securitySchemes:
     bearer:
       scheme: bearer

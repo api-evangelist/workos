@@ -625,19 +625,150 @@ paths:
       - Audit Logs
 components:
   schemas:
-    AuditLogEventIngestionDto:
+    AuditLogActionJson:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Audit Log Action object.
+          example: audit_log_action
+          const: audit_log_action
+        name:
+          type: string
+          description: Identifier of what action was taken.
+          example: user.viewed_invoice
+        schema:
+          $ref: '#/components/schemas/AuditLogSchemaJson'
+          description: The schema associated with the action.
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - name
+      - schema
+      - created_at
+      - updated_at
+    AuditLogSchemaTargetDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of the target resource.
+          example: invoice
+        metadata:
+          type: object
+          description: Optional JSON schema for target metadata.
+          example:
+            type: object
+            properties:
+              cost:
+                type: number
+      required:
+      - type
+    AuditLogExportCreationDto:
       type: object
       properties:
         organization_id:
           type: string
           description: The unique ID of the Organization.
-          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
-        event:
-          description: The audit log event to create.
-          $ref: '#/components/schemas/AuditLogEventDto'
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+        range_start:
+          type: string
+          description: ISO-8601 value for start of the export range.
+          example: '2022-07-02T18:09:06.996Z'
+        range_end:
+          type: string
+          description: ISO-8601 value for end of the export range.
+          example: '2022-09-02T18:09:06.996Z'
+        actions:
+          description: List of actions to filter against.
+          example:
+          - user.signed_in
+          type: array
+          items:
+            type: string
+        actors:
+          description: Deprecated. Use `actor_names` instead.
+          deprecated: true
+          example:
+          - Jon Smith
+          type: array
+          items:
+            type: string
+        actor_names:
+          description: List of actor names to filter against.
+          example:
+          - Jon Smith
+          type: array
+          items:
+            type: string
+        actor_ids:
+          description: List of actor IDs to filter against.
+          example:
+          - user_01GBZK5MP7TD1YCFQHFR22180V
+          type: array
+          items:
+            type: string
+        targets:
+          description: List of target types to filter against.
+          example:
+          - team
+          type: array
+          items:
+            type: string
       required:
       - organization_id
-      - event
+      - range_start
+      - range_end
+    AuditLogEventCreateResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the Audit Log event was created successfully.
+          example: true
+      required:
+      - success
+    AuditLogEventTargetDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Target identifier.
+          example: user_TF4C5938
+        type:
+          type: string
+          description: Target type.
+          example: user
+        name:
+          type: string
+          description: Optional target name.
+          example: Jon Smith
+        metadata:
+          type: object
+          description: Additional data associated with the event or entity.
+          example:
+            owner: user_01GBTCQ2
+          maxProperties: 50
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9_-]{0,40}$:
+              anyOf:
+              - type: string
+                maxLength: 500
+              - type: number
+              - type: boolean
+      required:
+      - id
+      - type
     AuditLogSchemaJson:
       type: object
       properties:
@@ -713,223 +844,6 @@ components:
       - version
       - targets
       - created_at
-    AuditLogExportJson:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the Audit Log Export object.
-          example: audit_log_export
-          const: audit_log_export
-        id:
-          type: string
-          description: The unique ID of the Audit Log Export.
-          example: audit_log_export_01GBZK5MP7TD1YCFQHFR22180V
-        state:
-          type: string
-          enum:
-          - pending
-          - ready
-          - error
-          description: 'The state of the export. Possible values: pending, ready, error.'
-          example: ready
-        url:
-          type:
-          - string
-          - 'null'
-          description: A URL to the CSV file. Only defined when the Audit Log Export is ready.
-          example: https://exports.audit-logs.com/audit-log-exports/export.csv
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - id
-      - state
-      - created_at
-      - updated_at
-    AuditLogActionJson:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Distinguishes the Audit Log Action object.
-          example: audit_log_action
-          const: audit_log_action
-        name:
-          type: string
-          description: Identifier of what action was taken.
-          example: user.viewed_invoice
-        schema:
-          $ref: '#/components/schemas/AuditLogSchemaJson'
-          description: The schema associated with the action.
-        created_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-        updated_at:
-          format: date-time
-          type: string
-          description: An ISO 8601 timestamp.
-          example: '2026-01-15T12:00:00.000Z'
-      required:
-      - object
-      - name
-      - schema
-      - created_at
-      - updated_at
-    AuditLogSchemaActorDto:
-      type: object
-      properties:
-        metadata:
-          type: object
-          description: JSON schema for actor metadata.
-          example:
-            type: object
-            properties:
-              role:
-                type: string
-      required:
-      - metadata
-    AuditLogSchemaTargetDto:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of the target resource.
-          example: invoice
-        metadata:
-          type: object
-          description: Optional JSON schema for target metadata.
-          example:
-            type: object
-            properties:
-              cost:
-                type: number
-      required:
-      - type
-    AuditLogEventCreateResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the Audit Log event was created successfully.
-          example: true
-      required:
-      - success
-    UpdateAuditLogsRetentionDto:
-      type: object
-      properties:
-        retention_period_in_days:
-          type: integer
-          description: The number of days Audit Log events will be retained. Valid values are `30` and `365`.
-          example: 30
-      required:
-      - retention_period_in_days
-    AuditLogEventTargetDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Target identifier.
-          example: user_TF4C5938
-        type:
-          type: string
-          description: Target type.
-          example: user
-        name:
-          type: string
-          description: Optional target name.
-          example: Jon Smith
-        metadata:
-          type: object
-          description: Additional data associated with the event or entity.
-          example:
-            owner: user_01GBTCQ2
-          maxProperties: 50
-          additionalProperties: false
-          patternProperties:
-            ^[a-zA-Z0-9_-]{0,40}$:
-              anyOf:
-              - type: string
-                maxLength: 500
-              - type: number
-              - type: boolean
-      required:
-      - id
-      - type
-    AuditLogEventActorDto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Actor identifier.
-          example: user_TF4C5938
-        type:
-          type: string
-          description: Actor type.
-          example: user
-        name:
-          type: string
-          description: Optional actor name.
-          example: Jon Smith
-        metadata:
-          type: object
-          description: Additional data associated with the event or entity.
-          example:
-            owner: user_01GBTCQ2
-          maxProperties: 50
-          additionalProperties: false
-          patternProperties:
-            ^[a-zA-Z0-9_-]{0,40}$:
-              anyOf:
-              - type: string
-                maxLength: 500
-              - type: number
-              - type: boolean
-      required:
-      - id
-      - type
-    AuditLogEventContextDto:
-      type: object
-      properties:
-        location:
-          type: string
-          description: IP Address or some other geolocation identifier.
-          example: 123.123.123.123
-        user_agent:
-          type: string
-          description: User agent string.
-          example: Chrome/104.0.0.0
-      required:
-      - location
-    AuditLogsRetentionJson:
-      type: object
-      properties:
-        retention_period_in_days:
-          type:
-          - integer
-          - 'null'
-          description: The number of days Audit Log events will be retained before being permanently deleted. Valid values are 30 and 365.
-          example: 30
-      required:
-      - retention_period_in_days
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     AuditLogSchemaDto:
       type: object
       properties:
@@ -999,61 +913,147 @@ components:
       - actor
       - targets
       - context
-    AuditLogExportCreationDto:
+    UpdateAuditLogsRetentionDto:
+      type: object
+      properties:
+        retention_period_in_days:
+          type: integer
+          description: The number of days Audit Log events will be retained. Valid values are `30` and `365`.
+          example: 30
+      required:
+      - retention_period_in_days
+    AuditLogEventContextDto:
+      type: object
+      properties:
+        location:
+          type: string
+          description: IP Address or some other geolocation identifier.
+          example: 123.123.123.123
+        user_agent:
+          type: string
+          description: User agent string.
+          example: Chrome/104.0.0.0
+      required:
+      - location
+    AuditLogExportJson:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Distinguishes the Audit Log Export object.
+          example: audit_log_export
+          const: audit_log_export
+        id:
+          type: string
+          description: The unique ID of the Audit Log Export.
+          example: audit_log_export_01GBZK5MP7TD1YCFQHFR22180V
+        state:
+          type: string
+          enum:
+          - pending
+          - ready
+          - error
+          description: 'The state of the export. Possible values: pending, ready, error.'
+          example: ready
+        url:
+          type:
+          - string
+          - 'null'
+          description: A URL to the CSV file. Only defined when the Audit Log Export is ready.
+          example: https://exports.audit-logs.com/audit-log-exports/export.csv
+        created_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+        updated_at:
+          format: date-time
+          type: string
+          description: An ISO 8601 timestamp.
+          example: '2026-01-15T12:00:00.000Z'
+      required:
+      - object
+      - id
+      - state
+      - created_at
+      - updated_at
+    AuditLogEventActorDto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Actor identifier.
+          example: user_TF4C5938
+        type:
+          type: string
+          description: Actor type.
+          example: user
+        name:
+          type: string
+          description: Optional actor name.
+          example: Jon Smith
+        metadata:
+          type: object
+          description: Additional data associated with the event or entity.
+          example:
+            owner: user_01GBTCQ2
+          maxProperties: 50
+          additionalProperties: false
+          patternProperties:
+            ^[a-zA-Z0-9_-]{0,40}$:
+              anyOf:
+              - type: string
+                maxLength: 500
+              - type: number
+              - type: boolean
+      required:
+      - id
+      - type
+    AuditLogSchemaActorDto:
+      type: object
+      properties:
+        metadata:
+          type: object
+          description: JSON schema for actor metadata.
+          example:
+            type: object
+            properties:
+              role:
+                type: string
+      required:
+      - metadata
+    AuditLogEventIngestionDto:
       type: object
       properties:
         organization_id:
           type: string
           description: The unique ID of the Organization.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-        range_start:
-          type: string
-          description: ISO-8601 value for start of the export range.
-          example: '2022-07-02T18:09:06.996Z'
-        range_end:
-          type: string
-          description: ISO-8601 value for end of the export range.
-          example: '2022-09-02T18:09:06.996Z'
-        actions:
-          description: List of actions to filter against.
-          example:
-          - user.signed_in
-          type: array
-          items:
-            type: string
-        actors:
-          description: Deprecated. Use `actor_names` instead.
-          deprecated: true
-          example:
-          - Jon Smith
-          type: array
-          items:
-            type: string
-        actor_names:
-          description: List of actor names to filter against.
-          example:
-          - Jon Smith
-          type: array
-          items:
-            type: string
-        actor_ids:
-          description: List of actor IDs to filter against.
-          example:
-          - user_01GBZK5MP7TD1YCFQHFR22180V
-          type: array
-          items:
-            type: string
-        targets:
-          description: List of target types to filter against.
-          example:
-          - team
-          type: array
-          items:
-            type: string
+          example: org_01EHWNCE74X7JSDV0X3SZ3KJNY
+        event:
+          description: The audit log event to create.
+          $ref: '#/components/schemas/AuditLogEventDto'
       required:
       - organization_id
-      - range_start
-      - range_end
+      - event
+    AuditLogsRetentionJson:
+      type: object
+      properties:
+        retention_period_in_days:
+          type:
+          - integer
+          - 'null'
+          description: The number of days Audit Log events will be retained before being permanently deleted. Valid values are 30 and 365.
+          example: 30
+      required:
+      - retention_period_in_days
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

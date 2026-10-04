@@ -97,6 +97,15 @@ paths:
       - user-management.redirect-uris
 components:
   schemas:
+    CreateRedirectUriDto:
+      type: object
+      properties:
+        uri:
+          type: string
+          description: The redirect URI to create.
+          example: https://example.com/callback
+      required:
+      - uri
     RedirectUri:
       type: object
       properties:
@@ -131,15 +140,6 @@ components:
       - default
       - created_at
       - updated_at
-    CreateRedirectUriDto:
-      type: object
-      properties:
-        uri:
-          type: string
-          description: The redirect URI to create.
-          example: https://example.com/callback
-      required:
-      - uri
   securitySchemes:
     bearer:
       scheme: bearer

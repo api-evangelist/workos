@@ -178,40 +178,15 @@ components:
       required:
       - external_auth_id
       - user
-    UserObject:
+    ExternalAuthCompleteResponse:
       type: object
       properties:
-        id:
+        redirect_uri:
           type: string
-          description: Your application's user identifier, which will be stored as an [`external_id`](/authkit/metadata/external-identifiers). Used for upserting and deduplication.
-          example: user_12345
-        email:
-          type: string
-          description: The user's email address.
-          example: marcelina.davis@example.com
-        first_name:
-          type: string
-          description: The user's first name.
-          example: Marcelina
-        last_name:
-          type: string
-          description: The user's last name.
-          example: Davis
-        metadata:
-          type: object
-          description: A set of key-value pairs to attach to the user.
-          additionalProperties:
-            type: string
-            maxLength: 600
-          maxProperties: 50
-          example:
-            department: Engineering
-            role: Developer
-          propertyNames:
-            maxLength: 40
+          description: URI to redirect the user back to AuthKit to complete the OAuth flow.
+          example: https://your-authkit-domain.workos.com/oauth/authorize/complete?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0ZSI6InJhbmRvbV9zdGF0ZV9zdHJpbmciLCJpYXQiOjE3NDI2MDQ4NTN9.abc123def456ghi789
       required:
-      - id
-      - email
+      - redirect_uri
     UserConsentOption:
       type: object
       properties:
@@ -249,15 +224,40 @@ components:
       - type
       - label
       - choices
-    ExternalAuthCompleteResponse:
+    UserObject:
       type: object
       properties:
-        redirect_uri:
+        id:
           type: string
-          description: URI to redirect the user back to AuthKit to complete the OAuth flow.
-          example: https://your-authkit-domain.workos.com/oauth/authorize/complete?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0ZSI6InJhbmRvbV9zdGF0ZV9zdHJpbmciLCJpYXQiOjE3NDI2MDQ4NTN9.abc123def456ghi789
+          description: Your application's user identifier, which will be stored as an [`external_id`](/authkit/metadata/external-identifiers). Used for upserting and deduplication.
+          example: user_12345
+        email:
+          type: string
+          description: The user's email address.
+          example: marcelina.davis@example.com
+        first_name:
+          type: string
+          description: The user's first name.
+          example: Marcelina
+        last_name:
+          type: string
+          description: The user's last name.
+          example: Davis
+        metadata:
+          type: object
+          description: A set of key-value pairs to attach to the user.
+          additionalProperties:
+            type: string
+            maxLength: 600
+          maxProperties: 50
+          example:
+            department: Engineering
+            role: Developer
+          propertyNames:
+            maxLength: 40
       required:
-      - redirect_uri
+      - id
+      - email
   securitySchemes:
     bearer:
       scheme: bearer
