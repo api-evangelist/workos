@@ -1,19 +1,53 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/workos-openapi.yml
+source: openapi/workos-admin-portal-api-openapi.yml, openapi/workos-api-keys-api-openapi.yml,
+  openapi/workos-application-client-secrets-api-openapi.yml, openapi/workos-applications-api-openapi.yml,
+  openapi/workos-audit-logs-api-openapi.yml, openapi/workos-authorization-api-openapi.yml, openapi/workos-connections-api-openapi.yml,
+  openapi/workos-directories-api-openapi.yml, openapi/workos-directory-groups-api-openapi.yml,
+  openapi/workos-directory-users-api-openapi.yml, openapi/workos-events-api-openapi.yml, openapi/workos-feature-flags-api-openapi.yml,
+  openapi/workos-feature-flags-targets-api-openapi.yml, openapi/workos-groups-api-openapi.yml,
+  openapi/workos-multi-factor-auth-api-openapi.yml, openapi/workos-multi-factor-auth-challenges-api-openapi.yml,
+  openapi/workos-organization-domains-api-openapi.yml, openapi/workos-organizations-api-keys-api-openapi.yml,
+  openapi/workos-organizations-api-openapi.yml, openapi/workos-organizations-feature-flags-api-openapi.yml,
+  openapi/workos-permissions-api-openapi.yml, openapi/workos-pipes-api-openapi.yml, openapi/workos-radar-api-openapi.yml,
+  openapi/workos-sso-api-openapi.yml, openapi/workos-user-management-authentication-api-openapi.yml,
+  openapi/workos-user-management-cors-origins-api-openapi.yml, openapi/workos-user-management-data-providers-api-openapi.yml,
+  openapi/workos-user-management-invitations-api-openapi.yml, openapi/workos-user-management-jwt-template-api-openapi.yml,
+  openapi/workos-user-management-magic-auth-api-openapi.yml, openapi/workos-user-management-multi-factor-authentication-api-openapi.yml,
+  openapi/workos-user-management-organization-membership-api-openapi.yml, openapi/workos-user-management-organization-membership-groups-api-openapi.yml,
+  openapi/workos-user-management-redirect-uris-api-openapi.yml, openapi/workos-user-management-session-tokens-api-openapi.yml,
+  openapi/workos-user-management-users-api-openapi.yml, openapi/workos-user-management-users-authorized-applications-api-openapi.yml,
+  openapi/workos-user-management-users-feature-flags-api-openapi.yml, openapi/workos-webhooks-api-openapi.yml,
+  openapi/workos-widgets-api-openapi.yml, openapi/workos-workos-connect-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 172
   by_action_class:
-    acting: 98
-    connected: 74
+    acting: 96
+    connected: 76
   by_consequence:
-    safety-critical: 98
-    read: 74
-  human_in_the_loop_required: 98
+    safety-critical: 96
+    read: 76
+  human_in_the_loop_required: 96
 operations:
+- path: /portal/generate_link
+  method: post
+  operationId: PortalSessionsController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
 - path: /api_keys/validations
   method: post
   operationId: ApiKeysController_validateApiKey
@@ -33,6 +67,142 @@ operations:
 - path: /api_keys/{id}
   method: delete
   operationId: ApiKeysController_delete
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /user_management/users/{userId}/api_keys
+  method: get
+  operationId: UserApiKeysController_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user_management/users/{userId}/api_keys
+  method: post
+  operationId: UserApiKeysController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /connect/applications/{id}/client_secrets
+  method: get
+  operationId: ApplicationCredentialsController_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /connect/applications/{id}/client_secrets
+  method: post
+  operationId: ApplicationCredentialsController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /connect/client_secrets/{id}
+  method: delete
+  operationId: ApplicationCredentialsController_delete
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /connect/applications
+  method: get
+  operationId: ApplicationsController_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /connect/applications
+  method: post
+  operationId: ApplicationsController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /connect/applications/{id}
+  method: get
+  operationId: ApplicationsController_find
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /connect/applications/{id}
+  method: put
+  operationId: ApplicationsController_update
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /connect/applications/{id}
+  method: delete
+  operationId: ApplicationsController_delete
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -124,41 +294,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /auth/challenges/{id}/verify
-  method: post
-  operationId: AuthenticationChallengesController_verify
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /auth/factors/enroll
-  method: post
-  operationId: AuthenticationFactorsController_create
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /auth/factors/{id}
+- path: /organizations/{id}/audit_logs_retention
   method: get
-  operationId: AuthenticationFactorsController_get
+  operationId: AuditLogsRetentionController_auditLogsRetention
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -166,41 +304,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /auth/factors/{id}
-  method: delete
-  operationId: AuthenticationFactorsController_delete
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /auth/factors/{id}/challenge
-  method: post
-  operationId: AuthenticationFactorsController_challenge
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /authkit/oauth2/complete
-  method: post
-  operationId: ExternalAuthController_completeLogin
+- path: /organizations/{id}/audit_logs_retention
+  method: put
+  operationId: AuditLogsRetentionController_updateAuditLogsRetention
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -496,74 +602,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /authorization/permissions
-  method: get
-  operationId: AuthorizationPermissionsController_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /authorization/permissions
-  method: post
-  operationId: AuthorizationPermissionsController_create
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /authorization/permissions/{slug}
-  method: get
-  operationId: AuthorizationPermissionsController_find
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /authorization/permissions/{slug}
-  method: patch
-  operationId: AuthorizationPermissionsController_update
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /authorization/permissions/{slug}
-  method: delete
-  operationId: AuthorizationPermissionsController_delete
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
 - path: /authorization/resources
   method: get
   operationId: AuthorizationResourcesController_list
@@ -736,116 +774,6 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /connect/applications
-  method: get
-  operationId: ApplicationsController_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /connect/applications
-  method: post
-  operationId: ApplicationsController_create
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /connect/applications/{id}
-  method: get
-  operationId: ApplicationsController_find
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /connect/applications/{id}
-  method: put
-  operationId: ApplicationsController_update
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /connect/applications/{id}
-  method: delete
-  operationId: ApplicationsController_delete
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /connect/applications/{id}/client_secrets
-  method: get
-  operationId: ApplicationCredentialsController_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /connect/applications/{id}/client_secrets
-  method: post
-  operationId: ApplicationCredentialsController_create
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /connect/client_secrets/{id}
-  method: delete
-  operationId: ApplicationCredentialsController_delete
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
 - path: /connections
   method: get
   operationId: ConnectionsController_list
@@ -869,38 +797,6 @@ operations:
 - path: /connections/{id}
   method: delete
   operationId: ConnectionsController_delete
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /data-integrations/{slug}/authorize
-  method: post
-  operationId: DataIntegrationsController_getDataIntegrationAuthorizeUrl
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /data-integrations/{slug}/token
-  method: post
-  operationId: DataIntegrationsController_getUserlandUserToken
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -1084,214 +980,6 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /organization_domains
-  method: post
-  operationId: OrganizationDomainsController_create
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /organization_domains/{id}
-  method: get
-  operationId: OrganizationDomainsController_get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /organization_domains/{id}
-  method: delete
-  operationId: OrganizationDomainsController_delete
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /organization_domains/{id}/verify
-  method: post
-  operationId: OrganizationDomainsController_verify
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /organizations
-  method: get
-  operationId: OrganizationsController_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /organizations
-  method: post
-  operationId: OrganizationsController_create
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /organizations/external_id/{external_id}
-  method: get
-  operationId: OrganizationsController_getByExternalId
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /organizations/{id}
-  method: get
-  operationId: OrganizationsController_find
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /organizations/{id}
-  method: put
-  operationId: OrganizationsController_updateOrganization
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /organizations/{id}
-  method: delete
-  operationId: OrganizationsController_deleteOrganization
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /organizations/{id}/audit_log_configuration
-  method: get
-  operationId: OrganizationsController_getAuditLogConfiguration
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /organizations/{id}/audit_logs_retention
-  method: get
-  operationId: AuditLogsRetentionController_auditLogsRetention
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /organizations/{id}/audit_logs_retention
-  method: put
-  operationId: AuditLogsRetentionController_updateAuditLogsRetention
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /organizations/{organizationId}/api_keys
-  method: get
-  operationId: OrganizationApiKeysController_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /organizations/{organizationId}/api_keys
-  method: post
-  operationId: OrganizationApiKeysController_create
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /organizations/{organizationId}/feature-flags
-  method: get
-  operationId: OrganizationFeatureFlagsController_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /organizations/{organizationId}/groups
   method: post
   operationId: GroupsController_create
@@ -1402,9 +1090,343 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /portal/generate_link
+- path: /auth/factors/enroll
   method: post
-  operationId: PortalSessionsController_create
+  operationId: AuthenticationFactorsController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /auth/factors/{id}
+  method: get
+  operationId: AuthenticationFactorsController_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /auth/factors/{id}
+  method: delete
+  operationId: AuthenticationFactorsController_delete
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /auth/factors/{id}/challenge
+  method: post
+  operationId: AuthenticationFactorsController_challenge
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /auth/challenges/{id}/verify
+  method: post
+  operationId: AuthenticationChallengesController_verify
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /organization_domains
+  method: post
+  operationId: OrganizationDomainsController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /organization_domains/{id}
+  method: get
+  operationId: OrganizationDomainsController_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organization_domains/{id}
+  method: delete
+  operationId: OrganizationDomainsController_delete
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /organization_domains/{id}/verify
+  method: post
+  operationId: OrganizationDomainsController_verify
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /organizations/{organizationId}/api_keys
+  method: get
+  operationId: OrganizationApiKeysController_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organizations/{organizationId}/api_keys
+  method: post
+  operationId: OrganizationApiKeysController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /organizations
+  method: get
+  operationId: OrganizationsController_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organizations
+  method: post
+  operationId: OrganizationsController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /organizations/external_id/{external_id}
+  method: get
+  operationId: OrganizationsController_getByExternalId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organizations/{id}
+  method: get
+  operationId: OrganizationsController_find
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organizations/{id}
+  method: put
+  operationId: OrganizationsController_updateOrganization
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /organizations/{id}
+  method: delete
+  operationId: OrganizationsController_deleteOrganization
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /organizations/{id}/audit_log_configuration
+  method: get
+  operationId: OrganizationsController_getAuditLogConfiguration
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /organizations/{organizationId}/feature-flags
+  method: get
+  operationId: OrganizationFeatureFlagsController_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /authorization/permissions
+  method: get
+  operationId: AuthorizationPermissionsController_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /authorization/permissions
+  method: post
+  operationId: AuthorizationPermissionsController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /authorization/permissions/{slug}
+  method: get
+  operationId: AuthorizationPermissionsController_find
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /authorization/permissions/{slug}
+  method: patch
+  operationId: AuthorizationPermissionsController_update
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /authorization/permissions/{slug}
+  method: delete
+  operationId: AuthorizationPermissionsController_delete
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /data-integrations/{slug}/authorize
+  method: post
+  operationId: DataIntegrationsController_getDataIntegrationAuthorizeUrl
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data-integrations/{slug}/token
+  method: post
+  operationId: DataIntegrationsController_getUserlandUserToken
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -1485,16 +1507,6 @@ operations:
 - path: /sso/authorize
   method: get
   operationId: SsoController_authorize
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /sso/jwks/{clientId}
-  method: get
-  operationId: SsoController_jsonWebKeySet
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1584,6 +1596,26 @@ operations:
   method: post
   operationId: UserlandSsoController_deviceAuthorization
   x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user_management/sessions/logout
+  method: get
+  operationId: UserlandSessionsController_logout
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user_management/sessions/revoke
+  method: post
+  operationId: UserlandSessionsController_revokeSession
+  x-agentic-access:
     action-class: acting
     consequence: safety-critical
     subject: required
@@ -1612,9 +1644,35 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /user_management/email_verification/{id}
+- path: /user_management/users/{user_id}/connected_accounts/{slug}
   method: get
-  operationId: UserlandUsersController_getEmailVerification
+  operationId: DataIntegrationsUserManagementController_getUserDataInstallation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user_management/users/{user_id}/connected_accounts/{slug}
+  method: delete
+  operationId: DataIntegrationsUserManagementController_deleteUserDataInstallation
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /user_management/users/{user_id}/data_providers
+  method: get
+  operationId: DataIntegrationsUserManagementController_getUserDataIntegrations
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1768,6 +1826,32 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /user_management/users/{userlandUserId}/auth_factors
+  method: post
+  operationId: UserlandUserAuthenticationFactorsController_create[0]
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /user_management/users/{userlandUserId}/auth_factors
+  method: get
+  operationId: UserlandUserAuthenticationFactorsController_list[0]
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /user_management/organization_memberships
   method: get
   operationId: UserlandUserOrganizationMembershipsController_list
@@ -1878,6 +1962,42 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /user_management/redirect_uris
+  method: post
+  operationId: RedirectUrisController_create
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /sso/jwks/{clientId}
+  method: get
+  operationId: SsoController_jsonWebKeySet
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /user_management/email_verification/{id}
+  method: get
+  operationId: UserlandUsersController_getEmailVerification
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /user_management/password_reset
   method: post
   operationId: UserlandUsersController_createPasswordResetToken
@@ -1920,48 +2040,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /user_management/redirect_uris
-  method: post
-  operationId: RedirectUrisController_create
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /user_management/sessions/logout
-  method: get
-  operationId: UserlandSessionsController_logout
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user_management/sessions/revoke
-  method: post
-  operationId: UserlandSessionsController_revokeSession
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
 - path: /user_management/users
   method: get
   operationId: UserlandUsersController_list[0]
@@ -2124,42 +2202,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /user_management/users/{userId}/api_keys
-  method: get
-  operationId: UserApiKeysController_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user_management/users/{userId}/api_keys
-  method: post
-  operationId: UserApiKeysController_create
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /user_management/users/{userId}/feature-flags
-  method: get
-  operationId: UserlandUserFeatureFlagsController_list
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /user_management/users/{user_id}/authorized_applications
   method: get
   operationId: AuthorizedApplicationsController_list
@@ -2186,61 +2228,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /user_management/users/{user_id}/connected_accounts/{slug}
+- path: /user_management/users/{userId}/feature-flags
   method: get
-  operationId: DataIntegrationsUserManagementController_getUserDataInstallation
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user_management/users/{user_id}/connected_accounts/{slug}
-  method: delete
-  operationId: DataIntegrationsUserManagementController_deleteUserDataInstallation
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /user_management/users/{user_id}/data_providers
-  method: get
-  operationId: DataIntegrationsUserManagementController_getUserDataIntegrations
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /user_management/users/{userlandUserId}/auth_factors
-  method: post
-  operationId: UserlandUserAuthenticationFactorsController_create[0]
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /user_management/users/{userlandUserId}/auth_factors
-  method: get
-  operationId: UserlandUserAuthenticationFactorsController_list[0]
+  operationId: UserlandUserFeatureFlagsController_list
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2309,6 +2299,22 @@ operations:
 - path: /widgets/token
   method: post
   operationId: WidgetsPublicController_issueWidgetSessionToken
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /authkit/oauth2/complete
+  method: post
+  operationId: ExternalAuthController_completeLogin
   x-agentic-access:
     action-class: acting
     consequence: safety-critical

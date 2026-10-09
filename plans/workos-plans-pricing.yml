@@ -74,3 +74,77 @@ plans:
   price_text: Schedule a call
   period: none
   included_quota: Everything in Pay as you go, plus pre-pay credit discounts, 99.99% uptime SLA
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  - subscription
+  units:
+  - object
+  - seat
+  plans:
+  - name: AuthKit / User Management
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Single Sign-On
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Directory Sync
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Audit Logs - log streaming
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Audit Logs - event retention
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Radar
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Custom Domain
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Annual Credits
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
