@@ -1,49 +1,55 @@
-# Kin Score artifact — workos — 2026-09-03T174231
+# Kin Score artifact — workos — 2026-10-11T110117
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: workos
-  schema_version: 0.18.2
-  scored_at: '2026-09-03'
-  run_ts: 2026-09-03T174231
-  composite: 50.1
-  band: developing
+  schema_version: 0.23.0
+  scored_at: '2026-10-11'
+  run_ts: 2026-10-11T110117
+  composite: 60.0
+  band: strong
   facets:
-    discoverability: 63.0
-    contract_quality: 69.8
-    governance: 28.8
-    operational_transparency: 42.1
-    developer_ergonomics: 66.7
-    commercial_clarity: 34.2
-    contract_governance: 28.8
-    access_clarity: 34.2
+    discoverability: 68.3
+    contract_quality: 62.8
+    contract_governance: 27.3
+    operational_transparency: 65.8
+    developer_ergonomics: 62.4
+    access_clarity: 57.9
   agent_readiness:
-    score: 38.3
+    score: 59.4
     band: agent-ready
+    band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: false
-      mcp_server: documented
-      auth_clarity: bearer
+      mcp_server: verified
+      auth_clarity: served
       idempotency: verified
       error_semantics: false
       openapi_examples: verified
       rate_limit_signal: documented
       event_surface_described: false
-      agent_skills: true
+      agent_skills: unknown
       well_known_catalog: false
       consent_identity: false
       agent_card: false
       dry_run_mode: false
-      delegated_identity: false
-      protected_resource_metadata: false
-      dynamic_client_registration: false
+      delegated_identity: served
+      protected_resource_metadata: verified
+      dynamic_client_registration: true
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 27.5
+    matched_via: fallback
   open_source:
     applies: true
     score: 25.0
   provenance:
+    mcp: first-party
     agentic_access: derived
     contracts:
       total: 41
