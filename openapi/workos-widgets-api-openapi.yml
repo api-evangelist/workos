@@ -101,15 +101,6 @@ paths:
       - Widgets
 components:
   schemas:
-    WidgetSessionTokenResponse:
-      type: object
-      properties:
-        token:
-          type: string
-          description: The widget session token.
-          example: eyJhbGciOiJSUzI1NiIsImtpZCI6InNlc3Npb24...
-      required:
-      - token
     WidgetSessionTokenDto:
       type: object
       properties:
@@ -137,6 +128,15 @@ components:
           - widgets:users-table:manage
       required:
       - organization_id
+    WidgetSessionTokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The widget session token.
+          example: eyJhbGciOiJSUzI1NiIsImtpZCI6InNlc3Npb24...
+      required:
+      - token
   securitySchemes:
     bearer:
       scheme: bearer

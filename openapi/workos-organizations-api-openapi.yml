@@ -535,23 +535,6 @@ components:
           description: An external identifier for the Organization.
       required:
       - name
-    OrganizationDomainDataDto:
-      type: object
-      properties:
-        domain:
-          type: string
-          description: The domain value.
-          example: foo-corp.com
-        state:
-          type: string
-          enum:
-          - pending
-          - verified
-          description: The verification state of the domain.
-          example: verified
-      required:
-      - domain
-      - state
     AuditLogConfiguration:
       type: object
       properties:
@@ -620,6 +603,116 @@ components:
       - organization_id
       - retention_period_in_days
       - state
+    OrganizationDomainDataDto:
+      type: object
+      properties:
+        domain:
+          type: string
+          description: The domain value.
+          example: foo-corp.com
+        state:
+          type: string
+          enum:
+          - pending
+          - verified
+          description: The verification state of the domain.
+          example: verified
+      required:
+      - domain
+      - state
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    UpdateOrganizationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the organization.
+          example: Foo Corp
+        allow_profiles_outside_organization:
+          type: boolean
+          description: Whether the organization allows profiles from outside the organization to sign in.
+          example: false
+        domains:
+          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
+          example:
+          - foo-corp.com
+          deprecated: true
+          type: array
+          items:
+            type: string
+        domain_data:
+          description: The domains associated with the organization, including verification state.
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationDomainDataDto'
+        stripe_customer_id:
+          type: string
+          description: The Stripe customer ID associated with the organization.
+          example: cus_R9qWAGMQ6nGE7V
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+            maxLength: 600
+          maxProperties: 50
+          example:
+            tier: diamond
+          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
+          propertyNames:
+            maxLength: 40
+        external_id:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+          pattern: ^[\x00-\x7F]+$
+          example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
+          description: An external identifier for the Organization.
+    OrganizationList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: org_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: org_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+      - list_metadata
     Organization:
       type: object
       properties:
@@ -744,99 +837,6 @@ components:
       - external_id
       - created_at
       - updated_at
-    UpdateOrganizationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the organization.
-          example: Foo Corp
-        allow_profiles_outside_organization:
-          type: boolean
-          description: Whether the organization allows profiles from outside the organization to sign in.
-          example: false
-        domains:
-          description: The domains associated with the organization. Deprecated in favor of `domain_data`.
-          example:
-          - foo-corp.com
-          deprecated: true
-          type: array
-          items:
-            type: string
-        domain_data:
-          description: The domains associated with the organization, including verification state.
-          type: array
-          items:
-            $ref: '#/components/schemas/OrganizationDomainDataDto'
-        stripe_customer_id:
-          type: string
-          description: The Stripe customer ID associated with the organization.
-          example: cus_R9qWAGMQ6nGE7V
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-            maxLength: 600
-          maxProperties: 50
-          example:
-            tier: diamond
-          description: Object containing [metadata](/authkit/metadata) key/value pairs associated with the Organization.
-          propertyNames:
-            maxLength: 40
-        external_id:
-          type:
-          - string
-          - 'null'
-          maxLength: 128
-          pattern: ^[\x00-\x7F]+$
-          example: 2fe01467-f7ea-4dd2-8b79-c2b4f56d0191
-          description: An external identifier for the Organization.
-    OrganizationList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: org_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: org_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
-      - list_metadata
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

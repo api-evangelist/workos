@@ -362,21 +362,6 @@ paths:
       - Permissions
 components:
   schemas:
-    UpdateAuthorizationPermissionDto:
-      type: object
-      properties:
-        name:
-          type: string
-          maxLength: 48
-          description: A descriptive name for the Permission.
-          example: View Documents
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-          description: An optional description of the Permission.
-          example: Allows viewing document contents
     AuthorizationPermissionList:
       type: object
       properties:
@@ -493,6 +478,21 @@ components:
       - resource_type_slug
       - created_at
       - updated_at
+    UpdateAuthorizationPermissionDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 48
+          description: A descriptive name for the Permission.
+          example: View Documents
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the Permission.
+          example: Allows viewing document contents
     PaginationOrder:
       type: string
       enum:

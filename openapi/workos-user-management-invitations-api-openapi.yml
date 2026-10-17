@@ -960,14 +960,6 @@ components:
       - updated_at
       - token
       - accept_invitation_url
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     CreateUserlandUserInviteOptionsDto:
       type: object
       properties:
@@ -1089,6 +1081,14 @@ components:
           example: en
       required:
       - email
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

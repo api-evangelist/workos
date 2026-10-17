@@ -236,14 +236,6 @@ components:
       - data
       - list_metadata
       - list_metadata
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     Directory:
       type: object
       properties:
@@ -353,6 +345,14 @@ components:
       - name
       - created_at
       - updated_at
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
   securitySchemes:
     bearer:
       scheme: bearer

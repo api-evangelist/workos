@@ -324,42 +324,6 @@ components:
       - object
       - data
       - list_metadata
-    CreateM2MApplicationDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the application.
-          example: My Application
-        application_type:
-          type: string
-          description: The type of application to create.
-          const: m2m
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description for the application.
-          example: An application for managing user access
-        scopes:
-          description: The OAuth scopes granted to the application.
-          example:
-          - openid
-          - profile
-          - email
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        organization_id:
-          type: string
-          description: The organization ID this application belongs to.
-          example: org_01EHZNVPK3SFK441A1RGBFSHRT
-      required:
-      - name
-      - application_type
-      - organization_id
     ConnectApplication:
       allOf:
       - type: object
@@ -508,6 +472,14 @@ components:
           required:
           - application_type
           - organization_id
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     RedirectUriDto:
       type: object
       properties:
@@ -523,14 +495,6 @@ components:
           example: true
       required:
       - uri
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
     CreateOAuthApplicationDto:
       type: object
       properties:
@@ -589,6 +553,42 @@ components:
       - name
       - application_type
       - is_first_party
+    CreateM2MApplicationDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the application.
+          example: My Application
+        application_type:
+          type: string
+          description: The type of application to create.
+          const: m2m
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description for the application.
+          example: An application for managing user access
+        scopes:
+          description: The OAuth scopes granted to the application.
+          example:
+          - openid
+          - profile
+          - email
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        organization_id:
+          type: string
+          description: The organization ID this application belongs to.
+          example: org_01EHZNVPK3SFK441A1RGBFSHRT
+      required:
+      - name
+      - application_type
+      - organization_id
   securitySchemes:
     bearer:
       scheme: bearer

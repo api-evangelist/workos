@@ -469,41 +469,6 @@ paths:
       - SSO
 components:
   schemas:
-    SsoAuthorizeUrlResponse:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          description: An OAuth 2.0 authorization URL.
-          example: https://accounts.google.com/o/oauth2/v2/auth?client_id=example&redirect_uri=https%3A%2F%2Fapi.workos.com%2Fsso%2Fcallback&response_type=code&scope=openid%20profile%20email
-      required:
-      - url
-    TokenQueryDto:
-      type: object
-      properties:
-        client_id:
-          type: string
-          description: The client ID of the WorkOS environment.
-          example: client_01HZBC6N1EB1ZY7KG32X
-        client_secret:
-          type: string
-          description: The client secret of the WorkOS environment.
-          example: sk_example_123456789
-        code:
-          type: string
-          description: The authorization code received from the authorization callback.
-          example: authorization_code_value
-        grant_type:
-          type: string
-          description: The grant type for the token request.
-          example: authorization_code
-          const: authorization_code
-      required:
-      - client_id
-      - client_secret
-      - code
-      - grant_type
     Profile:
       type: object
       properties:
@@ -648,6 +613,16 @@ components:
       - last_name
       - name
       - raw_attributes
+    SlimRole:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the assigned role.
+          example: admin
+      required:
+      - slug
+      description: The primary role assigned to the user.
     SsoLogoutAuthorizeResponse:
       type: object
       properties:
@@ -662,16 +637,6 @@ components:
       required:
       - logout_url
       - logout_token
-    SlimRole:
-      type: object
-      properties:
-        slug:
-          type: string
-          description: The slug of the assigned role.
-          example: admin
-      required:
-      - slug
-      description: The primary role assigned to the user.
     SsoTokenResponse:
       type: object
       properties:
@@ -730,6 +695,41 @@ components:
       - access_token
       - expires_in
       - profile
+    SsoAuthorizeUrlResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: An OAuth 2.0 authorization URL.
+          example: https://accounts.google.com/o/oauth2/v2/auth?client_id=example&redirect_uri=https%3A%2F%2Fapi.workos.com%2Fsso%2Fcallback&response_type=code&scope=openid%20profile%20email
+      required:
+      - url
+    TokenQueryDto:
+      type: object
+      properties:
+        client_id:
+          type: string
+          description: The client ID of the WorkOS environment.
+          example: client_01HZBC6N1EB1ZY7KG32X
+        client_secret:
+          type: string
+          description: The client secret of the WorkOS environment.
+          example: sk_example_123456789
+        code:
+          type: string
+          description: The authorization code received from the authorization callback.
+          example: authorization_code_value
+        grant_type:
+          type: string
+          description: The grant type for the token request.
+          example: authorization_code
+          const: authorization_code
+      required:
+      - client_id
+      - client_secret
+      - code
+      - grant_type
   securitySchemes:
     bearer:
       scheme: bearer

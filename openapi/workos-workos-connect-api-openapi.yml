@@ -160,6 +160,15 @@ paths:
       - workos-connect
 components:
   schemas:
+    ExternalAuthCompleteResponse:
+      type: object
+      properties:
+        redirect_uri:
+          type: string
+          description: URI to redirect the user back to AuthKit to complete the OAuth flow.
+          example: https://your-authkit-domain.workos.com/oauth/authorize/complete?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0ZSI6InJhbmRvbV9zdGF0ZV9zdHJpbmciLCJpYXQiOjE3NDI2MDQ4NTN9.abc123def456ghi789
+      required:
+      - redirect_uri
     UserManagementLoginRequest:
       type: object
       properties:
@@ -178,15 +187,6 @@ components:
       required:
       - external_auth_id
       - user
-    ExternalAuthCompleteResponse:
-      type: object
-      properties:
-        redirect_uri:
-          type: string
-          description: URI to redirect the user back to AuthKit to complete the OAuth flow.
-          example: https://your-authkit-domain.workos.com/oauth/authorize/complete?state=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0ZSI6InJhbmRvbV9zdGF0ZV9zdHJpbmciLCJpYXQiOjE3NDI2MDQ4NTN9.abc123def456ghi789
-      required:
-      - redirect_uri
     UserConsentOption:
       type: object
       properties:

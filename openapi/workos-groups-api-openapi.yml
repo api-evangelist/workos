@@ -627,49 +627,6 @@ paths:
       x-feature-flag: user-groups-enabled
 components:
   schemas:
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    GroupList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: group_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: group_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
     Group:
       type: object
       properties:
@@ -714,6 +671,21 @@ components:
       - description
       - created_at
       - updated_at
+    UpdateGroupDto:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 256
+          description: The name of the Group.
+          example: Engineering
+        description:
+          type:
+          - string
+          - 'null'
+          maxLength: 150
+          description: An optional description of the Group.
+          example: The engineering team
     CreateGroupDto:
       type: object
       properties:
@@ -731,15 +703,41 @@ components:
           example: The engineering team
       required:
       - name
-    CreateGroupMembershipDto:
+    GroupList:
       type: object
       properties:
-        organization_membership_id:
+        object:
           type: string
-          description: The ID of the Organization Membership to add to the group.
-          example: om_01HXYZ123456789ABCDEFGHIJ
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: group_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: group_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
       required:
-      - organization_membership_id
+      - object
+      - data
+      - list_metadata
     UserlandUserOrganizationMembershipBaseList:
       type: object
       properties:
@@ -835,21 +833,23 @@ components:
       - object
       - data
       - list_metadata
-    UpdateGroupDto:
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
+    CreateGroupMembershipDto:
       type: object
       properties:
-        name:
+        organization_membership_id:
           type: string
-          maxLength: 256
-          description: The name of the Group.
-          example: Engineering
-        description:
-          type:
-          - string
-          - 'null'
-          maxLength: 150
-          description: An optional description of the Group.
-          example: The engineering team
+          description: The ID of the Organization Membership to add to the group.
+          example: om_01HXYZ123456789ABCDEFGHIJ
+      required:
+      - organization_membership_id
   securitySchemes:
     bearer:
       scheme: bearer

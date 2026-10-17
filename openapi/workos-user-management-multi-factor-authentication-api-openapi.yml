@@ -234,6 +234,71 @@ components:
       - type
       - created_at
       - updated_at
+    UserlandUserAuthenticationFactorList:
+      type: object
+      properties:
+        object:
+          type: string
+          description: Indicates this is a list response.
+          const: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthenticationFactor'
+          description: The list of records for the current page.
+        list_metadata:
+          type: object
+          properties:
+            before:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
+              example: auth_factor_01HXYZ123456789ABCDEFGHIJ
+            after:
+              type:
+              - string
+              - 'null'
+              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
+              example: auth_factor_01HXYZ987654321KJIHGFEDCBA
+          required:
+          - before
+          - after
+          description: Pagination cursors for navigating between pages of results.
+      required:
+      - object
+      - data
+      - list_metadata
+    EnrollUserlandUserAuthenticationFactorDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of the factor to enroll.
+          example: totp
+          const: totp
+        totp_issuer:
+          type: string
+          description: Your application or company name displayed in the user's authenticator app.
+          example: WorkOS
+        totp_user:
+          type: string
+          description: The user's account name displayed in their authenticator app.
+          example: user@example.com
+        totp_secret:
+          type: string
+          description: The Base32-encoded shared secret for TOTP factors. This can be provided when creating the auth factor, otherwise it will be generated. The algorithm used to derive TOTP codes is SHA-1, the code length is 6 digits, and the timestep is 30 seconds – the secret must be compatible with these parameters.
+          example: JBSWY3DPEHPK3PXP
+      required:
+      - type
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     AuthenticationFactorEnrolled:
       type: object
       properties:
@@ -326,71 +391,6 @@ components:
       required:
       - authentication_factor
       - authentication_challenge
-    UserlandUserAuthenticationFactorList:
-      type: object
-      properties:
-        object:
-          type: string
-          description: Indicates this is a list response.
-          const: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/AuthenticationFactor'
-          description: The list of records for the current page.
-        list_metadata:
-          type: object
-          properties:
-            before:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the start of the list.
-              example: auth_factor_01HXYZ123456789ABCDEFGHIJ
-            after:
-              type:
-              - string
-              - 'null'
-              description: An object ID that defines your place in the list. When the ID is not present, you are at the end of the list.
-              example: auth_factor_01HXYZ987654321KJIHGFEDCBA
-          required:
-          - before
-          - after
-          description: Pagination cursors for navigating between pages of results.
-      required:
-      - object
-      - data
-      - list_metadata
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
-    EnrollUserlandUserAuthenticationFactorDto:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of the factor to enroll.
-          example: totp
-          const: totp
-        totp_issuer:
-          type: string
-          description: Your application or company name displayed in the user's authenticator app.
-          example: WorkOS
-        totp_user:
-          type: string
-          description: The user's account name displayed in their authenticator app.
-          example: user@example.com
-        totp_secret:
-          type: string
-          description: The Base32-encoded shared secret for TOTP factors. This can be provided when creating the auth factor, otherwise it will be generated. The algorithm used to derive TOTP codes is SHA-1, the code length is 6 digits, and the timestep is 30 seconds – the secret must be compatible with these parameters.
-          example: JBSWY3DPEHPK3PXP
-      required:
-      - type
   securitySchemes:
     bearer:
       scheme: bearer

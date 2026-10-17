@@ -801,6 +801,62 @@ paths:
       - user-management.organization-membership
 components:
   schemas:
+    UpdateUserlandUserOrganizationMembershipDto:
+      x-mutually-exclusive-body-groups:
+        role:
+          optional: true
+          variants:
+            single:
+            - role_slug
+            multiple:
+            - role_slugs
+      oneOf:
+      - type: object
+        not:
+          anyOf:
+          - properties:
+              role_slug:
+                x-exclude-from-lint: true
+            required:
+            - role_slug
+          - properties:
+              role_slugs:
+                x-exclude-from-lint: true
+            required:
+            - role_slugs
+      - type: object
+        properties:
+          role_slug:
+            type: string
+            description: A single role identifier. Defaults to `member` or the explicit default role. Mutually exclusive with `role_slugs`.
+            example: admin
+        required:
+        - role_slug
+        not:
+          anyOf:
+          - properties:
+              role_slugs:
+                x-exclude-from-lint: true
+            required:
+            - role_slugs
+      - type: object
+        properties:
+          role_slugs:
+            description: An array of role identifiers. Limited to one role when Multiple Roles is disabled. Mutually exclusive with `role_slug`.
+            example:
+            - admin
+            type: array
+            items:
+              type: string
+        required:
+        - role_slugs
+        not:
+          anyOf:
+          - properties:
+              role_slug:
+                x-exclude-from-lint: true
+            required:
+            - role_slug
     UserlandUserOrganizationMembership:
       type: object
       properties:
@@ -871,6 +927,94 @@ components:
       - updated_at
       - role
       - user
+    SlimRole:
+      type: object
+      properties:
+        slug:
+          type: string
+          description: The slug of the assigned role.
+          example: admin
+      required:
+      - slug
+      description: The primary role assigned to the user.
+    CreateUserlandUserOrganizationMembershipDto:
+      allOf:
+      - type: object
+        properties:
+          user_id:
+            type: string
+            description: The ID of the [user](/reference/authkit/user).
+            example: user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E
+          organization_id:
+            type: string
+            description: The ID of the [organization](/reference/organization) which the user belongs to.
+            example: org_01E4ZCR3C56J083X43JQXF3JK5
+        required:
+        - user_id
+        - organization_id
+      - oneOf:
+        - type: object
+          not:
+            anyOf:
+            - properties:
+                role_slug:
+                  x-exclude-from-lint: true
+              required:
+              - role_slug
+            - properties:
+                role_slugs:
+                  x-exclude-from-lint: true
+              required:
+              - role_slugs
+        - type: object
+          properties:
+            role_slug:
+              type: string
+              description: A single role identifier. Defaults to `member` or the explicit default role. Mutually exclusive with `role_slugs`.
+              example: admin
+          required:
+          - role_slug
+          not:
+            anyOf:
+            - properties:
+                role_slugs:
+                  x-exclude-from-lint: true
+              required:
+              - role_slugs
+        - type: object
+          properties:
+            role_slugs:
+              description: An array of role identifiers. Limited to one role when Multiple Roles is disabled. Mutually exclusive with `role_slug`.
+              example:
+              - admin
+              type: array
+              items:
+                type: string
+          required:
+          - role_slugs
+          not:
+            anyOf:
+            - properties:
+                role_slug:
+                  x-exclude-from-lint: true
+              required:
+              - role_slug
+      x-mutually-exclusive-body-groups:
+        role:
+          optional: true
+          variants:
+            single:
+            - role_slug
+            multiple:
+            - role_slugs
+    PaginationOrder:
+      type: string
+      enum:
+      - normal
+      - desc
+      - asc
+      example: desc
+      default: desc
     UserlandUser:
       type: object
       properties:
@@ -961,150 +1105,6 @@ components:
       - created_at
       - updated_at
       description: The user object.
-    UpdateUserlandUserOrganizationMembershipDto:
-      x-mutually-exclusive-body-groups:
-        role:
-          optional: true
-          variants:
-            single:
-            - role_slug
-            multiple:
-            - role_slugs
-      oneOf:
-      - type: object
-        not:
-          anyOf:
-          - properties:
-              role_slug:
-                x-exclude-from-lint: true
-            required:
-            - role_slug
-          - properties:
-              role_slugs:
-                x-exclude-from-lint: true
-            required:
-            - role_slugs
-      - type: object
-        properties:
-          role_slug:
-            type: string
-            description: A single role identifier. Defaults to `member` or the explicit default role. Mutually exclusive with `role_slugs`.
-            example: admin
-        required:
-        - role_slug
-        not:
-          anyOf:
-          - properties:
-              role_slugs:
-                x-exclude-from-lint: true
-            required:
-            - role_slugs
-      - type: object
-        properties:
-          role_slugs:
-            description: An array of role identifiers. Limited to one role when Multiple Roles is disabled. Mutually exclusive with `role_slug`.
-            example:
-            - admin
-            type: array
-            items:
-              type: string
-        required:
-        - role_slugs
-        not:
-          anyOf:
-          - properties:
-              role_slug:
-                x-exclude-from-lint: true
-            required:
-            - role_slug
-    CreateUserlandUserOrganizationMembershipDto:
-      allOf:
-      - type: object
-        properties:
-          user_id:
-            type: string
-            description: The ID of the [user](/reference/authkit/user).
-            example: user_01E4ZCR3C5A4QZ2Z2JQXGKZJ9E
-          organization_id:
-            type: string
-            description: The ID of the [organization](/reference/organization) which the user belongs to.
-            example: org_01E4ZCR3C56J083X43JQXF3JK5
-        required:
-        - user_id
-        - organization_id
-      - oneOf:
-        - type: object
-          not:
-            anyOf:
-            - properties:
-                role_slug:
-                  x-exclude-from-lint: true
-              required:
-              - role_slug
-            - properties:
-                role_slugs:
-                  x-exclude-from-lint: true
-              required:
-              - role_slugs
-        - type: object
-          properties:
-            role_slug:
-              type: string
-              description: A single role identifier. Defaults to `member` or the explicit default role. Mutually exclusive with `role_slugs`.
-              example: admin
-          required:
-          - role_slug
-          not:
-            anyOf:
-            - properties:
-                role_slugs:
-                  x-exclude-from-lint: true
-              required:
-              - role_slugs
-        - type: object
-          properties:
-            role_slugs:
-              description: An array of role identifiers. Limited to one role when Multiple Roles is disabled. Mutually exclusive with `role_slug`.
-              example:
-              - admin
-              type: array
-              items:
-                type: string
-          required:
-          - role_slugs
-          not:
-            anyOf:
-            - properties:
-                role_slug:
-                  x-exclude-from-lint: true
-              required:
-              - role_slug
-      x-mutually-exclusive-body-groups:
-        role:
-          optional: true
-          variants:
-            single:
-            - role_slug
-            multiple:
-            - role_slugs
-    SlimRole:
-      type: object
-      properties:
-        slug:
-          type: string
-          description: The slug of the assigned role.
-          example: admin
-      required:
-      - slug
-      description: The primary role assigned to the user.
-    PaginationOrder:
-      type: string
-      enum:
-      - normal
-      - desc
-      - asc
-      example: desc
-      default: desc
   securitySchemes:
     bearer:
       scheme: bearer
