@@ -7,6 +7,7 @@ checked:
 - https://github.com/marketplace?type=actions
 - https://registry.modelcontextprotocol.io/v0/servers
 - okta/integrations/okta-integration-edges.yml
+- slack/integrations/slack-integration-edges.yml
 - stripe/integrations/stripe-integration-edges.yml
 marketplace_apps: []
 edges:
@@ -128,5 +129,22 @@ edges:
     detected: '2026-10-15'
   detected_by: sweep-cloud-native.py
   first_seen: '2026-10-15'
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A09G5AFJ601-workos
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - WorkOS
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
 source:
 - https://github.com/marketplace?type=actions
