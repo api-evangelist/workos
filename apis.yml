@@ -39,6 +39,22 @@ tags:
 - Identity Provider
 - SSO
 - SAML
+- OpenID Connect
+- SCIM
+- Directory Sync
+- Authorization
+- FGA
+- Audit Logs
+- MFA
+- B2B SaaS
+- Agents
+- MCP
+- Identity Federation
+tags_raw:
+- Authentication
+- Identity Provider
+- SSO
+- SAML
 - OIDC
 - SCIM
 - Directory Sync
